@@ -1,0 +1,32 @@
+* { margin: 0 auto; padding: 0; font-family: 'Source Code Pro', monospace; }
+
+body { background: #EFEBE9; }
+
+header {  }
+
+nav, nav ul a:hover { height: 85px; }
+
+nav .brand-logo { max-height: 65px; margin: 0.3em; display: block; float: left; }
+
+nav ul li { list-style: none; display: inline-flex; justify-content: space-around; height: 85px; border-left: 1px solid #5D4037;}
+
+nav ul li a p { margin: 0; padding: 0; line-height: 0; color: #ffb74d; }
+
+nav ul li svg { color: #ffb74d; display:block; line-height: 0;}
+
+#subnav { height: 45px; background: #ffb74d; width: 100%; position: absolute; display:flex; top:85px;}
+
+nav ul#subnav li svg { color:#795548; display:inline-flex; }
+
+ul#subnav li { display: inline-flex; justify-content: space-around; line-height: 2.5; margin: 0.3em; color: #795548; border:0!important; }
+
+ul#subnav li span { height: 40px; margin: 0px 20px 0px 20px; }
+
+ul li#empty { width: 150px; }
+
+ul li#user_settings a { line-height: 6; width: 150px; }
+
+.active_spec { background: #EFEBE9!important; }
+
+li.active_spec svg, li.active_spec p { color: #795548!important; }
+

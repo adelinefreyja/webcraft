@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard :: WebCraft :: Make magic websites within minutes !{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+{% block nav %}
+    {% block logo %}
+        <a href="#"><img src="{{ asset('img/webcraft_logo.png') }}" alt="WebCraft" class="brand-logo" /></a>
+    {% endblock %}
+	<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
+    <ul class="right hide-on-med-and-down center-align">
+    	<li id="pages" class="mainNav pages"><a><i class="far fa-folder-open fa-2x"></i><p> Mes Pages</p></a></li>
+        <li id="medias" class="mainNav medias"><a><i class="far fa-images fa-2x"></i> <p>Mes Médias</p></a></li>
+        <li id="design" class="mainNav design"><a><i class="fas fa-paint-brush fa-2x"></i> <p>Personnalisation</p></a></li>
+        <li id="empty"></li>
+        <li id="products" class="mainNav products"><a><i class="fab fa-shirtsinbulk fa-2x"></i> <p>Mes produits</p></a></li>
+        <li id="orders" class="mainNav orders"><a><i class="fas fa-shopping-cart fa-2x"></i> <p>Mes commandes</p></a></li>
+        <li id="customers" class="mainNav customers"><a><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
+        <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
+        <li id="user_settings" class="user_settings"><a class="webui-popover pop bottom-in"><i class="fas fa-user fa-2x"></i></a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+    </ul>
+    <ul id="subnav" class="hide">
+    	
+    </ul>
+    <div id="user_submenu">
+
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+{% endblock %}
