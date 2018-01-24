@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DatabaseController extends Controller {
 
     /**
-     * @Route("/setup", name="setup")
+     * @Route("/test", name="test")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -47,7 +47,7 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
 # For an SQLite database, use: \"sqlite:///%kernel.project_dir%/var/data.db\"
 # Configure your db driver and server_version in config/packages/doctrine.yaml";
 
-            $text = "DATABASE_URL=mysql://$db_username:$db_password@$db_host/$db_name";
+            $text = "DATABASE_URL=mysql://'$db_username':'$db_password'@$db_host/'$db_name'";
 
             $content2 = "###< doctrine/doctrine-bundle ###";
 

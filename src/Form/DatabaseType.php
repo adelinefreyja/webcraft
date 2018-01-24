@@ -15,7 +15,9 @@ class DatabaseType extends AbstractType {
         $builder
             ->add("db_host", TextType::class)
             ->add("db_username", TextType::class)
-            ->add("db_password", TextType::class)
+            ->add("db_password", TextType::class,
+                ["required" =>  false]
+            )
             ->add("db_name", TextType::class)
         ;
     }
