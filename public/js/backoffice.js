@@ -18,11 +18,11 @@ $(document).ready(function(){
 	 	if($current == 'customers'){
 	 		$(this).removeClass('active');
 	 		$(this).addClass('active_spec');
-	 		$('#subnav').slideUp("slow");
+	 		$('#subnav').slideUp("fast");
 	 	} else {
 	 		$('.active_spec').removeClass('active_spec');
-	 		$('#subnav').slideToggle("slow");
-	 		$('#subnav').slideDown("slow");
+	 		$('#subnav').slideToggle("fast");
+	 		$('#subnav').slideDown("fast");
 	 		$('#subnav').toggleClass($current);
 	 	}
 
@@ -33,9 +33,11 @@ $(document).ready(function(){
 	 		$('#subnav').load('menus/'+$current+'_submenu.html');
 	 	}
 
-	 });
+	 	if($curent == 'user_settings'){
+	 		$()
+	 	}
 
-	$('#user_settings').click(function(e){
-           $('#user_submenu').show({width:300,autoHide:false});
-    });
+	 });
+	 $('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
+
 })

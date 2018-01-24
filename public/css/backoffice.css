@@ -30,3 +30,10 @@ ul li#user_settings a { line-height: 6; width: 150px; }
 
 li.active_spec svg, li.active_spec p { color: #795548!important; }
 
+#user_submenu { display: none; }
+
+#user_submenu ul li { padding: 10px; }
+
+.webui-popover { background: #ffb74d; width: 300px; }
+
+.webui-popover.bottom > .webui-arrow:after, .webui-popover.bottom-right > .webui-arrow:after, .webui-popover.bottom-left > .webui-arrow:after { border-bottom-color: #ffb74d; }

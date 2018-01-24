@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.webui-popover.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
 {% endblock %}
 
@@ -21,7 +22,7 @@
         <li id="orders" class="mainNav orders"><a><i class="fas fa-shopping-cart fa-2x"></i> <p>Mes commandes</p></a></li>
         <li id="customers" class="mainNav customers"><a><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
-        <li id="user_settings" class="user_settings"><a class="webui-popover pop bottom-in"><i class="fas fa-user fa-2x"></i></a></li>
+        <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
         <li><a href="sass.html">Sass</a></li>
@@ -33,7 +34,10 @@
     	
     </ul>
     <div id="user_submenu">
-
+        <ul>
+            <li><i class="fas fa-user fa-lg"></i> Mon compte</li>
+            <li><i class="fas fa-power-off fa-lg"></i> Déconnexion</li>
+        </ul>
     </div>
 {% endblock %}
 
