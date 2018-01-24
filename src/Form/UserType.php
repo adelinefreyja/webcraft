@@ -21,19 +21,22 @@ class UserType extends AbstractType {
                 [
                     "type"              =>  EmailType::class,
                     "first_options"     =>  ["label"    =>  "Email"],
-                    "second_options"    =>  ["label"    =>  "Repeat Email"],
+                    "second_options"    =>  ["label"    =>  "Confirmez votre Email"],
                 ]
             )
-            ->add("username", TextType::class)
+            ->add("username", TextType::class, 
+                [   "label" => "Pseudonyme" ]
+            )
             ->add("password", RepeatedType::class,
                 [
                     "type"              =>  PasswordType::class,
-                    "first_options"     =>  ["label"    =>  "Password"],
-                    "second_options"    =>  ["label"    =>  "Repeat Password"],
+                    "first_options"     =>  ["label"    =>  "Mot de passe"],
+                    "second_options"    =>  ["label"    =>  "Confirmez votre mot de passe"],
                 ]
             )
             ->add("user_gender", ChoiceType::class,
                 [
+                    "label" => "Genre",
                     "choices"   =>  [
                         "Homme" =>  true,
                         "Femme" =>  true,
@@ -42,8 +45,12 @@ class UserType extends AbstractType {
                     "expanded"  =>  true
                 ]
             )
-            ->add("user_first_name", TextType::class)
-            ->add("user_last_name", TextType::class)
+            ->add("user_first_name", TextType::class, 
+                [   "label" => "Votre nom" ]
+            )
+            ->add("user_last_name", TextType::class, 
+                [   "label" => "Votre prénom" ]
+            )
         ;
     }
 

@@ -13,12 +13,21 @@ class DatabaseType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("db_host", TextType::class)
-            ->add("db_username", TextType::class)
-            ->add("db_password", TextType::class,
-                ["required" =>  false]
+            ->add("db_host", TextType::class, 
+                [   "label" => "Hôte" ]
             )
-            ->add("db_name", TextType::class)
+            ->add("db_username", TextType::class, 
+                [   "label" => "Username" ]
+            )
+            ->add("db_password", TextType::class,
+                [
+                    "label" => "Mot de passe de la Base de Données",
+                    "required" =>  false
+                ]
+            )
+            ->add("db_name", TextType::class, 
+                [   "label" => "Nom de la base de données" ]
+            )
         ;
     }
 
