@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/setup/3", name="setup3")
+     * @Route("/setup3", name="setup3")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
