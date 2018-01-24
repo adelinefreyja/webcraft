@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DatabaseController extends Controller {
 
     /**
-     * @Route("/test", name="test")
+     * @Route("/setup", name="setup")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */

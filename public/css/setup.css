@@ -2,10 +2,18 @@
 
 body { background: #795548; }
 
-.container { background: #EFEBE9; border-radius:10px; padding: 10px; margin-top: 20px; }
-.row { width: 100%; }
+.container { background: #EFEBE9; border-radius:10px; padding: 10px; margin-top: 20px; margin-bottom: 20px; }
+
 .center-align img { max-height: 150px; }
 
-form { width: 100%; padding: 5%; }
+.setupNav.center-align { margin-top: 20px; }
+
+.title.center-align { padding-top: 3%; }
+
+hr { width: 40%; }
+
+form { width: 100%; padding: 5%; margin-bottom: 3%; }
+label { margin-right: 15px; }
+
+form div { margin-top: 20px; margin-bottom: 20px; }
 input[type=text]:focus, input[type=text]:focus:not([readonly]) { border-bottom: 1px solid #795548; box-shadow: 0 1px 0 0 #795548; }
-nav ul li, nav ul li a { display: inline-block; }
