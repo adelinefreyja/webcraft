@@ -11,29 +11,26 @@
 </head>
 <body>
 	<div class="container">
-		<header>
-			<div class="logo-wrapper waves-light flex-center">
-	            <a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo.png')}}" class="img-fluid flex-center"></a>
-	        </div>
-	        <h3 class="flex-center">3 steps to success</h3>
-		</header>
+		{% block header %}
+			<header>
+				{% block logo %}
+					<div class="center-align">
+	            	<a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo_black.png')}}"></a>
+	        		</div>
+				{% endblock %}
 
-		<nav class="flex-center">
-			<ul>
-				<li>Step 1</li>
-				<li>Step 2</li>
-				<li>Step 3</li>
-			</ul>
-		</nav>
+				{% block nav %}
+				{% endblock %}
+			</header>		
+		
+		{% endblock %}
 		
 		
-		{% block body %}
+		{% block content %}
 			{{ form_start(form) }}
-			{{ form_widget(form) }}
-			<button type="submit" class="btn btn-success">Valider</button>
+				{{ form_widget(form) }}
+				<button type="submit" class="btn btn-success">Valider</button>
 			{{ form_end(form) }}
-
-
 		{% endblock %}
 		
 
