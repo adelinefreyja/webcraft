@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
 	*/
 	public function new(Request $request)
 	{
-		
+
         return $this->render('backoffice/index.html.twig');
 	}
 }
