@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class AdminDashboardController extends Controller
 {
 	/**
-	* @Route("/admin", name="dashboard")
+	* @Route("/craft", name="dashboard")
 	*/
 	public function new(Request $request)
 	{
