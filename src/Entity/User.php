@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Table(name="users")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
@@ -16,7 +17,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $user_id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
@@ -28,13 +29,13 @@ class User implements UserInterface, \Serializable
      *     maxMessage = "Le pseudo doit avoir au maximum {{ limit }} caractères"
      * )
      */
-    private $user_nickame;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank()
      */
-    private $user_password;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
@@ -54,7 +55,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank()
      */
-    private $user_name;
+    private $user_first_name;
 
     /**
     * @ORM\Column(type="string", length=64)
@@ -69,12 +70,12 @@ class User implements UserInterface, \Serializable
     private $user_gender;
 
     /**
-    * @ORM\Column(type="string", length=64)
+    * @ORM\Column(type="string", length=64, nullable=true)
     */
     private $user_profile_picture;
 
     /**
-    * @ORM\Column(type="string", length=64)
+    * @ORM\Column(type="string", length=64, nullable=true)
     */
     private $user_ip;
 
@@ -96,7 +97,7 @@ class User implements UserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
         // 
-        $this->setRoles('ROLE_USER');
+        $this->setRoles(['ROLE_SUPER_ADMIN']);
     }
 
     public function getSalt()
@@ -115,8 +116,8 @@ class User implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->user_name,
-            $this->user_password,
+            $this->username,
+            $this->password,
             // see section on salt below
             // $this->salt,
         ));
@@ -127,31 +128,30 @@ class User implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->user_name,
-            $this->user_password,
+            $this->username,
+            $this->password,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
     }
 
 
-
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getId()
     {
-        return $this->user_id;
+        return $this->id;
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed $id
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setId($id)
     {
-        $this->user_id = $user_id;
+        $this->id = $id;
 
         return $this;
     }
@@ -159,19 +159,19 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getUserNickame()
+    public function getUsername()
     {
-        return $this->user_nickame;
+        return $this->username;
     }
 
     /**
-     * @param mixed $user_nickame
+     * @param mixed $username
      *
      * @return self
      */
-    public function setUserNickame($user_nickame)
+    public function setUsername($username)
     {
-        $this->user_nickame = $user_nickame;
+        $this->username = $username;
 
         return $this;
     }
@@ -181,17 +181,17 @@ class User implements UserInterface, \Serializable
      */
     public function getPassword()
     {
-        return $this->user_password;
+        return $this->password;
     }
 
     /**
-     * @param mixed $user_password
+     * @param mixed $password
      *
      * @return self
      */
-    public function setPassword($user_password)
+    public function setPassword($password)
     {
-        $this->user_password = $user_password;
+        $this->password = $password;
 
         return $this;
     }
@@ -219,19 +219,19 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getUsername()
+    public function getUserFirstName()
     {
-        return $this->user_name;
+        return $this->user_first_name;
     }
 
     /**
-     * @param mixed $user_name
+     * @param mixed $user_first_name
      *
      * @return self
      */
-    public function setUsername($user_name)
+    public function setUserFirstName($user_first_name)
     {
-        $this->user_name = $user_name;
+        $this->user_first_name = $user_first_name;
 
         return $this;
     }

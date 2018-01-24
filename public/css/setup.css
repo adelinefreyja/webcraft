@@ -1,0 +1,11 @@
+/* WEBCRAFT SETUP*/
+
+body { background: #795548; }
+
+.container { background: #EFEBE9; border-radius:10px; padding: 10px; margin-top: 20px; }
+.row { width: 100%; }
+.logo-wrapper .img-fluid { width: 300px; }
+
+form { width: 100%; padding: 5%; }
+input[type=text]:focus, input[type=text]:focus:not([readonly]) { border-bottom: 1px solid #795548; box-shadow: 0 1px 0 0 #795548; }
+nav ul li, nav ul li a { display: inline-block; }

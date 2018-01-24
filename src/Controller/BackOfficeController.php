@@ -9,7 +9,7 @@ class BackOfficeController extends Controller
 	/**
 	* This is a simple controller returning the index.html.twig view
 	*
-	* @return mixedfView index.html.twig
+	* @return mixed View index.html.twig
 	*/
 	public function indexAction()
 	{

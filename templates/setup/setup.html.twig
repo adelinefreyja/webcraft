@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}WebCraft :: Craft magic websites within minutes ! ::{% endblock %}</title>
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
+	{% endblock %}
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="logo-wrapper waves-light flex-center">
+	            <a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo.png')}}" class="img-fluid flex-center"></a>
+	        </div>
+	        <h3 class="flex-center">3 steps to success</h3>
+		</header>
+
+		<nav class="flex-center">
+			<ul>
+				<li>Step 1</li>
+				<li>Step 2</li>
+				<li>Step 3</li>
+			</ul>
+		</nav>
+		
+		
+		{% block body %}
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<button type="submit" class="btn btn-success">Valider</button>
+			{{ form_end(form) }}
+
+
+		{% endblock %}
+		
+
+		{% block footer %}{% endblock %}
+	</div>
+	{% block javascripts %}
+		<script type="text/javascript" src="{{ asset('js/fontawesome-all.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+	{% endblock %}
+</body>
+</html>

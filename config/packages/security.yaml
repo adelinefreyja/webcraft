@@ -1,18 +1,46 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    # la partie qui permet d'encrypter le mot de passe de l'utilisateur, géré par Symfony
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 14
+
+    # la hierarchy avec qui a quel doit.
+    # Ici, ROLE_ADMIN a les droits de user (+ les siens qui lui sont propre)
+    # ROLE_SUPER_ADMIN, les droits de ROLE_ADMIN (donc ceux de user), ROLE_ALLOWED_TO_SWITCH permet de changer de "compte", se faire passer pour quelqu'un d'autre
+    # le super-admin pourra ainsi accéder à un autre compte utilisateur sans avoir besoin de son mot de passe (utile pour le debug)
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # pour lié avec l'entity user que l'on vient de créer
     providers:
-        in_memory: { memory: ~ }
+        main:
+            entity: { class: App\Entity\User, property: username }
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: ~
+            pattern: ^/
+            provider: main
+            form_login:
+                login_path: login
+                check_path: login_check
+            anonymous: true
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
 
-            # activate different ways to authenticate
+            logout:
+                path: /logout
+                target: /login
 
-            # http_basic: ~
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # https://symfony.com/doc/current/security/form_login_setup.html
+    access_control:
+        - { path: ^/craft, roles: ROLE_SUPER_ADMIN }
