@@ -1,6 +1,6 @@
 * { margin: 0 auto; padding: 0; font-family: 'Source Code Pro', monospace; }
 
-body { background: #EFEBE9; }
+body { background: #EFEBE9; overflow-x: hidden; }
 
 header {  }
 
@@ -34,6 +34,6 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 #user_submenu ul li { padding: 10px; }
 
-.webui-popover { background: #ffb74d; width: 300px; }
+.webui-popover { background: #ffb74d; width: 200px; }
 
 .webui-popover.bottom > .webui-arrow:after, .webui-popover.bottom-right > .webui-arrow:after, .webui-popover.bottom-left > .webui-arrow:after { border-bottom-color: #ffb74d; }
