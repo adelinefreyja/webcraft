@@ -21,4 +21,5 @@ label { margin-right: 15px; }
 button.btn { color: #795548; font-weight:800; }
 
 form div { margin-top: 20px; margin-bottom: 20px; }
-input[type=text]:focus, input[type=text]:focus:not([readonly]) { border-bottom: 1px solid #795548!important; box-shadow: 0 1px 0 0 #795548!important; }
+input[type=text]:focus, input[type=text]:focus:not([readonly]), input[type=password]:focus, input[type=password]:focus:not([readonly]), input[type=email]:focus, input[type=email]:focus:not([readonly]) { border-bottom: 1px solid #795548!important; box-shadow: 0 1px 0 0 #795548!important; }
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after { background: #ffb74d; border: 2px solid #ffb74d; }
