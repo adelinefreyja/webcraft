@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}WebCraft :: Craft magic websites within minutes ! ::{% endblock %}</title>
 	{% block stylesheets %}
+		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/fa-svg-with-js.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
 	{% endblock %}
@@ -27,9 +29,12 @@
 		
 		
 		{% block content %}
+			{% block contentTitle %}{% endblock %}
 			{{ form_start(form) }}
 				{{ form_widget(form) }}
-				<button type="submit" class="btn btn-success">Valider</button>
+				<div class="right">
+				<button type="submit" class="btn btn-success btn-block">Valider</button>
+				</div>
 			{{ form_end(form) }}
 		{% endblock %}
 		
