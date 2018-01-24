@@ -10,10 +10,49 @@
 	</div>
 {% endblock %}
 
-{% block contentTitle %}
-	<div class="title center-align">
-		<i class="far fa-user fa-3x"></i>
-		<h4> Etape 3 :: Créez votre compte</h4>
-		<hr>
-	</div>
+{% block content %}
+	{% block contentTitle %}
+		<div class="title center-align">
+			<i class="far fa-user fa-3x"></i>
+			<h4> Etape 3 :: Créez votre compte</h4>
+			<hr>
+		</div>
+	{% endblock %}
+
+	{{ form_start(form) }}
+		<div class="input-field">
+			{{ form_label(form.username) }}
+			{{ form_widget(form.username) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.first) }}
+			{{ form_widget(form.user_email.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.second) }}
+			{{ form_widget(form.user_email.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.first) }}
+			{{ form_widget(form.password.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.second) }}
+			{{ form_widget(form.password.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_first_name) }}
+			{{ form_widget(form.user_first_name) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_last_name) }}
+			{{ form_widget(form.user_last_name) }}
+		</div>
+			{{ form_label(form.user_gender) }}
+			{{ form_widget(form.user_gender) }}
+
+		<div class="right">
+			<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+		</div>
+	{{ form_end(form) }}
 {% endblock %}

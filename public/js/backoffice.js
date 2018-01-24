@@ -36,6 +36,7 @@ $(document).ready(function(){
 	 	}
 
 	 });
-	 $('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
+	$('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
+
 
 });

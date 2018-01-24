@@ -18,6 +18,7 @@ class WebsiteInfoType extends AbstractType {
             ->add("optionvalue", TextType::class,["label"    =>  "Description"])
             ->add("sitetype", ChoiceType::class,
                 [
+                    "label" => "Type de Site",
                     "choices"   =>  [
                         "E-commerce" =>  true,
                         "Vitrine" =>  true

@@ -8,6 +8,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fa-svg-with-js.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
 	{% endblock %}
 </head>
@@ -17,7 +18,7 @@
 			<header>
 				{% block logo %}
 					<div class="center-align">
-	            	<a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo_black.png')}}"></a>
+	            	<a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo_black.png')}}" class="responsive-img"></a>
 	        		</div>
 				{% endblock %}
 
@@ -30,17 +31,16 @@
 		
 		{% block content %}
 			{% block contentTitle %}{% endblock %}
-			{{ form_start(form) }}
-				{{ form_widget(form) }}
-				<div class="right">
-				<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-				</div>
-			{{ form_end(form) }}
+			
 		{% endblock %}
 		
-
-		{% block footer %}{% endblock %}
+		
 	</div>
+	<footer>
+		{% block footer %}
+			<p class="center-align">&copy; 2018 - The WebCraft Team</p>
+		{% endblock %}
+	</footer>
 	{% block javascripts %}
 		<script type="text/javascript" src="{{ asset('js/fontawesome-all.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>

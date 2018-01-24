@@ -1,56 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}WebCraft :: Craft magic websites within minutes ! ::{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
+{% extends ('setup/setup.html.twig') %}
+
+{% block content %}
+    {% block contentTitle %}
+        <div class="title center-align">
+            <i class="far fa-smile fa-3x"></i>
+            <h4>:: Connectez-vous ::</h4>
+            <hr>
+        </div>
     {% endblock %}
-</head>
-<body>
-    <div class="container">
-        {% block header %}
-            <header>
-                {% block logo %}
-                    <div class="center-align">
-                    <a href="{{ path('setup') }}"><img src="{{ asset('img/webcraft_logo_black.png')}}"></a>
-                    </div>
-                {% endblock %}
 
-                {% block nav %}
-                    <h3 class="center-align">Connectez-vous</h3>
-                {% endblock %}
-            </header>
-        
-        {% endblock %}
-        
-        
-        {% block content %}
-             {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-            <form action="{{ path('login_check') }}" method="post">
-                <label for="username">Pseudo :</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <form action="{{ path('login_check') }}" method="post">
+        <div class="input-field">
+            <label for="username">Pseudo</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
 
-                <label for="password">Mot de passe:</label>
-                <input type="password" id="password" name="_password" />
-                <input type="hidden" name="_target_path" value="{{ path('dashboard') }}" />
+        <div class="input-field">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+        <input type="hidden" name="_target_path" value="{{ path('dashboard') }}" />
 
-                <button type="submit">Se connecter</button>
-            </form>
-        {% endblock %}
-        
-
-        {% block footer %}{% endblock %}
-    </div>
-    {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('js/fontawesome-all.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-    {% endblock %}
-</body>
-</html>
+        <button type="submit" class="right waves-effect waves-light btn orange lighten-2"><i class="fas fa-sign-in-alt fa-lg"></i> Se connecter</button>
+    </form>
+{% endblock %}

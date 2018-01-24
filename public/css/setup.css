@@ -1,5 +1,7 @@
 /* WEBCRAFT SETUP*/
 
+* { margin: 0 auto; padding: 0; }
+
 body { background: #795548; }
 
 .container { background: #EFEBE9; border-radius:10px; padding: 10px; margin-top: 20px; margin-bottom: 20px; }
@@ -14,11 +16,15 @@ body { background: #795548; }
 
 .inactive { color: #BDBDBD; }
 
-hr { width: 40%; }
+.title svg { color: #795548; }
+
+hr { width: 40%; border: 2px solid #ffb74d; }
 
 form { width: 100%; padding: 5%; margin-bottom: 3%; }
 label { margin-right: 15px; }
 button.btn { color: #795548; font-weight:800; }
+
+footer p { color: #4e342e; }
 
 form div { margin-top: 20px; margin-bottom: 20px; }
 input[type=text]:focus, input[type=text]:focus:not([readonly]), input[type=password]:focus, input[type=password]:focus:not([readonly]), input[type=email]:focus, input[type=email]:focus:not([readonly]) { border-bottom: 1px solid #795548!important; box-shadow: 0 1px 0 0 #795548!important; }

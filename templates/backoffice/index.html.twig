@@ -5,6 +5,7 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.webui-popover.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
 {% endblock %}
 
@@ -25,10 +26,14 @@
         <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
+        <div id="accordion">
+          <h5>Test</h5>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          <h5>Test</h5>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          <h5>Test</h5>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        </div>
     </ul>
     <ul id="subnav" class="hide">
     	
