@@ -30,14 +30,12 @@ $(document).ready(function(){
 	 	$getSubmenu = $.inArray($current, $menuList);
 
 	 	if($getSubmenu !== -1){
-	 		$('#subnav').load('menus/'+$current+'_submenu.html');
-	 	}
-
-	 	if($curent == 'user_settings'){
-	 		$()
+            setTimeout(function(){
+                $('#subnav').load('menus/'+$current+'_submenu.html');
+            }, 100);
 	 	}
 
 	 });
 	 $('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
 
-})
+});
