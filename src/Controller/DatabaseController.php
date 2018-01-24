@@ -58,7 +58,7 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
             return $this->redirectToRoute('setup2');
         }
 
-        return $this->render('setup/setup.html.twig',
+        return $this->render('setup/setup1.html.twig',
             ['form' => $form->createView()]
         );
     }
