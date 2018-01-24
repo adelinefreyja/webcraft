@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/", name="setup")
+     * @Route("/setup/3", name="setup3")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -39,7 +39,7 @@ class SecurityController extends Controller
         }
 
         return $this->render(
-            'setup/setup.html.twig',
+            'setup/setup3.html.twig',
             array('form' => $form->createView())
         );
     }

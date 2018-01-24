@@ -7,6 +7,7 @@ class Database {
     private $db_host;
     private $db_username;
     private $db_password;
+    private $db_name;
 
     /**
      * @return mixed
@@ -71,7 +72,5 @@ class Database {
     {
         $this->db_name = $db_name;
     }
-    private $db_name;
-
 
 }

@@ -10,8 +10,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DatabaseController extends Controller {
 
+    private function connexion($db_host, $db_username, $db_password, $db_name) {
+
+        try {
+            $pdo = new \PDO(
+                "mysql:host=$db_host;",
+                $db_username,
+                $db_password,
+                array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING,
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+            );
+
+            $pdo->exec(
+                "CREATE DATABASE IF NOT EXISTS $db_name"
+            );
+        } catch (\PDOException $e) {
+            die("Erreur de connexion à la base de donnée : " . $e->getMessage());
+        }
+    }
+
     /**
-     * @Route("/test", name="test")
+     * @Route("/setup", name="setup")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -52,8 +71,9 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
             $content2 = "###< doctrine/doctrine-bundle ###";
 
             $fullContent = $content1 . "\r\n" . $text . "\r\n" . $content2;
-
             file_put_contents("../.env", $fullContent);
+
+            $this->connexion($db_host, $db_username, $db_password, $db_name);
 
             return $this->redirectToRoute('setup2');
         }
