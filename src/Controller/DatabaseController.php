@@ -17,7 +17,7 @@ class DatabaseController extends Controller {
         $connexion = $this->pdo;
 
         $connexion->query(
-            "CREATE TABLE `user` (
+            "CREATE TABLE IF NOT EXISTS `user` (
                 `id` int(11) NOT NULL,
                 `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
                 `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -29,7 +29,7 @@ class DatabaseController extends Controller {
                 `user_ip` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
                 `is_active` tinyint(1) NOT NULL,
                 `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=latin1;"
         );
 
         $connexion->query(
@@ -46,12 +46,12 @@ class DatabaseController extends Controller {
         );
 
         $connexion->query(
-            "CREATE TABLE `options` (
+            "CREATE TABLE IF NOT EXISTS `options` (
                 `id` int(11) NOT NULL,
                 `optionname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `optionvalue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `sitetype` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=latin1;"
         );
 
         $connexion->query(

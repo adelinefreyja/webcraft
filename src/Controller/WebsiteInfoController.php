@@ -24,8 +24,8 @@ class WebsiteInfoController extends Controller
       $em->persist($WebsiteInfo);
       $em->flush();
 
-          return $this->redirectToRoute('setup3');
-      }
+      return $this->redirectToRoute('setup3');
+    }
       return $this->render(
           'setup/setup2.html.twig',
           array('form' => $form->createView())
