@@ -26,6 +26,8 @@ ul#subnav li { display: inline-flex; justify-content: space-around; line-height:
 
 ul#subnav li span { height: 40px; margin: 0px 20px 0px 20px; }
 
+#subnav a.active { background: #EFEBE9; color: #795548; height: 45px; }
+
 ul li#empty { width: 200px; height: 85px; }
 
 ul li#user_settings a { line-height: 6; width: 150px; }
