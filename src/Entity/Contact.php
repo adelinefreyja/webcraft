@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -48,6 +48,70 @@ class Contact
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $messageId;
+
+    /**
+     * @return string
+     */
+    public function getMessageContent(): string
+    {
+        return $this->messageContent;
+    }
+
+    /**
+     * @param string $messageContent
+     */
+    public function setMessageContent(string $messageContent): void
+    {
+        $this->messageContent = $messageContent;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getMessageDate(): \DateTime
+    {
+        return $this->messageDate;
+    }
+
+    /**
+     * @param \DateTime $messageDate
+     */
+    public function setMessageDate(\DateTime $messageDate): void
+    {
+        $this->messageDate = $messageDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageObject(): string
+    {
+        return $this->messageObject;
+    }
+
+    /**
+     * @param string $messageObject
+     */
+    public function setMessageObject(string $messageObject): void
+    {
+        $this->messageObject = $messageObject;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    /**
+     * @param int $messageId
+     */
+    public function setMessageId(int $messageId): void
+    {
+        $this->messageId = $messageId;
+    }
 
 
 }

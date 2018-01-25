@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +27,22 @@ class Newsletter
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $emailId;
+
+    /**
+     * @return string
+     */
+    public function getEmailValue(): string
+    {
+        return $this->emailValue;
+    }
+
+    /**
+     * @param string $emailValue
+     */
+    public function setEmailValue(string $emailValue): void
+    {
+        $this->emailValue = $emailValue;
+    }
 
 
 }

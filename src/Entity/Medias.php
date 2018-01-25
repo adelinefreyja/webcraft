@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -48,6 +48,70 @@ class Medias
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $mediaId;
+
+    /**
+     * @return string
+     */
+    public function getMediaType(): string
+    {
+        return $this->mediaType;
+    }
+
+    /**
+     * @param string $mediaType
+     */
+    public function setMediaType(string $mediaType): void
+    {
+        $this->mediaType = $mediaType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMediaSrc(): string
+    {
+        return $this->mediaSrc;
+    }
+
+    /**
+     * @param string $mediaSrc
+     */
+    public function setMediaSrc(string $mediaSrc): void
+    {
+        $this->mediaSrc = $mediaSrc;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMediaName(): string
+    {
+        return $this->mediaName;
+    }
+
+    /**
+     * @param string $mediaName
+     */
+    public function setMediaName(string $mediaName): void
+    {
+        $this->mediaName = $mediaName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMediaDescription(): string
+    {
+        return $this->mediaDescription;
+    }
+
+    /**
+     * @param string $mediaDescription
+     */
+    public function setMediaDescription(string $mediaDescription): void
+    {
+        $this->mediaDescription = $mediaDescription;
+    }
 
 
 }
