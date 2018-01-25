@@ -184,7 +184,8 @@ class DatabaseController extends Controller {
             note_value ENUM('1','2','3','4','5') NOT NULL DEFAULT '4',
             comment_text TEXT NOT NULL,
             ADD CONSTRAINT
-            `constraint_products` FOREIGN KEY (`tax_id`) REFERENCES `products_tax` (`tax_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+            `constraint_comment` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+            `constraint_comment1` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
           ) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
 
