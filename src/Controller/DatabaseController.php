@@ -10,10 +10,125 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DatabaseController extends Controller {
 
+    private $pdo;
+
+    private function createTables() {
+
+        $connexion = $this->pdo;
+
+        $connexion->query(
+            "CREATE TABLE `user` (
+                `id` int(11) NOT NULL,
+                `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+                `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+                `user_email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+                `user_first_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+                `user_last_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+                `user_gender` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                `user_profile_picture` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+                `user_ip` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+                `is_active` tinyint(1) NOT NULL,
+                `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
+        );
+
+        $connexion->query(
+            "ALTER TABLE `user`
+                ADD PRIMARY KEY (`id`),
+                ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),
+                ADD UNIQUE KEY `UNIQ_8D93D649550872C` (`user_email`);"
+        );
+
+        $connexion->query(
+            "ALTER TABLE `user`
+                MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+            COMMIT;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE `options` (
+                `id` int(11) NOT NULL,
+                `optionname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+                `optionvalue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+                `sitetype` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
+        );
+
+        $connexion->query(
+            "ALTER TABLE `options`
+                ADD PRIMARY KEY (`id`),
+                ADD UNIQUE KEY `UNIQ_D035FA87A536B7BB` (`optionname`),
+                ADD UNIQUE KEY `UNIQ_D035FA87A85C82CC` (`optionvalue`);"
+        );
+
+        $connexion->query(
+            "ALTER TABLE `options`
+                MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+            COMMIT;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS pages (
+				page_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				user_id INT(20) NOT NULL,
+				page_title VARCHAR(255) NOT NULL,
+				page_name VARCHAR(255) NOT NULL,
+				page_date DATETIME NOT NULL,
+				page_content LONGTEXT NOT NULL,
+				page_status ENUM('masquer', 'afficher', 'supprimer') NOT NULL,
+				comment_status ENUM('editer', 'afficher', 'supprimer') NOT NULL,
+				page_type VARCHAR(255),
+				page_modified DATETIME
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS contact (
+				message_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				user_id INT(20) NOT NULL,
+				message_content LONGTEXT NOT NULL,
+				message_date DATETIME NOT NULL,
+				message_object VARCHAR(20) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS design (
+				fw_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				background_color VARCHAR(20) NOT NULL,
+				main_color VARCHAR(20) NOT NULL,
+				links_color VARCHAR(20) NOT NULL,
+				text_primary_color VARCHAR(20) NOT NULL,
+				text_secondary_color VARCHAR(20) NOT NULL,
+				header_img VARCHAR(20) NOT NULL,
+				header_color VARCHAR(20) NOT NULL,
+				background_img VARCHAR(20) NOT NULL,
+				css_add VARCHAR(20) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS medias (
+				media_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				media_type ENUM('img', 'audio', 'video') NOT NULL,
+				media_src VARCHAR(255) NOT NULL,
+				media_name VARCHAR(255) NOT NULL,
+				media_description TEXT
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS newsletter (
+				email_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				email_value VARCHAR(255) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+    }
+
     private function connexion($db_host, $db_username, $db_password, $db_name) {
 
         try {
-            $pdo = new \PDO(
+            $this->pdo = new \PDO(
                 "mysql:host=$db_host;",
                 $db_username,
                 $db_password,
@@ -21,9 +136,12 @@ class DatabaseController extends Controller {
                     \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
             );
 
-            $pdo->exec(
+            $this->pdo->exec(
                 "CREATE DATABASE IF NOT EXISTS $db_name"
             );
+
+            $this->pdo->query("USE $db_name");
+
         } catch (\PDOException $e) {
             die("Erreur de connexion à la base de donnée : " . $e->getMessage());
         }
@@ -70,10 +188,12 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
 
             $content2 = "###< doctrine/doctrine-bundle ###";
 
-            $fullContent = $content1 . "\r\n" . $text . "\r\n" . $content2;
+            $fullContent = $content1 . "\n" . $text . "\n" . $content2;
             file_put_contents("../.env", $fullContent);
 
             $this->connexion($db_host, $db_username, $db_password, $db_name);
+
+            $this->createTables();
 
             return $this->redirectToRoute('setup2');
         }

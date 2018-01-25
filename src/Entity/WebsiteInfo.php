@@ -127,4 +127,4 @@ class WebsiteInfo
 
         return $this;
     }
-    }
+}
