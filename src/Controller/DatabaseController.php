@@ -29,7 +29,7 @@ class DatabaseController extends Controller {
                 `user_ip` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
                 `is_active` tinyint(1) NOT NULL,
                 `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=latin1;"
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
         );
 
         $connexion->query(
@@ -51,7 +51,7 @@ class DatabaseController extends Controller {
                 `optionname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `optionvalue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `sitetype` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=latin1;"
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
         );
 
         $connexion->query(

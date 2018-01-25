@@ -20,8 +20,8 @@ class WebsiteInfoType extends AbstractType {
                 [
                     "label" => "Type de Site",
                     "choices"   =>  [
-                        "E-commerce" =>  true,
-                        "Vitrine" =>  true
+                        "E-commerce" =>  "2",
+                        "Vitrine" =>  "1"
                     ],
                     "expanded"  =>  true
                 ]
