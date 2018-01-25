@@ -13,7 +13,7 @@
     {% block logo %}
         <a href="#"><img src="{{ asset('img/webcraft_logo.png') }}" alt="WebCraft" class="brand-logo" /></a>
     {% endblock %}
-	<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
+	<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars fa-2x"></i></a>
     <ul class="right hide-on-med-and-down center-align">
     	<li id="pages" class="mainNav pages"><a><i class="far fa-folder-open fa-2x"></i><p> Mes Pages</p></a></li>
         <li id="medias" class="mainNav medias"><a><i class="far fa-images fa-2x"></i> <p>Mes Médias</p></a></li>
@@ -26,14 +26,20 @@
         <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-        <div id="accordion">
-          <h5>Test</h5>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-          <h5>Test</h5>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-          <h5>Test</h5>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        </div>
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header"><i class="far fa-folder-open"></i> Mes pages</div>
+              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
     </ul>
     <ul id="subnav" class="hide">
     	

@@ -12,7 +12,7 @@ class WebsiteInfoController extends Controller
     /**
      * @Route("/setup2", name="setup2")
      */
-    public function WebsiteInfoAction(Request $request)
+    public function websiteInfoAction(Request $request)
     {
       $WebsiteInfo = new WebsiteInfo();
       $form = $this->createForm(WebsiteInfoType::class, $WebsiteInfo);

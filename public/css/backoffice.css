@@ -42,4 +42,10 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 /* Side Nav Responsive */
 
+.side-nav { background: #EFEBE9; }
+
+.side-nav .collapsible-header, .side-nav.fixed .collapsible-header { background: rgba(188,170,164,0.4); }
+
+.side-nav .collapsible-header:hover, .side-nav.fixed .collapsible-header:hover { background: rgba(188,170,164,0.9) }
+
 .side-nav li { display: block; }
