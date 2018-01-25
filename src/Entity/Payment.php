@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,6 +38,64 @@ class Payment
      */
     private $order;
 
+    /**
+     * @return integer
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param integer $paymentMethod
+     *
+     * @return self
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->PaymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPaymentId()
+    {
+        return $this->paymentId;
+    }
+
+    /**
+     * @param integer $paymentId
+     *
+     * @return self
+     */
+    public function setPaymentId($paymentId)
+    {
+        $this->paymentId = $paymentId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param integer $order
+     *
+     * @return self
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
 
 }
-

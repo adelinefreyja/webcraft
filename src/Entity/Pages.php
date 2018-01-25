@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -84,6 +84,203 @@ class Pages
      */
     private $pageId;
 
+    /**
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
+    /**
+     * @param integer $userId
+     *
+     * @return self
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageTitle()
+    {
+        return $this->pageTitle;
+    }
+
+    /**
+     * @param integer $pageTitle
+     *
+     * @return self
+     */
+    public function setPageTitle($pageTitle)
+    {
+        $this->pageTitle = $pageTitle;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageName()
+    {
+        return $this->pageName;
+    }
+
+    /**
+     * @param integer $pageName
+     *
+     * @return self
+     */
+    public function setPageName($pageName)
+    {
+        $this->pageName = $pageName;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageDate()
+    {
+        return $this->pageDate;
+    }
+
+    /**
+     * @param integer $pageDate
+     *
+     * @return self
+     */
+    public function setPageDate($pageDate)
+    {
+        $this->pageDate = $pageDate;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageContent()
+    {
+        return $this->pageContent;
+    }
+
+    /**
+     * @param integer $pageContent
+     *
+     * @return self
+     */
+    public function setPageContent($pageContent)
+    {
+        $this->pageContent = $pageContent;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageStatus()
+    {
+        return $this->pageStatus;
+    }
+
+    /**
+     * @param integer $pageStatus
+     *
+     * @return self
+     */
+    public function setPageStatus($pageStatus)
+    {
+        $this->pageStatus = $pageStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getCommentStatus()
+    {
+        return $this->commentStatus;
+    }
+
+    /**
+     * @param integer $commentStatus
+     *
+     * @return self
+     */
+    public function setCommentStatus($commentStatus)
+    {
+        $this->commentStatus = $commentStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageType()
+    {
+        return $this->pageType;
+    }
+
+    /**
+     * @param integer $pageType
+     *
+     * @return self
+     */
+    public function setPageType($pageType)
+    {
+        $this->pageType = $pageType;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageModified()
+    {
+        return $this->pageModified;
+    }
+
+    /**
+     * @param integer $pageModified
+     *
+     * @return self
+     */
+    public function setPageModified($pageModified)
+    {
+        $this->pageModified = $pageModified;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPageId()
+    {
+        return $this->pageId;
+    }
+
+    /**
+     * @param integer $pageId
+     *
+     * @return self
+     */
+    public function setPageId($pageId)
+    {
+        $this->pageId = $pageId;
+
+        return $this;
+    }
 }
-
