@@ -25,22 +25,68 @@
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
         <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
-    <ul class="side-nav" id="mobile-demo">
+    {% block sidenav %}
+        <ul class="side-nav" id="mobile-demo">
         <ul class="collapsible" data-collapsible="accordion">
             <li>
-              <div class="collapsible-header"><i class="far fa-folder-open"></i> Mes pages</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              <div class="collapsible-header left-align"><span><i class="far fa-folder-open fa-lg"></i> Mes pages</span></div>
+              <div class="collapsible-body">
+                <span><i class="far fa-plus-square fa-lg"></i> Créer une page</span>
+                <span><i class="far fa-list-alt fa-lg"></i> Catégories</span>
+                <span><i class="far fa-copy fa-lg"></i> Gérer les pages</span>
+                </div>
             </li>
             <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              <div class="collapsible-header"><span><i class="far fa-images fa-lg"></i> Mes Médias</span></div>
+              <div class="collapsible-body">
+                <span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span>
+                <span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></div>
             </li>
             <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              <div class="collapsible-header"><span><i class="fas fa-paint-brush fa-lg"></i> Personnalisation</span></div>
+              <div class="collapsible-body">
+                <span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span>
+                <span><i class="fas fa-list-ol fa-lg"></i> Menu du site</span>
+                <span><i class="fas fa-toggle-on fa-lg"></i> Options</span></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><span><i class="fab fa-shirtsinbulk fa-lg"></i> Mes produits</span></div>
+              <div class="collapsible-body">
+                <span><i class="far fa-plus-square fa-lg"></i> Ajouter un produit</span>
+                <span><i class="far fa-list-alt fa-lg"></i> Catégories</span>
+                <span><i class="fas fa-barcode fa-lg"></i> Gérer les produits</span>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><span><i class="fas fa-shopping-cart fa-lg"></i> Mes commandes</span></div>
+              <div class="collapsible-body">
+                <span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span>
+                <span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><span><i class="fas fa-users fa-lg"></i> Mes clients</span></div>
+              <div class="collapsible-body"><span><i class="fas fa-users fa-lg"></i> Voir mes clients</span></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><span><i class="fas fa-cogs fa-lg"></i> Mon site</span></div>
+              <div class="collapsible-body">
+                <span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span>
+                <span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span>
+                <span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span>
+                <span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span>
+                </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><span><i class="fas fa-user fa-lg"></i> Espace personnel</span></div>
+              <div class="collapsible-body">
+                <span><i class="fas fa-user fa-lg"></i> Mon compte</span>
+                <span><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></span>
+              </div>
             </li>
         </ul>
     </ul>
+    {% endblock %}
     <ul id="subnav" class="hide">
     	
     </ul>

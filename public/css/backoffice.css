@@ -10,7 +10,9 @@ nav, nav ul a:hover { height: 85px; }
 
 nav .brand-logo { max-height: 65px; margin: 0.3em; display: block; float: left; }
 
-nav ul li { list-style: none; display: inline-flex; justify-content: space-around; height: 85px; border-left: 1px solid #5D4037;}
+nav ul li.mainNav { list-style: none; display: inline-flex; justify-content: space-around; height: 85px; border-left: 1px solid #5D4037;}
+
+nav ul li.mainNav.design, nav ul li.mainNav.parameters { border-right: 1px solid #5D4037; }
 
 nav ul li a p { margin: 0; padding: 0; line-height: 0; color: #ffb74d; }
 
@@ -24,7 +26,7 @@ ul#subnav li { display: inline-flex; justify-content: space-around; line-height:
 
 ul#subnav li span { height: 40px; margin: 0px 20px 0px 20px; }
 
-ul li#empty { width: 150px; }
+ul li#empty { width: 200px; height: 85px; }
 
 ul li#user_settings a { line-height: 6; width: 150px; }
 
@@ -44,8 +46,18 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 .side-nav { background: #EFEBE9; }
 
+.side-nav ul { display: block; }
+
 .side-nav .collapsible-header, .side-nav.fixed .collapsible-header { background: rgba(188,170,164,0.4); }
 
 .side-nav .collapsible-header:hover, .side-nav.fixed .collapsible-header:hover { background: rgba(188,170,164,0.9) }
 
-.side-nav li { display: block; }
+.side-nav li, div.collapsible-header { width: 100%; color: #795548; }
+
+.collapsible-header span { text-align: left!important; }
+
+.collapsible-header svg { margin: 0; color: #795548; }
+
+.collapsible-body { background: #EFEBE9!important; color: #795548; }
+
+.collapsible-body span { display: block; color: #795548; }
