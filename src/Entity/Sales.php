@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -57,5 +57,125 @@ class Sales
     private $salesId;
 
 
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param integer $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getProductId()
+    {
+        return $this->productId;
+    }
+
+    /**
+     * @param integer $productId
+     *
+     * @return self
+     */
+    public function setProductId($productId)
+    {
+        $this->productId = $productId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param integer $orderId
+     *
+     * @return self
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPaymentId()
+    {
+        return $this->paymentId;
+    }
+
+    /**
+     * @param integer $paymentId
+     *
+     * @return self
+     */
+    public function setPaymentId($paymentId)
+    {
+        $this->paymentId = $paymentId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getShipmentId()
+    {
+        return $this->shipmentId;
+    }
+
+    /**
+     * @param integer $shipmentId
+     *
+     * @return self
+     */
+    public function setShipmentId($shipmentId)
+    {
+        $this->shipmentId = $shipmentId;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getSalesId()
+    {
+        return $this->salesId;
+    }
+
+    /**
+     * @param integer $salesId
+     *
+     * @return self
+     */
+    public function setSalesId($salesId)
+    {
+        $this->salesId = $salesId;
+
+        return $this;
+    }
 }
 

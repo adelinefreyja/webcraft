@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,5 +36,65 @@ class Shipment
     private $shipmentId;
 
 
+
+    /**
+     * @return integer
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param integer $orderId
+     *
+     * @return self
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipmentMethod()
+    {
+        return $this->shipmentMethod;
+    }
+
+    /**
+     * @param string $shipmentMethod
+     *
+     * @return self
+     */
+    public function setShipmentMethod($shipmentMethod)
+    {
+        $this->shipmentMethod = $shipmentMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getShipmentId()
+    {
+        return $this->shipmentId;
+    }
+
+    /**
+     * @param integer $shipmentId
+     *
+     * @return self
+     */
+    public function setShipmentId($shipmentId)
+    {
+        $this->shipmentId = $shipmentId;
+
+        return $this;
+    }
 }
 
