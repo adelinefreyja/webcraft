@@ -1,4 +1,7 @@
 {
+    "ckeditor/ckeditor": {
+        "version": "4.8.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
