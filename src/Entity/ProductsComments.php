@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -55,6 +55,104 @@ class ProductsComments
      */
     private $id;
 
+    /**
+     * @return string
+     */
+    public function getNoteValue()
+    {
+        return $this->noteValue;
+    }
 
+    /**
+     * @param string $noteValue
+     *
+     * @return self
+     */
+    public function setNoteValue($noteValue)
+    {
+        $this->noteValue = $noteValue;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentText()
+    {
+        return $this->commentText;
+    }
+
+    /**
+     * @param string $commentText
+     *
+     * @return self
+     */
+    public function setCommentText($commentText)
+    {
+        $this->commentText = $commentText;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getProductcommentId()
+    {
+        return $this->productcommentId;
+    }
+
+    /**
+     * @param integer $productcommentId
+     *
+     * @return self
+     */
+    public function setProductcommentId($productcommentId)
+    {
+        $this->productcommentId = $productcommentId;
+
+        return $this;
+    }
+
+    /**
+     * @return \AppBundle\Entity\Products
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Products $product
+     *
+     * @return self
+     */
+    public function setProduct(\AppBundle\Entity\Products $product)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \AppBundle\Entity\User $id
+     *
+     * @return self
+     */
+    public function setId(\AppBundle\Entity\User $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }
 

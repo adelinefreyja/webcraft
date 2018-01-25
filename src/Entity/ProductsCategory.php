@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,6 +38,64 @@ class ProductsCategory
      */
     private $product;
 
+    /**
+     * @return string
+     */
+    public function getCategoryValue()
+    {
+        return $this->categoryValue;
+    }
 
+    /**
+     * @param string $categoryValue
+     *
+     * @return self
+     */
+    public function setCategoryValue($categoryValue)
+    {
+        $this->categoryValue = $categoryValue;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getProductcatId()
+    {
+        return $this->productcatId;
+    }
+
+    /**
+     * @param integer $productcatId
+     *
+     * @return self
+     */
+    public function setProductcatId($productcatId)
+    {
+        $this->productcatId = $productcatId;
+
+        return $this;
+    }
+
+    /**
+     * @return \AppBundle\Entity\Products
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Products $product
+     *
+     * @return self
+     */
+    public function setProduct(\AppBundle\Entity\Products $product)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
 }
 

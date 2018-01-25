@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -58,7 +58,125 @@ class Products
      * })
      */
     private $tax;
+    
+    /**
+     * @return integer
+     */
+    public function getProductPrice()
+    {
+        return $this->productPrice;
+    }
 
+    /**
+     * @param integer $productPrice
+     *
+     * @return self
+     */
+    public function setProductPrice($productPrice)
+    {
+        $this->productPrice = $productPrice;
 
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getProductSale()
+    {
+        return $this->productSale;
+    }
+
+    /**
+     * @param integer $productSale
+     *
+     * @return self
+     */
+    public function setProductSale($productSale)
+    {
+        $this->productSale = $productSale;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductName()
+    {
+        return $this->productName;
+    }
+
+    /**
+     * @param string $productName
+     *
+     * @return self
+     */
+    public function setProductName($productName)
+    {
+        $this->productName = $productName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductDescription()
+    {
+        return $this->productDescription;
+    }
+
+    /**
+     * @param string $productDescription
+     *
+     * @return self
+     */
+    public function setProductDescription($productDescription)
+    {
+        $this->productDescription = $productDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getProductId()
+    {
+        return $this->productId;
+    }
+
+    /**
+     * @param integer $productId
+     *
+     * @return self
+     */
+    public function setProductId($productId)
+    {
+        $this->productId = $productId;
+
+        return $this;
+    }
+
+    /**
+     * @return \AppBundle\Entity\ProductsTax
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * @param \AppBundle\Entity\ProductsTax $tax
+     *
+     * @return self
+     */
+    public function setTax(\AppBundle\Entity\ProductsTax $tax)
+    {
+        $this->tax = $tax;
+
+        return $this;
+    }
 }
 

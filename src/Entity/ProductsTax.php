@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +35,64 @@ class ProductsTax
      */
     private $taxId;
 
+    /**
+     * @return float
+     */
+    public function getTaxValue()
+    {
+        return $this->taxValue;
+    }
 
+    /**
+     * @param float $taxValue
+     *
+     * @return self
+     */
+    public function setTaxValue($taxValue)
+    {
+        $this->taxValue = $taxValue;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaxName()
+    {
+        return $this->taxName;
+    }
+
+    /**
+     * @param string $taxName
+     *
+     * @return self
+     */
+    public function setTaxName($taxName)
+    {
+        $this->taxName = $taxName;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getTaxId()
+    {
+        return $this->taxId;
+    }
+
+    /**
+     * @param integer $taxId
+     *
+     * @return self
+     */
+    public function setTaxId($taxId)
+    {
+        $this->taxId = $taxId;
+
+        return $this;
+    }
 }
 
