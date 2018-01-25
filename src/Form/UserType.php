@@ -38,9 +38,9 @@ class UserType extends AbstractType {
                 [
                     "label" => "Genre",
                     "choices"   =>  [
-                        "Homme" =>  true,
-                        "Femme" =>  true,
-                        "Autre" =>  true
+                        "Homme" =>  "homme",
+                        "Femme" =>  "femme",
+                        "Autre" =>  "autre"
                     ],
                     "expanded"  =>  true
                 ]
