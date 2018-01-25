@@ -4,11 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="options")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\WebsiteRepository")
  */
 class WebsiteInfo
 {
@@ -128,4 +127,4 @@ class WebsiteInfo
 
         return $this;
     }
-    }
+}
