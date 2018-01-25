@@ -6,6 +6,7 @@ use App\Entity\WebsiteInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\DatabaseController;
 
 class WebsiteInfoController extends Controller
 {
@@ -30,7 +31,9 @@ class WebsiteInfoController extends Controller
 
             if ($commerce) {
 
-                // Appel de la fonction pour les tablers e-commerce
+                $test = new DatabaseController;
+
+                $test->createTablesCommerce();
             }
 
             return $this->redirectToRoute('setup3');

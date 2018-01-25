@@ -125,7 +125,7 @@ class DatabaseController extends Controller {
         );
     }
 
-    private function createTablesCommerce() {
+    public function createTablesCommerce() {
 
       $connexion = $this->pdo;
 
