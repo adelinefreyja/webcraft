@@ -113,6 +113,5 @@ class Contact
         $this->messageId = $messageId;
     }
 
-
 }
 
