@@ -98,6 +98,8 @@ class User implements UserInterface, \Serializable
         // $this->salt = md5(uniqid('', true));
         // 
         $this->setRoles(['ROLE_SUPER_ADMIN']);
+
+        $this->setUserIp($_SERVER["REMOTE_ADDR"]);
     }
 
     public function getSalt()
