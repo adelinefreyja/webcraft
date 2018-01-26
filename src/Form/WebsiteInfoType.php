@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use App\Entity\WebsiteInfo;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +26,9 @@ class WebsiteInfoType extends AbstractType {
                     ],
                     "expanded"  =>  true
                 ]
+            )
+            ->add("description", HiddenType::class,
+                ["data"   =>  "siteinfo"]
             )
         ;
     }

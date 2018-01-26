@@ -31,7 +31,10 @@
 			{{ form_label(form.sitetype) }}
 			{{ form_widget(form.sitetype) }}
 
-		<div class="right">
+		    {{ form_widget(form.description) }}
+
+
+	<div class="right">
 			<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
 		</div>
 	{{ form_end(form) }}
