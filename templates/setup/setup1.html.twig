@@ -20,6 +20,14 @@
 {% endblock %}
 
 	{{ form_start(form) }}
+	{% if not form.vars.valid %}
+			<div class="error">
+				{{ form_errors(form.db_host) }}
+				{{ form_errors(form.db_username) }}
+				{{ form_errors(form.db_password) }}
+				{{ form_errors(form.db_name) }}
+			</div>
+	{% endif %}
 		<div class="input-field">
 			{{ form_label(form.db_host) }}
 			{{ form_widget(form.db_host) }}

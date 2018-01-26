@@ -20,6 +20,19 @@
 	{% endblock %}
 
 	{{ form_start(form) }}
+		{% if not form.vars.valid %}
+			<div class="error">
+				{{ form_errors(form.username) }}
+				{{ form_errors(form.user_email.first) }}
+				{{ form_errors(form.user_email.second) }}
+				{{ form_errors(form.password.first) }}
+				{{ form_errors(form.password.second) }}
+				{{ form_errors(form.user_first_name) }}
+				{{ form_errors(form.user_last_name) }}
+				{{ form_errors(form.user_gender) }}
+			</div>		
+        {% endif %}
+
 		<div class="input-field">
 			{{ form_label(form.username) }}
 			{{ form_widget(form.username) }}

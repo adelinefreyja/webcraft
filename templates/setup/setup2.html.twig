@@ -20,6 +20,13 @@
 	{% endblock %}
 
 	{{ form_start(form) }}
+		{% if not form.vars.valid %}
+			<div class="error">
+				{{ form_errors(form.optionname) }}
+				{{ form_errors(form.optionvalue) }}
+				{{ form_errors(form.sitetype) }}
+			</div>
+		{% endif %}
 		<div class="input-field">
 			{{ form_label(form.optionname) }}
 			{{ form_widget(form.optionname) }}

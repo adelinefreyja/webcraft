@@ -29,3 +29,5 @@ footer p { color: #4e342e; }
 form div { margin-top: 20px; margin-bottom: 20px; }
 input[type=text]:focus, input[type=text]:focus:not([readonly]), input[type=password]:focus, input[type=password]:focus:not([readonly]), input[type=email]:focus, input[type=email]:focus:not([readonly]) { border-bottom: 1px solid #795548!important; box-shadow: 0 1px 0 0 #795548!important; }
 [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after { background: #ffb74d; border: 2px solid #ffb74d; }
+
+.error { padding: 20px; background-color: #b71c1c; color: white; margin-bottom: 30px; }
