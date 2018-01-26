@@ -31,7 +31,7 @@ class ProductsCategory
     /**
      * @var \App\Entity\Products
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Products")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="product_id")
      * })

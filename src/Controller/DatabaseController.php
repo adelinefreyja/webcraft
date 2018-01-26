@@ -75,8 +75,8 @@ class DatabaseController extends Controller {
 				page_name VARCHAR(255) NOT NULL,
 				page_date DATETIME NOT NULL,
 				page_content LONGTEXT NOT NULL,
-				page_status ENUM('masquer', 'afficher', 'supprimer') NOT NULL,
-				comment_status ENUM('editer', 'afficher', 'supprimer') NOT NULL,
+				page_status VARCHAR(30) NOT NULL,
+				comment_status VARCHAR(30) NOT NULL,
 				page_type VARCHAR(255),
 				page_modified DATETIME
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
@@ -110,7 +110,7 @@ class DatabaseController extends Controller {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS medias (
 				media_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-				media_type ENUM('img', 'audio', 'video') NOT NULL,
+				media_type VARCHAR(30) NOT NULL,
 				media_src VARCHAR(255) NOT NULL,
 				media_name VARCHAR(255) NOT NULL,
 				media_description TEXT
@@ -190,6 +190,8 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
 
             $fullContent = $content1 . "\n" . $text . "\n" . $content2;
             file_put_contents("../.env", $fullContent);
+
+            file_put_contents("bdd.txt", "$db_host,$db_username,$db_password,$db_name");
 
             $this->connexion($db_host, $db_username, $db_password, $db_name);
 

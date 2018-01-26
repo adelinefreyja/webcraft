@@ -52,7 +52,7 @@ class Products
     /**
      * @var \App\Entity\ProductsTax
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductsTax")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProductsTax")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="tax_id", referencedColumnName="tax_id")
      * })

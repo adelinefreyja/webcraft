@@ -108,7 +108,7 @@ class Orders
  */
 public function getOrderId()
 {
-    return $this->$orderId;
+    return $this->orderId;
 }
 
 /**

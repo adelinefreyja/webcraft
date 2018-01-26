@@ -106,7 +106,7 @@ class ProductsSizes
     }
 
     /**
-     * @return \AppBundle\Entity\Products
+     * @return \App\Entity\Products
      */
     public function getProduct()
     {
@@ -114,11 +114,11 @@ class ProductsSizes
     }
 
     /**
-     * @param \AppBundle\Entity\Products $product
+     * @param \App\Entity\Products $product
      *
      * @return self
      */
-    public function setProduct(\AppBundle\Entity\Products $product)
+    public function setProduct(\App\Entity\Products $product)
     {
         $this->product = $product;
 

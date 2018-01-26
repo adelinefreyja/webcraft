@@ -31,7 +31,7 @@ class Payment
     /**
      * @var \App\Entity\Orders
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Orders")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orders")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="order_id", referencedColumnName="order_id")
      * })

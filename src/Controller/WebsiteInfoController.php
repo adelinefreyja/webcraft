@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Entity\Customers;
+use App\Entity\Ecommerce;
 use App\Entity\Newsletter;
 use App\Entity\Orders;
 use App\Entity\Payment;
@@ -40,55 +41,16 @@ class WebsiteInfoController extends Controller
             $em->persist($WebsiteInfo);
             $em->flush();
 
-            $query = $em->createQuery("SELECT s FROM App\Entity\WebsiteInfo s WHERE s.sitetype = 2");
-            $commerce = $query->getResult();
+//            $query = $em->createQuery("SELECT s FROM App\Entity\WebsiteInfo s WHERE s.sitetype = 2");
+//            $commerce = $query->getResult();
+
+            $commerce = true;
 
             if ($commerce) {
 
-                $query = new Contact();
-                $em->persist($query);
+                $create = new Ecommerce();
+                $create->createEcommerce();
 
-                $query = new Customers();
-                $em->persist($query);
-
-                $query = new Newsletter();
-                $em->persist($query);
-
-                $query = new Orders();
-                $em->persist($query);
-
-                $query = new Payment();
-                $em->persist($query);
-
-                $query = new Products();
-                $em->persist($query);
-
-                $query = new ProductsCategory();
-                $em->persist($query);
-
-                $query = new ProductsColors();
-                $em->persist($query);
-
-                $query = new ProductsComments();
-                $em->persist($query);
-
-                $query = new ProductsImages();
-                $em->persist($query);
-
-                $query = new ProductsSizes();
-                $em->persist($query);
-
-                $query = new ProductsTax();
-                $em->persist($query);
-
-                $query = new Sales();
-                $em->persist($query);
-
-                $query = new Shipment();
-                $em->persist($query);
-
-                $query = new UserAddress();
-                $em->persist($query);
             }
 
             return $this->redirectToRoute('setup3');

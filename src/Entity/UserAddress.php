@@ -187,7 +187,7 @@ class UserAddress
     }
 
     /**
-     * @return \AppBundle\Entity\User
+     * @return \App\Entity\User
      */
     public function getId()
     {
@@ -195,11 +195,11 @@ class UserAddress
     }
 
     /**
-     * @param \AppBundle\Entity\User $id
+     * @param \App\Entity\User $id
      *
      * @return self
      */
-    public function setId(\AppBundle\Entity\User $id)
+    public function setId(\App\Entity\User $id)
     {
         $this->id = $id;
 
