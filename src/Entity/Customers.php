@@ -43,7 +43,7 @@ class Customers
     private $cutomersId;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \App\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({

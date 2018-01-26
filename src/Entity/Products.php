@@ -50,7 +50,7 @@ class Products
     private $productId;
 
     /**
-     * @var \AppBundle\Entity\ProductsTax
+     * @var \App\Entity\ProductsTax
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductsTax")
      * @ORM\JoinColumns({
@@ -160,7 +160,7 @@ class Products
     }
 
     /**
-     * @return \AppBundle\Entity\ProductsTax
+     * @return \App\Entity\ProductsTax
      */
     public function getTax()
     {
@@ -168,11 +168,11 @@ class Products
     }
 
     /**
-     * @param \AppBundle\Entity\ProductsTax $tax
+     * @param \App\Entity\ProductsTax $tax
      *
      * @return self
      */
-    public function setTax(\AppBundle\Entity\ProductsTax $tax)
+    public function setTax(\App\Entity\ProductsTax $tax)
     {
         $this->tax = $tax;
 
