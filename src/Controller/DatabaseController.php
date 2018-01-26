@@ -48,6 +48,7 @@ class DatabaseController extends Controller {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS `options` (
                 `id` int(11) NOT NULL,
+                `description` VARCHAR(30) COLLATE utf8_unicode_ci NOT NULL,
                 `optionname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `optionvalue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `sitetype` varchar(255) COLLATE utf8_unicode_ci NOT NULL
@@ -191,7 +192,7 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
             $fullContent = $content1 . "\n" . $text . "\n" . $content2;
             file_put_contents("../.env", $fullContent);
 
-            file_put_contents("bdd.txt", "$db_host,$db_username,$db_password,$db_name");
+            file_put_contents("../bdd.txt", "$db_host,$db_username,$db_password,$db_name");
 
             $this->connexion($db_host, $db_username, $db_password, $db_name);
 
