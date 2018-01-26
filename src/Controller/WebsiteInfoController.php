@@ -1,12 +1,26 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Contact;
+use App\Entity\Customers;
+use App\Entity\Newsletter;
+use App\Entity\Orders;
+use App\Entity\Payment;
+use App\Entity\Products;
+use App\Entity\ProductsCategory;
+use App\Entity\ProductsColors;
+use App\Entity\ProductsComments;
+use App\Entity\ProductsImages;
+use App\Entity\ProductsSizes;
+use App\Entity\ProductsTax;
+use App\Entity\Sales;
+use App\Entity\Shipment;
+use App\Entity\UserAddress;
 use App\Form\WebsiteInfoType;
 use App\Entity\WebsiteInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\DatabaseController;
 
 class WebsiteInfoController extends Controller
 {
@@ -31,9 +45,50 @@ class WebsiteInfoController extends Controller
 
             if ($commerce) {
 
-                $test = new DatabaseController;
+                $query = new Contact();
+                $em->persist($query);
 
-                $test->createTablesCommerce();
+                $query = new Customers();
+                $em->persist($query);
+
+                $query = new Newsletter();
+                $em->persist($query);
+
+                $query = new Orders();
+                $em->persist($query);
+
+                $query = new Payment();
+                $em->persist($query);
+
+                $query = new Products();
+                $em->persist($query);
+
+                $query = new ProductsCategory();
+                $em->persist($query);
+
+                $query = new ProductsColors();
+                $em->persist($query);
+
+                $query = new ProductsComments();
+                $em->persist($query);
+
+                $query = new ProductsImages();
+                $em->persist($query);
+
+                $query = new ProductsSizes();
+                $em->persist($query);
+
+                $query = new ProductsTax();
+                $em->persist($query);
+
+                $query = new Sales();
+                $em->persist($query);
+
+                $query = new Shipment();
+                $em->persist($query);
+
+                $query = new UserAddress();
+                $em->persist($query);
             }
 
             return $this->redirectToRoute('setup3');

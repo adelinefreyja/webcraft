@@ -29,7 +29,7 @@ class Payment
     private $paymentId;
 
     /**
-     * @var \AppBundle\Entity\Orders
+     * @var \App\Entity\Orders
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Orders")
      * @ORM\JoinColumns({

@@ -67,7 +67,7 @@ class Orders
      */
     public function getOrderDate()
     {
-        return $this->$orderDate;
+        return $this->orderDate;
     }
 
     /**
@@ -87,7 +87,7 @@ class Orders
      */
     public function getOrderStatus()
     {
-        return $this->$orderStatus;
+        return $this->orderStatus;
     }
 
     /**
