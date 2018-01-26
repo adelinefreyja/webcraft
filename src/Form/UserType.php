@@ -20,6 +20,7 @@ class UserType extends AbstractType {
             ->add("user_email", RepeatedType::class,
                 [
                     "type"              =>  EmailType::class,
+                    'invalid_message' => 'Les emails saisis ne correspondent pas.',
                     "first_options"     =>  ["label"    =>  "Email"],
                     "second_options"    =>  ["label"    =>  "Confirmez votre Email"],
                 ]
@@ -30,6 +31,7 @@ class UserType extends AbstractType {
             ->add("password", RepeatedType::class,
                 [
                     "type"              =>  PasswordType::class,
+                    'invalid_message' => 'Les mots de passe saisis ne correspondent pas.',
                     "first_options"     =>  ["label"    =>  "Mot de passe"],
                     "second_options"    =>  ["label"    =>  "Confirmez votre mot de passe"],
                 ]
