@@ -8,14 +8,12 @@ class Ecommerce {
 
     public function __construct() {
 
-        $donnees = explode(",", file_get_contents("../bdd.txt"));
+        $db_host = $_SESSION["bdd"]["db_host"];
+        $db_username = $_SESSION["bdd"]["db_username"];
+        $db_password = $_SESSION["bdd"]["db_password"];
+        $db_name = $_SESSION["bdd"]["db_name"];
 
-        $db_host = $donnees[0];
-        $db_username = $donnees[1];
-        $db_password = $donnees[2];
-        $db_name = $donnees[3];
-
-        unlink("../bdd.txt");
+        session_destroy();
 
         try {
             $this->pdo = new \PDO(

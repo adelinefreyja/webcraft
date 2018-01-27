@@ -192,7 +192,17 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
             $fullContent = $content1 . "\n" . $text . "\n" . $content2;
             file_put_contents("../.env", $fullContent);
 
-            file_put_contents("../bdd.txt", "$db_host,$db_username,$db_password,$db_name");
+            if (session_start()) {
+                session_destroy();
+            }
+
+            session_start();
+
+            $_SESSION["bdd"] = array();
+            $_SESSION["bdd"]["db_host"] = $db_host;
+            $_SESSION["bdd"]["db_username"] = $db_username;
+            $_SESSION["bdd"]["db_password"] = $db_password;
+            $_SESSION["bdd"]["db_name"] = $db_name;
 
             $this->connexion($db_host, $db_username, $db_password, $db_name);
 
