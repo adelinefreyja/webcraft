@@ -75,7 +75,7 @@ class Ecommerce {
             "CREATE TABLE IF NOT EXISTS products (
           product_id INT(20) AUTO_INCREMENT PRIMARY KEY,
           product_price INT(20) NOT NULL,
-          product_sale  INT(20) NOT NULL,
+          product_sale  INT(20),
           tax_id INT(20) NOT NULL,
           product_name VARCHAR(255) NOT NULL,
           product_description TEXT NOT NULL,
