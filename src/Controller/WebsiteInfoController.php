@@ -1,22 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Contact;
-use App\Entity\Customers;
 use App\Entity\Ecommerce;
-use App\Entity\Newsletter;
-use App\Entity\Orders;
-use App\Entity\Payment;
-use App\Entity\Products;
-use App\Entity\ProductsCategory;
-use App\Entity\ProductsColors;
-use App\Entity\ProductsComments;
-use App\Entity\ProductsImages;
-use App\Entity\ProductsSizes;
-use App\Entity\ProductsTax;
-use App\Entity\Sales;
-use App\Entity\Shipment;
-use App\Entity\UserAddress;
+use App\Entity\User;
 use App\Form\WebsiteInfoType;
 use App\Entity\WebsiteInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,6 +16,14 @@ class WebsiteInfoController extends Controller
      */
     public function websiteInfoAction(Request $request)
     {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $query = $repository->findAll();
+
+        if ($query > 1) {
+            return $this->redirectToRoute('login');
+        }
+
         $WebsiteInfo = new WebsiteInfo();
         $form = $this->createForm(WebsiteInfoType::class, $WebsiteInfo);
 

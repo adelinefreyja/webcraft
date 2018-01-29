@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Database;
+use App\Entity\User;
 use App\Form\DatabaseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -154,6 +155,13 @@ class DatabaseController extends Controller {
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request) {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $query = $repository->findAll();
+
+        if ($query > 1) {
+            return $this->redirectToRoute('login');
+        }
 
         $database = new Database();
 

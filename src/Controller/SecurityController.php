@@ -16,6 +16,14 @@ class SecurityController extends Controller
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+        $query = $repository->findAll();
+
+        if ($query > 1) {
+            return $this->redirectToRoute('login');
+        }
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
