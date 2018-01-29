@@ -19,9 +19,13 @@
         <li id="medias" class="mainNav medias"><a><i class="far fa-images fa-2x"></i> <p>Mes Médias</p></a></li>
         <li id="design" class="mainNav design"><a><i class="fas fa-paint-brush fa-2x"></i> <p>Personnalisation</p></a></li>
         <li id="empty"></li>
+
+        {% if sitetype == true %}
         <li id="products" class="mainNav products"><a><i class="fab fa-shirtsinbulk fa-2x"></i> <p>Mes produits</p></a></li>
         <li id="orders" class="mainNav orders"><a><i class="fas fa-shopping-cart fa-2x"></i> <p>Mes commandes</p></a></li>
         <li id="customers" class="mainNav customers"><a><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
+        {% endif %}
+
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
         <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
@@ -35,6 +39,7 @@
       {# Medias Submenu #}
         <li class="submenu Medias hide"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span></li>
         <li class="submenu Medias hide"><span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></li>
+
 
       {# Design Submenu #}
       <li class="submenu Design hide"><a class="Design"><span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span></a></li>
@@ -53,7 +58,11 @@
       {# Parameters Submenu #}
         <li class="submenu Parameters hide"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></li>
         <li class="submenu Parameters hide"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></li>
+
+        {% if sitetype == true %}
         <li class="submenu Parameters hide"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></li>
+        {% endif %}
+
         <li class="submenu Parameters hide"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></li>
 
     {% endblock %}
