@@ -63,7 +63,7 @@ class Orders
     }
 
     /**
-     * @return integer
+     * @return mixed
      */
     public function getOrderDate()
     {
@@ -101,28 +101,26 @@ class Orders
 
         return $this;
 
-}
+    }
 
-/**
- * @return integer
- */
-public function getOrderId()
-{
-    return $this->orderId;
-}
+    /**
+     * @return integer
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
 
-/**
- * @param integer $orderId
- *
- * @return self
- */
-public function setOrderId($orderId)
-{
-    $this->orderId = $orderId;
+    /**
+     * @param integer $orderId
+     *
+     * @return self
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
 
-    return $this;
-}
-
-
+        return $this;
+    }
 
 }

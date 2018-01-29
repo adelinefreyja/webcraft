@@ -116,7 +116,7 @@ class ProductsComments
     }
 
     /**
-     * @return \AppBundle\Entity\Products
+     * @return \App\Entity\Products
      */
     public function getProduct()
     {
@@ -124,11 +124,11 @@ class ProductsComments
     }
 
     /**
-     * @param \AppBundle\Entity\Products $product
+     * @param \App\Entity\Products $product
      *
      * @return self
      */
-    public function setProduct(\AppBundle\Entity\Products $product)
+    public function setProduct(\App\Entity\Products $product)
     {
         $this->product = $product;
 
@@ -136,7 +136,7 @@ class ProductsComments
     }
 
     /**
-     * @return \AppBundle\Entity\User
+     * @return \App\Entity\User
      */
     public function getId()
     {
@@ -144,11 +144,11 @@ class ProductsComments
     }
 
     /**
-     * @param \AppBundle\Entity\User $id
+     * @param \App\Entity\User $id
      *
      * @return self
      */
-    public function setId(\AppBundle\Entity\User $id)
+    public function setId(\App\Entity\User $id)
     {
         $this->id = $id;
 
