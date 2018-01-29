@@ -17,11 +17,15 @@ class WebsiteInfoController extends Controller
     public function websiteInfoAction(Request $request)
     {
 
-        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
-        $query = $repository->findAll();
+        try {
+            $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+            $query = $repository->findAll();
 
-        if ($query > 1) {
-            return $this->redirectToRoute('login');
+            if (!empty($query)) {
+                return $this->redirectToRoute('login');
+            }
+        } catch (\Exception $e) {
+            return $this->redirectToRoute('setup');
         }
 
         $WebsiteInfo = new WebsiteInfo();

@@ -156,27 +156,29 @@ class DatabaseController extends Controller {
      */
     public function registerAction(Request $request) {
 
-        $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
-        $query = $repository->findAll();
+        try {
+            $repository = $this->getDoctrine()->getManager()->getRepository(User::class);
+            $query = $repository->findAll();
 
-        if ($query > 1) {
-            return $this->redirectToRoute('login');
-        }
+            if (!empty($query)) {
+                return $this->redirectToRoute('login');
+            }
+        } catch (\Exception $e) {
 
-        $database = new Database();
+            $database = new Database();
 
-        $form = $this->createForm(DatabaseType::class, $database);
+            $form = $this->createForm(DatabaseType::class, $database);
 
-        $form->handleRequest($request);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            $db_host = $database->getDbHost();
-            $db_username = $database->getDbUsername();
-            $db_password = $database->getDbPassword();
-            $db_name =  $database->getDbName();
+                $db_host = $database->getDbHost();
+                $db_username = $database->getDbUsername();
+                $db_password = $database->getDbPassword();
+                $db_name =  $database->getDbName();
 
-            $content1 = "
+                $content1 = "
 # This file is a \"template\" of which env vars need to be defined for your application
 # Copy this file to .env file for development, create environment variables when deploying to production
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
@@ -193,34 +195,37 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
 # For an SQLite database, use: \"sqlite:///%kernel.project_dir%/var/data.db\"
 # Configure your db driver and server_version in config/packages/doctrine.yaml";
 
-            $text = "DATABASE_URL=mysql://'$db_username':'$db_password'@$db_host/'$db_name'";
+                $text = "DATABASE_URL=mysql://'$db_username':'$db_password'@$db_host/'$db_name'";
 
-            $content2 = "###< doctrine/doctrine-bundle ###";
+                $content2 = "###< doctrine/doctrine-bundle ###";
 
-            $fullContent = $content1 . "\n" . $text . "\n" . $content2;
-            file_put_contents("../.env", $fullContent);
+                $fullContent = $content1 . "\n" . $text . "\n" . $content2;
+                file_put_contents("../.env", $fullContent);
 
-            if (session_start()) {
-                session_destroy();
+                if (session_start()) {
+                    session_destroy();
+                }
+
+                session_start();
+
+                $_SESSION["bdd"] = array();
+                $_SESSION["bdd"]["db_host"] = $db_host;
+                $_SESSION["bdd"]["db_username"] = $db_username;
+                $_SESSION["bdd"]["db_password"] = $db_password;
+                $_SESSION["bdd"]["db_name"] = $db_name;
+
+                $this->connexion($db_host, $db_username, $db_password, $db_name);
+
+                $this->createTables();
+
+                return $this->redirectToRoute('setup2');
             }
 
-            session_start();
-
-            $_SESSION["bdd"] = array();
-            $_SESSION["bdd"]["db_host"] = $db_host;
-            $_SESSION["bdd"]["db_username"] = $db_username;
-            $_SESSION["bdd"]["db_password"] = $db_password;
-            $_SESSION["bdd"]["db_name"] = $db_name;
-
-            $this->connexion($db_host, $db_username, $db_password, $db_name);
-
-            $this->createTables();
-
-            return $this->redirectToRoute('setup2');
+            return $this->render('setup/setup1.html.twig',
+                ['form' => $form->createView()]
+            );
         }
 
-        return $this->render('setup/setup1.html.twig',
-            ['form' => $form->createView()]
-        );
+
     }
 }
