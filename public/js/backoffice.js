@@ -1,11 +1,14 @@
+function ucFirst(string) {
+	return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
+};
 $(document).ready(function(){
 	 $(".button-collapse").sideNav();
 
 	 $('#subnav').hide();
 
 	 $('ul li.mainNav').click(function(){
-	 	$current = $(this).prop('id');
-	 	$currentClass = $(this).prop('class','mainNav '+$current);
+		var	$current = $(this).prop('id');
+	 	var $currentClass = $(this).prop('class','mainNav '+$current);
 	 	$(this).addClass('active');
 	 	if($current !== $currentClass){
 	 		$('#subnav').removeAttr('class');
@@ -26,17 +29,27 @@ $(document).ready(function(){
 	 		$('#subnav').toggleClass($current);
 	 	}
 
-	 	$menuList = ['pages', 'medias', 'design', 'products', 'orders', 'parameters'];
-	 	$getSubmenu = $.inArray($current, $menuList);
+	 	function getSubmenu($current){
+	 	var $menuList = ['pages', 'medias', 'design', 'products', 'orders', 'parameters'];
+	 	var $getSubmenu = $.inArray($current, $menuList);
+	 		if($getSubmenu !== -1){
+            	return true;
+        	} else {
+        		return false;
+        	}
+	 	};
 
-	 	if($getSubmenu !== -1){
-            setTimeout(function(){
-                $('#subnav').load('menus/'+$current+'_submenu.html');
-            }, 100);
-	 	}
-
+	 	var $currentItem = ucFirst($current);
+        var $getCurrent = $('.submenu').hasClass($currentItem);
+		console.log($currentItem);
+       	if(getSubmenu($current) && $currentItem){
+       		$('li.submenu.'+$currentItem+'.hide').removeClass('hide');
+        } else {
+        	$('li.submenu').addClass('hide');
+        }
 	 });
+
+	
+
 	$('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
-
-
 });

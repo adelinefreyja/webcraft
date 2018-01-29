@@ -26,7 +26,9 @@ class DatabaseType extends AbstractType {
                 ]
             )
             ->add("db_name", TextType::class, 
-                [   "label" => "Nom de la base de données" ]
+                [   "label" => "Nom de la base de données",
+                    "data"  => "webcraft"
+                ]
             )
         ;
     }

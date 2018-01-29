@@ -10,7 +10,7 @@
     {% endblock %}
 
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="error">{{ error.messageKey|trans({'Invalid credentials': 'Identifiant et/ou mot de passe incorrect', 'Authentication request could not be processed due to a system problem' : 'L\'identification à échoué pour une raison inconnue. Réessayez plus tard'}) }}</div>
     {% endif %}
 
     <form action="{{ path('login_check') }}" method="post">

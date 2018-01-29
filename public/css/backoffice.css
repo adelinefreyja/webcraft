@@ -26,7 +26,10 @@ ul#subnav li { display: inline-flex; justify-content: space-around; line-height:
 
 ul#subnav li span { height: 40px; margin: 0px 20px 0px 20px; }
 
-#subnav a.active { background: #EFEBE9; color: #795548; height: 45px; }
+.subactive { background: #EFEBE9; color: #795548; }
+#subnav a.subactive { height: 45px; }
+#subnav a:hover { background: #EFEBE9; color: #795548; height: 45px; }
+#subnav a { color: #795548; height: 45px; }
 
 ul li#empty { width: 200px; height: 85px; }
 
@@ -40,7 +43,11 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 #user_submenu { display: none; }
 
-#user_submenu ul li { padding: 10px; }
+#user_submenu ul li { padding: 10px; color: #795548; }
+
+#user_submenu a { color: #795548; }
+
+#user_submenu a:hover { font-family: 'Code_bold'; }
 
 .webui-popover { background: #d7ccc8; width: 200px; }
 
@@ -65,3 +72,7 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 .collapsible-body { background: #EFEBE9!important; color: #795548; }
 
 .collapsible-body span { display: block; color: #795548; }
+
+
+/* Dashboard */
+h4.dashboard { padding-top: 50px; }
