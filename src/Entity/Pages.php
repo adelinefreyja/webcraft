@@ -145,7 +145,7 @@ class Pages
     }
 
     /**
-     * @return integer
+     * @return mixed
      */
     public function getPageDate()
     {
@@ -245,7 +245,7 @@ class Pages
     }
 
     /**
-     * @return integer
+     * @return mixed
      */
     public function getPageModified()
     {

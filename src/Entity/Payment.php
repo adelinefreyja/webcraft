@@ -53,7 +53,7 @@ class Payment
      */
     public function setPaymentMethod($paymentMethod)
     {
-        $this->PaymentMethod = $paymentMethod;
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }
@@ -79,7 +79,7 @@ class Payment
     }
 
     /**
-     * @return integer
+     * @return mixed
      */
     public function getOrder()
     {
