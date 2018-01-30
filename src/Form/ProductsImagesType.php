@@ -13,17 +13,15 @@ class ProductsImagesType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-            ->add("image", FileType::class,
-                ["label"    =>  "Image(s) du produit"]
-            )
+            ->add("image", FileType::class)
+            ->add("product", ProductsType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver) {
 
         $resolver->setDefaults(
-            ["data_class"   =>  ProductsImages::class]
+          ["data_class"     =>  ProductsImages::class]
         );
     }
-
 }

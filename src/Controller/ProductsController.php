@@ -2,15 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Products;
 use App\Entity\ProductsImages;
 use App\Entity\WebsiteInfo;
 use App\Form\ProductsImagesType;
-use App\Form\ProductsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProductsController extends Controller {
 
@@ -19,36 +16,28 @@ class ProductsController extends Controller {
      */
     public function new(Request $request) {
 
-        $produit = new Products();
-        $images_produit = new ProductsImages();
+        $produit = new ProductsImages();
+        $form = $this->createForm(ProductsImagesType::class, $produit);
+        $form->handleRequest($request);
 
-        $form1 = $this->createForm(ProductsType::class, $produit);
-        $form2 = $this->createForm(ProductsImagesType::class, $images_produit);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $form1->handleRequest($request);
-        $form2->handleRequest($request);
+            $file = $produit->getImage();
 
-        if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted()) {
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('products_directory'),
+                $fileName
+            );
+
+            $produit->setImage("public/img/products/" . $fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
 
-            $file = $images_produit->getImage();
-            var_dump($_FILES);
-
-            $extension = strrchr($file, '.');
-            $extension = strtolower(substr($extension, 1));
-            $tabExtensionValide = ["gif", "jpg", "jpeg", "png", "svg"];
-            $verifExtension = in_array($extension, $tabExtensionValide);
-
-            if ($verifExtension) {
-
-                $fichier = $form2["image"]->getData();
-                $fichier->move("/aaaaaaaaaaaa", $fichier);
-            }
-
-//            return $this->redirectToRoute('dashboard');
         }
 
         $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
@@ -58,8 +47,7 @@ class ProductsController extends Controller {
 
         return $this->render(
             'backoffice/products/addproducts.twig',
-            ['form1' => $form1->createView(),
-                'form2' => $form2->createView(),
+            ['form' => $form->createView(),
                 "sitetype" =>  $query]
         );
     }

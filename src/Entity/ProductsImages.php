@@ -31,12 +31,12 @@ class ProductsImages
     /**
      * @var \App\Entity\Products
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Products", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="product_id")
      * })
      */
-    private $product;
+    private $productId;
 
     /**
      * @return string
@@ -83,7 +83,7 @@ class ProductsImages
      */
     public function getProduct()
     {
-        return $this->product;
+        return $this->productId;
     }
 
     /**
@@ -93,7 +93,7 @@ class ProductsImages
      */
     public function setProduct(\App\Entity\Products $product)
     {
-        $this->product = $product;
+        $this->productId = $product;
 
         return $this;
     }
