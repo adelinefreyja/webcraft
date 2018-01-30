@@ -36,37 +36,37 @@
     {% block submenu %}
       {# Pages Submenu #}
       <li class="submenu Pages hide"><a href="{{ path('newpage') }}" class="Pages"><span><i class="far fa-plus-square fa-lg"></i> Créer une page</span></a></li>
-      <li class="submenu Pages hide"><a class="Pages"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
-      <li class="submenu Pages hide"><a class="Pages"><span><i class="far fa-copy fa-lg"></i> Gérer les pages</span></a></li>
+      <li class="submenu Pages hide"><a href="{{ path('pagecategories') }}" class="Pages"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
+      <li class="submenu Pages hide"><a href="{{ path('managepages') }}" class="Pages"><span><i class="far fa-copy fa-lg"></i> Gérer les pages</span></a></li>
 
       {# Medias Submenu #}
-        <li class="submenu Medias hide"><a class="Medias"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span></a></li>
+        <li class="submenu Medias hide"><a href="{{ path('addmedia') }}" class="Medias"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span></a></li>
         <li class="submenu Medias hide"><a href="{{ path('gallery') }}" class="Medias"><span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></a></li>
 
         {# Design Submenu #}
-      <li class="submenu Design hide"><a class="Design"><span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span></a></li>
-      <li class="submenu Design hide"><a class="Design"><span><i class="fas fa-list-ol fa-lg"></i> Menu du site</span></a></li>
-      <li class="submenu Design hide"><a class="Design"><span><i class="fas fa-toggle-on fa-lg"></i> Options</span></a></li>
+      <li class="submenu Design hide"><a href="{{ path('design') }}" class="Design"><span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span></a></li>
+      <li class="submenu Design hide"><a href="{{ path('menus') }}" class="Design"><span><i class="fas fa-list-ol fa-lg"></i> Menu du site</span></a></li>
+      <li class="submenu Design hide"><a href="{{ path('options') }}" class="Design"><span><i class="fas fa-toggle-on fa-lg"></i> Options</span></a></li>
 
       {# Products Submenu #}
         <li class="submenu Products hide"><a href="{{ path('addproducts') }}" class="Products"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un produit</span></a></li>
-        <li class="submenu Products hide"><a href="{{ path('categorieproduct') }}" class="Products"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
-        <li class="submenu Products hide"><a href="{{ path('manageproduct') }}" class="Products"><span><i class="far fa-barcode fa-lg"></i> Gérer les produits</span></a></li>
+        <li class="submenu Products hide"><a href="{{ path('productcategories') }}" class="Products"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
+        <li class="submenu Products hide"><a href="{{ path('manageproducts') }}" class="Products"><span><i class="far fa-barcode fa-lg"></i> Gérer les produits</span></a></li>
 
         {# Orders Submenu #}
-        <li class="submenu Orders hide"><a href="{{ path('orderreceived') }}" class="Orders"><span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span></a></li>
+        <li class="submenu Orders hide"><a href="{{ path('orders') }}" class="Orders"><span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span></a></li>
         <li class="submenu Orders hide"><a href="{{ path('manageorders') }}" class="Orders"><span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span></a></li>
 
         {# Parameters Submenu #}
-        <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>
-        <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></a></li>
+        <li class="submenu Parameters hide"><a href="{{ path('websitesettings') }}" class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>
+        <li class="submenu Parameters hide"><a href="{{ path('manageusers') }}" class="Parameters"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></a></li>
 
         {% if sitetype == true %}
-            <li class="submenu Parameters hide"><a href="{{ path('settingecommerce') }}" class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
+            <li class="submenu Parameters hide"><a href="{{ path('shopsettings') }}" class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
 
         {% endif %}
 
-        <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></a></li>
+        <li class="submenu Parameters hide"><a href="{{ path('managecomments') }}" class="Parameters"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></a></li>
 
     {% endblock %}
     </ul>
@@ -76,50 +76,50 @@
             <li>
               <div class="collapsible-header left-align"><span><i class="far fa-folder-open fa-lg"></i> Mes pages</span></div>
               <div class="collapsible-body">
-                <span><i class="far fa-plus-square fa-lg"></i> Créer une page</span>
-                <span><i class="far fa-list-alt fa-lg"></i> Catégories</span>
-                <span><i class="far fa-copy fa-lg"></i> Gérer les pages</span>
+                <span><a href="{{ path('addpage') }}"><i class="far fa-plus-square fa-lg"></i> Créer une page</a></span>
+                <span><a href="{{ path('pagecategories') }}"><i class="far fa-list-alt fa-lg"></i> Catégories</a></span>
+                <span><a href="{{ path('managepages') }}"><i class="far fa-copy fa-lg"></i> Gérer les pages</a></span>
                 </div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="far fa-images fa-lg"></i> Mes Médias</span></div>
               <div class="collapsible-body">
-                <span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span>
-                <span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></div>
+                <span><a href="{{ path('addmedia') }}"><i class="far fa-plus-square fa-lg"></i> Ajouter un média</a></span>
+                <span><a href="{{ path('gallery') }}"><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</a></span></div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="fas fa-paint-brush fa-lg"></i> Personnalisation</span></div>
               <div class="collapsible-body">
-                <span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span>
-                <span><i class="fas fa-list-ol fa-lg"></i> Menu du site</span>
-                <span><i class="fas fa-toggle-on fa-lg"></i> Options</span></div>
+                <span><a href="{{ path('design') }}"><i class="fas fa-paint-brush fa-lg"></i> Design du site</a></span>
+                <span><a href="{{ path('menus') }}"><i class="fas fa-list-ol fa-lg"></i> Menu du site</a></span>
+                <span><a href="{{ path('options') }}"><i class="fas fa-toggle-on fa-lg"></i> Options</a></span></div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="fab fa-shirtsinbulk fa-lg"></i> Mes produits</span></div>
               <div class="collapsible-body">
-                <span><i class="far fa-plus-square fa-lg"></i> Ajouter un produit</span>
-                <span><i class="far fa-list-alt fa-lg"></i> Catégories</span>
-                <span><i class="fas fa-barcode fa-lg"></i> Gérer les produits</span>
+                <span><a href="{{ path('addproducts') }}"><i class="far fa-plus-square fa-lg"></i> Ajouter un produit</a></span>
+                <span><a href="{{ path('productcategories') }}"><i class="far fa-list-alt fa-lg"></i> Catégories</a></span>
+                <span><a href="{{ path('manageproducts') }}"><i class="fas fa-barcode fa-lg"></i> Gérer les produits</a></span>
               </div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="fas fa-shopping-cart fa-lg"></i> Mes commandes</span></div>
               <div class="collapsible-body">
-                <span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span>
-                <span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span>
+                <span><a href="{{ path('orders') }}"><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</a></span>
+                <span><a href="{{ path('manageorders') }}"><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</a></span>
               </div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="fas fa-users fa-lg"></i> Mes clients</span></div>
-              <div class="collapsible-body"><span><i class="fas fa-users fa-lg"></i> Voir mes clients</span></div>
+              <div class="collapsible-body"><span><a href="{{ path('customers') }}"><i class="fas fa-users fa-lg"></i> Voir mes clients</a></span></div>
             </li>
             <li>
               <div class="collapsible-header"><span><i class="fas fa-cogs fa-lg"></i> Mon site</span></div>
               <div class="collapsible-body">
-                <span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span>
-                <span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span>
-                <span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span>
-                <span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span>
+                <span><a href="{{ path('websitesettings') }}"><i class="fas fa-cogs fa-lg"></i> Paramètres du site</a></span>
+                <span><a href="{{ path('manageusers') }}"><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</a></span>
+                <span><a href="{{ path('shopsettings') }}"><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</a></span>
+                <span><a href="{{ path('managecomments') }}"><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</a></span>
                 </div>
             </li>
             <li>

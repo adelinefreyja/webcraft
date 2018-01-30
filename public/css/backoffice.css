@@ -77,7 +77,7 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 /* Dashboard */
 .dashboard { padding-top: 50px; }
 
-/*/* User Account */
+/* User Account */
 #title { margin-top: 3.5em; }
 #user_account { margin-top: 1.5em; }
 hr.account { border-bottom: 2px solid #795548; width: 20%;}
