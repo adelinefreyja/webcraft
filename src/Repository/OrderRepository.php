@@ -12,5 +12,4 @@ class OrderRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Orders::class);
     }
-
 }
