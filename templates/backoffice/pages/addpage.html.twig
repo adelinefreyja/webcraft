@@ -6,7 +6,10 @@
 
 
 {% block content %}
-<div class="container-fluid">
+    {#<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>#}
+    <script src="{{ asset('js/ckeditor.js') }}"></script>
+
+    <div class="container-fluid">
 	<div class="row">
 		<div class="col s3">
 			<h4></h4>
@@ -16,32 +19,28 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
-
-		<div class="col s9">
-			  <form method="POST" action="">
-			   <textarea cols="80" class="ckeditor" id="editeur" name="editeur" rows="10"></textarea>
-			   <input type="submit" value="envoyer" />
-			</form>
-{# 			<div id="editor1" contenteditable="true">
-			    <h1>Un titre</h1>
-			    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-			</div> #}
-		</div>
+        <div class="col s3">
+            <fieldset>
+                On a des options ici
+            </fieldset>
+            <fieldset>
+                Et là aussi
+            </fieldset>
+        </div>
+        <form class="col s9">
+            <div id="editor1" contenteditable="true">
+                <h1>Bonjour ceci est un test</h1>
+                <p>Blablablablablabla</p>
+            </div>
+            <script>
+                CKEDITOR.disableAutoInline = true;
+                CKEDITOR.inline( 'editor1' );
+            </script>
+        </form>
 	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-	<script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-	            <script>
-                CKEDITOR.replace( 'editor1' );
-            </script>
+
 {% endblock %}
