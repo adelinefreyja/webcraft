@@ -26,7 +26,7 @@
         {% if sitetype == true %}
         <li id="products" class="mainNav products"><a><i class="fab fa-shirtsinbulk fa-2x"></i> <p>Mes produits</p></a></li>
         <li id="orders" class="mainNav orders"><a><i class="fas fa-shopping-cart fa-2x"></i> <p>Mes commandes</p></a></li>
-        <li id="customers" class="mainNav customers"><a><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
+        <li id="customers" class="mainNav customers"><a href="{{ path('customers') }}"><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
         {% endif %}
 
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
