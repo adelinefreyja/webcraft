@@ -2,6 +2,11 @@
 
 {% block specificcss %}
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
+    <style>
+        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+        .embed-container iframe, .embed-container object,
+            .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
 {% endblock %}
 
 
@@ -27,8 +32,30 @@
             <h3 class="col s12">Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}">ce lien</a>.</h3>
         {% endif %}
         {% for picture in pictures %}
-            <div class="gallery_product col xl3 l3 m4 s6 filter {{ picture.mediaType }}">
-                <img src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}" class="materialboxed responsive-img" width="365px" height="365px" />
+            <div class="gallery_product col m4 s6 filter {{ picture.mediaType }}" style="border: 1px solid white">
+
+                {% if picture.mediaType == "pdf" %}
+                    <a class="modal-trigger" href="#{{ picture.mediaId }}">
+                        <img src="{{ asset("img/pdf.png") }}" alt="{{ picture.mediaDescription }}" style="height: 365px" />
+                    </a>
+                    <div id="{{ picture.mediaId }}" class="modal" style="width: 100%; height: 100%; margin: 0; padding: 0">
+                        <div class="modal-content" style="height: auto; min-height: 100%; border-radius: 0">
+                            <object data="{{ asset(picture.mediaSrc) }}" type="application/pdf" style="height: 100%; width: 100%; border-radius: 0; margin: 0; padding: 0">
+                                <embed src="{{ asset(picture.mediaSrc) }}" type="application/pdf" class="embed-container " />
+                            </object>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if picture.mediaType == "image" %}
+                    <img src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}" class="materialboxed responsive-img" style="height: 365px;" />
+                {% endif %}
+
+                {% if picture.mediaType == "video" %}
+                    <video class="responsive-video" controls style="height: 365px;">
+                        <source src="{{ asset(picture.mediaSrc) }}" type="video/mp4">
+                    </video>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

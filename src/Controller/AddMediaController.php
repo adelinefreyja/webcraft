@@ -23,7 +23,11 @@ class AddMediaController extends Controller
 
             $file = $form["mediaSrc"]->getData();
 
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            try {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            } catch (\Exception $e) {
+                $fileName = md5(uniqid()) . '.' . $file->getExtension();
+            }
 
             $file->move(
                 $this->getParameter('medias_directory'),

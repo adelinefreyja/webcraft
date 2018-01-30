@@ -24,7 +24,7 @@ class Medias
      * @var string
      *
      * @ORM\Column(name="media_src", type="string", length=255, nullable=false)
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "video/mpeg", "application/pdf", "video/webm", "video/mp4" })
      */
     private $mediaSrc;
 
@@ -50,6 +50,22 @@ class Medias
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $mediaId;
+
+    /**
+     * @return int
+     */
+    public function getMediaId()
+    {
+        return $this->mediaId;
+    }
+
+    /**
+     * @param int $mediaId
+     */
+    public function setMediaId(int $mediaId)
+    {
+        $this->mediaId = $mediaId;
+    }
 
     /**
      * @return string

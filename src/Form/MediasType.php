@@ -26,10 +26,10 @@ class MediasType extends AbstractType {
                     "label"     =>  "Type de fichier",
                     "choices"   =>
                         array(
-                            "Audio" =>  "audio",
-                            "Vidéo" =>  "video",
                             "Image" =>  "image",
-                            "PDF"   =>  "pdf"
+                            "PDF"   =>  "pdf",
+                            "Audio" =>  "audio",
+                            "Vidéo" =>  "video"
                         )
                 )
             )

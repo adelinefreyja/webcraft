@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     $('.materialboxed').materialbox();
+    $('.modal').modal();
 
     $(".filter-button").click(function(){
         var value = $(this).attr('data-filter');
