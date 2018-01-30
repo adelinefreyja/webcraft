@@ -58,7 +58,7 @@ class Products
      * })
      */
     private $tax;
-    
+
     /**
      * @return integer
      */
@@ -184,4 +184,3 @@ class Products
         return (string) $this->getProductId();
     }
 }
-
