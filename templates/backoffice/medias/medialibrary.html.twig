@@ -1,37 +1,40 @@
 {% extends 'backoffice/index.html.twig' %}
 
 {% block specificcss %}
-	
+    <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
 {% endblock %}
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Bibliothèque des médias</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
+        <div class="col s12 center">
+            {% if pictures is not empty %}
+            <button class="waves-effect waves-light btn filter-button blue-grey" data-filter="all">Afficher tout</button>
+            {% endif %}
 
-		<div class="col s9">
-			
-		</div>
+            {% set filtre = [] %}
+            {% for picture in pictures %}
+                {% if picture.mediaType not in filtre %}
+                    <button class="waves-effect waves-light btn filter-button" data-filter="{{ picture.mediaType }}">{{ picture.mediaType }}</button>
+                    {% set filtre = filtre|merge([picture.mediaType]) %}
+                {% endif %}
+            {% endfor %}
+        </div>
 	</div>
+    <div class="row">
+        {% if pictures is empty %}
+            <h3 class="col s12">Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}">ce lien</a>.</h3>
+        {% endif %}
+        {% for picture in pictures %}
+            <div class="gallery_product col xl3 l3 m4 s6 filter {{ picture.mediaType }}">
+                <img src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}" class="materialboxed responsive-img" width="365px" height="365px" />
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-	
+    <script src="{{ asset('js/gallery.js') }}"></script>
 {% endblock %}

@@ -24,16 +24,14 @@ class ProductsController extends Controller {
 
             $file = $produit->getImage();
 
-            // Generate a unique name for the file before saving it
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
             $file->move(
                 $this->getParameter('products_directory'),
                 $fileName
             );
 
-            $produit->setImage("public/img/products/" . $fileName);
+            $produit->setImage("img/products/" . $fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
