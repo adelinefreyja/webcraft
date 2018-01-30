@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Medias
@@ -24,7 +23,6 @@ class Medias
      * @var string
      *
      * @ORM\Column(name="media_src", type="string", length=255, nullable=false)
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $mediaSrc;
 
@@ -54,7 +52,7 @@ class Medias
     /**
      * @return string
      */
-    public function getMediaType()
+    public function getMediaType(): string
     {
         return $this->mediaType;
     }
@@ -70,7 +68,7 @@ class Medias
     /**
      * @return string
      */
-    public function getMediaSrc()
+    public function getMediaSrc(): string
     {
         return $this->mediaSrc;
     }
@@ -86,7 +84,7 @@ class Medias
     /**
      * @return string
      */
-    public function getMediaName()
+    public function getMediaName(): string
     {
         return $this->mediaName;
     }
@@ -102,7 +100,7 @@ class Medias
     /**
      * @return string
      */
-    public function getMediaDescription()
+    public function getMediaDescription(): string
     {
         return $this->mediaDescription;
     }
@@ -114,6 +112,7 @@ class Medias
     {
         $this->mediaDescription = $mediaDescription;
     }
+
 
 }
 
