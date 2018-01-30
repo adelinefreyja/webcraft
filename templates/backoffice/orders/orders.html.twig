@@ -1,7 +1,7 @@
 {% extends 'backoffice/index.html.twig' %}
 
 {% block specificcss %}
-
+	
 {% endblock %}
 
 
@@ -26,27 +26,12 @@
 		</div>
 
 		<div class="col s9">
-			  <table>
-					  <tr>
-                <th>OrderId</th>
-                <th>UserId</th>
-								<th>OrderDate</th>
-								<th>OrderStatus</th>
-  				  </tr>
-					  {% for orderId in orders %}
-			       <tr>
-							   <td>{{ orderId.orderId }}</td>
-							   <td>{{ orderId.id }}</td>
-								 <td>{{ orderId.orderDate|date("m/d/Y") }}</td>
-								 <td>{{ orderId.orderStatus }}</td>
-						 </tr>
-	 	 			  {% endfor %}
-			</table>
+
 		</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-
+	
 {% endblock %}

@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
-use App\Entity\Orders;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,12 +18,8 @@ class OrdersController extends Controller
             ["sitetype" =>  "2"]
         );
 
-				$queryOrders = $this->getDoctrine()->getManager()->getRepository(Orders::class);
-        $orders = $queryOrders->findAll();
-
         return $this->render('backoffice/orders/orders.html.twig',
-            [ "orders" => $orders,
-							"sitetype" =>  $query]
+            ["sitetype" =>  $query]
         );
 	}
 }
