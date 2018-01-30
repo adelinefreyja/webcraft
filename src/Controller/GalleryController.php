@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class GalleryController extends Controller
 {
     /**
-     * @Route("/craft/gallery", name="gallery")
+     * @Route("/craft/medias/gallery", name="gallery")
      */
     public function new(Request $request) {
 
