@@ -75,4 +75,12 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 
 /* Dashboard */
-h4.dashboard { padding-top: 50px; }
+.dashboard { padding-top: 50px; }
+
+/*/* User Account */
+#title { margin-top: 3.5em; }
+#user_account { margin-top: 1.5em; }
+hr.account { border-bottom: 2px solid #795548; width: 20%;}
+hr.btn_account { border-bottom: 2px solid #795548; width: 20%; margin-top: 50px; }
+.center-align a { color: #795548; }
+.card_account { height: 300px; }

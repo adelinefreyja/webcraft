@@ -202,7 +202,9 @@ APP_SECRET=33a27d07aced1ff0823b4d69b1d924f6
                 $fullContent = $content1 . "\n" . $text . "\n" . $content2;
                 file_put_contents("../.env", $fullContent);
 
-                session_destroy();
+                if (session_start()) {
+                    session_destroy();
+                }
 
                 session_start();
 

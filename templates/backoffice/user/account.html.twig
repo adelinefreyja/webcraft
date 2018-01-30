@@ -1,0 +1,78 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Mon Compte :: WebCraft :: Make magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+		<link rel="stylesheet" href="{{ asset('css/account.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col s12 m12">
+        <div id="title" class="card-panel orange lighten-2">
+          <h5 class="brown-text">
+          	<i class="fas fa-hand-spock fa-lg"></i>
+          	Bienvenue dans votre compte, {{ app.user.username }} !
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    	<div class="col s6 m6">
+    		<div class="card-panel brown lighten-4 brown-text">
+    			<h5 class="center-align">Mes informations</h5>
+    			<hr class="account">
+    			<div id="user_account" class="row">
+	    			<div class="col s4">
+	    			{% if app.user.roles[0] == "ROLE_SUPER_ADMIN" %}
+	    				<p class="left"><img src="{{ asset('img/user_pp/admin_default.png')}}" max-width="150px" /></p>
+	    			{% endif %}
+	    			{% if app.user.roles[0] == "ROLE_ADMIN" %}
+	    				<p class="left"><img class="left" src="{{ asset('img/user_pp/user_default.png')}}"></p>
+	    			{% endif %}
+	    			</div>
+	    			<div class="col s6">
+	    			<p>Pseudo : {{ app.user.username }}</p>
+	    			<p>Rôle : 
+	    			{% if app.user.roles[0] == "ROLE_SUPER_ADMIN" %}
+	    				{{ "Administrateur" }}
+	    			{% endif %}
+	    			{% if app.user.roles[0] == "ROLE_ADMIN" %}
+	    				{{ "Utilisateur" }}
+	    			{% endif %}</p>
+	    			<p>Votre nom : {{ app.user.userlastname }}</p>
+	    			<p>Votre prénom : {{ app.user.userfirstname }}</p>
+	    			<p>Genre : {{ app.user.usergender }}</p>
+	    			</div>
+	    		</div>
+    		</div>
+    	</div>
+    	<div class="col s3 m3">
+    		<div class="card-panel orange lighten-2 brown-text card_account">
+    			<h5 class="center-align"><a href="#account_modify" data-target="account_modify"><p><i class="fas fa-user fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier mes informations</p></a></h5>
+    		</div>
+    	</div>
+    	<div class="col s3 m3">
+    		<div class="card-panel orange lighten-2 brown-text card_account">
+    			<h5 class="center-align"><a href="{{ path('logout') }}"><p><i class="fas fa-power-off fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Me déconnecter</p></a></h5>
+    		</div>
+    	</div>
+    </div>
+</div>
+
+
+<div id="account_modify" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}

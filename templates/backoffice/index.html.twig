@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard :: WebCraft :: Make magic websites within minutes !{% endblock %}
+{% block title %}{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.webui-popover.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+{% block specificcss %}
 {% endblock %}
 
 {% block nav %}
@@ -120,7 +123,7 @@
                 </div>
             </li>
             <li>
-              <div class="collapsible-header"><span><i class="fas fa-user fa-lg"></i> Espace personnel</span></div>
+              <div class="collapsible-header"><span><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Espace personnel</a></span></div>
               <div class="collapsible-body">
                 <span><i class="fas fa-user fa-lg"></i> Mon compte</span>
                 <span><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></span>
@@ -132,7 +135,7 @@
 
     <div id="user_submenu">
         <ul>
-            <li><i class="fas fa-user fa-lg"></i> Mon compte</li>
+            <li><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Mon compte</a></li>
             <li><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></li>
         </ul>
     </div>
@@ -140,4 +143,7 @@
 
 
 {% block content %}
+{% endblock %}
+
+{% block specificjs %}
 {% endblock %}
