@@ -3,7 +3,8 @@
 {% block title %}Mon Compte :: WebCraft :: Make magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-		<link rel="stylesheet" href="{{ asset('css/account.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
 {% endblock %}
 
 {% block content %}
@@ -50,7 +51,7 @@
     	</div>
     	<div class="col s3 m3">
     		<div class="card-panel orange lighten-2 brown-text card_account">
-    			<h5 class="center-align"><a href="#account_modify" data-target="account_modify"><p><i class="fas fa-user fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier mes informations</p></a></h5>
+    			<h5 class="center-align"><a href="#account_modify" data-target="account_modify" class="modal-trigger"><p><i class="fas fa-user fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier mes informations</p></a></h5>
     		</div>
     	</div>
     	<div class="col s3 m3">
@@ -64,11 +65,55 @@
 
 <div id="account_modify" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+      <h4>Modifier mes informations</h4>
+      {{ form_start(form) }}
+		{% if not form.vars.valid %}
+			<div class="error">
+				{{ form_errors(form.username) }}
+				{{ form_errors(form.user_email.first) }}
+				{{ form_errors(form.user_email.second) }}
+				{{ form_errors(form.password.first) }}
+				{{ form_errors(form.password.second) }}
+				{{ form_errors(form.user_first_name) }}
+				{{ form_errors(form.user_last_name) }}
+				{{ form_errors(form.user_gender) }}
+			</div>		
+        {% endif %}
+
+		<div class="input-field">
+			{{ form_label(form.username) }}
+			{{ form_widget(form.username) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.first) }}
+			{{ form_widget(form.user_email.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.second) }}
+			{{ form_widget(form.user_email.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.first) }}
+			{{ form_widget(form.password.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.second) }}
+			{{ form_widget(form.password.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_first_name) }}
+			{{ form_widget(form.user_first_name) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_last_name) }}
+			{{ form_widget(form.user_last_name) }}
+		</div>
+			{{ form_label(form.user_gender) }}
+			{{ form_widget(form.user_gender) }}
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+		<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+	{{ form_end(form) }}
     </div>
   </div>
 {% endblock %}
