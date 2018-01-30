@@ -6,30 +6,37 @@
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
+        {{ form_start(form) }}
+		<div class="input-field">
+            {{ form_label(form.mediaName) }}
+            {{ form_widget(form.mediaName) }}
 		</div>
-		<div class="col s9">
-			<h4>Ajouter un média</h4>
+		<div class="input-field">
+            {{ form_label(form.mediaDescription) }}
+            {{ form_widget(form.mediaDescription) }}
 		</div>
-	</div>
-	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
+		<div class="input-field">
+            {{ form_label(form.mediaType) }}
+            {{ form_widget(form.mediaType) }}
 		</div>
-
-		<div class="col s9">
-
+		<div class="file-field input-field">
+			<div class="btn">
+				<span>Transmettre un fichier</span>
+                {{ form_widget(form.mediaSrc) }}
+			</div>
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text">
+			</div>
 		</div>
+		<div class="right">
+			<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+		</div>
+        {{ form_end(form) }}
 	</div>
 </div>
+
 {% endblock %}
 
 {% block specificjs %}

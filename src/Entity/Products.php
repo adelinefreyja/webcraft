@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="products", indexes={@ORM\Index(name="constraint_products", columns={"tax_id"})})
  * @ORM\Entity
- * @ORM\Embedded
  */
 class Products
 {
