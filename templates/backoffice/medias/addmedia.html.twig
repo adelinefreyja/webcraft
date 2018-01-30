@@ -17,10 +17,8 @@
             {{ form_label(form.mediaDescription) }}
             {{ form_widget(form.mediaDescription) }}
 		</div>
-		<div class="input-field">
             {{ form_label(form.mediaType) }}
             {{ form_widget(form.mediaType) }}
-		</div>
 		<div class="file-field input-field">
 			<div class="btn">
 				<span>Transmettre un fichier</span>
@@ -40,5 +38,9 @@
 {% endblock %}
 
 {% block specificjs %}
-	
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 {% endblock %}

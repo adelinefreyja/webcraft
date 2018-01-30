@@ -27,8 +27,8 @@
             <h3 class="col s12">Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}">ce lien</a>.</h3>
         {% endif %}
         {% for picture in pictures %}
-            <div class="gallery_product col xl4 l4 m4 s6 filter {{ picture.mediaType }}">
-                <img src="{{ asset(picture.mediaSrc) }}" class="materialboxed responsive-img" width="365px" height="365px" />
+            <div class="gallery_product col xl3 l3 m4 s6 filter {{ picture.mediaType }}">
+                <img src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}" class="materialboxed responsive-img" width="365px" height="365px" />
             </div>
         {% endfor %}
     </div>

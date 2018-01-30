@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Medias;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,8 +21,17 @@ class MediasType extends AbstractType {
             ->add("mediaDescription", TextType::class,
                 ["label"    =>  "Description du media"]
             )
-            ->add("mediaType", TextType::class,
-                ["label"    =>  "Type de media"]
+            ->add("mediaType", ChoiceType::class,
+                array(
+                    "label"     =>  "Type de fichier",
+                    "choices"   =>
+                        array(
+                        "Audio" =>  "audio",
+                        "Vidéo" =>  "video",
+                        "Image" =>  "image",
+                            "PDF"   =>  "pdf"
+                    )
+                )
             )
             ->add("mediaSrc", FileType::class)
         ;
