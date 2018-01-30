@@ -1,37 +1,88 @@
 {% extends 'backoffice/index.html.twig' %}
 
+{% block title %}Gestion des utilisateurs :: Webcraft :: Craft magic websites within minutes ! ::{% endblock %}
 {% block specificcss %}
-
+{# 	<link rel="stylesheet" type="text/css" href="{{ asset('css/account.css') }}" /> #}
 {% endblock %}
 
 
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
+		<div class="col s6">
+			<h4 class="dashboard brown-text"><i class="fas fa-user fa-lg"></i> Gestion des utilisateurs</h4>
+			<hr class="settings" />
 		</div>
-		<div class="col s9">
-			<h4>Gestion des utilisateurs</h4>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="#new_user" data-target="new_user"class="modal-trigger btn orange lighten-2 brown-text"><i class="fas fa-user-plus fa-lg"></i> <span>Ajouter un nouvel utilisateur</span></a>
+			</div>
 		</div>
 	</div>
+</div>
+<div class="container">
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
-
-		<div class="col s9">
-
+		<div class="col s12">
 		</div>
 	</div>
+</div>
+
+<div id="new_user" class="modal brown-text">
+    <div class="modal-content">
+      <h4>Ajouter un nouvel utilisateur</h4>
+      <hr />
+      {{ form_start(form) }}
+		{% if not form.vars.valid %}
+			<div class="error">
+				{{ form_errors(form.username) }}
+				{{ form_errors(form.user_email.first) }}
+				{{ form_errors(form.user_email.second) }}
+				{{ form_errors(form.password.first) }}
+				{{ form_errors(form.password.second) }}
+				{{ form_errors(form.user_first_name) }}
+				{{ form_errors(form.user_last_name) }}
+				{{ form_errors(form.user_gender) }}
+			</div>		
+        {% endif %}
+
+		<div class="input-field">
+			{{ form_label(form.username) }}
+			{{ form_widget(form.username) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.first) }}
+			{{ form_widget(form.user_email.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_email.second) }}
+			{{ form_widget(form.user_email.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.first) }}
+			{{ form_widget(form.password.first) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.password.second) }}
+			{{ form_widget(form.password.second) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_first_name) }}
+			{{ form_widget(form.user_first_name) }}
+		</div>
+		<div class="input-field">
+			{{ form_label(form.user_last_name) }}
+			{{ form_widget(form.user_last_name) }}
+		</div>
+			{{ form_label(form.user_gender) }}
+			{{ form_widget(form.user_gender) }}
+    </div>
+    <div class="modal-footer">
+		<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+	{{ form_end(form) }}
+    </div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
 {% endblock %}

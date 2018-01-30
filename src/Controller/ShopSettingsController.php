@@ -18,6 +18,7 @@ class ShopSettingsController extends Controller
             ["sitetype" =>  "2"]
         );
 
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'Vous ne disposez pas des droits nécessaires pour afficher cette page.');
         return $this->render('backoffice/settings/shopsettings.html.twig',
             ["sitetype" =>  $query]
         );

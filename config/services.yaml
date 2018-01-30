@@ -3,7 +3,6 @@
 parameters:
     locale: 'en'
     products_directory: '%kernel.project_dir%/public/img/products'
-    medias_directory: '%kernel.project_dir%/public/img/medias'
 
 services:
     # default configuration for services in *this* file
