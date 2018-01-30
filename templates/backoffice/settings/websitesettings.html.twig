@@ -1,37 +1,85 @@
 {% extends 'backoffice/index.html.twig' %}
 
-{% block specificcss %}
+{% block title %}Paramètres du site :: Webcraft :: Craft magic websites within minutes ! ::{% endblock %}
 
+{% block specificcss %}
+ 	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+ 	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Paramètres du site</h4>
+		<div class="col s12 m12">
+			<h4 class="dashboard brown-text"><i class="fas fa-cogs fa-lg"></i> Paramètres du site</h4>
+			<hr class="settings" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
+		<div class="col s6 m6">
+			<div class="card-panel brown lighten-4 brown-text">
+    			<h5 class="center-align">Mon site</h5>
+    			<hr class="account">
+    			<div id="website_info" class="row">
+	    			<div class="col s6">
+	    			<p>Titre de mon site : {{ website.optionname }}</p>
+	    			<p>Description de mon site : {{ website.optionvalue }}</p>
+	    			<p>Type de site :
+	    			{% if website.sitetype == 1 %}
+	    				{{ "Site vitrine" }}
+	    			{% endif %}
+	    			{% if website.sitetype == 2 %}
+	    				{{ "e-Commerce" }}
+	    			{% endif %}</p>
+	    			</div>
+	    		</div>
+    		</div>
 		</div>
-
-		<div class="col s9">
-
-		</div>
+		<div class="col s3 m3">
+    		<div class="card-panel orange lighten-2 brown-text card_account">
+    			<h5 class="center-align"><a href="#website_modify" data-target="website_modify" class="modal-trigger"><p><i class="fas fa-tv fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier mes réglages</p></a></h5>
+    		</div>
+    	</div>
+    	<div class="col s3 m3">
+    		<div class="card-panel orange lighten-2 brown-text card_account">
+    			<h5 class="center-align"><a href="{{ path('design') }}"><p><i class="fas fa-paint-brush fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier le design</p></a></h5>
+    		</div>
+    	</div>
 	</div>
+
+	<div id="website_modify" class="modal">
+    <div class="modal-content">
+      <h4>Modifier mes réglages</h4>
+	      {{ form_start(form) }}
+			{% if not form.vars.valid %}
+				<div class="error">
+					{{ form_errors(form.optionname) }}
+					{{ form_errors(form.optionvalue) }}
+					{{ form_errors(form.sitetype) }}
+				</div>
+			{% endif %}
+			<div class="input-field">
+				{{ form_label(form.optionname) }}
+				{{ form_widget(form.optionname) }}
+			</div>
+			<div class="input-field">
+				{{ form_label(form.optionvalue) }}
+				{{ form_widget(form.optionvalue) }}
+			</div>
+				{{ form_label(form.sitetype) }}
+				{{ form_widget(form.sitetype) }}
+
+			    {{ form_widget(form.description) }}
+
+	    <div class="modal-footer">
+				<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+		{{ form_end(form) }}
+    	</div>
+  </div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
 {% endblock %}
