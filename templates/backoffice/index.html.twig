@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard :: WebCraft :: Make magic websites within minutes !{% endblock %}
+{% block title %}{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.webui-popover.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+{% block specificcss %}
 {% endblock %}
 
 {% block nav %}
@@ -38,7 +41,7 @@
 
       {# Medias Submenu #}
         <li class="submenu Medias hide"><a class="Medias"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un média</span></a></li>
-        <li class="submenu Medias hide"><a class="Medias"><span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></a></li>
+        <li class="submenu Medias hide"><a href="{{ path('gallery') }}" class="Medias"><span><i class="fas fa-th fa-lg"></i> Bibliothèque de médias</span></a></li>
 
         {# Design Submenu #}
       <li class="submenu Design hide"><a class="Design"><span><i class="fas fa-paint-brush fa-lg"></i> Design du site</span></a></li>
@@ -47,19 +50,19 @@
 
       {# Products Submenu #}
         <li class="submenu Products hide"><a class="Products"><span><i class="far fa-plus-square fa-lg"></i> Ajouter un produit</span></a></li>
-        <li class="submenu Products hide"><a class="Products"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
-        <li class="submenu Products hide"><a class="Products"><span><i class="far fa-barcode fa-lg"></i> Gérer les produits</span></a></li>
+        <li class="submenu Products hide"><a href="{{ path('categorieproduct') }}" class="Products"><span><i class="far fa-list-alt fa-lg"></i> Catégories</span></a></li>
+        <li class="submenu Products hide"><a href="{{ path('manageproduct') }}" class="Products"><span><i class="far fa-barcode fa-lg"></i> Gérer les produits</span></a></li>
 
         {# Orders Submenu #}
-        <li class="submenu Orders hide"><a class="Orders"><span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span></a></li>
-        <li class="submenu Orders hide"><a class="Orders"><span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span></a></li>
+        <li class="submenu Orders hide"><a href="{{ path('orderreceived') }}" class="Orders"><span><i class="fas fa-cart-arrow-down fa-lg"></i> Mes commandes reçues</span></a></li>
+        <li class="submenu Orders hide"><a href="{{ path('manageorder') }}" class="Orders"><span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span></a></li>
 
         {# Parameters Submenu #}
         <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>
         <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></a></li>
 
         {% if sitetype == true %}
-            <li class="submenu Parameters hide"><a class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
+            <li class="submenu Parameters hide"><a href="{{ path('settingecommerce') }}" class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
 
         {% endif %}
 
@@ -120,7 +123,7 @@
                 </div>
             </li>
             <li>
-              <div class="collapsible-header"><span><i class="fas fa-user fa-lg"></i> Espace personnel</span></div>
+              <div class="collapsible-header"><span><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Espace personnel</a></span></div>
               <div class="collapsible-body">
                 <span><i class="fas fa-user fa-lg"></i> Mon compte</span>
                 <span><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></span>
@@ -129,10 +132,10 @@
         </ul>
     </ul>
     {% endblock %}
-   
+
     <div id="user_submenu">
         <ul>
-            <li><i class="fas fa-user fa-lg"></i> Mon compte</li>
+            <li><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Mon compte</a></li>
             <li><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></li>
         </ul>
     </div>
@@ -140,4 +143,7 @@
 
 
 {% block content %}
+{% endblock %}
+
+{% block specificjs %}
 {% endblock %}
