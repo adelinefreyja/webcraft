@@ -58,6 +58,7 @@ $(document).ready(function(){
 	 });
 
 
+    $('select').material_select();
 
 	$('#user_settings').webuiPopover({url:'#user_submenu', placement: 'bottom'});
 });

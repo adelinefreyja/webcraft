@@ -73,7 +73,11 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 .collapsible-body span { display: block; color: #795548; }
 
+.dropdown-content li>a, .dropdown-content li>span { color: #795548; }
 
+label, .input-field label { color: #795548; }
+
+[type="checkbox"]:checked+label:before, [type="checkbox"]:checked+label:after { border-top: 2px solid transparent; border-left: 2px solid transparent; border-right: 2px solid #ffb74d; border-bottom: 2px solid #ffb74d; }
 /* Dashboard */
 .dashboard { padding-top: 50px; }
 
