@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,7 +34,8 @@ class UserModifyInfoType extends AbstractType {
                     "type"              =>  PasswordType::class,
                     'invalid_message' => 'Les mots de passe saisis ne correspondent pas.',
                     "first_options"     =>  ["label"    =>  "Mot de passe"],
-                    "second_options"    =>  ["label"    =>  "Confirmez votre mot de passe"],
+                    "second_options"    =>  ["label"    =>  "Confirmez votre mot de passe",
+                    "required"          =>  false],
                 ]
             )
             ->add("user_gender", ChoiceType::class,
@@ -52,6 +54,11 @@ class UserModifyInfoType extends AbstractType {
             )
             ->add("user_last_name", TextType::class, 
                 [   "label" => "Votre prénom" ]
+            )
+            ->add("user_profile_picture", FileType::class,
+                [
+                    'data_class'    =>  null
+                ]
             )
         ;
     }

@@ -27,19 +27,39 @@ class UserAccountController extends Controller
         $form = $this->createForm(UserModifyInfoType::class, $user);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-        $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-        $user->setPassword($password);
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+            $file = $form["user_profile_picture"]->getData();
 
-        return $this->redirectToRoute('user_account');
+            try {
+                $fileName = $user->getId() . '.' . $file->guessExtension();
+            } catch (\Exception $e) {
+                $fileName = $user->getId() . '.' . $file->getExtension();
+            }
+
+            $file->move(
+                $this->getParameter('user_directory'),
+                $fileName
+            );
+
+            $user->setUserProfilePicture("img/user_pp/" . $fileName);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('user_account');
     	}
 
-        return $this->render('backoffice/user/account.html.twig', array("sitetype" =>  $query, "form" => $form->createView()));
+        return $this->render('backoffice/user/account.html.twig',
+            array(
+                "sitetype"          =>  $query, "form" => $form->createView()
+            )
+        );
 	}
 
 	public function index()
