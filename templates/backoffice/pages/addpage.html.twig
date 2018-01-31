@@ -58,7 +58,10 @@
             //     CKEDITOR.replace('editor1');
             // </script>
             </div>
-            
+            <label>{{ form_label(form.comment_status) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.comment_status) }}
+            </div>
             <label>{{ form_label(form.page_status) }}</label>
             <div class="input-field">
                 {{ form_widget(form.page_status) }}
@@ -72,5 +75,5 @@
 {% endblock %}
 
 {% block specificjs %}
-    
+    <script type="text/javascript" src="{{ asset('js/setup.js') }}"></script>
 {% endblock %}

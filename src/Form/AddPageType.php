@@ -24,7 +24,8 @@ class AddPageType extends AbstractType {
             ->add('page_date', DateType::class, [
                 'label' =>  'Date de création',
                 'widget' => 'single_text',
-                'input' =>  'datetime'
+                'input' =>  'datetime',
+                'data' => new \DateTime('now')
                 ]
             )
             ->add("page_content", CKEditorType::class, 
@@ -36,6 +37,16 @@ class AddPageType extends AbstractType {
                     "choices"   =>  [
                         "Enregistrer en brouillon" =>  "masquer",
                         "Publier" =>  "afficher"
+                    ],
+                    "expanded"  =>  false
+                ]
+            )
+            ->add("comment_status", ChoiceType::class,
+                [
+                    "label" => "Activer les commentaires",
+                    "choices"   =>  [
+                        "Oui" =>  "afficher",
+                        "Non" =>  "masquer"
                     ],
                     "expanded"  =>  false
                 ]
