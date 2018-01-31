@@ -40,6 +40,7 @@
             </fieldset>
         </div>
         <div class="col s9">
+            {{ form_start(form) }}
             <div class="input-field">
             {{ form_label(form.page_name) }}
             {{ form_widget(form.page_name) }}
@@ -76,5 +77,4 @@
 {% endblock %}
 
 {% block specificjs %}
-    <script type="text/javascript" src="{{ asset('js/setup.js') }}"></script>
 {% endblock %}

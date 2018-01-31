@@ -21,10 +21,10 @@ class ManagePagesController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
-        $page = $rep->findAll();
+        $pages = $rep->findAll();
 
         return $this->render('backoffice/pages/managepages.html.twig',
-            ["sitetype" =>  $query, "page" => $page]
+            ["sitetype" =>  $query, "pages" => $pages]
         );
 	}
 

@@ -22,16 +22,7 @@ class EditPageType extends AbstractType {
                 [   "label" => "Le titre de votre page" ]
             )
             ->add("page_content", CKEditorType::class, 
-                [   "label" => "Votre contenu",
-                    "inline"    =>  true,
-                    'plugins' => array(
-                        'wordcount' => array(
-                        'path'     => '/bundles/mybundle/wordcount/',
-                            'filename' => 'plugin.js',
-                        ), 
-                    ), 
-                    "config" => [ "toolbar" => "full"]
-                 ]
+                [   "label" => "Votre contenu" ]
             )
             ->add("page_status", ChoiceType::class,
                 [
@@ -51,6 +42,12 @@ class EditPageType extends AbstractType {
                         "Non" =>  "masquer"
                     ],
                     "expanded"  =>  false
+                ]
+            )
+            ->add('page_date', DateType::class, [
+                'label' =>  'Date de création',
+                'disabled'  => true,
+                'widget'    => 'single_text'
                 ]
             )
             ->add('page_modified', DateType::class, [

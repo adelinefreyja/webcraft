@@ -25,20 +25,12 @@ class AddPageType extends AbstractType {
                 'label' =>  'Date de création',
                 'widget' => 'single_text',
                 'input' =>  'datetime',
-                'data' => new \DateTime('now')
+                'data' => new \DateTime('now'),
+                'disabled'  =>  true
                 ]
             )
             ->add("page_content", CKEditorType::class, 
-                [   "label" => "Votre contenu",
-                    "inline"    =>  true,
-                    'plugins' => array(
-                        'wordcount' => array(
-                        'path'     => '/bundles/mybundle/wordcount/',
-                            'filename' => 'plugin.js',
-                        ), 
-                    ), 
-                    "config" => [ "toolbar" => "full"]
-                 ]
+                [   "label" => "Votre contenu"  ]
             )
             ->add("page_status", ChoiceType::class,
                 [

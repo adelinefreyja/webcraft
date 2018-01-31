@@ -40,6 +40,7 @@
             </fieldset>
         </div>
         <div class="col s9">
+        	{{ form_start(form) }}
             <div class="input-field">
             {{ form_label(form.page_name) }}
             {{ form_widget(form.page_name) }}
@@ -47,6 +48,10 @@
             <div class="input-field">
                 {{ form_label(form.page_title) }}
                 {{ form_widget(form.page_title) }}
+            </div>
+            <label>{{ form_label(form.page_date) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_date) }}
             </div>
             <label>{{ form_label(form.page_modified) }}</label>
             <div class="input-field">
