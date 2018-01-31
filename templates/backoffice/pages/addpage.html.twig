@@ -3,6 +3,8 @@
 {% block title %}Créer une page :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
 {# 	<link rel="stylesheet" type="text/css" href="{{ asset('css/wysiwyg.css') }}" /> #}
 {% endblock %}
 
@@ -13,36 +15,62 @@
 
     <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Créer une page</h4>
+		<div class="col s12">
+			<h4 class="dashboard brown-text"><i class="far fa-plus-square fa-lg"></i> Créer une page</h4>
+            <hr class="settings" />
 		</div>
 	</div>
 	<div class="row">
-        <div class="col s3">
+        <div class="col s3 brown-text">
             <fieldset>
-                On a des options ici
+                <legend>Liste des Pages</legend>
+                <p>Vous n'avez pas encore créé de page !</p>
             </fieldset>
             <fieldset>
-                Et là aussi
+                <legend>Options</legend>
+                <p>Page d'accueil du site</p>
+                <p>Page de Contact</p>
+            </fieldset>
+            <fieldset>
+                <legend>e-Commerce</legend>
+                <p>Activer les filtres ?</p>
             </fieldset>
         </div>
-        <form class="col s9">
-            <div id="editor1" contenteditable="true">
-                <h1>Bonjour ceci est un test</h1>
-                <p>Blablablablablabla</p>
+        <div class="col s9">
+            {{ form_start(form) }}
+
+            <div class="input-field">
+            {{ form_label(form.page_name) }}
+            {{ form_widget(form.page_name) }}
             </div>
-            <script>
-                CKEDITOR.disableAutoInline = true;
-                CKEDITOR.inline( 'editor1' );
-            </script>
-        </form>
+            <div class="input-field">
+                {{ form_label(form.page_title) }}
+                {{ form_widget(form.page_title) }}
+            </div>
+            <label>{{ form_label(form.page_date) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_date) }}
+            </div>
+            <label>{{ form_label(form.page_content) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_content) }}
+            // <script>
+            //     CKEDITOR.replace('editor1');
+            // </script>
+            </div>
+            
+            <label>{{ form_label(form.page_status) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_status) }}
+            </div>
+                <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                
+            {{ form_end(form)}}
+        </div>
 	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-
+    
 {% endblock %}
