@@ -6,7 +6,9 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Ajouter l'upload de fichier image dans l'espace utilisateur (photo de profil) --- Charles
 ```
 - Installer le nouveau package du WYSIWYG --- Charles
+```
 - Intégrer le support de l'audio dans la gallerie --- Charles
+```
 - Création de catégories pages / produits et gestion --- Félix / Adeline
 - Préparation listing type "client" pour "Mes Clients" --- Félix
 - Création du bouton Modifier pour le traitement des commandes --- Félix

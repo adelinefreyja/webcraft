@@ -24,7 +24,7 @@ class Medias
      * @var string
      *
      * @ORM\Column(name="media_src", type="string", length=255, nullable=false)
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "video/mpeg", "application/pdf", "video/webm", "video/mp4" })
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "video/mpeg", "application/pdf", "video/webm", "video/mp4", "audio/ogg", "audio/x-wav", "audio/mpeg" })
      */
     private $mediaSrc;
 

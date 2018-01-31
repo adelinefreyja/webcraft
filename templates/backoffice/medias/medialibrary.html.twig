@@ -7,7 +7,7 @@
     <style>
         .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
         .embed-container iframe, .embed-container object,
-            .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 {% endblock %}
 
@@ -33,32 +33,96 @@
         {% if pictures is empty %}
             <h3 class="col s12">Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}">ce lien</a>.</h3>
         {% endif %}
+    </div>
+    <div class="row">
         {% for picture in pictures %}
-            <div class="gallery_product col m4 s6 filter {{ picture.mediaType }}" style="border: 1px solid white">
 
-                {% if picture.mediaType == "pdf" %}
-                    <a class="modal-trigger" href="#{{ picture.mediaId }}">
-                        <img src="{{ asset("img/pdf.png") }}" alt="{{ picture.mediaDescription }}" style="height: 365px" />
-                    </a>
-                    <div id="{{ picture.mediaId }}" class="modal" style="width: 100%; height: 100%; margin: 0; padding: 0">
-                        <div class="modal-content" style="height: auto; min-height: 100%; border-radius: 0">
-                            <object data="{{ asset(picture.mediaSrc) }}" type="application/pdf" style="height: 100%; width: 100%; border-radius: 0; margin: 0; padding: 0">
-                                <embed src="{{ asset(picture.mediaSrc) }}" type="application/pdf" class="embed-container " />
-                            </object>
+            {% if picture.mediaType == "image" %}
+                <div class="divimg col s12 m6 l3 cover-card-gallery filter {{ picture.mediaType }}">
+                    <div class="gallery_options">
+                        {{ picture.mediaName }}
+                        <div class="gallery_options">
+                            <a href="{{ path('editmedias', {'id': picture.mediaId}) }}" class="btn orange"><span class="fa fa-edit"></span></a>
+                            <a href="{{ path('deletemedias', {'id': picture.mediaId}) }}" class="btn red"><span class="fa fa-trash"></span></a>
                         </div>
                     </div>
-                {% endif %}
+                    <img class="imggallery" src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}">
+                </div>
+            {% endif %}
 
-                {% if picture.mediaType == "image" %}
-                    <img src="{{ asset(picture.mediaSrc) }}" alt="{{ picture.mediaDescription }}" class="materialboxed responsive-img" style="height: 365px;" />
-                {% endif %}
+            {% if picture.mediaType == "video" %}
+                <div class="divimg col s12 m6 l3 cover-card-gallery filter {{ picture.mediaType }}">
+                    <div class="gallery_options">
+                        {{ picture.mediaName }}
+                        <div class="gallery_options">
+                            <div>
+                                <a href="#modal{{ picture.mediaId }}" class="btn green modal-trigger">Voir</a>
+                            </div>
+                            <div>
+                                <a href="{{ path('editmedias', {'id': picture.mediaId}) }}" class="btn orange"><span class="fa fa-edit"></span></a>
+                                <a href="{{ path('deletemedias', {'id': picture.mediaId}) }}" class="btn red"><span class="fa fa-trash"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="imggallery" src="{{ asset("img/video.png") }}" alt="{{ picture.mediaDescription }}">
+                </div>
 
-                {% if picture.mediaType == "video" %}
-                    <video class="responsive-video" controls style="height: 365px;">
+                <div id="modal{{ picture.mediaId }}" class="modal" style="height: 100%">
+                    <video class="video modal-content" controls>
                         <source src="{{ asset(picture.mediaSrc) }}" type="video/mp4">
                     </video>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
+
+            {% if picture.mediaType == "audio" %}
+                <div class="divimg col s12 m6 l3 cover-card-gallery filter {{ picture.mediaType }}">
+                    <div class="gallery_options">
+                        {{ picture.mediaName }}
+                        <div class="gallery_options">
+                            <div>
+                                <a href="#modal{{ picture.mediaId }}" class="btn green modal-trigger">Écouter</a>
+                            </div>
+                            <div>
+                                <a href="{{ path('editmedias', {'id': picture.mediaId}) }}" class="btn orange"><span class="fa fa-edit"></span></a>
+                                <a href="{{ path('deletemedias', {'id': picture.mediaId}) }}" class="btn red"><span class="fa fa-trash"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="imggallery" src="{{ asset("img/audio.png") }}" alt="{{ picture.mediaDescription }}">
+                </div>
+
+                <div id="modal{{ picture.mediaId }}" class="modal" style="height: 100%">
+                    <audio controls>
+                        <source src="{{ asset(picture.mediaSrc) }}" type="audio/mpeg">
+                        <source src="{{ asset(picture.mediaSrc) }}" type="audio/wav">
+                        <source src="{{ asset(picture.mediaSrc) }}" type="audio/ogg">
+                        Votre navigateur ne supporte pas les éléments audio.
+                    </audio>
+                </div>
+            {% endif %}
+
+            {% if picture.mediaType == "pdf" %}
+                <div class="divimg col s12 m6 l3 cover-card-gallery filter {{ picture.mediaType }}">
+                    <div class="gallery_options">
+                        {{ picture.mediaName }}
+                        <div class="gallery_options">
+                            <div>
+                                <a href="#modal{{ picture.mediaId }}" class="btn green modal-trigger">Voir</a>
+                            </div>
+                            <div>
+                                <a href="{{ path('editmedias', {'id': picture.mediaId}) }}" class="btn orange"><span class="fa fa-edit"></span></a>
+                                <a href="{{ path('deletemedias', {'id': picture.mediaId}) }}" class="btn red"><span class="fa fa-trash"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="imggallery" src="{{ asset("img/pdf.png") }}" alt="{{ picture.mediaDescription }}">
+                </div>
+
+                <div id="modal{{ picture.mediaId }}" class="modal" style="height: 100%">
+                    <embed src="{{ asset(picture.mediaSrc) }}" type="application/pdf" width="100%" height="100%" />
+                </div>
+            {% endif %}
+
         {% endfor %}
     </div>
 </div>

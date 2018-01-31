@@ -1,0 +1,57 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Bibliothèque de médias :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+    <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
+    <style>
+        .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+        .embed-container iframe, .embed-container object,
+        .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 brown-text">
+                <h5>:: Modifier un media</h5>
+            </div>
+            <div>
+                {% if media.mediaType == "image" %}
+                    <img class="imggallery" src="{{ asset(media.mediaSrc) }}" alt="{{ media.mediaDescription }}">
+                {% endif %}
+
+                {% if media.mediaType == "video" %}
+                    <video class="responsive-video" controls>
+                        <source src="{{ asset(media.mediaSrc) }}" type="video/mp4">
+                    </video>
+                {% endif %}
+            </div>
+                <hr class="left account" />
+                {{ form_start(form) }}
+
+                <div class="input-field">
+                    {{ form_label(form.mediaName) }}
+                    {{ form_widget(form.mediaName) }}
+                </div>
+
+                <div class="input-field">
+                    {{ form_label(form.mediaDescription) }}
+                    {{ form_widget(form.mediaDescription) }}
+                </div>
+
+                <div class="right">
+                    <a href="{{ path('gallery') }}"class="btn brown lighten-1 white-text"><i class="fas fa-chevron-circle-left fa-lg"></i> <span>Retour</span></a>
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block specificjs %}
+    <script src="{{ asset('js/gallery.js') }}"></script>
+{% endblock %}

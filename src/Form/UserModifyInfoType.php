@@ -26,7 +26,7 @@ class UserModifyInfoType extends AbstractType {
                     "second_options"    =>  ["label"    =>  "Confirmez votre Email"],
                 ]
             )
-            ->add("username", TextType::class, 
+            ->add("username", TextType::class,
                 [   "label" => "Pseudonyme" ]
             )
             ->add("password", RepeatedType::class,
@@ -49,15 +49,15 @@ class UserModifyInfoType extends AbstractType {
                     "expanded"  =>  true
                 ]
             )
-            ->add("user_first_name", TextType::class, 
+            ->add("user_first_name", TextType::class,
                 [   "label" => "Votre nom" ]
             )
-            ->add("user_last_name", TextType::class, 
+            ->add("user_last_name", TextType::class,
                 [   "label" => "Votre prénom" ]
             )
             ->add("user_profile_picture", FileType::class,
                 [
-                    'data_class'    =>  null
+                    'data_class'
                 ]
             )
         ;
