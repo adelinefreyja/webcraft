@@ -1,3 +1,54 @@
 {% extends 'backoffice/index.html.twig' %}
 
 {% block title %}Mes clients :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col s3">
+			<h4></h4>
+		</div>
+		<div class="col s9">
+			<h4>Mes clients</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12">
+			  <table class="responsive-table striped bordered">
+					  <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+								<th>Email</th>
+								<th>Adresse</th>
+								<th>Code Postal</th>
+								<th>Ville</th>
+								<th>N° Fixe</th>
+								<th>N° Portable</th>
+						</tr>
+
+								{% for Id in user %}
+									<tr>
+								      <td>{{ Id.userlastname }}</td>
+							        <td>{{ Id.userfirstname }}</td>
+								      <td>{{ Id.useremail }}</td>
+								 {% endfor %}
+
+					  	 	 {% for Id in userAddress %}
+							       <td>{{ Id.userAddress }}</td>
+							       <td>{{ Id.userZipCode }}</td>
+								     <td>{{ Id.userCity }}</td>
+								 {% endfor %}
+
+								 {% for Id in customers %}
+		 							   <td>{{ Id.userMobilephone }}</td>
+		 							   <td>{{ Id.userLandphone }}</td>
+									</tr>
+						   {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+
+{% endblock %}
