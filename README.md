@@ -6,7 +6,9 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Ajouter l'upload de fichier image dans l'espace utilisateur (photo de profil) --- Charles
 ```
 - Paramètres du site : --- Charles
-    -> Gérer l'upload d'un logo pour l'utilisateur
+
+  -> Gérer l'upload d'un logo pour l'utilisateur
+  
 - Installer le nouveau package du WYSIWYG --- Charles / Adeline
 ```
 - Intégrer le support de l'audio dans la gallerie --- Charles
