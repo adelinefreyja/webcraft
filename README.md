@@ -18,7 +18,9 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Produits : gérer l'upload de photos multiples. Gérer le renseignement des tailles et couleurs (possibilité d'en avoir plusieurs). Ajouter la gestion du stock et la gestion des taxes. Catégories de produits --- Charles
 - Module de commentaires et gestion --- Félix
 - Gérer l'edition d'un menu (génération de page) --- Adeline
+```
 - Galerie : possibilité d'édition et de suppression + légende --- Charles
+```
 - Paramètres eCommerce (ajout de filtres, créer ses taxes -- Si ajout de filtres activé, permettre le choix du filtre à appliquer en fonction de la page voulu sur "Créer / Modifier une page") --- Adeline
 - Gestion de la personnalisation du design --- Charles
 
