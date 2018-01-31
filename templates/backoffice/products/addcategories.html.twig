@@ -1,0 +1,54 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Ajouter un produit :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h4 class="dashboard brown-text">Ajouter un produit</h4>
+            <p>Veuillez renseigner la catégorie de votre produit {% if categories is not empty %}, ou sélectionnez-la dans le menu déroulant{% endif %}</p>
+
+            {% set newArray = [] %}
+
+            {% if categories is not empty %}
+                <div class="input-field col s4">
+                    <select id="select">
+                        <option value="" disabled selected>Choisissez une catégorie existante</option>
+                    {% for category in categories %}
+                    {% if category.categoryValue not in newArray %}
+                        <option>{{ category.categoryValue }}</option>
+                        {% set newArray = newArray|merge([category.categoryValue]) %}
+                    {% endif %}
+                    {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            {{ form_start(form) }}
+                <div class="input-field col s12">
+                    <span id="category">
+                        {{ form_widget(form.categoryValue) }}
+                    </span>
+                </div>
+                <div class="right">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block specificjs %}
+    <script>
+        function changeVal() {
+            var newVal = $("select").val();
+            $('#products_categories_categoryValue').val("" + newVal + "");
+        }
+
+        $("select").change(changeVal);
+    </script>
+{% endblock %}
