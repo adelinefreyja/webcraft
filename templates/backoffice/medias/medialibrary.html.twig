@@ -3,6 +3,8 @@
 {% block title %}Bibliothèque de médias :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
+    <link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
     <style>
         .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
@@ -15,15 +17,19 @@
 {% block content %}
 <div class="container">
 	<div class="row">
+        <div class="col s12">
+            <h4 class="dashboard brown-text"><i class="far fa-images fa-lg"></i> Bibliothèque de médias</h4>
+            <hr class="left account" />
+        </div>
         <div class="col s12 center">
             {% if pictures is not empty %}
-            <button class="waves-effect waves-light btn filter-button blue-grey" data-filter="all">Afficher tout</button>
+            <button class="waves-effect waves-light btn filter-button orange lighten-2" data-filter="all">Afficher tout</button>
             {% endif %}
 
             {% set filtre = [] %}
             {% for picture in pictures %}
                 {% if picture.mediaType not in filtre %}
-                    <button class="waves-effect waves-light btn filter-button" data-filter="{{ picture.mediaType }}">{{ picture.mediaType }}</button>
+                    <button class="waves-effect waves-light btn filter-button brown white-text" data-filter="{{ picture.mediaType }}">{{ picture.mediaType }}</button>
                     {% set filtre = filtre|merge([picture.mediaType]) %}
                 {% endif %}
             {% endfor %}
@@ -31,7 +37,11 @@
 	</div>
     <div class="row">
         {% if pictures is empty %}
-            <h3 class="col s12">Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}">ce lien</a>.</h3>
+            <div class="col s12 card-panel orange lighten-5">
+                <h3 class="brown-text">
+                <i class="fas fa-exclamation-circle fa-lg"></i>
+                Il n'y a aucune image ici !<br />Vous pouvez en ajouter en cliquant juste sur <a href="{{ path('addmedia') }}" class="orange-text">ce lien</a>.</h3>
+            </div>            
         {% endif %}
     </div>
     <div class="row">

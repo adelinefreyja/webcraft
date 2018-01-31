@@ -3,37 +3,42 @@
 {% block title %}Ajouter un média :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-	
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
 {% block content %}
 <div class="container">
 	<div class="row">
-        {{ form_start(form) }}
-		<div class="input-field">
-            {{ form_label(form.mediaName) }}
-            {{ form_widget(form.mediaName) }}
-		</div>
-		<div class="input-field">
-            {{ form_label(form.mediaDescription) }}
-            {{ form_widget(form.mediaDescription) }}
-		</div>
-            {{ form_label(form.mediaType) }}
-            {{ form_widget(form.mediaType) }}
-		<div class="file-field input-field">
-			<div class="btn">
-				<span>Transmettre un fichier</span>
-                {{ form_widget(form.mediaSrc) }}
+		<div class="col s12">
+			<h4 class="dashboard brown-text"><i class="far fa-plus-square fa-lg"></i> Ajouter un média</h4>
+			<hr class="left account" />
+	        {{ form_start(form) }}
+			<div class="input-field">
+	            {{ form_label(form.mediaName) }}
+	            {{ form_widget(form.mediaName) }}
 			</div>
-			<div class="file-path-wrapper">
-				<input class="file-path validate" type="text">
+			<div class="input-field">
+	            {{ form_label(form.mediaDescription) }}
+	            {{ form_widget(form.mediaDescription) }}
 			</div>
-		</div>
-		<div class="right">
-			<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-		</div>
-        {{ form_end(form) }}
+	            {{ form_label(form.mediaType) }}
+	            {{ form_widget(form.mediaType) }}
+			<div class="file-field input-field">
+				<div class="btn brown">
+					<span>Transmettre un fichier</span>
+	                {{ form_widget(form.mediaSrc) }}
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="right">
+				<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			</div>
+	        {{ form_end(form) }}
+    	</div>
 	</div>
 </div>
 
