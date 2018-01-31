@@ -153,7 +153,7 @@ class Pages
     }
 
     /**
-     * @param integer $pageDate
+     * @param \Datetime $pageDate
      *
      * @return self
      */

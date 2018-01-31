@@ -29,7 +29,10 @@ class NewPageController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $page->setUserId($user->getId());
+            $page->setPageDate(new \DateTime('now'));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);
             $em->flush();
