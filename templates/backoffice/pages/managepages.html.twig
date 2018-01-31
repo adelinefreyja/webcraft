@@ -3,31 +3,50 @@
 {% block title %}Gérer mes pages :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-	
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Gérer les pages</h4>
+		<div class="col s12">
+			<h4 class="dashboard brown-text"><i class="far fa-copy fa-lg"></i> Gérer mes pages</h4>
+			<hr class="left account" />
 		</div>
 	</div>
+</div>
+<div class="container">
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
-
-		<div class="col s9">
+		<div class="col s12">
+			<table class="bordered striped highlight responsive-table brown-text">
+				<thead>
+					<tr>
+						<th>Nom de la page</th>
+						<th>Titre de la page</th>
+						<th>Date de création</th>
+						<th>Statut</th>
+						<th>Commentaires</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for page in pages %}
+						<tr>
+							<td>{{ page.pagename|e }}</td>
+							<td>{{ page.pagetitle|e }}</td>
+							<td>{{ page.pagedate|date('d-M-y') }}</td>
+							<td>{{ page.pagestatus|e }}</td>
+							<td>{{ page.commentstatus|e }}</td>
+							<td>
+							<a href="{{ path('editpage', {'id': page.pageId}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deletepage', {'id': page.pageId}) }}" class="btn red darken-2"><i class="fa fa-trash white-text"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

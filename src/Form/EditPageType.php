@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AddPageType extends AbstractType {
+class EditPageType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -20,13 +20,6 @@ class AddPageType extends AbstractType {
             )
             ->add("page_title", TextType::class, 
                 [   "label" => "Le titre de votre page" ]
-            )
-            ->add('page_date', DateType::class, [
-                'label' =>  'Date de création',
-                'widget' => 'single_text',
-                'input' =>  'datetime',
-                'data' => new \DateTime('now')
-                ]
             )
             ->add("page_content", CKEditorType::class, 
                 [   "label" => "Votre contenu",
@@ -58,6 +51,13 @@ class AddPageType extends AbstractType {
                         "Non" =>  "masquer"
                     ],
                     "expanded"  =>  false
+                ]
+            )
+            ->add('page_modified', DateType::class, [
+                'label' =>  'Date de modification',
+                'data' => new \DateTime('now'),
+                'disabled'  => true,
+                'widget'    => 'single_text'
                 ]
             )
         ;

@@ -1,0 +1,80 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Créer une page :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{# 	<link rel="stylesheet" type="text/css" href="{{ asset('css/wysiwyg.css') }}" /> #}
+{% endblock %}
+
+
+{% block content %}
+    {#<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>#}
+    <script src="{{ asset('js/ckeditor.js') }}"></script>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col s6">
+			<h4 class="dashboard brown-text"><i class="far fa-plus-square fa-lg"></i> Modifier une page</h4>
+            <hr class="settings" />
+		</div>
+        <div class="col s6">
+            <h5 class="dashboard brown-text">Votre page actuelle</h5>
+        </div>
+	</div>
+	<div class="row">
+        <div class="col s3 brown-text">
+            <fieldset>
+                <legend>Liste des Pages</legend>
+                <p>Vous n'avez pas encore créé de page !</p>
+            </fieldset>
+            <fieldset>
+                <legend>Options</legend>
+                <p>Page d'accueil du site</p>
+                <p>Page de Contact</p>
+            </fieldset>
+            <fieldset>
+                <legend>e-Commerce</legend>
+                <p>Activer les filtres ?</p>
+            </fieldset>
+        </div>
+        <div class="col s9">
+            <div class="input-field">
+            {{ form_label(form.page_name) }}
+            {{ form_widget(form.page_name) }}
+            </div>
+            <div class="input-field">
+                {{ form_label(form.page_title) }}
+                {{ form_widget(form.page_title) }}
+            </div>
+            <label>{{ form_label(form.page_modified) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_modified) }}
+            </div>
+            <label>{{ form_label(form.page_content) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_content) }}
+            // <script>
+            //     CKEDITOR.replace('editor1');
+            // </script>
+            </div>
+            <label>{{ form_label(form.comment_status) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.comment_status) }}
+            </div>
+            <label>{{ form_label(form.page_status) }}</label>
+            <div class="input-field">
+                {{ form_widget(form.page_status) }}
+            </div>
+                <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                
+            {{ form_end(form)}}
+        </div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+   
+{% endblock %}
