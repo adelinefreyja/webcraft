@@ -1,0 +1,58 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Gérer mes utilisateurs :: Webcraft :: Craft magic websites within minutes ! ::{% endblock %}
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col s6">
+			<h4 class="dashboard brown-text"><i class="fas fa-user fa-lg"></i> Gestion des utilisateurs</h4>
+			<hr class="settings" />			
+		</div>
+		<div class="col s6">
+			<div class="dashboard right vertical-center">
+				<p><a href="#new_user" data-target="new_user"class="modal-trigger btn orange lighten-2 brown-text"><i class="fas fa-user-plus fa-lg"></i> <span>Ajouter un nouvel utilisateur</span></a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col s12 brown-text">
+	      <h5>:: Modifier un utilisateur</h5>
+	      <hr class="left account" />
+	      {{ form_start(form) }}
+			{% if not form.vars.valid %}
+				<div class="error">
+					{{ form_errors(form.username) }}
+					{{ form_errors(form.roles) }}
+				</div>		
+	        {% endif %}
+
+			<div class="input-field">
+				{{ form_label(form.username) }}
+				{{ form_widget(form.username) }}
+			</div>
+			
+			<label>{{ form_label(form.roles) }}</label>
+			<div class="input-field">
+				{{ form_widget(form.roles) }}
+			</div>
+		    <div class="right">
+		    	<a href="{{ path('manageusers') }}"class="btn brown lighten-1 white-text"><i class="fas fa-chevron-circle-left fa-lg"></i> <span>Retour</span></a>
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			</div>
+		{{ form_end(form) }}
+		</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}
