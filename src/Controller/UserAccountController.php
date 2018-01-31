@@ -57,7 +57,7 @@ class UserAccountController extends Controller
 
         return $this->render('backoffice/user/account.html.twig',
             array(
-                "sitetype"          =>  $query, "form" => $form->createView()
+                "sitetype"  =>  $query, "form" => $form->createView()
             )
         );
 	}

@@ -57,7 +57,7 @@ class UserModifyInfoType extends AbstractType {
             )
             ->add("user_profile_picture", FileType::class,
                 [
-                    'data_class'
+                    'data_class'    =>  null
                 ]
             )
         ;
