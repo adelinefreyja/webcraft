@@ -35,6 +35,13 @@ class Shipment
      */
     private $shipmentId;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="shipment_price", type="float")
+     * @ORM\Id
+     */
+    private $shipment_price;
 
 
     /**
@@ -95,6 +102,22 @@ class Shipment
         $this->shipmentId = $shipmentId;
 
         return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->shipment_price;
+    }
+
+    /**
+     * @param float $shipment_price
+     */
+    public function setPrice($shipment_price)
+    {
+        $this->shipment_price = $shipment_price;
     }
 }
 
