@@ -20,7 +20,7 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Création du bouton Modifier pour le traitement des commandes --- Félix
 - Module de gestion des pages : liste, édition, suppression --- Adeline
 ```
-- Gérer options newsletter, ecommerce, contact (prise en charge swift-mailer) --- Adeline
+- Gérer options newsletter, contact (prise en charge swift-mailer) --- Adeline
 - Maps API --- Félix
 - Produits : --- Charles
 
@@ -38,7 +38,17 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 ```
 - Galerie : possibilité d'édition et de suppression + légende --- Charles
 ```
-- Paramètres eCommerce (ajout de filtres, créer ses taxes -- Si ajout de filtres activé, permettre le choix du filtre à appliquer en fonction de la page voulu sur "Créer / Modifier une page") --- Adeline
+- Paramètres eCommerce : --- Adeline
+```
+  -> Création / Ajout / Suppression de taxes
+  
+```
+```
+  -> Création / Ajout / Suppression de méthodes d'expédition
+  
+```
+  -> Ajout de filtres / Si activé, choix du filtre sur Créer / Modifier une page
+  
 
 - Gestion de la personnalisation du design --- Charles
 
