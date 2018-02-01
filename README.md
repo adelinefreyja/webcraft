@@ -14,7 +14,10 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Intégrer le support de l'audio dans la gallerie --- Charles
 - Formulaire de création de page + intégration WYSIWYG + inscription table BDD --- Adeline
 ```
-- Création de catégories pages / produits et gestion --- Félix / Adeline
+- Création de catégories produits et gestion --- Félix / Adeline
+```
+- Création de catégories de pages / gestion / suppression --- Adeline
+```
 ```
 - Préparation listing type "client" pour "Mes Clients" --- Félix
 - Création du bouton Modifier pour le traitement des commandes --- Félix
