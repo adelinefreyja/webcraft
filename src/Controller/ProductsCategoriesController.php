@@ -98,9 +98,6 @@ class ProductsCategoriesController extends Controller
 
             foreach ($findIt as $query) {
                 $query->setCategoryValue($cat->getCategoryValue());
-                echo '<pre>';
-                var_dump($query);
-                echo '</pre>';
             }
 
             $em->flush();
@@ -126,10 +123,18 @@ class ProductsCategoriesController extends Controller
     public function deleteCatAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $cat = $em->getRepository(ProductsCategory::class)
-            ->find($id);
+        $em2 = $em->getRepository(ProductsCategory::class);
 
-        $em->remove($cat);
+        $cat = $em2->find($id);
+
+        $findIt = $em2->findBy(
+            ["categoryValue"    =>  $cat->getCategoryValue()]
+        );
+
+        foreach ($findIt as $query) {
+            $em->remove($query);
+        }
+
         $em->flush();
 
         $this->addFlash(
