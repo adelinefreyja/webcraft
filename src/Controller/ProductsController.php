@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\ProductsImages;
 use App\Entity\Products;
 use App\Entity\WebsiteInfo;
+use App\Entity\ProductsSizes;
+use App\Entity\ProductsColors;
+use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
 use App\Form\ProductsImagesType;
 use App\Form\ProductsCategoriesType;
@@ -76,14 +79,12 @@ class ProductsController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-//            $category->setProduct((int)$idProduit);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $category->setProduct((int)$idProduit);
             $em->flush();
 
-            return $this->redirectToRoute('addproducts');
+            return $this->redirectToRoute('manageproducts');
         }
 
         return $this->render(
@@ -115,13 +116,25 @@ class ProductsController extends Controller {
         $repository4 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
         $query4 = $repository4->findAll();
 
+        $repository5 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
+        $query5 = $repository5->findAll();
+
+        $repository6 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
+        $query6 = $repository6->findAll();
+
+        $repository7 = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
+        $query7 = $repository7->findAll();
+
         return $this->render(
             'backoffice/products/manageproducts.html.twig',
             [
                 "sitetype"      =>  $query,
                 "products"      =>  $query2,
                 "categories"    =>  $query3,
-                "pictures"      =>  $query4
+                "pictures"      =>  $query4,
+                "sizes"         =>  $query5,
+                "colors"        =>  $query6,
+                "taxes"         =>  $query7
             ]
         );
     }

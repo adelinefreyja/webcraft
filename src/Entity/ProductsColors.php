@@ -36,11 +36,9 @@ class ProductsColors
     private $productcolorId;
 
     /**
-     * @var \App\Entity\Products
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Products")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="product_id", referencedColumnName="product_id")
+     * @ORM\Column(name="product_id", type="integer", nullable=false)
      * })
      */
     private $product;
@@ -106,7 +104,7 @@ class ProductsColors
     }
 
     /**
-     * @return \App\Entity\Products
+     * @return integer
      */
     public function getProduct()
     {
@@ -114,11 +112,11 @@ class ProductsColors
     }
 
     /**
-     * @param \App\Entity\Products $product
+     * @param integer $product
      *
      * @return self
      */
-    public function setProduct(\App\Entity\Products $product)
+    public function setProduct($product)
     {
         $this->product = $product;
 

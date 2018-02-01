@@ -50,12 +50,9 @@ class Products
     private $productId;
 
     /**
-     * @var \App\Entity\ProductsTax
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProductsTax")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tax_id", referencedColumnName="tax_id")
-     * })
+     * @ORM\Column(name="tax_id", type="integer", length=65535, nullable=false)
      */
     private $tax;
     
@@ -160,7 +157,7 @@ class Products
     }
 
     /**
-     * @return \App\Entity\ProductsTax
+     * @return integer
      */
     public function getTax()
     {
@@ -168,11 +165,11 @@ class Products
     }
 
     /**
-     * @param \App\Entity\ProductsTax $tax
+     * @param integer $tax
      *
      * @return self
      */
-    public function setTax(\App\Entity\ProductsTax $tax)
+    public function setTax($tax)
     {
         $this->tax = $tax;
 
