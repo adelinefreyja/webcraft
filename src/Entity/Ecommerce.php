@@ -153,7 +153,6 @@ class Ecommerce {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS shipment (
           shipment_id BIGINT(20) AUTO_INCREMENT PRIMARY KEY,
-          order_id BIGINT(20) NOT NULL,
           shipment_method VARCHAR(30) NOT NULL,
           shipment_price FLOAT(3) NOT NULL,
           FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE RESTRICT ON UPDATE CASCADE
