@@ -9,25 +9,51 @@
 
 {% block content %}
 <div class="container-fluid">
-	<div class="row">
-		<div class="col s3">
-			<h4></h4>
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class=""></i> Mes Produits</h4>
+			<hr class="left account" />
 		</div>
-		<div class="col s9">
-			<h4>Gérer les produits</h4>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="{{ path('addproducts') }}" class="modal-trigger btn orange lighten-2 brown-text"><i class=""></i> <span>Ajouter un produit</span></a>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+            <table class="bordered striped highlight responsive-table brown-text centered">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Visuel</th>
+                        <th>Prix</th>
+                        <th>En vente</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for prod in products %}
+                    <tr>
+                        <td>{{ prod.getProductName }}</td>
+                        <td>{{ prod.getProductDescription }}</td>
 
-		<div class="col s9">
+                        {% for pics in pictures %}
+                            {% if (pics.getProduct == prod.getProductId) %}
+                                <td>
+                                    <img src="{{ asset(pics.getImage) }}" alt="{{ prod.getProductDescription }}" class="imgsmall materialboxed tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cliquez pour agrandir">
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{ prod.getProductPrice }}</td>
+                        <td>{{ prod.getProductSale }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 		</div>
 	</div>
 </div>

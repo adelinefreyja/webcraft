@@ -47,6 +47,10 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
   -> Création / Ajout / Suppression de méthodes d'expédition
   
 ```
+```
+  -> Création / Ajout / Suppression de méthodes de paiement
+  
+```
   -> Ajout de filtres / Si activé, choix du filtre sur Créer / Modifier une page
   
 

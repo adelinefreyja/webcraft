@@ -119,3 +119,13 @@ hr.btn_account { border-bottom: 2px solid #795548; width: 20%; margin-top: 50px;
 .cover-card {
     position: relative;
 }
+
+
+/* MANAGE PRODUCTS */
+
+.imgsmall {
+    min-height: 25px;
+    min-width: 25px;
+    height: 25px;
+    width: 25px;
+}

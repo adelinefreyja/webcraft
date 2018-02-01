@@ -42,9 +42,6 @@ class GalleryController extends Controller
             ["sitetype" =>  "2"]
         );
 
-        $queryPictures = $this->getDoctrine()->getManager()->getRepository(Medias::class);
-        $pictures = $queryPictures->findAll();
-
         $media = $this->getDoctrine()
             ->getManager()
             ->getRepository(Medias::class)
