@@ -36,14 +36,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% set filtre = [] %}
                         {% for cat in categories %}
-                            <tr>
-                                <td>{{ cat.categoryValue }}</td>
-                                <td>
-                                    <a href="{{ path('editcat', {'id': cat.productcatId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la catégorie"><i class="far fa-edit brown-text"></i></a>
-                                    <a href="{{ path('deletecat', {'id': cat.productcatId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la catégorie"><i class="fa fa-trash white-text"></i></a>
-                                </td>
-                            </tr>
+                            {% if cat.categoryValue not in filtre %}
+                                <tr>
+                                    <td>{{ cat.categoryValue }}</td>
+                                    <td>
+                                        <a href="{{ path('editcat', {'id': cat.productcatId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la catégorie"><i class="far fa-edit brown-text"></i></a>
+                                        <a href="{{ path('deletecat', {'id': cat.productcatId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la catégorie"><i class="fa fa-trash white-text"></i></a>
+                                    </td>
+                                </tr>
+                                {% set filtre = filtre|merge([cat.categoryValue]) %}
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>

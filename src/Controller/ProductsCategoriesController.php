@@ -72,12 +72,37 @@ class ProductsCategoriesController extends Controller
             ->find($id)
         ;
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION["CategoryEdit"]) || empty($_SESSION["CategoryEdit"])) {
+
+            $_SESSION["CategoryEdit"] = [];
+            $_SESSION["CategoryEdit"]["pastValue"] = $cat->getCategoryValue();
+        }
+
         $form = $this->createForm(ProductsCategoriesType::class, $cat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
+
             $em = $this->getDoctrine()->getManager();
+
+            $findIt = $rep->findBy(
+                ["categoryValue"    =>  $_SESSION["CategoryEdit"]["pastValue"]]
+            );
+
+            $_SESSION["CategoryEdit"] = [];
+
+            foreach ($findIt as $query) {
+                $query->setCategoryValue($cat->getCategoryValue());
+                echo '<pre>';
+                var_dump($query);
+                echo '</pre>';
+            }
+
             $em->flush();
             $this->addFlash(
                 'success',
