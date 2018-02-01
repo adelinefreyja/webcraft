@@ -1,0 +1,46 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Paramétrer ma boutique :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="far fa-credit-card fa-lg"></i> Modifier une méthode de paiement</h4>
+			<hr class="left account" />
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			{{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.payment_method) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.payment_method) }}
+					{{ form_widget(form.payment_method) }}
+				</div> 
+		    </div>
+		    <div class="right">
+		    	<a href="{{ path('paymentmethods') }}"class="btn brown lighten-1 white-text"><i class="fas fa-chevron-circle-left fa-lg"></i> <span>Retour</span></a>
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Paramétrer ma boutique :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="far fa-credit-card fa-lg"></i> Mes méthodes de paiement</h4>
+			<hr class="left account" />
+		</div>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="#new_method" data-target="new_method"class="modal-trigger btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une méthode de paiement</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+			{% if payments is empty %}
+				"Créez une méthode de paiement"
+
+			{% elseif payments is not empty %}	
+			<table class="bordered striped highlight responsive-table brown-text">
+				<thead>
+					<tr>
+						<th>Méthode de paiement</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for payment in payments %}
+						<tr>
+							<td>{{ payment.paymentmethod|e }}</td>
+							<td>
+							<a href="{{ path('editpayment', {'id': payment.paymentId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la méthode de paiement"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deletepayment', {'id': payment.paymentId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la méthode de paiement"><i class="fa fa-trash white-text"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+	<div id="new_method" class="modal brown-text">
+    	<div class="modal-content">
+    		<h4>Ajouter une méthode de paiement</h4>
+		      <hr class="left account" />
+		      {{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.payment_method) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.payment_method) }}
+					{{ form_widget(form.payment_method) }}
+				</div>
+		    </div>
+		    <div class="modal-footer">
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			{{ form_end(form) }}
+		    </div>
+
+    	</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}

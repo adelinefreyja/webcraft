@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Payment
  *
- * @ORM\Table(name="payment", indexes={@ORM\Index(name="order_id", columns={"order_id"})})
+ * @ORM\Table(name="payment")
  * @ORM\Entity
  */
 class Payment
@@ -28,15 +28,6 @@ class Payment
      */
     private $paymentId;
 
-    /**
-     * @var \App\Entity\Orders
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Orders")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="order_id")
-     * })
-     */
-    private $order;
 
     /**
      * @return integer
@@ -74,26 +65,6 @@ class Payment
     public function setPaymentId($paymentId)
     {
         $this->paymentId = $paymentId;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    /**
-     * @param integer $order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
 
         return $this;
     }

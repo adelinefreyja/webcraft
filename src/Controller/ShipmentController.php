@@ -76,7 +76,7 @@ class ShipmentController extends Controller
             return $this->redirect($this->generateUrl('shipments'));
         }
 
-        return $this->render('backoffice/settings/editshipments.html.twig', ["sitetype" =>  $query, "shipments" => $shipments, "form" => $form->createView(), "shipment" => $shipment]
+        return $this->render('backoffice/settings/editshipment.html.twig', ["sitetype" =>  $query, "shipments" => $shipments, "form" => $form->createView(), "shipment" => $shipment]
         );
     }
     /**
