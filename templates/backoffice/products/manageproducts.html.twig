@@ -43,7 +43,7 @@
                         <td>{{ prod.getProductDescription }}</td>
 
                         {% for pics in pictures %}
-                            {% if (pics.getProduct == prod.getProductId) %}
+                            {% if (pics.getProduct.productId == prod.getProductId) %}
                                 <td>
                                     <img src="{{ asset(pics.getImage) }}" alt="{{ prod.getProductDescription }}" class="imgsmall materialboxed tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cliquez pour agrandir">
                                 </td>

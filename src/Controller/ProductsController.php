@@ -42,7 +42,7 @@ class ProductsController extends Controller {
             $em->persist($produit);
             $em->flush();
 
-            $idProduit = $produit->getProduct();
+            $idProduit = $produit->getProduct()->getProductId();
 
             return $this->redirectToRoute('addproducts2', ["idProduit"  =>  $idProduit]);
         }
@@ -80,8 +80,8 @@ class ProductsController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
             $category->setProduct((int)$idProduit);
+            $em->persist($category);
             $em->flush();
 
             return $this->redirectToRoute('manageproducts');
