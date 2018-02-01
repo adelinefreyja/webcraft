@@ -310,4 +310,9 @@ class Pages
 
         return $this;
     }
+
+    public function __toString() {
+        
+        return $this->pageName;
+    }
 }

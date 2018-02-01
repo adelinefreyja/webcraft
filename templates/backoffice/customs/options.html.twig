@@ -33,7 +33,15 @@
 				</h5>
 				<p class="light-caption">
 					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+					{% if contact is empty %}
+						<a href="#contact_modal" class="btn orange lighten-2 brown-text modal-trigger" data-target="contact_modal">Activer ce module</a>
+					{% elseif contact is not empty %}
+						<div class="btn disabled">
+							Module activé
+						</div>
+						{# <a href="{{ path('disablemodule', {'optionname' : contact.optionname}) }}" class="btn red darken-2 white-text">Désactiver</a> #}
+					{% endif %}
+
 				</p>
 			</div>
 		</div>
@@ -41,69 +49,40 @@
 			<div class="card-panel center brown-text">
 				<i class="far fa-envelope fa-3x orange-text"></i>
 				<h5 class="promo-caption">
-					Module de contact
+					Module de newsletter
 					<hr />
 				</h5>
 				<p class="light-caption">
-					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
-				</p>
-			</div>
-		</div>
-		<div class="col s12 m4">
-			<div class="card-panel center brown-text">
-				<i class="far fa-envelope fa-3x orange-text"></i>
-				<h5 class="promo-caption">
-					Module de contact
-					<hr />
-				</h5>
-				<p class="light-caption">
-					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
-				</p>
-			</div>
-		</div>
-		<div class="col s12 m4">
-			<div class="card-panel center brown-text">
-				<i class="far fa-envelope fa-3x orange-text"></i>
-				<h5 class="promo-caption">
-					Module de contact
-					<hr />
-				</h5>
-				<p class="light-caption">
-					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
-				</p>
-			</div>
-		</div>
-		<div class="col s12 m4">
-			<div class="card-panel center brown-text">
-				<i class="far fa-envelope fa-3x orange-text"></i>
-				<h5 class="promo-caption">
-					Module de contact
-					<hr />
-				</h5>
-				<p class="light-caption">
-					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+					Permettez à vos visiteurs de s'abonner à votre lettre d'informations.
+					<a class="modal-trigger btn orange lighten-2 brown-text" data-target="">Activer ce module</a>
 				</p>
 			</div>
 		</div>
 
 	</div>
-</div>
-
-<div id="newsletter_modal" class="modal bottom-sheet">
+	<div id="contact_modal" class="modal">
     <div class="modal-content">
-      <h4>Module de Newsletter</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+      <h4>Module de Contact</h4>
+      {{ form_start(activContact) }}
+    		{% if not activContact.vars.valid %}
+                <div class="error">
+                	{{ form_errors(activContact.optionname) }}
+                    {{ form_errors(activContact.optionvalue) }}
+                </div>      
+            {% endif %}
+            <label>{{ form_label(activContact.optionvalue, 'Sélectionnez la page où appliquer le module de contact') }}</label>
+            <div class="input-field">                
+                {{ form_widget(activContact.optionvalue) }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+        </div>
+    {{ form_end(activContact) }}
+	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-	<script type="text/javascript" src="{{ asset('js/backoffice.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
 {% endblock %}
