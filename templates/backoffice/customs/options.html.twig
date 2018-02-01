@@ -8,32 +8,102 @@
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
+		<div class="col s6">
+			<h4 class="dashboard"><i class="fas fa-toggle-on fa-lg"></i> Options</h4>
+			<hr class="left account" />
 		</div>
-		<div class="col s9">
-			<h4>Options</h4>
+		<div class="col s6">
+			<div id="title" class="card-panel orange lighten-5 brown-text">
+				<i class="fas fa-question-circle fa-lg"></i>
+				<span>Activez des options ici que vous pourrez utiliser dans vos pages.</span>
+			</div>
 		</div>
 	</div>
+</div>
+<div class="container brown-text">
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-envelope fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Module de contact
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
+					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+				</p>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-envelope fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Module de contact
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
+					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+				</p>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-envelope fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Module de contact
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
+					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+				</p>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-envelope fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Module de contact
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
+					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+				</p>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-envelope fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Module de contact
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
+					<a href="#" class="btn orange lighten-2 brown-text modal-trigger" data-target="">Activer ce module</a>
+				</p>
+			</div>
 		</div>
 
-		<div class="col s9">
-
-		</div>
 	</div>
+</div>
+
+<div id="newsletter_modal" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Module de Newsletter</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-
+	<script type="text/javascript" src="{{ asset('js/backoffice.js') }}"></script>
 {% endblock %}
