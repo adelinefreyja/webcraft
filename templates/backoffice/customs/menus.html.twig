@@ -3,35 +3,42 @@
 {% block title %}Créer mon menu :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-	
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Menu du site</h4>
-		</div>
+		<div class="col s6">
+			<h4 class="dashboard brown-text"><i class="fas fa-list-ol fa-lg"></i> Créer le menu de mon site</h4>
+			<hr class="left account" />
+    	</div>
+    	<div class="col s6">
+    		<div id="title" class="card-panel orange lighten-5 brown-text">
+    			<h6><i class="fas fa-info-circle fa-lg"></i> C'est ici que vous allez générer le menu principal de votre site.<br />
+    				Sélectionnez une page parmi celles que vous avez créées et cliquez sur ajouter !</h6>
+    		</div>
+    	</div>
 	</div>
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
+		<div class="col s4">
+			{% if pages is not empty %}
+            <fieldset>
+                <legend>Mes pages</legend>
+                    <ul>
+                    {% for page in pages %}
+                        <li>><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</li>
+                    {% endfor %}
+                    </ul>
+            </fieldset>
+            {% endif %}
 		</div>
-
-		<div class="col s9">
-
+		<div class="col s8">
 		</div>
-	</div>
 </div>
+
 {% endblock %}
 
 {% block specificjs %}

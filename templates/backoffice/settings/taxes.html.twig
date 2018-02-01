@@ -1,0 +1,88 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Paramétrer ma boutique :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="fas fa-sliders-h fa-lg"></i> Mes taxes</h4>
+			<hr class="left account" />
+		</div>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="#new_tax" data-target="new_tax"class="modal-trigger btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une taxe</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+			{% if taxes is empty %}
+				"Créez une taxe"
+
+			{% elseif taxes is not empty %}	
+			<table class="bordered striped highlight responsive-table brown-text">
+				<thead>
+					<tr>
+						<th>Nom de la taxe</th>
+						<th>Taux de taxe</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for tax in taxes %}
+						<tr>
+							<td>{{ tax.taxname|e }}</td>
+							<td>{{ tax.taxvalue|e }}</td>
+							<td>
+							<a href="{{ path('edittax', {'id': tax.taxId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la taxe"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deletetax', {'id': tax.taxId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la taxe"><i class="fa fa-trash white-text"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+	<div id="new_tax" class="modal brown-text">
+    	<div class="modal-content">
+    		<h4>Ajouter une taxe</h4>
+		      <hr class="left account" />
+		      {{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.tax_name) }}
+						{{ form_errors(form.tax_value) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.tax_name) }}
+					{{ form_widget(form.tax_name) }}
+				</div>
+				<div class="input-field">
+					{{ form_label(form.tax_value) }}
+					{{ form_widget(form.tax_value) }}
+				</div>
+		    </div>
+		    <div class="modal-footer">
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			{{ form_end(form) }}
+		    </div>
+
+    	</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}

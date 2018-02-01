@@ -39,7 +39,11 @@ class ManagePagesController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);
             $em->flush();
-            return $this->redirectToRoute('newpage');
+            $this->addFlash(
+                'success',
+                "Page créée !"
+            );
+            return $this->redirectToRoute('managepages');
         }
 
         return $this->render('backoffice/pages/addpage.html.twig',

@@ -13,8 +13,12 @@ class ProductsTaxType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-            ->add("taxName", TextType::class)
-            ->add("taxValue", TextType::class)
+            ->add("tax_name", TextType::class,
+                [ "label"   =>  "Nom de la taxe" ]
+        )
+            ->add("tax_value", TextType::class,
+                [   "label" =>  "Taux de taxe" ]
+        )
         ;
     }
 

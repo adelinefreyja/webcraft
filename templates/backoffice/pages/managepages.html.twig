@@ -40,8 +40,8 @@
 							<td>{{ page.pagestatus|e }}</td>
 							<td>{{ page.commentstatus|e }}</td>
 							<td>
-							<a href="{{ path('editpage', {'id': page.pageId}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
-							<a href="{{ path('deletepage', {'id': page.pageId}) }}" class="btn red darken-2"><i class="fa fa-trash white-text"></i></a>
+							<a href="{{ path('editpage', {'id': page.pageId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la page"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deletepage', {'id': page.pageId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la page"><i class="fa fa-trash white-text"></i></a>
 							</td>
 						</tr>
 					{% endfor %}

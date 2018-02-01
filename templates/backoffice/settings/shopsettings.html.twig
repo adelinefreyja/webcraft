@@ -10,20 +10,19 @@
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Paramètres E-commerce</h4>
+		<div class="col s12 brown-text">
+			<h4 class="dashboard"><i class="fas fa-sliders-h fa-lg"></i> Paramètres E-commerce</h4>
+			<hr class="left account" />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col s3">
 			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
+				<legend>Ma boutique</legend>
+				<a href="{{ path('managetaxes') }}" class="orange-text"><i class="far fa-plus-square fa-lg"></i> Ajouter / Gérer mes taxes</a></p>
+				<p>Méthodes de paiement</p>
+				<p>Méthodes d'expédition</p>
+				<p>Activer mes filtres produits</p>
 			</fieldset>
 		</div>
 

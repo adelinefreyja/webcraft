@@ -4,7 +4,7 @@ function ucFirst(string) {
 
 $(document).ready(function(){
 	 $(".button-collapse").sideNav();
-
+	 $('.tooltipped').tooltip({delay: 10});
 	 $('#subnav').hide();
 
 	 $('ul li.mainNav').click(function(){

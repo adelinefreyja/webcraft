@@ -30,7 +30,7 @@
                 <legend>Liste des Pages</legend>
                     <ul>
                     {% for page in pages %}
-                        <li><a href="{{ path('editpage', {'id': page.pageId}) }}" class="brown-text"><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</a></li>
+                        <li><a href="{{ path('editpage', {'id': page.pageId}) }}" class="brown-text tooltipped" data-position="right" data-tooltip="Cliquez pour modifier la page"><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</a></li>
                     {% endfor %}
                     </ul>
             </fieldset>
