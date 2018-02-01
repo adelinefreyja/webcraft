@@ -24,7 +24,7 @@
     			<div id="website_info" class="row">
                     <div class="col s6 cover-card">
                         <p>Modifier le logo</p>
-                        <a href="{{ path('websitesettings') }}" id="ppedit">
+                        <a href="{{ path('nextwebsitesettings', {'option': 'logo'}) }}" id="ppedit">
                             <img src="{{ asset(logo.optionvalue) }}" style="max-width: 150px;"/>
                         </a>
                     </div>
@@ -44,48 +44,104 @@
 		</div>
 		<div class="col s3 m3">
     		<div class="card-panel orange lighten-2 brown-text card_account">
-    			<h5 class="center-align"><a href="#website_modify" data-target="website_modify" class="modal-trigger"><p><i class="fas fa-tv fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier mes réglages</p></a></h5>
+    			<h5 class="center-align">
+                    {% if option == 'logo' %}
+                    <a href="{{ path('nextwebsitesettings', {'option': 'edit'}) }}" class="modal-trigger">
+                    {% else %}
+                    <a href="#website_modify" data-target="website_modify" class="modal-trigger">
+                    {% endif %}
+                        <p>
+                            <i class="fas fa-tv fa-3x"></i>
+                        </p>
+                        <hr class="btn_account">
+                        <p class="dashboard"> Modifier mes réglages</p>
+                    </a>
+                </h5>
     		</div>
     	</div>
     	<div class="col s3 m3">
     		<div class="card-panel orange lighten-2 brown-text card_account">
-    			<h5 class="center-align"><a href="{{ path('design') }}"><p><i class="fas fa-paint-brush fa-3x"></i></p> <hr class="btn_account"><p class="dashboard"> Modifier le design</p></a></h5>
+    			<h5 class="center-align">
+                    <a href="{{ path('design') }}">
+                        <p>
+                            <i class="fas fa-paint-brush fa-3x"></i>
+                        </p> <hr class="btn_account">
+                        <p class="dashboard"> Modifier le design</p>
+                    </a>
+                </h5>
     		</div>
     	</div>
 	</div>
 
-	<div id="website_modify" class="modal">
-    <div class="modal-content">
-      <h4>Modifier mes réglages</h4>
-	      {{ form_start(form) }}
-			{% if not form.vars.valid %}
-				<div class="error">
-					{{ form_errors(form.optionname) }}
-					{{ form_errors(form.optionvalue) }}
-					{{ form_errors(form.sitetype) }}
-				</div>
-			{% endif %}
-			<div class="input-field">
-				{{ form_label(form.optionname) }}
-				{{ form_widget(form.optionname) }}
-			</div>
-			<div class="input-field">
-				{{ form_label(form.optionvalue) }}
-				{{ form_widget(form.optionvalue) }}
-			</div>
-				{{ form_label(form.sitetype) }}
-				{{ form_widget(form.sitetype) }}
+    {% if option == 'logo' %}
+        <div id="logo_modify" class="modal">
+            <div class="modal-content">
+              <h4>Modifier le logo</h4>
+                  {{ form_start(form) }}
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Changer de logo</span>
+                        {{ form_widget(form.optionvalue) }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                {{ form_end(form) }}
+                </div>
+          </div>
+        </div>
+    {% else %}
+        <div id="website_modify" class="modal">
+            <div class="modal-content">
+                <h4>Modifier mes réglages</h4>
+                {{ form_start(form) }}
+                {% if not form.vars.valid %}
+                    <div class="error">
+                        {{ form_errors(form.optionname) }}
+                        {{ form_errors(form.optionvalue) }}
+                        {{ form_errors(form.sitetype) }}
+                    </div>
+                {% endif %}
+                <div class="input-field">
+                    {{ form_label(form.optionname) }}
+                    {{ form_widget(form.optionname) }}
+                </div>
+                <div class="input-field">
+                    {{ form_label(form.optionvalue) }}
+                    {{ form_widget(form.optionvalue) }}
+                </div>
+                {{ form_label(form.sitetype) }}
+                {{ form_widget(form.sitetype) }}
 
-			    {{ form_widget(form.description) }}
+                {{ form_widget(form.description) }}
 
-	    <div class="modal-footer">
-				<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-		{{ form_end(form) }}
-    	</div>
-  </div>
+                <div class="modal-footer">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block specificjs %}
 	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+
+    {% if option == 'logo' %}
+    <script>
+        $(document).ready(function(){
+            $('#logo_modify').modal('open');
+        });
+    </script>
+    {% elseif option == 'edit' %}
+        <script>
+            $(document).ready(function(){
+                $('#website_modify').modal('open');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

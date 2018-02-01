@@ -5,6 +5,7 @@ parameters:
     products_directory: '%kernel.project_dir%/public/img/products'
     medias_directory: '%kernel.project_dir%/public/img/medias'
     user_directory: '%kernel.project_dir%/public/img/user_pp'
+    source_directory: '%kernel.project_dir%/public/img'
 
 services:
     # default configuration for services in *this* file

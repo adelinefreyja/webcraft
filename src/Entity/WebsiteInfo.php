@@ -43,8 +43,7 @@ class WebsiteInfo
     private $optionvalue;
 
     /**
-    * @ORM\Column(type="string")
-    * @Assert\NotBlank()
+    * @ORM\Column(type="string", nullable=true)
     */
     private $sitetype;
 

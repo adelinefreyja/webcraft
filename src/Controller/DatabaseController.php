@@ -71,7 +71,7 @@ class DatabaseController extends Controller {
 
         $connexion->query(
             "INSERT INTO `options`
-             VALUES (NULL, 'logo du site' , 'logo', 'img/logo.png', NULL)"
+             VALUES (NULL, 'logo du site' , 'logo', 'img/default_logo.png', NULL)"
         );
 
         $connexion->query(
