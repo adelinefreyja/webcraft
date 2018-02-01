@@ -11,15 +11,27 @@
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col s12">
+		<div class="col s6">
 			<h4 class="dashboard brown-text"><i class="far fa-copy fa-lg"></i> Gérer mes pages</h4>
 			<hr class="left account" />
+		</div>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="{{ path('newpage') }}" class="btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Créer une page</span></a>
+			</div>
 		</div>
 	</div>
 </div>
 <div class="container">
-	<div class="row">
+	<div class="row brown-text">
 		<div class="col s12">
+			{% if pages is empty %}
+				<div class="card-panel brown lighten-4 brown-text">
+					<i class="fas fa-exclamation-circle fa-lg"></i>
+					Vous n'avez pas encore créé de page pour votre site. <a href="{{ path('newpage') }}" class="btn brown white-text"><i class="far fa-plus-square fa-lg"></i> <span>Créer une page</span></a>
+				</div>
+
+			{% elseif pages is not empty %}	
 			<table class="bordered striped highlight responsive-table brown-text">
 				<thead>
 					<tr>
@@ -47,6 +59,7 @@
 					{% endfor %}
 				</tbody>
 			</table>
+		{% endif %}
 		</div>
 	</div>
 </div>

@@ -1,42 +1,83 @@
 {% extends 'backoffice/index.html.twig' %}
 
-{% block title %}Catégories de pages :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+{% block title %}Mes catégories de pages :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/wysiwyg.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
 {% endblock %}
 
 
 {% block content %}
 <div class="container-fluid">
-	<div class="row">
-		<div class="col s3">
-			<h4></h4>
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="far fa-list-alt fa-lg"></i> Mes catégories de pages</h4>
+			<hr class="left account" />
 		</div>
-		<div class="col s9">
-			<h4>Catégories</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
-
-		<div class="col s9">
-			<div id="editor1" contenteditable="true">
-			    <h1>Un titre</h1>
-			    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="#new_page_cat" data-target="new_page_cat"class="modal-trigger btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une catégorie</span></a>
 			</div>
 		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+			{% if categories is empty %}
+				<div class="card-panel brown lighten-4 brown-text">
+					<i class="fas fa-exclamation-circle fa-lg"></i>
+					Vous n'avez pas encore créé de catégorie de page. <a href="#new_page_cat" data-target="new_page_cat"class="modal-trigger btn brown white-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une catégorie</span></a>
+				</div>
+			{% elseif categories is not empty %}	
+			<table class="bordered striped highlight responsive-table brown-text">
+				<thead>
+					<tr>
+						<th>Nom de la catégorie</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr>
+							<td>{{ category.categoryname|e }}</td>
+							<td>
+							<a href="{{ path('editpagecategories', {'id': category.categoryId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la catégorie"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deletepagecategory', {'id': category.categoryId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la catégorie"><i class="fa fa-trash white-text"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+	<div id="new_page_cat" class="modal brown-text">
+    	<div class="modal-content">
+    		<h4>Ajouter une catégorie</h4>
+		      <hr class="left account" />
+		      {{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.category_name) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.category_name) }}
+					{{ form_widget(form.category_name) }}
+				</div>
+		    </div>
+		    <div class="modal-footer">
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			{{ form_end(form) }}
+		    </div>
+
+    	</div>
 	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
-	<script type="text/javascript" src="{{ asset('js/ckeditor.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
 {% endblock %}

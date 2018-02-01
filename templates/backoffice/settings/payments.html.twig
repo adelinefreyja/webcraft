@@ -26,7 +26,10 @@
 	<div class="row brown-text">
 		<div class="col s12">
 			{% if payments is empty %}
-				"Créez une méthode de paiement"
+				<div class="card-panel brown lighten-4 brown-text">
+					<i class="fas fa-exclamation-circle fa-lg"></i>
+					Vous n'avez pas encore créé de méthode de paiement. <a href="#new_method" data-target="new_method"class="modal-trigger btn brown white-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une méthode de paiement</span></a>
+				</div>
 
 			{% elseif payments is not empty %}	
 			<table class="bordered striped highlight responsive-table brown-text">

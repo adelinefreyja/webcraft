@@ -1,0 +1,46 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Mes catégories de pages :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="far fa-list-alt fa-lg"></i> Modifier une catégorie de pages</h4>
+			<hr class="left account" />
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			{{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.category_name) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.category_name) }}
+					{{ form_widget(form.category_name) }}
+				</div>
+		    </div>
+		    <div class="right">
+		    	<a href="{{ path('managepagecategories') }}"class="btn brown lighten-1 white-text"><i class="fas fa-chevron-circle-left fa-lg"></i> <span>Retour</span></a>
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}
