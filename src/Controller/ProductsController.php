@@ -49,7 +49,7 @@ class ProductsController extends Controller {
         );
 
         return $this->render(
-            'backoffice/products/addproducts.twig',
+            'backoffice/products/addproducts.html.twig',
             [
                 'form' => $form->createView(),
                 "sitetype" =>  $query
