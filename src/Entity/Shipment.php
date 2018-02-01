@@ -13,18 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Shipment
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="order_id", type="bigint", nullable=false)
-     */
-    private $orderId;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="shipment_method", type="string", length=30, nullable=false)
      */
-    private $shipmentMethod = 'Colissimo';
+    private $shipmentMethod;
 
     /**
      * @var integer
@@ -39,30 +32,9 @@ class Shipment
      * @var float
      *
      * @ORM\Column(name="shipment_price", type="float")
-     * @ORM\Id
+     * 
      */
     private $shipment_price;
-
-
-    /**
-     * @return integer
-     */
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
-    /**
-     * @param integer $orderId
-     *
-     * @return self
-     */
-    public function setOrderId($orderId)
-    {
-        $this->orderId = $orderId;
-
-        return $this;
-    }
 
     /**
      * @return string

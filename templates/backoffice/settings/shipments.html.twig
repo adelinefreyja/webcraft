@@ -1,0 +1,88 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Paramétrer ma boutique :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class="fas fa-sliders-h fa-lg"></i> Mes méthodes d'expédition</h4>
+			<hr class="left account" />
+		</div>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="#new_method" data-target="new_method"class="modal-trigger btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une méthode d'expédition</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+			{% if shipments is empty %}
+				"Créez une taxe"
+
+			{% elseif shipments is not empty %}	
+			<table class="bordered striped highlight responsive-table brown-text">
+				<thead>
+					<tr>
+						<th>Méthode d'expédition</th>
+						<th>Prix</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for shipment in shipments %}
+						<tr>
+							<td>{{ shipment.shipmentmethod|e }}</td>
+							<td>{{ shipment.price|e }}</td>
+							<td>
+							<a href="{{ path('editshipment', {'id': shipment.shipmentId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la méthode d'expédition"><i class="far fa-edit brown-text"></i></a>
+							<a href="{{ path('deleteshipment', {'id': shipment.shipmentId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la méthode d'expédition"><i class="fa fa-trash white-text"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+	<div id="new_method" class="modal brown-text">
+    	<div class="modal-content">
+    		<h4>Ajouter une méthode d'expédition</h4>
+		      <hr class="left account" />
+		      {{ form_start(form) }}
+				{% if not form.vars.valid %}
+					<div class="error">
+						{{ form_errors(form.shipment_method) }}
+						{{ form_errors(form.price) }}
+					</div>		
+		        {% endif %}
+				<div class="input-field">
+					{{ form_label(form.shipment_method) }}
+					{{ form_widget(form.shipment_method) }}
+				</div>
+				<div class="input-field">
+					{{ form_label(form.price) }}
+					{{ form_widget(form.price) }}
+				</div>
+		    </div>
+		    <div class="modal-footer">
+				<button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+			{{ form_end(form) }}
+		    </div>
+
+    	</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}
