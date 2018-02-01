@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ProductsImages;
+use App\Entity\Products;
 use App\Entity\WebsiteInfo;
 use App\Entity\ProductsCategory;
 use App\Form\ProductsImagesType;
@@ -94,4 +95,35 @@ class ProductsController extends Controller {
             ]
         );
     }
+
+    /**
+     * @Route("/craft/products/manageproducts", name="manageproducts")
+     */
+    public function manageProducts(Request $request) {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(Products::class);
+        $query2 = $repository2->findAll();
+
+        $repository3 = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
+        $query3 = $repository3->findAll();
+
+        $repository4 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
+        $query4 = $repository4->findAll();
+
+        return $this->render(
+            'backoffice/products/manageproducts.html.twig',
+            [
+                "sitetype"      =>  $query,
+                "products"      =>  $query2,
+                "categories"    =>  $query3,
+                "pictures"      =>  $query4
+            ]
+        );
+    }
+
 }

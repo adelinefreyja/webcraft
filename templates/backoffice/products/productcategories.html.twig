@@ -8,32 +8,72 @@
 
 
 {% block content %}
-<div class="container-fluid">
-	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Catégories de produits</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
+    <div class="container-fluid">
+        <div class="row brown-text">
+            <div class="col s6">
+                <h4 class="dashboard"><i class=""></i> Mes Catégories</h4>
+                <hr class="left account" />
+            </div>
+            <div class="col s6">
+                <div class="dashboard right">
+                    <a href="#new_cat" data-target="new_cat"class="modal-trigger btn orange lighten-2 brown-text"><i class=""></i> <span>Ajouter une catégorie</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row brown-text">
+            <div class="col s12">
+                {% if categories is empty %}
+                    "Créez une catégorie"
 
-		<div class="col s9">
-
-		</div>
-	</div>
-</div>
+                {% elseif categories is not empty %}
+                    <table class="bordered striped highlight responsive-table brown-text centered">
+                        <thead>
+                            <tr>
+                                <th>Catégories</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for cat in categories %}
+                            <tr>
+                                <td>{{ cat.categoryValue }}</td>
+                                <td>
+                                    <a href="{{ path('editcat', {'id': cat.productcatId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la catégorie"><i class="far fa-edit brown-text"></i></a>
+                                    <a href="{{ path('deletecat', {'id': cat.productcatId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la catégorie"><i class="fa fa-trash white-text"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+        <div id="new_cat" class="modal brown-text">
+            <div class="modal-content">
+                <h4>Ajouter une catégorie</h4>
+                <hr class="left account" />
+                {{ form_start(form) }}
+                {% if not form.vars.valid %}
+                    <div class="error">
+                        {{ form_errors(form.categoryValue) }}
+                        {{ form_errors(form.categoryValue) }}
+                    </div>
+                {% endif %}
+                <div class="input-field">
+                    {{ form_label(form.categoryValue) }}
+                    {{ form_widget(form.categoryValue) }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block specificjs %}
-
+    <script src="{{ asset('js/gallery.js') }}"></script>
 {% endblock %}

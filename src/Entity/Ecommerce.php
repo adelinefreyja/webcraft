@@ -126,7 +126,7 @@ class Ecommerce {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_category (
             productCat_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-            product_id INT(20) NOT NULL,
+            product_id INT(20),
             category_value VARCHAR(15) NOT NULL
           );"
         );
