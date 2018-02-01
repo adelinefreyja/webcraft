@@ -19,19 +19,30 @@ class WebsiteSettingsController extends Controller
             ["sitetype" =>  "2"]
         );
 
-        $website = $repository->findOneBy(['description' => 'siteinfo']);
-        $form = $this->createForm(WebsiteModifyInfoType::class, $website);
+        $logo = $repository->findOneBy(
+            ["optionname" =>  "logo"]
+        );
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+            $website = $repository->findOneBy(['description' => 'siteinfo']);
+            $form = $this->createForm(WebsiteModifyInfoType::class, $website);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
-        return $this->redirectToRoute('websitesettings');
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('websitesettings');
         }
 
-        return $this->render('backoffice/settings/websitesettings.html.twig', array("sitetype" =>  $query, "form" => $form->createView(), 'website' => $website));
+        return $this->render('backoffice/settings/websitesettings.html.twig',
+            array(
+                "sitetype"  =>  $query,
+                "form"      => $form->createView(),
+                'website'   => $website,
+                'logo'      =>  $logo
+            )
+        );
 
 
         // return new Response($website->getOptionname(), $website->getOptionValue);

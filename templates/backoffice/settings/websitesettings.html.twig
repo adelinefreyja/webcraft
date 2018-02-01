@@ -22,16 +22,22 @@
     			<h5 class="center-align">Mon site</h5>
     			<hr class="account">
     			<div id="website_info" class="row">
+                    <div class="col s6 cover-card">
+                        <p>Modifier le logo</p>
+                        <a href="{{ path('websitesettings') }}" id="ppedit">
+                            <img src="{{ asset(logo.optionvalue) }}" style="max-width: 150px;"/>
+                        </a>
+                    </div>
 	    			<div class="col s6">
-	    			<p>Titre de mon site : {{ website.optionname }}</p>
-	    			<p>Description de mon site : {{ website.optionvalue }}</p>
-	    			<p>Type de site :
-	    			{% if website.sitetype == 1 %}
-	    				{{ "Site vitrine" }}
-	    			{% endif %}
-	    			{% if website.sitetype == 2 %}
-	    				{{ "e-Commerce" }}
-	    			{% endif %}</p>
+                        <p>Titre de mon site : {{ website.optionname }}</p>
+                        <p>Description de mon site : {{ website.optionvalue }}</p>
+                        <p>Type de site :
+                        {% if website.sitetype == 1 %}
+                            {{ "Site vitrine" }}
+                        {% endif %}
+                        {% if website.sitetype == 2 %}
+                            {{ "e-Commerce" }}
+                        {% endif %}</p>
 	    			</div>
 	    		</div>
     		</div>

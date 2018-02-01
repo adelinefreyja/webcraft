@@ -54,64 +54,64 @@ class Ecommerce {
 
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS customers (
-        cutomers_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-        id INT(20) NOT NULL,
-        user_address_id INT(20) NOT NULL,
-        user_landPhone INT(10) NOT NULL,
-        user_mobilePhone INT(10) NOT NULL,
-        FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-        );"
+            cutomers_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            id INT(20) NOT NULL,
+            user_address_id INT(20) NOT NULL,
+            user_landPhone INT(10) NOT NULL,
+            user_mobilePhone INT(10) NOT NULL,
+            FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            );"
         );
 
-                $connexion->query(
-                    "CREATE TABLE IF NOT EXISTS products_tax (
-    tax_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-    tax_value FLOAT NOT NULL,
-    tax_name  VARCHAR(20) NOT NULL
-  );"
-                );
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS products_tax (
+            tax_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            tax_value FLOAT NOT NULL,
+            tax_name  VARCHAR(20) NOT NULL
+            );"
+        );
 
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products (
-          product_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-          product_price INT(20) NOT NULL,
-          product_sale  INT(20) NOT NULL,
-          tax_id INT(20) NOT NULL,
-          product_name VARCHAR(255) NOT NULL,
-          product_description TEXT NOT NULL,
-          FOREIGN KEY (`tax_id`) REFERENCES `products_tax` (`tax_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-        );"
+            product_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            product_price INT(20) NOT NULL,
+            product_sale INT(30),
+            tax_id INT(20),
+            product_name VARCHAR(255) NOT NULL,
+            product_description TEXT NOT NULL,
+            FOREIGN KEY (`tax_id`) REFERENCES `products_tax` (`tax_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+            );"
         );
 
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_comments (
-      productComment_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-      product_id INT(20) NOT NULL,
-      id  INT(20) NOT NULL,
-      note_value INT(1) NOT NULL,
-      comment_text TEXT NOT NULL,
-      FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-      FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-    );"
+            productComment_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            product_id INT(20) NOT NULL,
+            id  INT(20) NOT NULL,
+            note_value INT(1) NOT NULL,
+            comment_text TEXT NOT NULL,
+            FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+            );"
         );
 
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_colors (
-    productColor_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-    product_id INT(20) NOT NULL,
-    color_value VARCHAR(15) NOT NULL,
-    color_stock INT(20) NOT NULL,
-    FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-  );"
+            productColor_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            product_id INT(20) NOT NULL,
+            color_value VARCHAR(15) NOT NULL,
+            color_stock INT(20) NOT NULL,
+            FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+            );"
         );
 
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_images (
-      productImg_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-      product_id INT(20) NOT NULL,
-      image VARCHAR(150) NOT NULL,
-      FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-    );"
+            productImg_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            product_id INT(20),
+            image VARCHAR(150),
+            FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
+            );"
         );
 
         $connexion->query(
@@ -125,11 +125,10 @@ class Ecommerce {
         );
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_category (
-    productCat_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-    product_id INT(20) NOT NULL,
-    category_value VARCHAR(15) NOT NULL,
-    FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-  );"
+            productCat_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            product_id INT(20) NOT NULL,
+            category_value VARCHAR(15) NOT NULL
+          );"
         );
 
                 $connexion->query(

@@ -21,7 +21,7 @@ class DatabaseController extends Controller {
             "CREATE TABLE IF NOT EXISTS `user` (
                 `id` int(11) NOT NULL,
                 `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-                `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+                `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                 `user_email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
                 `user_first_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
                 `user_last_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -52,7 +52,7 @@ class DatabaseController extends Controller {
                 `description` VARCHAR(30) COLLATE utf8_unicode_ci NOT NULL,
                 `optionname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
                 `optionvalue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-                `sitetype` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+                `sitetype` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"
         );
 
@@ -67,6 +67,11 @@ class DatabaseController extends Controller {
             "ALTER TABLE `options`
                 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
             COMMIT;"
+    );
+
+        $connexion->query(
+            "INSERT INTO `options`
+             VALUES (NULL, 'logo du site' , 'logo', 'img/logo.png', NULL)"
         );
 
         $connexion->query(
