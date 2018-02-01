@@ -18,18 +18,43 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
 
-		<div class="col s9">
-		
-		</div>
+		<div class="col s6">
+
+			<table class="responsive-table striped bordered">
+				  <tr>
+						  <th>Commentaire sur le produit</th>
+						  <th>Id du produit commenter</th>
+				  </tr>
+
+			    {% for comment in productsComments %}
+			        <tr>
+					        <td>{{ comment.commentText  }}</td>
+					        <td>{{ comment.product }}</td>
+			        </tr>
+
+	 		     {% endfor %}
+		    </table>
+
+</div>
+
+<div class="col s6">
+
+				<table class="responsive-table striped bordered">
+			      <tr>
+					      <th>Commentaire sur l'adresse ajouter</th>
+					      <th>Id de l'adresse utilisateur</th>
+			      </tr>
+
+			      {% for comment in userAddress %}
+
+					      <tr>
+							      <td>{{ comment.userComment }}</td>
+							      <td>{{ comment.userAddressId }}</td>
+						    </tr>
+			      {% endfor %}
+          </table>
+  </div>
 	</div>
 </div>
 {% endblock %}
