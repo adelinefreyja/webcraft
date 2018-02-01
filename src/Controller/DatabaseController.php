@@ -84,6 +84,7 @@ class DatabaseController extends Controller {
 				page_content LONGTEXT NOT NULL,
 				page_status VARCHAR(30) NOT NULL,
 				comment_status VARCHAR(30) NOT NULL,
+				category_name VARCHAR(20),
 				page_type VARCHAR(255),
 				page_modified DATETIME
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
