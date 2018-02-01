@@ -70,6 +70,17 @@
             //     CKEDITOR.replace('editor1');
             // </script>
             </div>
+            {% if categories is not empty %}
+                <label>{{ form_label(form.category_name, 'Catégorie') }}</label>
+                <div class="input-field">
+                    {{ form_widget(form.category_name) }}
+                </div>
+            {% elseif categories is empty %}
+                <div class="card-panel brown lighten-4 brown-text">
+                    <i class="fas fa-exclamation-circle fa-lg"></i>
+                    Vous n'avez pas encore créé de catégorie de page. <a data-target="new_page_cat"class="modal-trigger btn brown white-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter une catégorie</span></a>
+                </div>
+            {% endif %}
             <label>{{ form_label(form.comment_status) }}</label>
             <div class="input-field">
                 {{ form_widget(form.comment_status) }}
@@ -84,8 +95,29 @@
         </div>
 	</div>
 </div>
+<div id="new_page_cat" class="modal brown-text">
+    <div class="modal-content">
+        <h4>Ajouter une catégorie</h4>
+          <hr class="left account" />
+          {{ form_start(catForm) }}
+            {% if not form.vars.valid %}
+                <div class="error">
+                    {{ form_errors(catForm.category_name) }}
+                </div>      
+            {% endif %}
+            <div class="input-field">
+                {{ form_label(catForm.category_name) }}
+                {{ form_widget(catForm.category_name) }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+        {{ form_end(catForm) }}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block specificjs %}
-   
+    <script type="text/javascript" src="{{ asset('js/account.js') }}"></script>  
 {% endblock %}

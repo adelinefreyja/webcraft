@@ -30,6 +30,25 @@ class ManagePagesController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();
 
+        $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
+        $cats = $getCats->findAll();
+
+        $cat = new PageCategories();
+        $catForm = $this->createForm(AddPageCategoryType::class, $cat);
+
+        $catForm->handleRequest($request);
+        if ($catForm->isSubmitted() && $catForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cat);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                "Catégorie créée !"
+            );
+            return $this->redirectToRoute('newpage');
+        }
+
         $page = new Pages();
         $form = $this->createForm(AddPageType::class, $page);
 
@@ -50,7 +69,7 @@ class ManagePagesController extends Controller
         }
 
         return $this->render('backoffice/pages/addpage.html.twig',
-            ["sitetype" =>  $query, 'form' => $form->createView(), "pages" => $pages]
+            ["sitetype" =>  $query, 'form' => $form->createView(), "pages" => $pages, "categories" => $cats, 'catForm' => $catForm->createView()]
         );
     }
 
@@ -67,8 +86,11 @@ class ManagePagesController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();
 
+        $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
+        $cats = $getCats->findAll();
+
         return $this->render('backoffice/pages/managepages.html.twig',
-            ["sitetype" =>  $query, "pages" => $pages]
+            ["sitetype" =>  $query, "pages" => $pages, "categories" => $cats]
         );
 	}
 
@@ -92,6 +114,29 @@ class ManagePagesController extends Controller
             ->find($id)
         ;
 
+        $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
+        $cats = $getCats->findAll();
+
+
+        $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
+        $cats = $getCats->findAll();
+
+        $cat = new PageCategories();
+        $catForm = $this->createForm(AddPageCategoryType::class, $cat);
+
+        $catForm->handleRequest($request);
+        if ($catForm->isSubmitted() && $catForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cat);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                "Catégorie créée !"
+            );
+            return $this->redirectToRoute('editpage', ["id"  =>  $id]);
+        }
+
         $form = $this->createForm(EditPageType::class, $page);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -105,7 +150,7 @@ class ManagePagesController extends Controller
             return $this->redirect($this->generateUrl('managepages'));
         }
 
-        return $this->render('backoffice/pages/editpages.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "page" => $page, 'pages' => $pages]
+        return $this->render('backoffice/pages/editpages.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "page" => $page, 'pages' => $pages, "categories" => $cats, 'catForm' => $catForm->createView() ]
         );
     }
 

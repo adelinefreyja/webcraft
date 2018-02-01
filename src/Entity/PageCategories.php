@@ -69,4 +69,9 @@ class PageCategories
 
         return $this;
     }
+
+    public function __toString() {
+        
+        return $this->category_name;
+    }
 }

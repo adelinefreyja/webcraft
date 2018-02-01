@@ -22,6 +22,13 @@ class Pages
     /**
      * @var string
      *
+     * @ORM\Column(name="category_name", type="string", nullable=false)
+     */
+    private $category_name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="page_title", type="string", length=255, nullable=false)
      */
     private $pageTitle;
@@ -280,6 +287,26 @@ class Pages
     public function setPageId($pageId)
     {
         $this->pageId = $pageId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategoryName()
+    {
+        return $this->category_name;
+    }
+
+    /**
+     * @param string $category_name
+     *
+     * @return self
+     */
+    public function setCategoryName($category_name)
+    {
+        $this->category_name = $category_name;
 
         return $this;
     }

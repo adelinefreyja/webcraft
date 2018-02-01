@@ -3,6 +3,9 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use App\Entity\Pages;
+use App\Entity\PageCategories;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -42,6 +45,12 @@ class EditPageType extends AbstractType {
                         "Non" =>  "masquer"
                     ],
                     "expanded"  =>  false
+                ]
+            )
+            ->add("category_name", EntityType::class,
+                [
+                    "class" =>  PageCategories::class,
+                    'choice_label' => 'category_name'
                 ]
             )
             ->add('page_date', DateType::class, [
