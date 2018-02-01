@@ -22,6 +22,7 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Préparation listing type "client" pour "Mes Clients" --- Félix
 - Création du bouton Modifier pour le traitement des commandes --- Félix
 - Module de gestion des pages : liste, édition, suppression --- Adeline
+- Catégories de pages, gestion directe ou indirecte --- Adeline
 ```
 - Gérer options newsletter, contact (prise en charge swift-mailer) --- Adeline
 - Maps API --- Félix
