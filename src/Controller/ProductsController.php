@@ -63,7 +63,7 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/addproducts/edit/{idProduit}", name="addproducts2")
+     * @Route("/craft/addproducts/category/{idProduit}", name="addproducts2")
      */
     public function addCategory(Request $request, $idProduit) {
 
@@ -85,7 +85,7 @@ class ProductsController extends Controller {
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('manageproducts');
+            return $this->redirectToRoute('addproducts3', ["idProduit"  =>  $idProduit]);
         }
 
         return $this->render(
@@ -99,7 +99,7 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/addproducts/edit/{idProduit}", name="addproducts3")
+     * @Route("/craft/addproducts/sizes/{idProduit}", name="addproducts3")
      */
     public function addSizes(Request $request, $idProduit) {
 
@@ -126,11 +126,11 @@ class ProductsController extends Controller {
         }
 
         return $this->render(
-            'backoffice/products/addcategories.html.twig',
+            'backoffice/products/addsizes.html.twig',
             [
-                'form'          =>  $form->createView(),
-                "sitetype"      =>  $query,
-                "categories"    =>  $query2
+                'form'      =>  $form->createView(),
+                "sitetype"  =>  $query,
+                "sizes"     =>  $query2
             ]
         );
     }
