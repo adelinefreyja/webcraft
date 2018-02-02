@@ -51,11 +51,16 @@
                         {% endfor %}
                         <td>{{ prod.getProductPrice }}</td>
                         <td>{{ prod.getProductSale }}</td>
+                        {% set hasCat = false %}
                         {% for cat in categories %}
                             {% if cat.product == prod.getProductId %}
-                                <td>{{ cat.categoryValue }}</td>
+                                <td>{{ cat.categoryValue|upper }}</td>
+                                {% set hasCat = true %}
                             {% endif %}
                         {% endfor %}
+                        {% if hasCat == false %}
+                            <td style="font-style: italic">(aucune catégorie)</td>
+                        {% endif %}
                         <td>
                             <button data-target="modal{{ prod.getProductId }}" class="btn green lighten-2 tooltipped modal-trigger" data-position="left" data-tooltip="Aperçu"><span class="fa fa-search white-text"></span></button>
                             <button class="btn orange lighten-2 tooltipped" data-position="right" data-tooltip="Modifier"><span class="fa fa-edit white-text"></span></button>
