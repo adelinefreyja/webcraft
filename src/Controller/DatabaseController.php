@@ -131,6 +131,13 @@ class DatabaseController extends Controller {
 				email_value VARCHAR(255) NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS categories (
+				category_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+				category_name VARCHAR(255) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
     }
 
     private function connexion($db_host, $db_username, $db_password, $db_name) {

@@ -149,13 +149,6 @@ class Ecommerce {
         );
 
         $connexion->query(
-            "CREATE TABLE IF NOT EXISTS categories (
-            category_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-            category_name VARCHAR(20) NOT NULL
-            );"
-        );
-
-        $connexion->query(
             "CREATE TABLE IF NOT EXISTS shipment (
           shipment_id BIGINT(20) AUTO_INCREMENT PRIMARY KEY,
           shipment_method VARCHAR(30) NOT NULL,
