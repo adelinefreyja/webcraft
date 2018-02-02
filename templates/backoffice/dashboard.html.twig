@@ -1,18 +1,130 @@
 {% extends 'backoffice/index.html.twig' %}
 
 {% block title %}Dashboard :: WebCraft :: Make magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+{% endblock %}
 	
 {% block content %}
-	<div class="container-fluid">
+	<div class="container-fluid brown-text">
 		<div class="row">
-			<div class="col s5">
+			<div class="col s6">
 				<h4 class="dashboard"><i class="fas fa-th fa-lg"></i> Mon tableau de bord</h4>
-				<hr>
+				<hr class="left account">
 			</div>
 
-			<div class="col s7">
-				<h4 class="dashboard">Mes statistiques</h4>
+			<div class="col s6">
+				<h4 class="dashboard"><i class="far fa-chart-bar fa-lg"></i> Mes statistiques</h4>
+				<hr class="left account" />
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col s6">
+				<div class="card-panel brown lighten-4">
+					<h6><i class="fas fa-info-circle fa-lg"></i>
+						Bienvenue, {{ app.user.username }}!
+					</h6>
+					<p>Ceci est votre tableau de bord. C'est un espace dédié aux derniers événements survenus sur votre site (un commentaire, un message reçu ?)</p>
+				</div>
+			</div>
+			<div class="col s6">
+				<div class="col s3">
+					<div class="card-panel center stats">
+						<h3 class="orange-text">{{ pages|length }}</h3>
+						<hr class="account" />
+						<p>Pages créées</p>
+					</div>
+				</div>
+				<div class="col s3">
+					<div class="card-panel center stats">
+						<h3 class="orange-text">{{ medias|length }}</h3>
+						<hr class="account" />
+						<p>Médias ajoutés</p>
+					</div>
+				</div>
+				<div class="col s3">
+					<div class="card-panel center stats">
+						<h3 class="orange-text">{{ products|length }}</h3>
+						<hr class="account" />
+						{% if products|length <= 1 %}
+							<p>Produit créé</p>
+						{% elseif products|length > 1 %}
+							<p>Produits créés</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col s3">
+					<div class="card-panel center stats">
+						<h3 class="orange-text">{{ orders|length }}</h3>
+						<hr class="account" />
+						<p>Commandes reçues</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% if (sitetype == true) or (sitetype == false) %}
+		<div class="row">
+			<div class="col s2">
+				<a href="{{ path('newpage') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="far fa-plus-square fa-3x"></i></p>
+						<h5>Créer une page</h5>
+					</div>
+				</a>
+			</div>
+			<div class="col s2">
+				<a href="{{ path('design') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="fas fa-paint-brush fa-3x"></i></p>
+						<h5>Personnaliser mon site</h5>
+					</div>
+				</a>
+			</div>
+			<div class="col s2">
+				<a href="{{ path('design') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="far fa-images fa-3x"></i></p>
+						<h5>Biblitothèque de médias</h5>
+					</div>
+				</a>
+			</div>
+		{% endif %}
+			<div class="col s6">
+				<h5>Derniers commentaires</h5>
+				<hr class="left account" />
+			</div>
+		</div>
+		{% if sitetype == true %}
+		<div class="row">
+			<div class="col s2">
+				<a href="{{ path('manageproducts') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="fas fa-barcode fa-3x"></i></p>
+						<h5>Gérer mes produits</h5>
+					</div>
+				</a>
+			</div>
+			<div class="col s2">
+				<a href="{{ path('manageorders') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="fas fa-cart-arrow-down fa-3x"></i></p>
+						<h5>Gérer mes commandes</h5>
+					</div>
+				</a>
+			</div>
+			<div class="col s2">
+				<a href="{{ path('customers') }}">
+					<div class="card-panel orange lighten-2 center brown-text">
+						<p><i class="fas fa-users fa-3x"></i></p>
+						<h5>Voir mes clients</h5>
+					</div>
+				</a>
+			</div>
+		</div>
+		{% endif %}
 	</div>
 {% endblock %}

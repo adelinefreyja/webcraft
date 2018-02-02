@@ -80,6 +80,7 @@ label, .input-field label { color: #795548; }
 [type="checkbox"]:checked+label:before, [type="checkbox"]:checked+label:after { border-top: 2px solid transparent; border-left: 2px solid transparent; border-right: 2px solid #ffb74d; border-bottom: 2px solid #ffb74d; }
 /* Dashboard */
 .dashboard { padding-top: 50px; }
+.stats { height: 180px; }
 
 /* Website settings */
 hr.settings { border-bottom: 2px solid #795548; width: 20%; float:left; }
