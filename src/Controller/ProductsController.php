@@ -11,6 +11,7 @@ use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
 use App\Form\ProductsImagesType;
 use App\Form\ProductsCategoriesType;
+use App\Form\ProductsSizesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,7 +63,7 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/addproducts/category/{idProduit}", name="addproducts2")
+     * @Route("/craft/addproducts/edit/{idProduit}", name="addproducts2")
      */
     public function addCategory(Request $request, $idProduit) {
 
@@ -82,6 +83,43 @@ class ProductsController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $category->setProduct((int)$idProduit);
             $em->persist($category);
+            $em->flush();
+
+            return $this->redirectToRoute('manageproducts');
+        }
+
+        return $this->render(
+            'backoffice/products/addcategories.html.twig',
+            [
+                'form'          =>  $form->createView(),
+                "sitetype"      =>  $query,
+                "categories"    =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/addproducts/edit/{idProduit}", name="addproducts3")
+     */
+    public function addSizes(Request $request, $idProduit) {
+
+        $size = new ProductsSizes();
+        $form = $this->createForm(ProductsSizesType::class, $size);
+        $form->handleRequest($request);
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
+        $query2 = $repository2->findAll();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $size->setProduct((int)$idProduit);
+            $em->persist($size);
             $em->flush();
 
             return $this->redirectToRoute('manageproducts');
@@ -138,5 +176,4 @@ class ProductsController extends Controller {
             ]
         );
     }
-
 }
