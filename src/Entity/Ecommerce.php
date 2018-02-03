@@ -96,11 +96,12 @@ class Ecommerce {
         );
 
         $connexion->query(
-            "CREATE TABLE IF NOT EXISTS products_colors (
-            productColor_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+            "CREATE TABLE IF NOT EXISTS products_stock (
+            productStock_id INT(20) AUTO_INCREMENT PRIMARY KEY,
             product_id INT(20) NOT NULL,
             color_value VARCHAR(15) NOT NULL,
-            color_stock INT(20) NOT NULL,
+            size_value VARCHAR(15) NOT NULL,
+            stock_value INT(20) NOT NULL,
             FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
             );"
         );
@@ -115,15 +116,6 @@ class Ecommerce {
         );
 
         $connexion->query(
-            "CREATE TABLE IF NOT EXISTS products_sizes (
-            productSize_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-            product_id INT(20) NOT NULL,
-            size_value VARCHAR(15) NOT NULL,
-            size_stock INT(20) NOT NULL,
-            FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-          );"
-        );
-        $connexion->query(
             "CREATE TABLE IF NOT EXISTS products_category (
             productCat_id INT(20) AUTO_INCREMENT PRIMARY KEY,
             product_id INT(20),
@@ -131,8 +123,8 @@ class Ecommerce {
           );"
         );
 
-                $connexion->query(
-                    "CREATE TABLE IF NOT EXISTS orders (
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS orders (
           order_id BIGINT(20) AUTO_INCREMENT PRIMARY KEY,
             id INT(20) NOT NULL,
             order_date DATETIME NOT NULL,
