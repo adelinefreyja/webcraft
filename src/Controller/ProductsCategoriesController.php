@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Entity\WebsiteInfo;
 use App\Entity\ProductsCategory;
 use App\Entity\Products;
-use App\Entity\Contact;
 use App\Form\ProductsCategoriesType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,9 +20,6 @@ class ProductsCategoriesController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
 
         $queryCategories = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $categories = $queryCategories->findAll();
@@ -52,9 +48,7 @@ class ProductsCategoriesController extends Controller
                 "sitetype"      =>  $query,
                 "categories"    =>  $categories,
                 "products"      =>  $products,
-                "form"          =>  $form->createView(), 
-                "messages"  =>  $query2
-
+                "form"          =>  $form->createView()
             ]
         );
 	}
@@ -71,9 +65,6 @@ class ProductsCategoriesController extends Controller
 
         $rep = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $cats = $rep->findAll();
-
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
 
         $cat = $this->getDoctrine()
             ->getManager()
@@ -122,8 +113,7 @@ class ProductsCategoriesController extends Controller
                 "sitetype" =>  $query,
                 "categories" => $cats,
                 "form" => $form->createView(),
-                "cat" => $cat,
-                "messages"  =>  $query2
+                "cat" => $cat
             ]
         );
     }

@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
-use App\Form\Contact;
 use App\Form\ContactOptionType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,9 +19,6 @@ class OptionsController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-        
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
 
         $user = $this->getUser();
         $user->getId();
@@ -55,7 +51,7 @@ class OptionsController extends Controller
 
 
         return $this->render('backoffice/customs/options.html.twig',
-            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2]
+            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod]
         );
 	}
 

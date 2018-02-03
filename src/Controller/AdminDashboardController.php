@@ -35,10 +35,6 @@ class AdminDashboardController extends Controller
         $repository5 = $this->getDoctrine()->getManager()->getRepository(Medias::class);
         $query5 = $repository5->findAll();
 
-        $repository6 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query6 = $repository5->findAll();
-        
-
         return $this->render(
             'backoffice/dashboard.html.twig',
             [
@@ -47,7 +43,6 @@ class AdminDashboardController extends Controller
                 "pages"    		=>  $query3,
                 "orders"      	=>  $query4,
                 "medias"        =>  $query5,
-                "messages"      =>  $query6
             ]
         );
 	}

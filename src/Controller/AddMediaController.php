@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Entity\Medias;
 use App\Entity\WebsiteInfo;
 use App\Form\MediasType;
-use App\Form\Contact;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,9 +23,6 @@ class AddMediaController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -54,17 +50,14 @@ class AddMediaController extends Controller
             return $this->render('backoffice/medias/medialibrary.html.twig',
                 [
                     "sitetype"  =>  $query,
-                    "pictures"  =>  $pictures,
-                    "messages"  =>  $query2
+                    "pictures"  =>  $pictures
                 ]
             );
         }
 
         return $this->render('backoffice/medias/addmedia.html.twig',
             ["sitetype" =>  $query,
-                'form' => $form->createView(),
-                "messages"  =>  $query2
-            ]
+                'form' => $form->createView()]
         );
 	}
 }

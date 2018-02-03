@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
 use App\Entity\PageCategories;
-use App\Form\Contact;
 use App\Form\AddPageType;
 use App\Form\EditPageType;
 use App\Form\AddPageCategoryType;
@@ -33,9 +32,6 @@ class ManagePagesController extends Controller
 
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
 
         $cat = new PageCategories();
         $catForm = $this->createForm(AddPageCategoryType::class, $cat);
@@ -73,8 +69,7 @@ class ManagePagesController extends Controller
         }
 
         return $this->render('backoffice/pages/addpage.html.twig',
-            ["sitetype" =>  $query, 'form' => $form->createView(), "pages" => $pages, "categories" => $cats, 'catForm' => $catForm->createView(),
-                 "messages"  =>  $query2]
+            ["sitetype" =>  $query, 'form' => $form->createView(), "pages" => $pages, "categories" => $cats, 'catForm' => $catForm->createView()]
         );
     }
 
@@ -91,14 +86,11 @@ class ManagePagesController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();
 
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
-
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
 
         return $this->render('backoffice/pages/managepages.html.twig',
-            ["sitetype" =>  $query, "pages" => $pages, "categories" => $cats, "messages"  =>  $query2]
+            ["sitetype" =>  $query, "pages" => $pages, "categories" => $cats]
         );
 	}
 
@@ -121,9 +113,6 @@ class ManagePagesController extends Controller
             ->getRepository(Pages::class)
             ->find($id)
         ;
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
 
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
@@ -148,7 +137,6 @@ class ManagePagesController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            $page->setPageModified(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $this->addFlash(
@@ -158,7 +146,7 @@ class ManagePagesController extends Controller
             return $this->redirect($this->generateUrl('managepages'));
         }
 
-        return $this->render('backoffice/pages/editpages.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "page" => $page, 'pages' => $pages, "categories" => $cats, 'catForm' => $catForm->createView(),  "messages"  =>  $query2]
+        return $this->render('backoffice/pages/editpages.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "page" => $page, 'pages' => $pages, "categories" => $cats, 'catForm' => $catForm->createView() ]
         );
     }
 
@@ -189,9 +177,6 @@ class ManagePagesController extends Controller
             ["sitetype" =>  "2"]
         );
 
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
-
         $rep = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $rep->findAll();
 
@@ -212,7 +197,7 @@ class ManagePagesController extends Controller
         }
 
         return $this->render('backoffice/pages/pagecategories.html.twig',
-            ["sitetype" =>  $query, "categories" => $cats, "form" => $form->createView(), "messages"  =>  $query2]
+            ["sitetype" =>  $query, "categories" => $cats, "form" => $form->createView()]
         );
     }
 
@@ -226,9 +211,6 @@ class ManagePagesController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
 
         $em = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $em->findAll();
@@ -252,7 +234,7 @@ class ManagePagesController extends Controller
             return $this->redirect($this->generateUrl('managepagecategories'));
         }
 
-        return $this->render('backoffice/pages/editpagecategories.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "category" => $cat, 'categories' => $cats, "messages"  =>  $query2]
+        return $this->render('backoffice/pages/editpagecategories.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "category" => $cat, 'categories' => $cats]
         );
     }
 

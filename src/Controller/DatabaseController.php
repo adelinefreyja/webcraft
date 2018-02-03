@@ -93,8 +93,7 @@ class DatabaseController extends Controller {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS contact (
 				message_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-				user_name VARCHAR(255) NOT NULL,
-                user_email VARCHAR(255) NOT NULL,
+				user_id INT(20) NOT NULL,
 				message_content LONGTEXT NOT NULL,
 				message_date DATETIME NOT NULL,
 				message_object VARCHAR(20) NOT NULL

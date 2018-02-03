@@ -30,11 +30,7 @@
         {% endif %}
 
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
-        <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i>
-          {% if messages is not empty %}
-            <span class="badge orange lighten-2 brown-text">{{ messages|length }}</span>
-          {% endif %}
-        </a></li>
+        <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i></a></li>
     </ul>
     <ul id="subnav" class="hide">
     {% block submenu %}
@@ -140,12 +136,7 @@
     <div id="user_submenu">
         <ul>
             <li><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Mon compte</a></li>
-            <li><a href="{{ path('inbox') }}"><i class="far fa-envelope fa-lg"></i> Messages
-              {% if messages is not empty %}
-                <span class="badge orange lighten-2 brown-text">{{ messages|length }}</span>
-              {% endif %}</a>
-              
-            </li>
+            <li><a href=""><i class="far fa-envelope fa-lg"></i> Messages</a></li>
             <li><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></li>
         </ul>
     </div>

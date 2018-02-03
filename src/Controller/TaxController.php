@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\ProductsTax;
-use App\Entity\Contact;
 use App\Form\ProductsTaxType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,9 +19,6 @@ class TaxController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $taxes = $rep->findAll();
@@ -44,12 +40,7 @@ class TaxController extends Controller
         }
 
         return $this->render('backoffice/settings/taxes.html.twig',
-            [
-                "sitetype" =>  $query, 
-                "taxes" => $taxes, 
-                "form" => $form->createView(), 
-                "messages"  =>  $query2
-            ]
+            ["sitetype" =>  $query, "taxes" => $taxes, "form" => $form->createView()]
         );
 	}
 
@@ -62,9 +53,6 @@ class TaxController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $taxes = $rep->findAll();
@@ -88,7 +76,7 @@ class TaxController extends Controller
             return $this->redirect($this->generateUrl('managetaxes'));
         }
 
-        return $this->render('backoffice/settings/edittax.html.twig', ["sitetype" =>  $query, "taxes" => $taxes, "form" => $form->createView(), "tax" => $tax, "messages"  =>  $query2]
+        return $this->render('backoffice/settings/edittax.html.twig', ["sitetype" =>  $query, "taxes" => $taxes, "form" => $form->createView(), "tax" => $tax]
         );
     }
     /**

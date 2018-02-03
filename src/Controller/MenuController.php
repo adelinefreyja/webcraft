@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
-use App\Form\Contact;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,15 +18,12 @@ class MenuController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-        
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();
 
         return $this->render('backoffice/customs/menus.html.twig',
-            ["sitetype" =>  $query, "pages" => $pages, "messages"  =>  $query2]
+            ["sitetype" =>  $query, "pages" => $pages]
         );
 	}
 }

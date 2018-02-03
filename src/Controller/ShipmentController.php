@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\Shipment;
-use App\Entity\Contact;
 use App\Form\ShipmentType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,9 +19,6 @@ class ShipmentController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Shipment::class);
         $shipments = $rep->findAll();
@@ -44,11 +40,7 @@ class ShipmentController extends Controller
         }
 
         return $this->render('backoffice/settings/shipments.html.twig',
-            ["sitetype" =>  $query, 
-            "shipments" => $shipments, 
-            "form" => $form->createView(), 
-            "messages"  =>  $query2
-            ]
+            ["sitetype" =>  $query, "shipments" => $shipments, "form" => $form->createView()]
         );
 	}
 
@@ -61,9 +53,6 @@ class ShipmentController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Shipment::class);
         $shipments = $rep->findAll();
@@ -87,14 +76,7 @@ class ShipmentController extends Controller
             return $this->redirect($this->generateUrl('shipments'));
         }
 
-        return $this->render('backoffice/settings/editshipment.html.twig', 
-            [
-                "sitetype"  =>  $query, 
-                "shipments" =>  $shipments, 
-                "form"      =>  $form->createView(), 
-                "shipment"  =>  $shipment, 
-                "messages"  =>  $query2
-            ]
+        return $this->render('backoffice/settings/editshipment.html.twig', ["sitetype" =>  $query, "shipments" => $shipments, "form" => $form->createView(), "shipment" => $shipment]
         );
     }
     /**

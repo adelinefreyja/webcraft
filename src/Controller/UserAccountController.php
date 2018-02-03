@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\WebsiteInfo;
-use App\Entity\Contact;
 use App\Form\UserModifyInfoType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,9 +22,6 @@ class UserAccountController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
 
         $user = $this->getUser();
         $form = $this->createForm(UserModifyInfoType::class, $user);
@@ -61,9 +57,7 @@ class UserAccountController extends Controller
 
         return $this->render('backoffice/user/account.html.twig',
             array(
-                "sitetype"  =>  $query, 
-                "form" => $form->createView(), 
-                "messages"  =>  $query2
+                "sitetype"  =>  $query, "form" => $form->createView()
             )
         );
 	}

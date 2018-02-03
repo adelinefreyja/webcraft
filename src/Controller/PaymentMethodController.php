@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\Payment;
-use App\Entity\Contact;
 use App\Form\PaymentType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,9 +19,6 @@ class PaymentMethodController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Payment::class);
         $payments = $rep->findAll();
@@ -44,7 +40,7 @@ class PaymentMethodController extends Controller
         }
 
         return $this->render('backoffice/settings/payments.html.twig',
-            ["sitetype" =>  $query, "payments" => $payments, "form" => $form->createView(), "messages"  =>  $query2]
+            ["sitetype" =>  $query, "payments" => $payments, "form" => $form->createView()]
         );
 	}
 
@@ -57,9 +53,6 @@ class PaymentMethodController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
-        $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Payment::class);
         $payments = $rep->findAll();
@@ -83,7 +76,7 @@ class PaymentMethodController extends Controller
             return $this->redirect($this->generateUrl('paymentmethods'));
         }
 
-        return $this->render('backoffice/settings/editpayment.html.twig', ["sitetype" =>  $query, "payments" => $payments, "form" => $form->createView(), "payment" => $payment, "messages"  =>  $query2]
+        return $this->render('backoffice/settings/editpayment.html.twig', ["sitetype" =>  $query, "payments" => $payments, "form" => $form->createView(), "payment" => $payment]
         );
     }
     /**
