@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\User;
-use App\Form\Contact;
+use App\Entity\Contact;
 use App\Form\NewUserType;
 use App\Form\ModifyUserType;
 use Symfony\Component\Routing\Annotation\Route;

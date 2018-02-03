@@ -6,6 +6,7 @@ use App\Entity\Products;
 use App\Entity\Pages;
 use App\Entity\Orders;
 use App\Entity\Medias;
+use App\Entity\Contact;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

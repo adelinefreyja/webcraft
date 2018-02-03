@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
 use App\Entity\PageCategories;
-use App\Form\Contact;
+use App\Entity\Contact;
 use App\Form\AddPageType;
 use App\Form\EditPageType;
 use App\Form\AddPageCategoryType;
