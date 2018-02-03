@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contact
@@ -13,16 +14,35 @@ use Doctrine\ORM\Mapping as ORM;
 class Contact
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="user_email", type="string")
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *      message = "L'Email '{{ value }}' n'est pas correct.",
+     *      checkMX = true
+     * )
      */
-    private $userId;
+    private $userEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_name", type="string")
+     * @Assert\NotBlank()
+     */
+    private $userName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="message_content", type="text", nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 15,
+     *     minMessage = "Le message ne peut pas contenir moins de {{ limit }} caractères"
+     * )
+     *     
      */
     private $messageContent;
 
@@ -37,6 +57,9 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="message_object", type="string", length=20, nullable=false)
+     * @Assert\NotBlank(
+     *     message = "Merci de préciser l'objet de votre message"
+     * )
      */
     private $messageObject;
 
@@ -49,69 +72,132 @@ class Contact
      */
     private $messageId;
 
+
+    public function __toString()
+    {
+        return (string)$this->messageObject;
+        return (string)$this->messageDate;
+    }
+
+
     /**
      * @return string
      */
-    public function getMessageContent(): string
+    public function getUserEmail()
+    {
+        return $this->userEmail;
+    }
+
+    /**
+     * @param string $userEmail
+     *
+     * @return self
+     */
+    public function setUserEmail($userEmail)
+    {
+        $this->userEmail = $userEmail;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageContent()
     {
         return $this->messageContent;
     }
 
     /**
      * @param string $messageContent
+     *
+     * @return self
      */
-    public function setMessageContent(string $messageContent): void
+    public function setMessageContent($messageContent)
     {
         $this->messageContent = $messageContent;
+
+        return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return mixed
      */
-    public function getMessageDate(): \DateTime
+    public function getMessageDate()
     {
         return $this->messageDate;
     }
 
     /**
      * @param \DateTime $messageDate
+     *
+     * @return self
      */
-    public function setMessageDate(\DateTime $messageDate): void
+    public function setMessageDate(\DateTime $messageDate)
     {
         $this->messageDate = $messageDate;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getMessageObject(): string
+    public function getMessageObject()
     {
         return $this->messageObject;
     }
 
     /**
      * @param string $messageObject
+     *
+     * @return self
      */
-    public function setMessageObject(string $messageObject): void
+    public function setMessageObject($messageObject)
     {
         $this->messageObject = $messageObject;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getMessageId(): int
+    public function getMessageId()
     {
         return $this->messageId;
     }
 
     /**
-     * @param int $messageId
+     * @param integer $messageId
+     *
+     * @return self
      */
-    public function setMessageId(int $messageId): void
+    public function setMessageId($messageId)
     {
         $this->messageId = $messageId;
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    /**
+     * @param string $userName
+     *
+     * @return self
+     */
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
 }
 
