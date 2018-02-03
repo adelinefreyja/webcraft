@@ -5,7 +5,7 @@
 
         {% if colors is not empty %}
             <div class="input-field col s4">
-                <select id="select">
+                <select id="selectColor">
                     <option value="" disabled selected>Choisissez une Couleur existante</option>
                     {% for color in colors %}
                         {% if color.colorValue not in newArray %}
@@ -20,7 +20,7 @@
         <div class="col s12">
             {{ form_start(form) }}
             <div class="input-field">
-                <label for="products_sizes[sizeValue]">Couleur</label>
+                <label for="products_sizes[sizeValue]" id="color_label">Couleur</label>
                 {{ form_widget(form.colorValue) }}
             </div>
             <div class="input-field">
@@ -36,13 +36,14 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('select').material_select();
+        $('#selectColor').material_select();
 
         function changeVal() {
-            var newVal = $("select").val();
+            var newVal = $("#selectColor").val();
             $('#products_colors_colorValue').val("" + newVal + "");
+            $('#color_label').addClass("active");
         }
 
-        $("select").change(changeVal);
+        $("#selectColor").change(changeVal);
     });
 </script>
