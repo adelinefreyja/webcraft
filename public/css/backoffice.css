@@ -53,6 +53,8 @@ li.active_spec svg, li.active_spec p { color: #795548!important; }
 
 .webui-popover.bottom > .webui-arrow:after{ border-bottom-color: #d7ccc8; }
 
+span.badge { min-width: 2rem; }
+
 /* Side Nav Responsive */
 
 .side-nav { background: #EFEBE9; }

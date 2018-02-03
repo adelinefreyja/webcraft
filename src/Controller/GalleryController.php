@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Medias;
 use App\Entity\WebsiteInfo;
+use App\Form\Contact;
 use App\Form\ModifyMediasType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,6 +20,9 @@ class GalleryController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+        
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll();
 
         $queryPictures = $this->getDoctrine()->getManager()->getRepository(Medias::class);
         $pictures = $queryPictures->findAll();
@@ -26,7 +30,8 @@ class GalleryController extends Controller
         return $this->render('backoffice/medias/medialibrary.html.twig',
             [
                 "pictures"  =>  $pictures,
-                "sitetype"  =>  $query
+                "sitetype"  =>  $query,
+                "messages"  =>  $query2
             ]
         );
     }
