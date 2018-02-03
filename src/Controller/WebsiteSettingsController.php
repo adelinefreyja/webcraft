@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
+use App\Entity\Contact;
 use App\Form\WebsiteModifyInfoType;
 use App\Form\LogoModifyType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +21,9 @@ class WebsiteSettingsController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll(); 
 
         $logo = $repository->findOneBy(
             ["optionname" =>  "logo"]
@@ -44,7 +48,8 @@ class WebsiteSettingsController extends Controller
                 "form"      => $form->createView(),
                 'website'   => $website,
                 'logo'      =>  $logo,
-                'option'    =>  null
+                'option'    =>  null, 
+                "messages"  =>  $query2
             )
         );
 
@@ -61,6 +66,9 @@ class WebsiteSettingsController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll(); 
 
         $logo = $repository->findOneBy(
             ["optionname" =>  "logo"]
@@ -110,7 +118,8 @@ class WebsiteSettingsController extends Controller
                 "form"      => $form->createView(),
                 'website'   => $website,
                 'logo'      =>  $logo,
-                'option'    =>  $option
+                'option'    =>  $option, 
+                "messages"  =>  $query2
             )
         );
     }

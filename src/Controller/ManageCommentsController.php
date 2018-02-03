@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\WebsiteInfo;
 use App\Entity\ProductsComments;
 use App\Entity\UserAddress;
+use App\Entity\Contact;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +20,21 @@ class ManageCommentsController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-				$repositoryProductsComments = $this->getDoctrine()->getManager()->getRepository(ProductsComments::class);
+		
+		$repositoryProductsComments = $this->getDoctrine()->getManager()->getRepository(ProductsComments::class);
         $productsComments = $repositoryProductsComments->findAll();
 
-				$repositoryUserAddressComment = $this->getDoctrine()->getManager()->getRepository(UserAddress::class);
+		$repositoryUserAddressComment = $this->getDoctrine()->getManager()->getRepository(UserAddress::class);
         $userAddress = $repositoryUserAddressComment->findAll();
+
+		$rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll(); 
 
         return $this->render('backoffice/settings/managecomments.html.twig',
             ["sitetype" =>  $query,
 					"userAddress" => $userAddress,
-				"productsComments" => $productsComments]
+				"productsComments" => $productsComments,
+				"messages"  =>  $query2]
         );
 	}
 }

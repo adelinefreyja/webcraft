@@ -9,6 +9,7 @@ use App\Entity\ProductsSizes;
 use App\Entity\ProductsColors;
 use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
+use App\Entity\Contact;
 use App\Form\ProductsImagesType;
 use App\Form\ProductsColorsType;
 use App\Form\ProductsCategoriesType;
@@ -27,6 +28,9 @@ class ProductsController extends Controller {
         $produit = new ProductsImages();
         $form = $this->createForm(ProductsImagesType::class, $produit);
         $form->handleRequest($request);
+
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll(); 
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -58,7 +62,8 @@ class ProductsController extends Controller {
             'backoffice/products/addproducts.html.twig',
             [
                 'form' => $form->createView(),
-                "sitetype" =>  $query
+                "sitetype" =>  $query, 
+                "messages"  =>  $query2
             ]
         );
     }
@@ -80,6 +85,9 @@ class ProductsController extends Controller {
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $query2 = $repository2->findAll();
 
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query3 = $rep->findAll(); 
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
@@ -95,7 +103,8 @@ class ProductsController extends Controller {
             [
                 'form'          =>  $form->createView(),
                 "sitetype"      =>  $query,
-                "categories"    =>  $query2
+                "categories"    =>  $query2, 
+                "messages"      =>  $query3
             ]
         );
     }
@@ -110,6 +119,9 @@ class ProductsController extends Controller {
             ["sitetype" =>  "2"]
         );
 
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll(); 
+
         if (!isset($_SESSION["produitencours"]) || empty($_SESSION["produitencours"])) {
             $_SESSION["produitencours"] = $idProduit;
         }
@@ -118,7 +130,8 @@ class ProductsController extends Controller {
             'backoffice/products/editproducts.html.twig',
             [
                 "sitetype"      =>  $query,
-                "idProduit"     =>  $idProduit
+                "idProduit"     =>  $idProduit, 
+                "messages"      =>  $query2
             ]
         );
     }
@@ -134,6 +147,9 @@ class ProductsController extends Controller {
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query3 = $rep->findAll(); 
 
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
         $query2 = $repository2->findAll();
@@ -152,7 +168,8 @@ class ProductsController extends Controller {
             [
                 'form'     =>  $form->createView(),
                 "sitetype" =>  $query,
-                'sizes'    =>  $query2
+                'sizes'    =>  $query2, 
+                "messages"  =>  $query3
             ]
         );
     }
@@ -172,6 +189,9 @@ class ProductsController extends Controller {
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
         $query2 = $repository2->findAll();
 
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query3 = $rep->findAll(); 
+
         //**********************************************
         //**********************************************
         //******************** WIP *********************
@@ -186,7 +206,8 @@ class ProductsController extends Controller {
             [
                 'form'     =>  $form->createView(),
                 "sitetype" =>  $query,
-                'colors'   =>  $query2
+                'colors'   =>  $query2, 
+                "messages"  =>  $query3
             ]
         );
     }
@@ -219,6 +240,9 @@ class ProductsController extends Controller {
         $repository7 = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $query7 = $repository7->findAll();
 
+        $repository8 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query8 = $repository8->findAll();
+
         return $this->render(
             'backoffice/products/manageproducts.html.twig',
             [
@@ -228,7 +252,8 @@ class ProductsController extends Controller {
                 "pictures"      =>  $query4,
                 "sizes"         =>  $query5,
                 "colors"        =>  $query6,
-                "taxes"         =>  $query7
+                "taxes"         =>  $query7,
+                "messages"      =>  $query8
             ]
         );
     }

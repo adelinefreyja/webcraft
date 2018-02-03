@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
 use App\Entity\User;
+use App\Form\Contact;
 use App\Form\NewUserType;
 use App\Form\ModifyUserType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,9 @@ class ManageUsersController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+        
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll();
 
         $user = new User();
         $form = $this->createForm(NewUserType::class, $user);
@@ -40,7 +44,7 @@ class ManageUsersController extends Controller
 
 
         return $this->render('backoffice/settings/manageusers.html.twig',
-            ["sitetype" =>  $query, 'form' => $form->createView(), "users" => $users]
+            ["sitetype" =>  $query, 'form' => $form->createView(), "users" => $users, "messages"  =>  $query2]
         );
 	}
 
@@ -54,6 +58,9 @@ class ManageUsersController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll();
 
         $getUsers = $this->getDoctrine()->getManager()->getRepository(User::class);
         $users = $getUsers->findAll();
@@ -77,7 +84,7 @@ class ManageUsersController extends Controller
             return $this->redirect($this->generateUrl('manageusers'));
         }
 
-        return $this->render('backoffice/settings/editusers.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "users" => $users]
+        return $this->render('backoffice/settings/editusers.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "users" => $users, "messages"  =>  $query2]
         );
     }
     /**

@@ -1,0 +1,44 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Messages Reçus :: WebCraft :: Make magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+            <div class="col s12 m12">
+                <h4 class="dashboard brown-text">
+                	<i class="far fa-envelope fa-lg"></i>
+                	{{ message.messageobject }}
+                </h4>
+                <hr class="left account" />
+            </div>
+        </div>
+	</div>
+	<div class="container">
+        <div class="row">
+            <div class="col s12 brown-text">
+                <h5>Envoyé par {{ message.username }}, le {{ message.messagedate|date("d/m/Y à H:i", "Europe/Paris") }} <a href="mailto:{{ message.useremail }}?subject=Re : {{ message.messageobject }}&body=Message précédent : {{ message.messagecontent }}" class="right btn orange lighten-2 brown-text"><i class="fas fa-reply fa-lg"></i> Répondre</a></h5>
+                <hr />
+                    <div class="card-panel">
+                        <p>{{ message.messagecontent }}</p>
+                        <br />
+                        <em class="right">
+                            {{ message.username }}
+                        </em>
+                    </div>
+                <div class="left">
+                    <a href="{{ path('inbox') }}" class="btn brown white-text"><i class="fas fa-chevron-circle-left fa-lg"></i> Retour à la boîte de réception</a>
+                </div>
+            </div>
+        </div>
+	</div>
+{% endblock %}
+
+{% block specificjs %}
+    <script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}
