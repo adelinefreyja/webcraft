@@ -40,7 +40,7 @@
 				 <tr>
 						 <td>{{ orderId.orderId }}</td>
 						 <td>{{ orderId.id }}</td>
-						 <td>{{ orderId.orderDate|date("m/d/Y") }}</td>
+						 <td>{{ orderId.orderDate|date("d/m/Y") }}</td>
 						 <td>{{ orderId.orderStatus }}</td>
 						 <td><a href="{{ path('editorder', {'id': orderId.orderId}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
 						 <a href="{{ path('deleteorder', {'id': orderId.orderId}) }}" class="btn red darken-2"><i class="fa fa-trash white-text"></i></a></td>
