@@ -15,6 +15,12 @@
     <div class="container">
         <div class="row">
             <ul class="collapsible popout" data-collapsible="accordion">
+                <li id="categorie">
+                    <div class="collapsible-header">Modifier la catégorie</div>
+                    <div class="collapsible-body">
+                        <span id="contenuCategorie"></span>
+                    </div>
+                </li>
                 <li id="taille">
                     <div class="collapsible-header">Gérer les stocks par taille</div>
                     <div class="collapsible-body">
@@ -33,12 +39,6 @@
                         <span id="contenuTaxe"></span>
                     </div>
                 </li>
-                <li id="exped">
-                    <div class="collapsible-header">Méthodes d'expédition</div>
-                    <div class="collapsible-body">
-                        <span id="contenuExped"></span>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -47,6 +47,13 @@
 {% block specificjs %}
     <script>
         $(document).ready(function() {
+
+            $("#categorie").click(function() {
+                if (!$("#categorie").hasClass("active")) {
+                    $("#contenuCategorie").load("{{ path('editcategory') }}");
+                }
+            });
+
             $("#taille").click(function() {
                 if (!$("#taille").hasClass("active")) {
                     $("#contenuTaille").load("{{ path('editsizes') }}");
@@ -61,13 +68,7 @@
 
             $("#taxe").click(function() {
                 if (!$("#taxe").hasClass("active")) {
-                    {#$("#contenuTaxe").load("{{ path('edittaxes') }}");#}
-                }
-            });
-
-            $("#exped").click(function() {
-                if (!$("#exped").hasClass("active")) {
-                    {#$("#contenuExped").load("{{ path('editexped') }}");#}
+                    $("#contenuTaxe").load("{{ path('edittaxes') }}");
                 }
             });
         });

@@ -1,0 +1,50 @@
+<div class="container">
+    {% set newArray = [] %}
+
+    {% if categories is not empty %}
+        <div class="row">
+            <div class="input-field col s6 offset-3">
+                <select id="selectCat">
+                    <option disabled selected>Choisissez une Catégorie existante</option>
+                    {% for cat in categories %}
+                        {% if cat.categoryValue not in newArray %}
+                            <option>{{ cat.categoryValue }}</option>
+                            {% set newArray = newArray|merge([cat.categoryValue]) %}
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                {{ form_start(form) }}
+                <div class="input-field">
+                    {{ form_widget(form.categoryValue) }}
+                </div>
+                <div class="row">
+                    <div class="left">
+                        <a href="{{ path("productcategories") }}" class="waves-effect waves-light btn btn-success brown darken-1"><i class="fas fa-folder-open fa-lg"></i> Gérer mes catégories</a>
+                    </div>
+                    <div class="right">
+                        <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% else %}
+        <h4>Aucune taxe n'a été ajoutée.<br />Vous pouvez en ajouter en cliquant sur <a href="{{ path("productcategories") }}">ce lien</a></h4>
+    {% endif %}
+</div>
+<script>
+    $(document).ready(function() {
+        $('#selectCat').material_select();
+
+        function changeVal() {
+            var newVal = $("#selectCat").val();
+            $('#products_edit_category_categoryValue').val("" + newVal + "");
+        }
+
+        $("#selectCat").change(changeVal);
+    });
+</script>

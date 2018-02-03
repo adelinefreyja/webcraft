@@ -5,7 +5,7 @@
 
         {% if sizes is not empty %}
             <div class="input-field col s4">
-                <select id="select">
+                <select id="selectSizes">
                     <option value="" disabled selected>Choisissez une Taille existante</option>
                     {% for size in sizes %}
                         {% if size.sizeValue not in newArray %}
@@ -20,7 +20,7 @@
         <div class="col s12">
             {{ form_start(form) }}
             <div class="input-field">
-                <label for="products_sizes[sizeValue]">Taille</label>
+                <label for="products_sizes[sizeValue]" id="size_label">Taille</label>
                 {{ form_widget(form.sizeValue) }}
             </div>
             <div class="input-field">
@@ -36,13 +36,14 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('select').material_select();
+        $('#selectSizes').material_select();
 
         function changeVal() {
-            var newVal = $("select").val();
+            var newVal = $("#selectSizes").val();
             $('#products_sizes_sizeValue').val("" + newVal + "");
+            $('#size_label').addClass("active");
         }
 
-        $("select").change(changeVal);
+        $("#selectSizes").change(changeVal);
     });
 </script>

@@ -27,13 +27,13 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Gérer options newsletter, contact (prise en charge swift-mailer) --- Adeline
 - Maps API --- Félix
 - Produits : --- Charles
-
+     
     -> Gérer l'upload de photos multiples.
-    
+    ```
     -> Gérer le renseignement des tailles et couleurs (possibilité d'en avoir plusieurs).
     
     -> Ajouter la gestion du stock et la gestion des taxes.
-    ```
+    
     -> Catégories de produits
     ```
  

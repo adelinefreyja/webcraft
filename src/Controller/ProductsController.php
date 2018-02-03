@@ -13,6 +13,8 @@ use App\Form\ProductsImagesType;
 use App\Form\ProductsColorsType;
 use App\Form\ProductsCategoriesType;
 use App\Form\ProductsSizesType;
+use App\Form\ProductsAddTaxType;
+use App\Form\ProductsEditCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -110,15 +112,75 @@ class ProductsController extends Controller {
             ["sitetype" =>  "2"]
         );
 
-        if (!isset($_SESSION["produitencours"]) || empty($_SESSION["produitencours"])) {
-            $_SESSION["produitencours"] = $idProduit;
+        $_SESSION["produitencours"] = $idProduit;
+
+        if (isset($_POST["products_sizes"]) && !empty($_POST["products_sizes"])) {
+
+            $size = new ProductsSizes();
+
+            $sizeValue = strip_tags(trim((string)$_POST["products_sizes"]["sizeValue"]));
+            $sizeStock = strip_tags(trim((string)$_POST["products_sizes"]["sizeStock"]));
+            $checkId = strip_tags(trim((int)$idProduit));
+
+            $em = $this->getDoctrine()->getManager();
+            $size->setProduct($checkId);
+            $size->setSizeValue($sizeValue);
+            $size->setSizeStock($sizeStock);
+            $em->persist($size);
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $idProduit]);
+
+        } else if (isset($_POST["products_colors"]) && !empty($_POST["products_colors"])) {
+
+            $color = new ProductsColors();
+
+            $colorValue = strip_tags(trim((string)$_POST["products_colors"]["colorValue"]));
+            $colorStock = strip_tags(trim((string)$_POST["products_colors"]["colorStock"]));
+            $checkId = strip_tags(trim((int)$idProduit));
+
+            $em = $this->getDoctrine()->getManager();
+            $color->setProduct($checkId);
+            $color->setColorValue($colorValue);
+            $color->setColorStock($colorStock);
+            $em->persist($color);
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $idProduit]);
+
+        } else if (isset($_POST["products_add_tax"]) && !empty($_POST["products_add_tax"])) {
+
+            $repository = $this->getDoctrine()->getManager()->getRepository(Products::class);
+            $tax = $repository->findOneBy(
+                ["productId" =>  $idProduit]
+            );
+
+            $taxId = strip_tags(trim((int)$_POST["products_add_tax"]["tax"]));
+
+            $em = $this->getDoctrine()->getManager();
+            $tax->setTax($taxId);
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $idProduit]);
+
+        } else if (isset($_POST["products_edit_category"]) && !empty($_POST["products_edit_category"])) {
+
+            $repository = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
+            $category = $repository->findOneBy(
+                ["product" =>  $idProduit]
+            );
+
+            $categoryValue = strip_tags(trim((string)$_POST["products_edit_category"]["categoryValue"]));
+
+            $em = $this->getDoctrine()->getManager();
+            $category->setCategoryValue($categoryValue);
+            $em->flush();
         }
 
         return $this->render(
             'backoffice/products/editproducts.html.twig',
             [
-                "sitetype"      =>  $query,
-                "idProduit"     =>  $idProduit
+                "sitetype"      =>  $query
             ]
         );
     }
@@ -128,30 +190,16 @@ class ProductsController extends Controller {
      */
     public function editSizes(Request $request) {
 
-        $idProduit = $_SESSION["produitencours"];
-
-        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-        $query = $repository->findOneBy(
-            ["sitetype" =>  "2"]
-        );
-
-        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
-        $query2 = $repository2->findAll();
-
-        //**********************************************
-        //**********************************************
-        //******************** WIP *********************
-        //**********************************************
-        //**********************************************
-
         $size = new ProductsSizes();
         $form = $this->createForm(ProductsSizesType::class, $size);
         $form->handleRequest($request);
 
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
+        $query2 = $repository2->findAll();
+
         return $this->render('backoffice/products/editsizes.html.twig',
             [
                 'form'     =>  $form->createView(),
-                "sitetype" =>  $query,
                 'sizes'    =>  $query2
             ]
         );
@@ -162,31 +210,57 @@ class ProductsController extends Controller {
      */
     public function editColors(Request $request) {
 
-        $idProduit = $_SESSION["produitencours"];
-
-        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-        $query = $repository->findOneBy(
-            ["sitetype" =>  "2"]
-        );
-
-        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
-        $query2 = $repository2->findAll();
-
-        //**********************************************
-        //**********************************************
-        //******************** WIP *********************
-        //**********************************************
-        //**********************************************
-
         $color = new ProductsColors();
         $form = $this->createForm(ProductsColorsType::class, $color);
         $form->handleRequest($request);
 
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
+        $query2 = $repository2->findAll();
+
         return $this->render('backoffice/products/editcolors.html.twig',
             [
                 'form'     =>  $form->createView(),
-                "sitetype" =>  $query,
                 'colors'   =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/edittaxes", name="edittaxes")
+     */
+    public function editTaxes(Request $request) {
+
+        $prod = new Products();
+        $form = $this->createForm(ProductsAddTaxType::class, $prod);
+        $form->handleRequest($request);
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
+        $query2 = $repository2->findAll();
+
+        return $this->render('backoffice/products/edittaxe.html.twig',
+            [
+                'form'    =>  $form->createView(),
+                'taxes'   =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editcategory", name="editcategory")
+     */
+    public function editCategorie(Request $request) {
+
+        $category = new ProductsCategory();
+        $form = $this->createForm(ProductsEditCategoryType::class, $category);
+        $form->handleRequest($request);
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
+        $query2 = $repository2->findAll();
+
+        return $this->render('backoffice/products/editcategory.html.twig',
+            [
+                'form'    =>  $form->createView(),
+                'categories'   =>  $query2
             ]
         );
     }
