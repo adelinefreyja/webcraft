@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Medias;
 use App\Entity\WebsiteInfo;
-use App\Form\Contact;
+use App\Entity\Contact;
 use App\Form\ModifyMediasType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

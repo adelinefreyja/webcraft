@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\WebsiteInfo;
-use App\Form\Contact;
+use App\Entity\Contact;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
