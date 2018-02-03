@@ -17,7 +17,7 @@ class SitePublicController extends Controller
         ['pageName' => $pageName]
       );
 
-      return $this->render('SitePublic.html.twig',
+      return $this->render('ColoShop\index.html.twig',
           ["Pages" =>  $query]
       );
 
