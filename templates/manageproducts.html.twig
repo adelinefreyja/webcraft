@@ -1,0 +1,120 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Gérer mes produits :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row brown-text">
+		<div class="col s6">
+			<h4 class="dashboard"><i class=""></i> Mes Produits</h4>
+			<hr class="left account" />
+		</div>
+		<div class="col s6">
+			<div class="dashboard right">
+				<a href="{{ path('addproducts') }}" class="modal-trigger btn orange lighten-2 brown-text"><i class=""></i> <span>Ajouter un produit</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row brown-text">
+		<div class="col s12">
+            <table class="bordered striped highlight responsive-table brown-text centered">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Visuel</th>
+                        <th>Prix</th>
+                        <th>En vente</th>
+                        <th>Catégorie</th>
+                        <th>Gestion du produit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for prod in products %}
+                    <tr>
+                        <td>{{ prod.getProductName }}</td>
+                        <td>{{ prod.getProductDescription }}</td>
+
+                        {% for pics in pictures %}
+                            {% if (pics.getProduct.productId == prod.getProductId) %}
+                                <td>
+                                    <img src="{{ asset(pics.getImage) }}" alt="{{ prod.getProductDescription }}" class="imgsmall materialboxed tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cliquez pour agrandir">
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{ prod.getProductPrice }}</td>
+                        <td>{{ prod.getProductSale }}</td>
+                        {% set hasCat = false %}
+                        {% for cat in categories %}
+                            {% if cat.product == prod.getProductId %}
+                                <td>{{ cat.categoryValue|upper }}</td>
+                                {% set hasCat = true %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if hasCat == false %}
+                            <td style="font-style: italic">(aucune catégorie)</td>
+                        {% endif %}
+                        <td>
+                            <button data-target="modal{{ prod.getProductId }}" class="btn green lighten-2 tooltipped modal-trigger" data-position="left" data-tooltip="Aperçu"><span class="fa fa-search white-text"></span></button>
+                            <button class="btn orange lighten-2 tooltipped" data-position="right" data-tooltip="Modifier"><span class="fa fa-edit white-text"></span></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+		</div>
+	</div>
+</div>
+{% for prod in products %}
+    <div id="modal{{ prod.getProductId }}" class="modal bottom-sheet">
+        <div class="modal-content">
+            {% set isSizesEmpty = [] %}
+            {% set isColorsEmpty = [] %}
+
+            <h5>Stock par taille : </h5>
+            {% for size in sizes %}
+                {% if size.product == prod.getProductId %}
+                    <p>{{ size.getSizeValue }} : {{ size.getSizeStock }}</p>
+                    {% set isSizesEmpty = isSizesEmpty|merge([size.getSizeValue]) %}
+                {% endif %}
+            {% endfor %}
+            {% if isSizesEmpty is empty %}
+                <p class="red-text bold">Le stock est vide !</p>
+            {% endif %}
+
+            <h5>Stock par couleur : </h5>
+            {% for color in colors %}
+                {% if color.product == prod.getProductId %}
+                    <p>{{ color.getColorValue }} : {{ color.getColorStock }}</p>
+                    {% set isColorsEmpty = isColorsEmpty|merge([color.getColorValue]) %}
+                {% endif %}
+            {% endfor %}
+            {% if isColorsEmpty is empty %}
+                <p class="red-text bold">Le stock est vide !</p>
+            {% endif %}
+
+            <h5>Taxes effectives</h5>
+            {% if prod.getTax is not null %}
+                {% for tax in taxes %}
+                    {% if tax.getTaxId == prod.getTax %}
+                        <p>{{ tax.getTaxName }} : {{ tax.getTaxValue }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p class="red-text bold">Ce produit ne perçoit aucune taxe !</p>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
+
+{% block specificjs %}
+    <script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
+{% endblock %}

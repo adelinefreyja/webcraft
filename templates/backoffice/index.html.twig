@@ -14,7 +14,7 @@
 
 {% block nav %}
     {% block logo %}
-        <a href="{{ path('dashboard') }}"><img src="{{ asset('img/webcraft_logo.png') }}" alt="WebCraft" class="brand-logo" /></a>
+        <a href="{{ path('dashboard') }}"><img src="{{ asset('img/webcraft_logo.png') }}" alt="WebCraft" class="brand-logo tooltipped" data-position="bottom" data-tooltip="Retourner au tableau de bord" /></a>
     {% endblock %}
 	<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars fa-2x"></i></a>
     <ul class="right hide-on-med-and-down center-align">
@@ -136,6 +136,7 @@
     <div id="user_submenu">
         <ul>
             <li><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Mon compte</a></li>
+            <li><a href=""><i class="far fa-envelope fa-lg"></i> Messages</a></li>
             <li><a href="{{ path('logout') }}"><i class="fas fa-power-off fa-lg"></i> Déconnexion</a></li>
         </ul>
     </div>
