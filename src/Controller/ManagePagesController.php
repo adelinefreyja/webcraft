@@ -117,10 +117,6 @@ class ManagePagesController extends Controller
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
 
-
-        $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
-        $cats = $getCats->findAll();
-
         $cat = new PageCategories();
         $catForm = $this->createForm(AddPageCategoryType::class, $cat);
 
@@ -172,7 +168,7 @@ class ManagePagesController extends Controller
     }
 
     /**
-    * @Route("/craft/pages/categories", name="managepagecategories")
+    * @Route("/craft/pages/categories", name="pagecategories")
     */
     public function displayPageCategoriesAction(Request $request) {
 
