@@ -43,7 +43,10 @@ class MessagesController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $message = $rep->find($id);
 
-        return $this->render('backoffice/user/message.html.twig', ["sitetype" =>  $query, "message" => $message]
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findAll();
+
+        return $this->render('backoffice/user/message.html.twig', ["sitetype" =>  $query, "message" => $message, "messages" => $query2]
         );
     }
 
