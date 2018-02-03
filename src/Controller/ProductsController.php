@@ -10,6 +10,7 @@ use App\Entity\ProductsColors;
 use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
 use App\Form\ProductsImagesType;
+use App\Form\ProductsColorsType;
 use App\Form\ProductsCategoriesType;
 use App\Form\ProductsSizesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -75,6 +76,7 @@ class ProductsController extends Controller {
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $query2 = $repository2->findAll();
 
@@ -85,7 +87,7 @@ class ProductsController extends Controller {
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('addproducts3', ["idProduit"  =>  $idProduit]);
+            return $this->redirectToRoute('manageproducts');
         }
 
         return $this->render(
@@ -99,13 +101,34 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/addproducts/sizes/{idProduit}", name="addproducts3")
+     * @Route("/craft/products/manageproducts/edit/{idProduit}", name="editproduct")
      */
-    public function addSizes(Request $request, $idProduit) {
+    public function editProduct(Request $request, $idProduit) {
 
-        $size = new ProductsSizes();
-        $form = $this->createForm(ProductsSizesType::class, $size);
-        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if (!isset($_SESSION["produitencours"]) || empty($_SESSION["produitencours"])) {
+            $_SESSION["produitencours"] = $idProduit;
+        }
+
+        return $this->render(
+            'backoffice/products/editproducts.html.twig',
+            [
+                "sitetype"      =>  $query,
+                "idProduit"     =>  $idProduit
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editsizes", name="editsizes")
+     */
+    public function editSizes(Request $request) {
+
+        $idProduit = $_SESSION["produitencours"];
 
         $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query = $repository->findOneBy(
@@ -115,22 +138,55 @@ class ProductsController extends Controller {
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
         $query2 = $repository2->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //**********************************************
+        //**********************************************
+        //******************** WIP *********************
+        //**********************************************
+        //**********************************************
 
-            $em = $this->getDoctrine()->getManager();
-            $size->setProduct((int)$idProduit);
-            $em->persist($size);
-            $em->flush();
+        $size = new ProductsSizes();
+        $form = $this->createForm(ProductsSizesType::class, $size);
+        $form->handleRequest($request);
 
-            return $this->redirectToRoute('manageproducts');
-        }
-
-        return $this->render(
-            'backoffice/products/addsizes.html.twig',
+        return $this->render('backoffice/products/editsizes.html.twig',
             [
-                'form'      =>  $form->createView(),
-                "sitetype"  =>  $query,
-                "sizes"     =>  $query2
+                'form'     =>  $form->createView(),
+                "sitetype" =>  $query,
+                'sizes'    =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editcolors", name="editcolors")
+     */
+    public function editColors(Request $request) {
+
+        $idProduit = $_SESSION["produitencours"];
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
+        $query2 = $repository2->findAll();
+
+        //**********************************************
+        //**********************************************
+        //******************** WIP *********************
+        //**********************************************
+        //**********************************************
+
+        $color = new ProductsColors();
+        $form = $this->createForm(ProductsColorsType::class, $color);
+        $form->handleRequest($request);
+
+        return $this->render('backoffice/products/editcolors.html.twig',
+            [
+                'form'     =>  $form->createView(),
+                "sitetype" =>  $query,
+                'colors'   =>  $query2
             ]
         );
     }

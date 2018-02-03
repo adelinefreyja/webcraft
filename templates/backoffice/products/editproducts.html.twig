@@ -3,14 +3,73 @@
 {% block specificcss %}
 {% endblock %}
 
-
 {% block content %}
+    <div class="container-fluid">
+        <div class="row brown-text">
+            <div class="col s6">
+                <h4 class="dashboard"><i class=""></i> Éditer un produit</h4>
+                <hr class="left account" />
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
-
+            <ul class="collapsible popout" data-collapsible="accordion">
+                <li id="taille">
+                    <div class="collapsible-header">Gérer les stocks par taille</div>
+                    <div class="collapsible-body">
+                        <span id="contenuTaille"></span>
+                    </div>
+                </li>
+                <li id="couleur">
+                    <div class="collapsible-header">Gérer les stocks par couleur</div>
+                    <div class="collapsible-body">
+                        <span id="contenuCouleur"></span>
+                    </div>
+                </li>
+                <li id="taxe">
+                    <div class="collapsible-header">Gérer les taxes sur le produit</div>
+                    <div class="collapsible-body">
+                        <span id="contenuTaxe"></span>
+                    </div>
+                </li>
+                <li id="exped">
+                    <div class="collapsible-header">Méthodes d'expédition</div>
+                    <div class="collapsible-body">
+                        <span id="contenuExped"></span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}
 
 {% block specificjs %}
+    <script>
+        $(document).ready(function() {
+            $("#taille").click(function() {
+                if (!$("#taille").hasClass("active")) {
+                    $("#contenuTaille").load("{{ path('editsizes') }}");
+                }
+            });
+
+            $("#couleur").click(function() {
+                if (!$("#couleur").hasClass("active")) {
+                    $("#contenuCouleur").load("{{ path('editcolors') }}");
+                }
+            });
+
+            $("#taxe").click(function() {
+                if (!$("#taxe").hasClass("active")) {
+                    {#$("#contenuTaxe").load("{{ path('edittaxes') }}");#}
+                }
+            });
+
+            $("#exped").click(function() {
+                if (!$("#exped").hasClass("active")) {
+                    {#$("#contenuExped").load("{{ path('editexped') }}");#}
+                }
+            });
+        });
+    </script>
 {% endblock %}

@@ -63,7 +63,7 @@
                         {% endif %}
                         <td>
                             <button data-target="modal{{ prod.getProductId }}" class="btn green lighten-2 tooltipped modal-trigger" data-position="left" data-tooltip="Aperçu"><span class="fa fa-search white-text"></span></button>
-                            <button class="btn orange lighten-2 tooltipped" data-position="right" data-tooltip="Modifier"><span class="fa fa-edit white-text"></span></button>
+                            <a href="{{ path('editproduct', {"idProduit" : prod.getProductId}) }}" class="btn orange lighten-2 tooltipped" data-position="right" data-tooltip="Modifier"><span class="fa fa-edit white-text"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -110,6 +110,9 @@
             {% else %}
                 <p class="red-text bold">Ce produit ne perçoit aucune taxe !</p>
             {% endif %}
+
+            <h5>Méthodes d'expédition</h5>
+            <p>WIP</p>
         </div>
     </div>
 {% endfor %}

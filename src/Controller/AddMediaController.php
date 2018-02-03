@@ -19,6 +19,11 @@ class AddMediaController extends Controller
         $form = $this->createForm(MediasType::class, $media);
         $form->handleRequest($request);
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $file = $form["mediaSrc"]->getData();
@@ -39,12 +44,16 @@ class AddMediaController extends Controller
             $em->persist($media);
             $em->flush();
 
-        }
+            $queryPictures = $this->getDoctrine()->getManager()->getRepository(Medias::class);
+            $pictures = $queryPictures->findAll();
 
-        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-        $query = $repository->findOneBy(
-            ["sitetype" =>  "2"]
-        );
+            return $this->render('backoffice/medias/medialibrary.html.twig',
+                [
+                    "sitetype"  =>  $query,
+                    "pictures"  =>  $pictures
+                ]
+            );
+        }
 
         return $this->render('backoffice/medias/addmedia.html.twig',
             ["sitetype" =>  $query,
