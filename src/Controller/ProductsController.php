@@ -4,16 +4,14 @@ namespace App\Controller;
 
 use App\Entity\ProductsImages;
 use App\Entity\Products;
+use App\Entity\ProductsStock;
 use App\Entity\WebsiteInfo;
-use App\Entity\ProductsSizes;
-use App\Entity\ProductsColors;
 use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
 use App\Entity\Contact;
 use App\Form\ProductsImagesType;
-use App\Form\ProductsColorsType;
+use App\Form\ProductsStockType;
 use App\Form\ProductsCategoriesType;
-use App\Form\ProductsSizesType;
 use App\Form\ProductsAddTaxType;
 use App\Form\ProductsEditCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,7 +30,11 @@ class ProductsController extends Controller {
         $form->handleRequest($request);
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -88,7 +90,11 @@ class ProductsController extends Controller {
         $query2 = $repository2->findAll();
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query3 = $rep->findAll();
+        $query3 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -122,41 +128,30 @@ class ProductsController extends Controller {
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $_SESSION["produitencours"] = "";
         $_SESSION["produitencours"] = $idProduit;
 
-        if (isset($_POST["products_sizes"]) && !empty($_POST["products_sizes"])) {
+        if (isset($_POST["products_stock"]) && !empty($_POST["products_stock"])) {
 
-            $size = new ProductsSizes();
+            $size = new ProductsStock();
 
-            $sizeValue = strip_tags(trim((string)$_POST["products_sizes"]["sizeValue"]));
-            $sizeStock = strip_tags(trim((string)$_POST["products_sizes"]["sizeStock"]));
+            $sizeValue = strip_tags(trim((string)$_POST["products_stock"]["sizeValue"]));
+            $colorValue = strip_tags(trim((string)$_POST["products_stock"]["colorValue"]));
+            $stockValue = strip_tags(trim((string)$_POST["products_stock"]["stockValue"]));
             $checkId = strip_tags(trim((int)$_SESSION["produitencours"]));
 
             $em = $this->getDoctrine()->getManager();
             $size->setProduct($checkId);
             $size->setSizeValue($sizeValue);
-            $size->setSizeStock($sizeStock);
+            $size->setColorValue($colorValue);
+            $size->setStockValue($stockValue);
             $em->persist($size);
-            $em->flush();
-
-            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
-
-        } else if (isset($_POST["products_colors"]) && !empty($_POST["products_colors"])) {
-
-            $color = new ProductsColors();
-
-            $colorValue = strip_tags(trim((string)$_POST["products_colors"]["colorValue"]));
-            $colorStock = strip_tags(trim((string)$_POST["products_colors"]["colorStock"]));
-            $checkId = strip_tags(trim((int)$_SESSION["produitencours"]));
-
-            $em = $this->getDoctrine()->getManager();
-            $color->setProduct($checkId);
-            $color->setColorValue($colorValue);
-            $color->setColorStock($colorStock);
-            $em->persist($color);
             $em->flush();
 
             return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
@@ -202,44 +197,22 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/products/manageproducts/editsizes", name="editsizes")
+     * @Route("/craft/products/manageproducts/editstocks", name="editstocks")
      */
-    public function editSizes(Request $request) {
+    public function editStocks(Request $request) {
 
-        $size = new ProductsSizes();
-        $form = $this->createForm(ProductsSizesType::class, $size);
+        $stock = new ProductsStock();
+        $form = $this->createForm(ProductsStockType::class, $stock);
         $form->handleRequest($request);
 
-        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsStock::class);
         $query2 = $repository2->findAll();
 
-        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query3 = $rep->findAll();
-
-        return $this->render('backoffice/products/editsizes.html.twig',
+        return $this->render('backoffice/products/editstocks.html.twig',
             [
                 'form'     =>  $form->createView(),
-                'sizes'    =>  $query2
-            ]
-        );
-    }
-
-    /**
-     * @Route("/craft/products/manageproducts/editcolors", name="editcolors")
-     */
-    public function editColors(Request $request) {
-
-        $color = new ProductsColors();
-        $form = $this->createForm(ProductsColorsType::class, $color);
-        $form->handleRequest($request);
-
-        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
-        $query2 = $repository2->findAll();
-
-        return $this->render('backoffice/products/editcolors.html.twig',
-            [
-                'form'     =>  $form->createView(),
-                'colors'   =>  $query2
+                'stock'    =>   $query2,
+                'produit'  =>   $_SESSION["produitencours"]
             ]
         );
     }
@@ -265,8 +238,8 @@ class ProductsController extends Controller {
     }
 
     /**
-     * @Route("/craft/products/manageproducts/editcategory", name="editcategory")
-     */
+    * @Route("/craft/products/manageproducts/editcategory", name="editcategory")
+    */
     public function editCategorie(Request $request) {
 
         $category = new ProductsCategory();
@@ -280,6 +253,30 @@ class ProductsController extends Controller {
             [
                 'form'    =>  $form->createView(),
                 'categories'   =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editproductspictures", name="editproductspictures")
+     */
+    public function editPictures(Request $request) {
+
+        $pictures = new ProductsImages();
+        $form = $this->createForm(ProductsImagesType::class, $pictures);
+        $form->handleRequest($request);
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
+        $query2 = $repository2->findOneBy(
+            [
+                "productId" =>  $_SESSION["produitencours"]
+            ]
+        );
+
+        return $this->render('backoffice/products/editproductspictures.html.twig',
+            [
+                'form'      =>  $form->createView(),
+                'pictures'  =>  $query2
             ]
         );
     }
@@ -303,17 +300,18 @@ class ProductsController extends Controller {
         $repository4 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
         $query4 = $repository4->findAll();
 
-        $repository5 = $this->getDoctrine()->getManager()->getRepository(ProductsSizes::class);
+        $repository5 = $this->getDoctrine()->getManager()->getRepository(ProductsStock::class);
         $query5 = $repository5->findAll();
-
-        $repository6 = $this->getDoctrine()->getManager()->getRepository(ProductsColors::class);
-        $query6 = $repository6->findAll();
 
         $repository7 = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $query7 = $repository7->findAll();
 
         $repository8 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query8 = $repository8->findAll();
+        $query8 = $repository8->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         return $this->render(
             'backoffice/products/manageproducts.html.twig',
@@ -322,8 +320,7 @@ class ProductsController extends Controller {
                 "products"      =>  $query2,
                 "categories"    =>  $query3,
                 "pictures"      =>  $query4,
-                "sizes"         =>  $query5,
-                "colors"        =>  $query6,
+                "stock"         =>  $query5,
                 "taxes"         =>  $query7,
                 "messages"      =>  $query8
             ]

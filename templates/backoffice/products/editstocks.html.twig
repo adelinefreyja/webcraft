@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+
+        {% set newArray0 = 0 %}
+        {% set newArray = [] %}
+        {% set newArray2 = [] %}
+
+
+        {% if stock is not empty %}
+            <div class="row">
+                <h5>Stock actuel :</h5>
+                {% for stk in stock %}
+                    {% if stk.product == produit %}
+                        <p>{{ stk.stockValue }} produits de taille {{ stk.sizeValue }} et de couleur {{ stk.colorValue }}</p>
+                        {% set newArray0 = 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% if newArray0 == 0 %}
+                    <p>Le stock pour ce produit est actuellement vide !</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {{ form_start(form) }}
+
+        {% if stock is not empty %}
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <select id="selectSizes">
+                    <option value="" disabled selected>Choisissez une Taille existante</option>
+                    {% for stk in stock %}
+                        {% if stk.sizeValue not in newArray %}
+                            <option>{{ stk.sizeValue }}</option>
+                            {% set newArray = newArray|merge([stk.sizeValue]) %}
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="input-field">
+                <label for="products_stock_sizeValue" id="size_label">Taille</label>
+                {{ form_widget(form.sizeValue) }}
+            </div>
+        </div>
+
+        {% if stock is not empty %}
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <select id="selectColor">
+                    <option value="" disabled selected>Choisissez une Couleur existante</option>
+                    {% for stk in stock %}
+                        {% if stk.colorValue not in newArray2 %}
+                            <option>{{ stk.colorValue }}</option>
+                            {% set newArray2 = newArray2|merge([stk.colorValue]) %}
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="input-field">
+                <label for="products_stock_colorValue" id="color_label">Couleur</label>
+                {{ form_widget(form.colorValue) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                {{ form_label(form.stockValue) }}
+                {{ form_widget(form.stockValue) }}
+            </div>
+        </div>
+        <div class="right row">
+            <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#selectSizes').material_select();
+        $('#selectColor').material_select();
+
+        function changeSize() {
+            var newVal = $("#selectSizes").val();
+            $('#products_stock_sizeValue').val("" + newVal + "");
+            $('#size_label').addClass("active");
+        }
+
+        function changeColor() {
+            var newVal = $("#selectSizes").val();
+            $('#products_stock_colorValue').val("" + newVal + "");
+            $('#color_label').addClass("active");
+        }
+
+        $("#selectSizes").change(changeSize);
+        $("#selectColor").change(changeColor);
+    });
+</script>

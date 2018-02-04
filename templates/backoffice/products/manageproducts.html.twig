@@ -72,31 +72,18 @@
 		</div>
 	</div>
 </div>
+{% set isSizesEmpty = 0 %}
 {% for prod in products %}
     <div id="modal{{ prod.getProductId }}" class="modal bottom-sheet">
         <div class="modal-content">
-            {% set isSizesEmpty = [] %}
-            {% set isColorsEmpty = [] %}
-
-            <h5>Stock par taille : </h5>
-            {% for size in sizes %}
-                {% if size.product == prod.getProductId %}
-                    <p>{{ size.getSizeValue }} : {{ size.getSizeStock }}</p>
-                    {% set isSizesEmpty = isSizesEmpty|merge([size.getSizeValue]) %}
+            <h5>Stock par taille et couleur : </h5>
+            {% for stk in stock %}
+                {% if stk.product == prod.getProductId %}
+                    <p>{{ stk.stockValue }} produits de taille {{ stk.sizeValue }} et de couleur {{ stk.colorValue }}</p>
+                    {% set isSizesEmpty = 1 %}
                 {% endif %}
             {% endfor %}
-            {% if isSizesEmpty is empty %}
-                <p class="red-text bold">Le stock est vide !</p>
-            {% endif %}
-
-            <h5>Stock par couleur : </h5>
-            {% for color in colors %}
-                {% if color.product == prod.getProductId %}
-                    <p>{{ color.getColorValue }} : {{ color.getColorStock }}</p>
-                    {% set isColorsEmpty = isColorsEmpty|merge([color.getColorValue]) %}
-                {% endif %}
-            {% endfor %}
-            {% if isColorsEmpty is empty %}
+            {% if isSizesEmpty == 0 %}
                 <p class="red-text bold">Le stock est vide !</p>
             {% endif %}
 

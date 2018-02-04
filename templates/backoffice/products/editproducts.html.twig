@@ -15,22 +15,22 @@
     <div class="container">
         <div class="row">
             <ul class="collapsible popout" data-collapsible="accordion">
+                <li id="pictures">
+                    <div class="collapsible-header">Gérer les photos du produit</div>
+                    <div class="collapsible-body">
+                        <span id="contenuPictures"></span>
+                    </div>
+                </li>
                 <li id="categorie">
                     <div class="collapsible-header">Modifier la catégorie</div>
                     <div class="collapsible-body">
                         <span id="contenuCategorie"></span>
                     </div>
                 </li>
-                <li id="taille">
-                    <div class="collapsible-header">Gérer les stocks par taille</div>
+                <li id="stock">
+                    <div class="collapsible-header">Gérer les stocks</div>
                     <div class="collapsible-body">
-                        <span id="contenuTaille"></span>
-                    </div>
-                </li>
-                <li id="couleur">
-                    <div class="collapsible-header">Gérer les stocks par couleur</div>
-                    <div class="collapsible-body">
-                        <span id="contenuCouleur"></span>
+                        <span id="contenuStock"></span>
                     </div>
                 </li>
                 <li id="taxe">
@@ -41,6 +41,9 @@
                 </li>
             </ul>
         </div>
+        <div class="left">
+            <a href="{{ path("manageproducts") }}" class="waves-effect waves-light btn btn-success brown darken-1"><i class="fas fa-arrow-left fa-lg"></i> Retour</a>
+        </div>
     </div>
 {% endblock %}
 
@@ -48,21 +51,21 @@
     <script>
         $(document).ready(function() {
 
+            $("#pictures").click(function() {
+                if (!$("#pictures").hasClass("active")) {
+                    $("#contenuPictures").load("{{ path('editproductspictures') }}");
+                }
+            });
+
             $("#categorie").click(function() {
                 if (!$("#categorie").hasClass("active")) {
                     $("#contenuCategorie").load("{{ path('editcategory') }}");
                 }
             });
 
-            $("#taille").click(function() {
-                if (!$("#taille").hasClass("active")) {
-                    $("#contenuTaille").load("{{ path('editsizes') }}");
-                }
-            });
-
-            $("#couleur").click(function() {
-                if (!$("#couleur").hasClass("active")) {
-                    $("#contenuCouleur").load("{{ path('editcolors') }}");
+            $("#stock").click(function() {
+                if (!$("#stock").hasClass("active")) {
+                    $("#contenuStock").load("{{ path('editstocks') }}");
                 }
             });
 
