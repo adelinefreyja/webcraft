@@ -23,7 +23,7 @@ class SitePublicController extends Controller
         $query = $repository->findOneBy(
             ['category_name' => $category_name]
         );
-            /* NEWSLETTER */
+            /* View NEWSLETTER */
         $newsletter = new Newsletter();
                 $newsletterForm = $this->createForm(NewsletterType::class, $newsletter);
                 $newsletterForm->handleRequest($request);
@@ -41,12 +41,12 @@ class SitePublicController extends Controller
                     );
                     return $this->redirectToRoute('sitepublic',["category_name" =>  $query]);
                 } 
-
+                /* View Accueil */
         if($category_name == "Accueil"){
             return $this->render('ColoShop\index.html.twig',
             ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView(),]
             );
-
+            /* View Contact */
         }elseif ($category_name == "Contact") {
 
             $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
@@ -85,16 +85,19 @@ class SitePublicController extends Controller
                 );
 
         }
+        /* View Shop */
         elseif($category_name == "Shop"){
             return $this->render('ColoShop\categories.html.twig',
             ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView(),]
             );
         }
+        /* View Pages */
         elseif($category_name == "Pages"){
             return $this->render('ColoShop\single.html.twig',
             ["Pages" =>  $query ,  'newsletterform' => $newsletterForm->createView(),]
             );
         }
+        /* Si l'URL est incorrect */
         else {
             $query = $repository->findOneBy(
                 ['category_name' => "Accueil"]

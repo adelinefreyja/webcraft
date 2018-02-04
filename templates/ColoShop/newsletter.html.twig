@@ -10,11 +10,9 @@
 				<div class="col-lg-6">
 						{% block newsletter %}
 						<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-							{{ form_start(newsletterform) }}
-						        <div class="input-field">
+							{{ form_start(newsletterform) }}						  
 						            {{ form_label(newsletterform.emailValue) }}
-						            {{ form_widget(newsletterform.emailValue) }}
-						            </div>
+						            {{ form_widget(newsletterform.emailValue) }}					            
 							<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
 							{{ form_end(newsletterform) }}
 							{% endblock %}
