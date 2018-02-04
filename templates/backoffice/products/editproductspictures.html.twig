@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+        <div class="col s12">
+            {% if pictures is not empty %}
+            <h5>Images du produit :</h5>
+            {% set i = 1 %}
+            <div class="carousel carousel-slider center" data-indicators="true">
+                <div class="carousel carousel-slider">
+                    {% for pics in pictures %}
+                        <a class="carousel-item" href="#{{ i }}!"><img src="{{ asset(pics.image) }}" alt=""></a>
+                        {% set i = (i + 1) %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+	<div class="row">
+		<div class="col s12">
+			{{ form_start(form) }}
+			<div class="file-field input-field">
+				<div class="btn blue">
+					<span class="white-text">Transmettre une image</span>
+                    {{ form_widget(form.image) }}
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="row">
+				<div class="right">
+					<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Transférer</button>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel();
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
+    });
+</script>

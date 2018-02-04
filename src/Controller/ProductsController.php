@@ -11,10 +11,12 @@ use App\Entity\ProductsCategory;
 use App\Entity\Contact;
 use App\Form\ProductsImagesType;
 use App\Form\ProductsStockType;
+use App\Form\AddProductsImagesType;
 use App\Form\ProductsCategoriesType;
 use App\Form\ProductsAddTaxType;
 use App\Form\ProductsEditCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -134,6 +136,10 @@ class ProductsController extends Controller {
             ]
         );
 
+        echo '<pre>';
+        var_dump($_FILES);
+        echo '</pre>';
+
         $_SESSION["produitencours"] = "";
         $_SESSION["produitencours"] = $idProduit;
 
@@ -185,6 +191,32 @@ class ProductsController extends Controller {
             $em->flush();
 
             return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
+
+        } else if (isset($_POST["add_products_images"]) && !empty($_POST["add_products_images"])) {
+
+            $picture = new ProductsImages();
+
+            $file = explode(".", $_FILES["add_products_images"]["name"]["image"]);
+
+            $extension = end($file);
+
+            $fileName = md5(uniqid()) . '.' . $extension;
+
+            $move = new File($_FILES["add_products_images"]["tmp_name"]["image"]);
+
+            $move->move(
+                $this->getParameter('products_directory'),
+                $fileName
+            );
+
+            $em = $this->getDoctrine()->getManager();
+            $picture->setProduct($_SESSION["produitencours"]);
+            $picture->setImage("img/products/" . $fileName);
+            $em->persist($picture);
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
+
         }
 
         return $this->render(
@@ -263,11 +295,11 @@ class ProductsController extends Controller {
     public function editPictures(Request $request) {
 
         $pictures = new ProductsImages();
-        $form = $this->createForm(ProductsImagesType::class, $pictures);
+        $form = $this->createForm(AddProductsImagesType::class, $pictures);
         $form->handleRequest($request);
 
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
-        $query2 = $repository2->findOneBy(
+        $query2 = $repository2->findBy(
             [
                 "productId" =>  $_SESSION["produitencours"]
             ]

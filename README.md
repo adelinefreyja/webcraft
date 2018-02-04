@@ -13,9 +13,7 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 ```
 - Intégrer le support de l'audio dans la gallerie --- Charles
 - Formulaire de création de page + intégration WYSIWYG + inscription table BDD --- Adeline
-```
 - Création de catégories produits et gestion --- Félix / Adeline
-```
 - Création de catégories de pages / gestion / suppression --- Adeline
 ```
 ```
@@ -26,16 +24,17 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 ```
 - Gérer options newsletter, contact (prise en charge swift-mailer) --- Adeline
 - Maps API --- Félix
-- Produits : --- Charles
+```
+Produits : Charles
 
     -> Gérer l'upload de photos multiples.
     
     -> Gérer le renseignement des tailles et couleurs (possibilité d'en avoir plusieurs).
     
     -> Ajouter la gestion du stock et la gestion des taxes.
-    ```
+
     -> Catégories de produits
-    ```
+```
  
 - Module de commentaires et gestion --- Félix
 - Gérer l'edition d'un menu (génération de page) --- Adeline
