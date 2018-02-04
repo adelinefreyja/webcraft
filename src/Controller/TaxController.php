@@ -22,7 +22,11 @@ class TaxController extends Controller
         );
 
         $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
+        $query2 = $rep1->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $taxes = $rep->findAll();
@@ -64,7 +68,11 @@ class TaxController extends Controller
         );
 
         $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep1->findAll(); 
+        $query2 = $rep1->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(ProductsTax::class);
         $taxes = $rep->findAll();

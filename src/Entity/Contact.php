@@ -64,6 +64,14 @@ class Contact
     private $messageObject;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=10, nullable=true)
+     */
+    private $status = "nonlu";
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="message_id", type="integer")
@@ -198,6 +206,22 @@ class Contact
         $this->userName = $userName;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }
 

@@ -25,7 +25,11 @@ class OrdersManageController extends Controller
 		$orders = $queryOrders->findAll();
 
 		$rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
 		return $this->render('backoffice/orders/manageorders.html.twig',
 			[ "orders" => $orders,
@@ -56,7 +60,11 @@ class OrdersManageController extends Controller
 			;
 
 			$rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        	$query2 = $rep->findAll(); 
+        	$query2 = $rep->findBy(
+                [
+                    "status"    =>  "nonlu"
+                ]
+            );
 
 			$form = $this->createForm(ModifyOrderType::class, $order);
 			$form->handleRequest($request);

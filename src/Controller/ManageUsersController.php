@@ -24,7 +24,11 @@ class ManageUsersController extends Controller
         );
         
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $user = new User();
         $form = $this->createForm(NewUserType::class, $user);
@@ -60,7 +64,11 @@ class ManageUsersController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $getUsers = $this->getDoctrine()->getManager()->getRepository(User::class);
         $users = $getUsers->findAll();

@@ -21,11 +21,16 @@ class MessagesController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $messages = $rep->findAll();
+        $inbox = $rep->findAll();
+        $messages = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         return $this->render('backoffice/user/inbox.html.twig',
             array(
-                "sitetype"  =>  $query, "messages" => $messages
+                "sitetype"  =>  $query, "messages" => $messages, 'inbox'  =>  $inbox
             )
         );
 	}
@@ -43,8 +48,17 @@ class MessagesController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $message = $rep->find($id);
 
+        $em = $this->getDoctrine()->getManager();
+        $lu = $em->getRepository(Contact::class)->find($id);
+        $lu->setStatus("lu");
+        $em->flush();
+
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         return $this->render('backoffice/user/message.html.twig', ["sitetype" =>  $query, "message" => $message, "messages" => $query2]
         );

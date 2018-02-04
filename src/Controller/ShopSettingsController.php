@@ -20,7 +20,11 @@ class ShopSettingsController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         return $this->render('backoffice/settings/shopsettings.html.twig',
             ["sitetype" =>  $query, "messages"  =>  $query2]

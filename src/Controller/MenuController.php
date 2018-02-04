@@ -21,7 +21,11 @@ class MenuController extends Controller
         );
         
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();

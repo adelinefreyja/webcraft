@@ -35,7 +35,11 @@ class ManagePagesController extends Controller
         $cats = $getCats->findAll();
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $cat = new PageCategories();
         $catForm = $this->createForm(AddPageCategoryType::class, $cat);
@@ -92,7 +96,11 @@ class ManagePagesController extends Controller
         $pages = $rep->findAll();
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
@@ -123,7 +131,11 @@ class ManagePagesController extends Controller
         ;
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $getCats = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $getCats->findAll();
@@ -190,7 +202,11 @@ class ManagePagesController extends Controller
         );
 
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $rep->findAll();
@@ -228,7 +244,11 @@ class ManagePagesController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll();
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $em = $this->getDoctrine()->getManager()->getRepository(PageCategories::class);
         $cats = $em->findAll();

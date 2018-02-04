@@ -37,7 +37,11 @@ class AdminDashboardController extends Controller
         $query5 = $repository5->findAll();
 
         $repository6 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query6 = $repository6->findAll();
+        $query6 = $repository6->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
         
 
         return $this->render(

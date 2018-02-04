@@ -23,7 +23,11 @@ class ProductsCategoriesController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $queryCategories = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $categories = $queryCategories->findAll();
@@ -73,7 +77,11 @@ class ProductsCategoriesController extends Controller
         $cats = $rep->findAll();
 
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $cat = $this->getDoctrine()
             ->getManager()

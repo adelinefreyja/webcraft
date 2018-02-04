@@ -22,7 +22,11 @@ class OptionsController extends Controller
         );
         
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll();
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $user = $this->getUser();
         $user->getId();

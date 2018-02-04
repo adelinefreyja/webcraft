@@ -22,7 +22,11 @@ class PaymentMethodController extends Controller
         );
 
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Payment::class);
         $payments = $rep->findAll();
@@ -59,7 +63,11 @@ class PaymentMethodController extends Controller
         );
 
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep2->findAll(); 
+        $query2 = $rep2->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Payment::class);
         $payments = $rep->findAll();

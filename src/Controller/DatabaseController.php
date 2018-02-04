@@ -97,7 +97,8 @@ class DatabaseController extends Controller {
                 user_email VARCHAR(255) NOT NULL,
 				message_content LONGTEXT NOT NULL,
 				message_date DATETIME NOT NULL,
-				message_object VARCHAR(20) NOT NULL
+				message_object VARCHAR(20) NOT NULL,
+				status VARCHAR(10) DEFAULT 'nonlu'
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
 
