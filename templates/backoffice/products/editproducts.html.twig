@@ -62,42 +62,12 @@
 {% block specificjs %}
     <script>
         $(document).ready(function() {
-
-            $("#pictures").click(function() {
-                if (!$("#pictures").hasClass("active")) {
-                    $("#contenuPictures").load("{{ path('editproductspictures') }}");
-                }
-            });
-
-            $("#categorie").click(function() {
-                if (!$("#categorie").hasClass("active")) {
-                    $("#contenuCategorie").load("{{ path('editcategory') }}");
-                }
-            });
-
-            $("#stock").click(function() {
-                if (!$("#stock").hasClass("active")) {
-                    $("#contenuStock").load("{{ path('editstocks') }}");
-                }
-            });
-
-            $("#reduc").click(function() {
-                if (!$("#reduc").hasClass("active")) {
-                    $("#contenuReduc").load("{{ path('editreducs') }}");
-                }
-            });
-
-            $("#envoi").click(function() {
-                if (!$("#envoi").hasClass("active")) {
-                    $("#contenuEnvoi").load("{{ path('editenvoi') }}");
-                }
-            });
-
-            $("#taxe").click(function() {
-                if (!$("#taxe").hasClass("active")) {
-                    $("#contenuTaxe").load("{{ path('edittaxes') }}");
-                }
-            });
+            $("#contenuPictures").load("{{ path('editproductspictures') }}");
+            $("#contenuCategorie").load("{{ path('editcategory') }}");
+            $("#contenuStock").load("{{ path('editstocks') }}");
+            $("#contenuReduc").load("{{ path('editreducs') }}");
+            $("#contenuEnvoi").load("{{ path('editenvoi') }}");
+            $("#contenuTaxe").load("{{ path('edittaxes') }}");
         });
     </script>
 {% endblock %}

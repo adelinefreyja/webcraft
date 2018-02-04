@@ -66,8 +66,6 @@
         $('.carousel.carousel-slider').carousel({fullWidth: true});
         $('.modal').modal();
 
-        $("#pictures").click(function() {
-            $("#modalContent").load("{{ path('productspicturesgallery') }}");
-        });
+		$("#modalContent").load("{{ path('productspicturesgallery') }}");
     });
 </script>
