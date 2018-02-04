@@ -136,10 +136,6 @@ class ProductsController extends Controller {
             ]
         );
 
-        echo '<pre>';
-        var_dump($_FILES);
-        echo '</pre>';
-
         $_SESSION["produitencours"] = "";
         $_SESSION["produitencours"] = $idProduit;
 
