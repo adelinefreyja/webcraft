@@ -23,7 +23,11 @@ class WebsiteSettingsController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $logo = $repository->findOneBy(
             ["optionname" =>  "logo"]
@@ -68,7 +72,11 @@ class WebsiteSettingsController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $query2 = $rep->findAll(); 
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
 
         $logo = $repository->findOneBy(
             ["optionname" =>  "logo"]
@@ -102,7 +110,7 @@ class WebsiteSettingsController extends Controller
                 );
 
 
-                $website->setOptionvalue("img/" . $fileName);
+                $website->setOptionvalue("img/logo/" . $fileName);
             }
 
             $em = $this->getDoctrine()->getManager();
