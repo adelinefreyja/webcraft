@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Medias;
 use App\Entity\ProductsImages;
 use App\Entity\Products;
 use App\Entity\ProductsStock;
@@ -371,6 +372,25 @@ class ProductsController extends Controller {
         return $this->render('backoffice/products/editenvoi.html.twig',
             [
                 'envoi'   =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/productspicturesgallery", name="productspicturesgallery")
+     */
+    public function editPictureFromGallery(Request $request) {
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(Medias::class);
+        $query2 = $repository2->findBy(
+            [
+                "mediaType" =>  "image"
+            ]
+        );
+
+        return $this->render('backoffice/products/productspicturesgallery.html.twig',
+            [
+                'pictures'   =>  $query2
             ]
         );
     }

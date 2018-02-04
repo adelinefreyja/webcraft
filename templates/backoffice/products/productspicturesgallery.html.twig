@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+            {% set ctp = 0 %}
+
+            {% for pic in pictures %}
+                {% if (ctp is divisible by(4)) or ctp == 0 %}
+                    <div class="row">
+                {% endif %}
+
+                    <div class="col s3" id="img{{ pic.mediaId }}">
+                        <img class="img-responsive" style="width: 200px;" src="{{ asset(pic.mediaSrc) }}" alt="{{ pic.mediaDescription }}">
+                    </div>
+
+                {% if (ctp is divisible by(4)) or ctp == 0 %}
+                    </div>
+                {% endif %}
+                {% set ctp = (ctp + 1) %}
+            {% endfor %}
+    </div>
+</div>
+<div class="container-fluid">
+    <br>
+    <hr>
+    <br>
+    <div class="right">
+        <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+    </div>
+</div>
