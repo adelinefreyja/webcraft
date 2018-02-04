@@ -3,37 +3,150 @@
 {% block title %}Personnaliser mon site :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-colorpicker.min.css') }}" />
 
 {% endblock %}
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Design du site</h4>
+		<div class="col s12">
+			<h4 class="dashboard">
+				<i class="fas fa-paint-brush fa-lg"></i>
+				Design du site
+			</h4>
+			<hr class="left account" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
+		<div class="col s12">
+			<ul class="tabs center-align">
+		        <li class="tab col s3 brown-text"><a href="#template" class="brown-text active">Template</a></li>
+		        <li class="tab col s3 brown-text"><a class="brown-text active" href="#colors">Couleurs</a></li>
+		     	<li class="tab col s3 brown-text"><a class="brown-text active" href="#images">Images</a></li>
+	      	</ul>
+    	</div>
+	    <div id="template" class="col s12">
+	    	{{ form_start(form) }}
+	    	    	
+            {{ form_label(form.template_name) }}
+            <div class="input-field">
+            	{{ form_widget(form.template_name) }}
+            </div>
+            
+           {#  <a href="#colors" class="tab btn orange lighten-2 brown-text right"><i class="fas fa-chevron-right fa-lg"></i> Suivant</a> #}
+                
+	    </div>
+	    <div id="colors" class="col s12">
 
-		<div class="col s9">
+			{{ form_label(form.background_color) }}  
+			<div class="input-field">	
+		    	<div id="bgcolor" class="file-field">
+		    		<div class="btn"></div>
+			    	<div class="file-path-wrapper">
+			    		{{ form_widget(form.background_color) }}
+					</div>
+				</div>
+			</div>
+
+			{{ form_label(form.header_color) }}  
+			<div class="input-field">
+		    	<div id="headercolor" class="file-field">
+		    		<div class="btn"></div>
+			    	<div class="file-path-wrapper">
+			    		{{ form_widget(form.header_color) }}
+					</div>
+				</div>
+			</div>
+
+			{{ form_label(form.text_primary_color) }}  
+			<div class="input-field">
+		    	<div id="h1color" class="file-field">
+		    		<div class="btn"></div>
+			    	<div class="file-path-wrapper">
+			    		{{ form_widget(form.text_primary_color) }}
+					</div>
+				</div>
+			</div>
+
+			{{ form_label(form.text_secondary_color) }}  
+			<div class="input-field">
+		    	<div id="textcolor" class="file-field">
+		    		<div class="btn"></div>
+			    	<div class="file-path-wrapper">
+			    		{{ form_widget(form.text_secondary_color) }}
+					</div>
+				</div>
+			</div>
+
+			{{ form_label(form.links_color) }}  
+			<div class="input-field">
+		    	<div id="linkcolor" class="file-field">
+		    		<div class="btn"></div>
+			    	<div class="file-path-wrapper">
+			    		{{ form_widget(form.links_color) }}
+					</div>
+				</div>
+			</div>
+
+	    </div>
+	    <div id="images" class="col s12">
 			
-		</div>
+			{{ form_label(form.background_img) }}
+            <div class="file-field input-field">
+            	<div class="btn">
+                    <span>Parcourir</span>
+                    {{ form_widget(form.background_img) }}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            	
+            </div>
+            
+            {{ form_label(form.header_img) }}
+            <div class="file-field input-field">
+            	<div class="btn">
+                    <span>Parcourir</span>
+                    {{ form_widget(form.header_img) }}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="right">
+		    	<button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+		    </div>
+	    	{{ form_end(form) }}
+	    </div>
 	</div>
 </div>
 {% endblock %}
 
 {% block specificjs %}
+	<script type="text/javascript" src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
+
+	<script>
+	  $(function(){
+	    $('#bgcolor').colorpicker({
+	    	component: '.btn'
+	    });
+	    $('#linkcolor').colorpicker({
+	    	component: '.btn'
+	    });
+	    $('#h1color').colorpicker({
+	    	component: '.btn'
+	    });
+	    $('#textcolor').colorpicker({
+	    	component: '.btn'
+	    });
+	    $('#headercolor').colorpicker({
+	    	component: '.btn'
+	    });
+	  });
+	</script>
 
 {% endblock %}

@@ -15,65 +15,58 @@ class Design
     /**
      * @var string
      *
-     * @ORM\Column(name="background_color", type="string", length=20, nullable=false)
+     * @ORM\Column(name="background_color", type="string", length=20)
      */
     private $backgroundColor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="main_color", type="string", length=20, nullable=false)
-     */
-    private $mainColor;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="links_color", type="string", length=20, nullable=false)
+     * @ORM\Column(name="links_color", type="string", length=20)
      */
     private $linksColor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text_primary_color", type="string", length=20, nullable=false)
+     * @ORM\Column(name="text_primary_color", type="string", length=20)
      */
     private $textPrimaryColor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text_secondary_color", type="string", length=20, nullable=false)
+     * @ORM\Column(name="text_secondary_color", type="string", length=20)
      */
     private $textSecondaryColor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="header_img", type="string", length=20, nullable=false)
+     * @ORM\Column(name="header_img", type="string", length=20)
      */
     private $headerImg;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="header_color", type="string", length=20, nullable=false)
+     * @ORM\Column(name="header_color", type="string", length=20)
      */
     private $headerColor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="background_img", type="string", length=20, nullable=false)
+     * @ORM\Column(name="background_img", type="string", length=20)
      */
     private $backgroundImg;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="css_add", type="string", length=20, nullable=false)
+     * @ORM\Column(name="template_name", type="string", length=20, nullable=false)
      */
-    private $cssAdd;
+    private $templateName;
 
     /**
      * @var integer
@@ -84,166 +77,185 @@ class Design
      */
     private $fwId;
 
+
     /**
      * @return string
      */
-    public function getBackgroundColor(): string
+    public function getBackgroundColor()
     {
         return $this->backgroundColor;
     }
 
     /**
      * @param string $backgroundColor
+     *
+     * @return self
      */
-    public function setBackgroundColor(string $backgroundColor): void
+    public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = $backgroundColor;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getMainColor(): string
-    {
-        return $this->mainColor;
-    }
-
-    /**
-     * @param string $mainColor
-     */
-    public function setMainColor(string $mainColor): void
-    {
-        $this->mainColor = $mainColor;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLinksColor(): string
+    public function getLinksColor()
     {
         return $this->linksColor;
     }
 
     /**
      * @param string $linksColor
+     *
+     * @return self
      */
-    public function setLinksColor(string $linksColor): void
+    public function setLinksColor($linksColor)
     {
         $this->linksColor = $linksColor;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getTextPrimaryColor(): string
+    public function getTextPrimaryColor()
     {
         return $this->textPrimaryColor;
     }
 
     /**
      * @param string $textPrimaryColor
+     *
+     * @return self
      */
-    public function setTextPrimaryColor(string $textPrimaryColor): void
+    public function setTextPrimaryColor($textPrimaryColor)
     {
         $this->textPrimaryColor = $textPrimaryColor;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getTextSecondaryColor(): string
+    public function getTextSecondaryColor()
     {
         return $this->textSecondaryColor;
     }
 
     /**
      * @param string $textSecondaryColor
+     *
+     * @return self
      */
-    public function setTextSecondaryColor(string $textSecondaryColor): void
+    public function setTextSecondaryColor($textSecondaryColor)
     {
         $this->textSecondaryColor = $textSecondaryColor;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getHeaderImg(): string
+    public function getHeaderImg()
     {
         return $this->headerImg;
     }
 
     /**
      * @param string $headerImg
+     *
+     * @return self
      */
-    public function setHeaderImg(string $headerImg): void
+    public function setHeaderImg($headerImg)
     {
         $this->headerImg = $headerImg;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getHeaderColor(): string
+    public function getHeaderColor()
     {
         return $this->headerColor;
     }
 
     /**
      * @param string $headerColor
+     *
+     * @return self
      */
-    public function setHeaderColor(string $headerColor): void
+    public function setHeaderColor($headerColor)
     {
         $this->headerColor = $headerColor;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getBackgroundImg(): string
+    public function getBackgroundImg()
     {
         return $this->backgroundImg;
     }
 
     /**
      * @param string $backgroundImg
+     *
+     * @return self
      */
-    public function setBackgroundImg(string $backgroundImg): void
+    public function setBackgroundImg($backgroundImg)
     {
         $this->backgroundImg = $backgroundImg;
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getCssAdd(): string
+    public function getTemplateName()
     {
-        return $this->cssAdd;
+        return $this->templateName;
     }
 
     /**
-     * @param string $cssAdd
+     * @param string $templateName
+     *
+     * @return self
      */
-    public function setCssAdd(string $cssAdd): void
+    public function setTemplateName($templateName)
     {
-        $this->cssAdd = $cssAdd;
+        $this->templateName = $templateName;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getFwId(): int
+    public function getFwId()
     {
         return $this->fwId;
     }
 
     /**
-     * @param int $fwId
+     * @param integer $fwId
+     *
+     * @return self
      */
-    public function setFwId(int $fwId): void
+    public function setFwId($fwId)
     {
         $this->fwId = $fwId;
+
+        return $this;
     }
-
-
 }
 

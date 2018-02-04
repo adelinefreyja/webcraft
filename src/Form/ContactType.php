@@ -16,24 +16,44 @@ class ContactType extends AbstractType {
 
         $builder
             ->add("user_name", TextType::class, 
-                [   "label" => "Votre nom" ]
-            )
-            ->add("user_email", EmailType::class, 
-                [   "label" => "Votre Email" ]
-            )
-            ->add("message_object", TextType::class, 
-                [   "label" => "Objet de votre message" ]
-            )
-            ->add('message_date', DateType::class, [
-                'label' =>  'Date',
-                'widget' => 'single_text',
-                'input' =>  'datetime',
-                'data' => new \DateTime('now'),
-                'disabled'  =>  true
+                [   "label" => "Votre nom",
+                    "attr" => [
+                    "class" => "form-control"
+                    ] 
                 ]
             )
+            ->add("user_email", EmailType::class, 
+                [   "label" => "Votre Email",
+                    "attr" => [
+                    "class" => "form-control"
+                    ] 
+                ]
+            )
+            ->add("message_object", TextType::class, 
+                [   "label" => "Objet de votre message",
+                    "attr" => [
+                    "class" => "form-control"
+                    ] 
+                ]
+            )
+            ->add('message_date', DateType::class, [
+                'label'     =>  'Date',
+                'widget'    => 'single_text',
+                'input'     =>  'datetime',
+                'data'      => new \DateTime('now'),
+                'disabled'  =>  true,
+                    "attr"  => [
+                    "class" => "form-control"  
+                    ]
+
+              ]
+            )
             ->add("message_content", TextareaType::class, 
-                [   "label" => "Votre message" ]
+                [   "label" => "Votre message",
+                    "attr" => [
+                    "class" => "form-control"
+                    ] 
+                ]
             )
         ;
     }
