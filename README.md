@@ -22,7 +22,10 @@ ToDo BACKOFFICE (Deadline - 1er au SOIR) :
 - Module de gestion des pages : liste, édition, suppression --- Adeline
 - Catégories de pages, gestion directe ou indirecte --- Adeline
 ```
-- Gérer options newsletter, contact (prise en charge swift-mailer) --- Adeline
+- Gérer options newsletter
+```
+- Option contact --- Adeline
+```
 - Maps API --- Félix
 ```
 Produits : Charles
