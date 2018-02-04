@@ -269,7 +269,7 @@ class ManagePagesController extends Controller
                 'success',
                 "Page mise à jour !"
             );
-            return $this->redirect($this->generateUrl('managepagecategories'));
+            return $this->redirect($this->generateUrl('managepages'));
         }
 
         return $this->render('backoffice/pages/editpagecategories.html.twig', ["sitetype" =>  $query, 'form' => $form->createView(), "category" => $cat, 'categories' => $cats, "messages"  =>  $query2]

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SitePublicController extends Controller
 {
 	/**
-	* @Route("/{pageName}", name="SitePublic")
+	* @Route("/ColoShop/{pageName}", name="SitePublic")
 	*/
     public function publicPage(Request $request, $pageName){
       $repository = $this->getDoctrine()->getManager()->getRepository(Pages::class);
@@ -24,6 +24,20 @@ class SitePublicController extends Controller
 
     }
 
+/**
+  * @Route("/ColoShop/{pageName}==contact", name="contact")
+  */
+    public function contactPage(Request $request, $pageName){
+      $repository = $this->getDoctrine()->getManager()->getRepository(Pages::class);
+      $query = $repository->findOneBy(
+        ['pageName' => $pageName]
+      );
 
+      return $this->render('ColoShop\contact.html.twig',
+          ["Pages" =>  $query]
+      );
+
+
+    }
 
 }
