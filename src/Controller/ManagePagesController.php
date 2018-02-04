@@ -224,7 +224,7 @@ class ManagePagesController extends Controller
                 'success',
                 "Catégorie créée !"
             );
-            return $this->redirectToRoute('managepagecategories');
+            return $this->redirectToRoute('pagecategories');
         }
 
         return $this->render('backoffice/pages/pagecategories.html.twig',
@@ -290,6 +290,6 @@ class ManagePagesController extends Controller
             'success',
             'Catégorie de page supprimée'
         );
-        return $this->redirect($this->generateUrl('managepagecategories'));
+        return $this->redirect($this->generateUrl('pagecategories'));
     }
 }
