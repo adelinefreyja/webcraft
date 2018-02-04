@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ContactController extends Controller
 {
     /**
-    * @Route("/contact", name="contactpage")
+    * @Route("/contacttest", name="contactpage")
     */
     public function displayContactPageAction(Request $request) {
 

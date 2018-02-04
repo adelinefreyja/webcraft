@@ -31,7 +31,7 @@ class Newsletter
     /**
      * @return string
      */
-    public function getEmailValue(): string
+    public function getEmailValue()
     {
         return $this->emailValue;
     }
