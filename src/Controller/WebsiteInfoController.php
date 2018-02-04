@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WebsiteInfoController extends Controller
 {
     /**
-     * @Route("/setup2", name="setup2")
+     * @Route("/install/setup2", name="setup2")
      */
     public function websiteInfoAction(Request $request)
     {

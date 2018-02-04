@@ -165,7 +165,7 @@ class DatabaseController extends Controller {
     }
 
     /**
-     * @Route("/setup", name="setup")
+     * @Route("/install/setup", name="setup")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
