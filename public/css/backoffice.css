@@ -132,3 +132,7 @@ hr.btn_account { border-bottom: 2px solid #795548; width: 20%; margin-top: 50px;
     height: 25px;
     width: 25px;
 }
+
+
+/* DESIGN */
+.tabs .indicator { background-color : #ffb74d; }

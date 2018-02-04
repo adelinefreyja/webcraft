@@ -105,14 +105,13 @@ class DatabaseController extends Controller {
         $connexion->query(
             "CREATE TABLE IF NOT EXISTS design (
 				fw_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-				background_color VARCHAR(20) NOT NULL,
-				main_color VARCHAR(20) NOT NULL,
-				links_color VARCHAR(20) NOT NULL,
-				text_primary_color VARCHAR(20) NOT NULL,
-				text_secondary_color VARCHAR(20) NOT NULL,
-				header_img VARCHAR(20) NOT NULL,
-				header_color VARCHAR(20) NOT NULL,
-				background_img VARCHAR(20) NOT NULL,
+				background_color VARCHAR(20) NULL,
+				links_color VARCHAR(20) NULL,
+				text_primary_color VARCHAR(20) NULL,
+				text_secondary_color VARCHAR(20) NULL,
+				header_img VARCHAR(20) NULL,
+				header_color VARCHAR(20) NULL,
+				background_img VARCHAR(20) NULL,
 				template_name VARCHAR(50) NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
