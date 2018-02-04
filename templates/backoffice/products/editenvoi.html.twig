@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+
+        {% set newArray = [] %}
+
+        {% if envoi is not empty %}
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field">
+                            <h5>Méthodes actuelles</h5>
+                        {% for env in envoi %}
+                            <p>{{ env.shipmentMethod }} pour {{ env.price }}€</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <div class="row">
+                <div class="right">
+                    <a href="{{ path("shipments") }}" class="waves-effect waves-light btn btn-success brown darken-1"><i class="fas fa-truck fa-lg"></i> Gérer mes méthodes d'expédition</a>
+                </div>
+            </div>
+        {% else %}
+            <h4>Aucune méthode d'expédition n'a été ajoutée.<br />Vous pouvez en ajouter en cliquant sur <a href="{{ path("shipments") }}">ce lien</a></h4>
+        {% endif %}
+    </div>
+</div>

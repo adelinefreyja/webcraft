@@ -5,16 +5,19 @@ namespace App\Controller;
 use App\Entity\ProductsImages;
 use App\Entity\Products;
 use App\Entity\ProductsStock;
+use App\Entity\Shipment;
 use App\Entity\WebsiteInfo;
 use App\Entity\ProductsTax;
 use App\Entity\ProductsCategory;
 use App\Entity\Contact;
+use App\Form\ProductsEditReducsType;
 use App\Form\ProductsImagesType;
 use App\Form\ProductsStockType;
 use App\Form\AddProductsImagesType;
 use App\Form\ProductsCategoriesType;
 use App\Form\ProductsAddTaxType;
 use App\Form\ProductsEditCategoryType;
+use App\Form\ShipmentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
@@ -205,14 +208,38 @@ class ProductsController extends Controller {
                 $fileName
             );
 
+            $repository = $this->getDoctrine()->getManager()->getRepository(Products::class);
+            $product = $repository->findOneBy(
+                ["productId" =>  (int)$_SESSION["produitencours"]]
+            );
+
             $em = $this->getDoctrine()->getManager();
-            $picture->setProduct($_SESSION["produitencours"]);
+            $picture->setProduct($product);
             $picture->setImage("img/products/" . $fileName);
             $em->persist($picture);
             $em->flush();
 
             return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
 
+        } else if (isset($_POST["products_edit_reducs"]) && !empty($_POST["products_edit_reducs"])) {
+
+            $repository = $this->getDoctrine()->getManager()->getRepository(Products::class);
+            $sale = $repository->findOneBy(
+                ["productId" =>  (int)$_SESSION["produitencours"]]
+            );
+
+            $tauxReduc = strip_tags(trim((int)$_POST["products_edit_reducs"]["productSale"]));
+
+            $em = $this->getDoctrine()->getManager();
+
+            if ($tauxReduc == 0) {
+                $sale->setProductSale(NULL);
+            } else {
+                $sale->setProductSale($tauxReduc);
+            }
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
         }
 
         return $this->render(
@@ -305,6 +332,45 @@ class ProductsController extends Controller {
             [
                 'form'      =>  $form->createView(),
                 'pictures'  =>  $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editreducs", name="editreducs")
+     */
+    public function editReducs(Request $request) {
+
+        $prod = new Products();
+        $form = $this->createForm(ProductsEditReducsType::class, $prod);
+        $form->handleRequest($request);
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(Products::class);
+        $query2 = $repository2->findOneBy(
+            [
+                "productId" =>  $_SESSION["produitencours"]
+            ]
+        );
+
+        return $this->render('backoffice/products/editreducs.html.twig',
+            [
+                'form'    =>  $form->createView(),
+                'product' => $query2
+            ]
+        );
+    }
+
+    /**
+     * @Route("/craft/products/manageproducts/editenvoi", name="editenvoi")
+     */
+    public function editEnvoi(Request $request) {
+
+        $repository2 = $this->getDoctrine()->getManager()->getRepository(Shipment::class);
+        $query2 = $repository2->findAll();
+
+        return $this->render('backoffice/products/editenvoi.html.twig',
+            [
+                'envoi'   =>  $query2
             ]
         );
     }

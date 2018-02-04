@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="col s12">
+                <div class="input-field">
+                    <label for="products_edit_reducs_productSale" id="labelReduc" class="required">Réductions pour le produit</label>
+                    {{ form_widget(form.productSale) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="right">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% if product.productSale is not null %}
+    <script>
+        $(document).ready(function() {
+            $('#products_edit_reducs_productSale').val("{{ product.productSale }}");
+
+            if ($('#products_edit_reducs_productSale').val() != "") {
+                $('#labelReduc').addClass("active");
+            }
+        });
+    </script>
+{% endif %}

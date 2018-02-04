@@ -33,8 +33,20 @@
                         <span id="contenuStock"></span>
                     </div>
                 </li>
+                <li id="reduc">
+                    <div class="collapsible-header">Gérer les réductions</div>
+                    <div class="collapsible-body">
+                        <span id="contenuReduc"></span>
+                    </div>
+                </li>
+                <li id="envoi">
+                    <div class="collapsible-header">Gérer les méthodes d'expédition</div>
+                    <div class="collapsible-body">
+                        <span id="contenuEnvoi"></span>
+                    </div>
+                </li>
                 <li id="taxe">
-                    <div class="collapsible-header">Gérer les taxes sur le produit</div>
+                    <div class="collapsible-header">Gérer les taxes sur le produit (taux en %age)</div>
                     <div class="collapsible-body">
                         <span id="contenuTaxe"></span>
                     </div>
@@ -66,6 +78,18 @@
             $("#stock").click(function() {
                 if (!$("#stock").hasClass("active")) {
                     $("#contenuStock").load("{{ path('editstocks') }}");
+                }
+            });
+
+            $("#reduc").click(function() {
+                if (!$("#reduc").hasClass("active")) {
+                    $("#contenuReduc").load("{{ path('editreducs') }}");
+                }
+            });
+
+            $("#envoi").click(function() {
+                if (!$("#envoi").hasClass("active")) {
+                    $("#contenuEnvoi").load("{{ path('editenvoi') }}");
                 }
             });
 

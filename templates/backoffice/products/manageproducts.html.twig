@@ -31,7 +31,7 @@
                         <th>Description</th>
                         <th>Visuel</th>
                         <th>Prix</th>
-                        <th>En vente</th>
+                        <th>Taux de réduction</th>
                         <th>Catégorie</th>
                         <th>Gestion du produit</th>
                     </tr>
@@ -42,15 +42,23 @@
                         <td>{{ prod.getProductName }}</td>
                         <td>{{ prod.getProductDescription }}</td>
 
+                        {% set findPic = false %}
                         {% for pics in pictures %}
-                            {% if (pics.getProduct.productId == prod.getProductId) %}
+                            {% if (pics.getProduct.productId == prod.getProductId) and (findPic == false) %}
                                 <td>
                                     <img src="{{ asset(pics.getImage) }}" alt="{{ prod.getProductDescription }}" class="imgsmall materialboxed tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cliquez pour agrandir">
                                 </td>
+                                {% set findPic = true %}
                             {% endif %}
                         {% endfor %}
-                        <td>{{ prod.getProductPrice }}</td>
-                        <td>{{ prod.getProductSale }}</td>
+                        <td>{{ prod.getProductPrice }}€</td>
+
+                        {% if prod.getProductSale is null %}
+                        <td style="font-style: italic">(aucun)</td>
+                        {% else %}
+                        <td>{{ prod.getProductSale }}%</td>
+                        {% endif %}
+
                         {% set hasCat = false %}
                         {% for cat in categories %}
                             {% if cat.product == prod.getProductId %}
@@ -59,7 +67,7 @@
                             {% endif %}
                         {% endfor %}
                         {% if hasCat == false %}
-                            <td style="font-style: italic">(aucune catégorie)</td>
+                            <td style="font-style: italic">(aucune)</td>
                         {% endif %}
                         <td>
                             <button data-target="modal{{ prod.getProductId }}" class="btn green lighten-2 tooltipped modal-trigger" data-position="left" data-tooltip="Aperçu"><span class="fa fa-search white-text"></span></button>

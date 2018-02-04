@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="row">
+                {{ form_start(form) }}
                 <div class="col s12">
-                    {{ form_start(form) }}
                     <div class="input-field">
                         {{ form_widget(form.tax) }}
                     </div>
@@ -41,8 +41,6 @@
     </div>
 </div>
 <script>
-    $('#products_add_tax_tax').hidden;
-
     $(document).ready(function() {
         $('#inputTax').material_select();
 

@@ -25,7 +25,7 @@ class ProductsType extends AbstractType {
                 ["label"    =>  "Prix du produit"]
             )
             ->add("productSale", NumberType::class,
-                ["label"    =>  "Promotion du produit"]
+                ["label"    =>  "Réductions pour le produit (taux en %age)", "required"  =>  false]
             )
         ;
     }

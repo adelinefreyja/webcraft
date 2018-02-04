@@ -29,9 +29,11 @@ class ProductsImages
     private $productimgId;
 
     /**
-     * @var integer
+     * @var \App\Entity\Products
      *
-     * @ORM\Column(name="product_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Products", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_id", referencedColumnName="product_id")
      * })
      */
     private $productId;
@@ -77,7 +79,7 @@ class ProductsImages
     }
 
     /**
-     * @return integer
+     * @return \App\Entity\Products
      */
     public function getProduct()
     {
@@ -85,11 +87,11 @@ class ProductsImages
     }
 
     /**
-     * @param integer
+     * @param \App\Entity\Products $product
      *
      * @return self
      */
-    public function setProduct($product)
+    public function setProduct(\App\Entity\Products $product)
     {
         $this->productId = $product;
 
