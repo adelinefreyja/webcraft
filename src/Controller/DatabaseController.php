@@ -113,7 +113,7 @@ class DatabaseController extends Controller {
 				header_img VARCHAR(20) NOT NULL,
 				header_color VARCHAR(20) NOT NULL,
 				background_img VARCHAR(20) NOT NULL,
-				css_add VARCHAR(20) NOT NULL
+				template_name VARCHAR(50) NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
 
