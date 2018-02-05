@@ -250,8 +250,7 @@ section
 	height: 100%;
 }
 .super_container
-{
-	margin-top: 84px;
+}
 	width: 100%;
 	overflow: hidden;
 }
@@ -827,7 +826,6 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	margin-top: 150px;
 }
 .main_slider_content
 {

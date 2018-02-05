@@ -1,0 +1,38 @@
+{% extends ('ColoShop/base.html.twig') %}
+
+{% block content %}
+<div style="height:50px!important;"></div>
+<div class="container">
+<div class="col-sm-12">
+        <div class="title center-align">
+            <i class="far fa-smile fa-3x"></i>
+            <h4> Connectez-vous </h4>
+            <hr>
+        </div>
+    
+
+    {% if error %}
+        <div class="error">{{ error.messageKey|trans({'Invalid credentials': 'Identifiant et/ou mot de passe incorrect', 'Authentication request could not be processed due to a system problem' : 'L\'identification à échoué pour une raison inconnue. Réessayez plus tard'}) }}</div>
+    {% endif %}
+
+    <form action="{{ path('login_check') }}" method="post">
+        <div class="form-group">
+            <label for="username">Pseudo</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input class="form-control" type="password" id="password" name="_password" />
+        </div>
+        <input type="hidden" name="_target_path" value="{{ path('sitepublic',{'category_name':'Accueil'}) }}" />
+
+        <button type="submit" class="right waves-effect waves-light btn-block btn-success btn orange lighten-2"><i class="fas fa-sign-in-alt fa-lg"></i> Se connecter</button>
+    </form>
+   {#  <div class="">
+        <a href="{{ path('forgotten_password') }}">Mot de passe oublié ?</a>
+    </div> #}
+
+</div>
+</div>
+{% endblock %}

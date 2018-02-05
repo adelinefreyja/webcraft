@@ -21,7 +21,7 @@ class SitePublicController extends Controller
 	/**
 	* @Route("/ColoShop/{category_name}", name="sitepublic")
 	*/
-    public function publicPage(Request $request, $category_name, UserPasswordEncoderInterface $passwordEncoder){
+    public function publicPage(Request $request, $category_name, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authUtils){
       
         $repository = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $query = $repository->findOneBy(
@@ -58,11 +58,6 @@ class SitePublicController extends Controller
             );
             /* View Contact */
         }elseif ($category_name == "Contact") {
-
-           
-
-            $user = $this->getUser();
-            $user->getId();
 
             $contact = new Contact();
             $contactForm = $this->createForm(ContactType::class, $contact);
@@ -130,7 +125,7 @@ class SitePublicController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Accueil"]);
+            return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Signin"]);
         }
         return $this->render('ColoShop\register.html.twig',
             array(
@@ -142,7 +137,24 @@ class SitePublicController extends Controller
             )
         );
     }
-        /* Si l'URL est incorrect */
+       
+
+       elseif ($category_name == "Signin") {
+    
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+
+        return $this->render('ColoShop/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+             'newsletterform' => $newsletterForm->createView(), 
+        ));
+    }
+    
+     /* Si l'URL est incorrect */
         else {
             $query = $repository->findOneBy(
                 ['category_name' => "Accueil"]
@@ -151,7 +163,25 @@ class SitePublicController extends Controller
                 ["category_name" =>  $query]
             );
         }
+      }
 
+
+    /**
+     * ça, c'est une méthode de Symfony, elle permet la connexion, on touche pas
+     * @Route("/login_check", name="login_check")
+     */
+    public function check()
+    {
+        throw new \RuntimeException('You must configure the check path to be handled by the firewall using form_login in your security firewall configuration.');
+    }
+
+    /**
+     * la méthode pour se déconnecter, gérer pas Symfony, donc on laisse la méthode de base
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
+        throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
     }
 
 }
