@@ -1,0 +1,41 @@
+{% extends 'backoffice/index.html.twig' %}
+
+{% block title %}Mes abonnées Newsletter :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col s3">
+			<h4></h4>
+		</div>
+		<div class="col s9">
+			<h4>Mes abonnées Newsletter</h4>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="col s6">
+
+			<table class="responsive-table striped bordered">
+				    <tr>
+						<th>Email abonné</th>
+				    </tr>
+
+			    {% for email in newsletter %}
+			        <tr>
+						<td>{{ email.emailValue }}</td>				  
+			        </tr>
+	 		    {% endfor %}
+		    </table>
+
+</div>
+{% endblock %}
+
+{% block specificjs %}
+
+{% endblock %}

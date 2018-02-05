@@ -34,7 +34,7 @@ class SitePublicController extends Controller
                 ]
             );
             /* View NEWSLETTER */
-        $newsletter = new Newsletter();
+                $newsletter = new Newsletter();
                 $newsletterForm = $this->createForm(NewsletterType::class, $newsletter);
                 $newsletterForm->handleRequest($request);
 

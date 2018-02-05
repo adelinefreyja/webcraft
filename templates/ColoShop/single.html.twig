@@ -1,67 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Single Product</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Colo Shop Template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('ColoShop/plugins/themify-icons/themify-icons.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/bootstrap4/bootstrap.min.css') }}">
-<link href="{{ asset('ColoShop/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/plugins/OwlCarousel2-2.2.1/animate.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/main_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/responsive.css') }}">
-{% endblock %}
-{% block specificcss %}
-{% endblock %}
-</head>
-
-<body>
-
-<div class="super_container">
-
-	<!-- Header -->
-
-	<header class="header trans_300">
-
-		<!-- Top Navigation -->
-
-		{% include 'ColoShop/topnav.html.twig' %}
-
-		<!-- Main Navigation -->
-
-		{% include 'ColoShop/nav.html.twig' %}
-
-	</header>
-
-	<div class="fs_menu_overlay"></div>
-
-	<!-- Hamburger Menu -->
-
-	{% include 'ColoShop/hamnav.html.twig' %}
-
+{% extends ('ColoShop/base.html.twig') %}
+{% block content %}
 	<div class="container single_product_container">
-		<div class="row">
-			<div class="col">
-
-				<!-- Breadcrumbs -->
-
-				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
-					</ul>
-				</div>
-
-			</div>
-		</div>
-
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="single_product_pics">
@@ -333,29 +272,4 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Newsletter -->
-
-	{% include 'ColoShop/newsletter.html.twig' %}
-
-	<!-- Footer -->
-
-	{% include 'ColoShop/footer.html.twig' %}
-
-</div>
-{% block javascripts %}
-<script src="{{ asset('ColoShop/js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('ColoShop/styles/bootstrap4/popper.js') }}"></script>
-<script src="{{ asset('ColoShop/styles/bootstrap4/bootstrap.min.js') }}"></script>
-<script src="{{ asset('ColoShop/plugins/Isotope/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('ColoShop/plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
-<script src="{{ asset('ColoShop/plugins/easing/easing.js') }}"></script>
-<script src="{{ asset('ColoShop/js/custom.js') }}"></script>
-<script src="{{ asset('ColoShop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js') }}"></script>
 {% endblock %}
-
-
-
-</body>
-
-</html>
