@@ -24,6 +24,37 @@
 	</div>
 	<div class="row">
 		<div class="col s12">
+            <div class="card-panel brown-text">
+                {{ form_start(form) }}
+
+                {{ form_label(form.page_name, "Première page") }}
+                {{ form_widget(form.page_name) }}
+
+
+                <div class="right">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div>
+                {{ form_end(form) }}
+
+                {{ form_start(form2) }}
+
+                {{ form_label(form2.page_name, "Deuxième page") }}
+                {{ form_widget(form2.page_name) }}
+
+                <div class="right">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div>
+                {{ form_end(form2) }}
+{# 
+                {{ form_start(form) }}
+
+                {{ form_widget(form.menu_rank, { "attr" : { "data" : 2 }}) }}
+                {{ form_widget(form.page_name, { "attr" : { "label" : "Seconde page"}}) }}
+
+                <div class="right">
+                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+                </div> #}
+            </div>
 			{% if pages is not empty %}
                 <ul>
                 {% for page in pages %}
