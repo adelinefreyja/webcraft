@@ -10,6 +10,7 @@ security:
     # ROLE_SUPER_ADMIN, les droits de ROLE_ADMIN (donc ceux de user), ROLE_ALLOWED_TO_SWITCH permet de changer de "compte", se faire passer pour quelqu'un d'autre
     # le super-admin pourra ainsi accéder à un autre compte utilisateur sans avoir besoin de son mot de passe (utile pour le debug)
     role_hierarchy:
+        ROLE_CUSTOMER:    [ROLE_CUSTOMER]
         ROLE_ADMIN:       [ROLE_USER]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 

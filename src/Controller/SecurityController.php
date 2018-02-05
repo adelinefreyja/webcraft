@@ -40,6 +40,7 @@ class SecurityController extends Controller
             $user->setPassword($password);
 
             // 4) save the User!
+            $user->setRoles(['ROLE_SUPER_ADMIN']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

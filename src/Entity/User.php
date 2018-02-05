@@ -100,7 +100,7 @@ class User implements UserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
         // 
-        $this->setRoles(['ROLE_SUPER_ADMIN']);
+        $this->setRoles(['ROLE_CUSTOMER']);
 
         $this->setUserIp($_SERVER["REMOTE_ADDR"]);
     }

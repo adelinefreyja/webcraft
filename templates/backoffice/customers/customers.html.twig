@@ -25,22 +25,23 @@
 								<th>N° Portable</th>
 						</tr>
 
-								{% for Id in user %}
+								{% for Id in customers %}
 									<tr>
-								      <td>{{ Id.userlastname }}</td>
-							        <td>{{ Id.userfirstname }}</td>
-								      <td>{{ Id.useremail }}</td>
-								 {% endfor %}
+								      
+							        <td>{{ Id.user_first_name }}</td>
+							        <td>{{ Id.user_last_name }}</td>
+								    <td>{{ Id.user_email }}</td>
+								 
 
-					  	 	 {% for Id in userAddress %}
-							       <td>{{ Id.userAddress }}</td>
-							       <td>{{ Id.userZipCode }}</td>
-								     <td>{{ Id.userCity }}</td>
-								 {% endfor %}
+					  	 	 
+							        <td>{{ Id.user_address }}</td>
+							        <td>{{ Id.user_zipCode }}</td>
+								    <td>{{ Id.user_city }}</td>
+							
 
-								 {% for Id in customers %}
-		 							   <td>{{ Id.userMobilephone }}</td>
-		 							   <td>{{ Id.userLandphone }}</td>
+								
+		 							<td>{{ Id.user_mobilePhone }}</td>
+		 							<td>{{ Id.user_landPhone }}</td>
 									</tr>
 						   {% endfor %}
 			</table>

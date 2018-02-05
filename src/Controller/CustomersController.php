@@ -15,36 +15,33 @@ class CustomersController extends Controller
 	/**
 	* @Route("/craft/customers", name="customers")
 	*/
-	public function new(Request $request) {
-
+	
+    public function getCustomInformations(Request $request)
+        {
         $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
-
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(
             [
                 "status"    =>  "nonlu"
             ]
         );
-		
-		$queryCustomers = $this->getDoctrine()->getManager()->getRepository(Customers::class);
-        $customers = $queryCustomers->findAll();
 
-		$queryUser = $this->getDoctrine()->getManager()->getRepository(User::class);
-        $user = $queryUser->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $rawSql = "SELECT user_first_name, user_last_name, user_email, user_address, user_zipCode, user_city, user_landPhone, user_mobilePhone FROM user, user_address, customers WHERE user.id = user_address.id AND customers.id = user.id";
 
-		$queryUserAddress = $this->getDoctrine()->getManager()->getRepository(UserAddress::class);
-        $userAddress = $queryUserAddress->findAll();
+        $statement = $em->getConnection()->prepare($rawSql);
+        $statement->execute();
 
+        $result = $statement->fetchAll();
         return $this->render('backoffice/customers/customers.html.twig',
-            [ "customers" => $customers,
-						  "user" => $user,
-							"userAddress" => $userAddress,
-							"sitetype" =>  $query,
-							"messages"  =>  $query2
-			]
+        [
+            "messages" => $query2,
+            "sitetype" => $query,
+            "customers" => $result
+        ]
         );
-	}
+    }
 }
