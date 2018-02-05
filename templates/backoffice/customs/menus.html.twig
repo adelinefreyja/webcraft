@@ -5,6 +5,9 @@
 {% block specificcss %}
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.structure.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.theme.min.css') }}">
 {% endblock %}
 
 
@@ -22,53 +25,67 @@
     		</div>
     	</div>
 	</div>
+</div>
+<div class="container">
 	<div class="row">
-		<div class="col s12">
-            <div class="card-panel brown-text">
-                {{ form_start(form) }}
+        {% set total = 0 %}
+        {% set globalcpt = 1 %}
 
-                {{ form_label(form.page_name, "Première page") }}
-                {{ form_widget(form.page_name) }}
-
-
-                <div class="right">
-                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-                </div>
-                {{ form_end(form) }}
-
-                {{ form_start(form2) }}
-
-                {{ form_label(form2.page_name, "Deuxième page") }}
-                {{ form_widget(form2.page_name) }}
-
-                <div class="right">
-                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-                </div>
-                {{ form_end(form2) }}
-{# 
-                {{ form_start(form) }}
-
-                {{ form_widget(form.menu_rank, { "attr" : { "data" : 2 }}) }}
-                {{ form_widget(form.page_name, { "attr" : { "label" : "Seconde page"}}) }}
-
-                <div class="right">
-                    <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-                </div> #}
-            </div>
-			{% if pages is not empty %}
-                <ul>
-                {% for page in pages %}
-                    <li>><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</li>
-                {% endfor %}
+        {% for pag in pages %}
+            {% set total = (total + 1) %}
+        {% endfor %}
+        {% if total > 5 %}
+            {% set total = 5 %}
+        {% endif %}
+        {{ form_start(form) }}
+        <h5>Sélectionnez les 5 pages que vous souhaitez voir apparaître sur le menu</h5>
+            <div class="col s12">
+                <ul id="sortable" class="collection">
+                    {% set i = 0 %}
+                    {% for page in pages %}
+                        {% if i < 5 %}
+                            <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                            {% set i = (i + 1) %}
+                        {% else %}
+                            <li class="ui-state-default collection-item" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
-            {% endif %}
-		</div>
-		<div class="col s8">
-		</div>
+                <div class="right">
+                    <button type="submit" class="btn purple darken-2 white-text"><i class="fa fa-random white-text"></i> Ordonner</button>
+                </div>
+            </div>
+
+        {{ form_widget(form.pageName) }}
+        {{ form_end(form) }}
+	</div>
 </div>
 
 {% endblock %}
 
 {% block specificjs %}
+    <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sortable').sortable({
+                stop: function( event, ui ) {
+                    var itemOrder = $('#sortable').sortable("toArray");
 
+                    var j = 0;
+                    var tab = [];
+
+                    for (var i = 0; i < itemOrder.length; i++) {
+                        $("#" + itemOrder[i]).removeClass("green lighten-1 white-text");
+
+                        if (j < 5) {
+                            $("#" + itemOrder[i]).addClass("green lighten-1 white-text");
+                            tab.push(itemOrder[i]);
+                            j++;
+                        }
+                    }
+                    $("#menu_pageName").val(tab);
+                }
+            });
+        });
+    </script>
 {% endblock %}

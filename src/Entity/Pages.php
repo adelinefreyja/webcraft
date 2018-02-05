@@ -314,7 +314,6 @@ class Pages
     public function __toString() {
         
         return $this->pageName;
-        return $this->pageTitle;
     }
 
 }
