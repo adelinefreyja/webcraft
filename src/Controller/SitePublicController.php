@@ -53,7 +53,7 @@ class SitePublicController extends Controller
                 } 
                 /* View Accueil */
         if($category_name == "Accueil"){
-            return $this->render('ColoShop\index.html.twig',
+            return $this->render('front\ColoShop\index.html.twig',
             ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView(),]
             );
             /* View Contact */
@@ -80,20 +80,20 @@ class SitePublicController extends Controller
                 }
         
                
-                return $this->render('ColoShop\contact.html.twig',
+                return $this->render('front\ColoShop\contact.html.twig',
                     ["Pages" =>  $query, 'contactform' => $contactForm->createView(), "messages"  =>  $query2 , 'newsletterform' => $newsletterForm->createView(),]
                 );
 
         }
         /* View Shop */
         elseif($category_name == "Shop"){
-            return $this->render('ColoShop\categories.html.twig',
+            return $this->render('front\ColoShop\categories.html.twig',
             ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView(),]
             );
         }
         /* View Pages */
         elseif($category_name == "Pages"){
-            return $this->render('ColoShop\single.html.twig',
+            return $this->render('front\ColoShop\single.html.twig',
             ["Pages" =>  $query ,  'newsletterform' => $newsletterForm->createView(),]
             );
         }
@@ -127,7 +127,7 @@ class SitePublicController extends Controller
 
             return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Signin"]);
         }
-        return $this->render('ColoShop\register.html.twig',
+        return $this->render('front\ColoShop\register.html.twig',
             array(
                 "sitetype"  =>  $query, 
                 "form" => $form->createView(),
@@ -147,7 +147,7 @@ class SitePublicController extends Controller
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render('ColoShop/login.html.twig', array(
+        return $this->render('front\ColoShop\login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
              'newsletterform' => $newsletterForm->createView(), 
