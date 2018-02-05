@@ -23,16 +23,13 @@
     	</div>
 	</div>
 	<div class="row">
-		<div class="col s4">
+		<div class="col s12">
 			{% if pages is not empty %}
-            <fieldset>
-                <legend>Mes pages</legend>
-                    <ul>
-                    {% for page in pages %}
-                        <li>><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</li>
-                    {% endfor %}
-                    </ul>
-            </fieldset>
+                <ul>
+                {% for page in pages %}
+                    <li>><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</li>
+                {% endfor %}
+                </ul>
             {% endif %}
 		</div>
 		<div class="col s8">
