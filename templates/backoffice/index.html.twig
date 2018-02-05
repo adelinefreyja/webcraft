@@ -62,8 +62,9 @@
         <li class="submenu Orders hide"><a href="{{ path('manageorders') }}" class="Orders"><span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span></a></li>
 
         {# Parameters Submenu #}
-        <li class="submenu Parameters hide"><a href="{{ path('websitesettings') }}" class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>
+        <li class="submenu Parameters hide"><a href="{{ path('websitesettings') }}" class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>      
         <li class="submenu Parameters hide"><a href="{{ path('manageusers') }}" class="Parameters"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></a></li>
+        <li class="submenu Parameters hide"><a href="{{ path('BackofficeNewsletter') }}" class="Parameters"><span><i class="fas fa-paper-plane fa-lg"></i> Newsletter</span></a></li>
 
         {% if sitetype == true %}
             <li class="submenu Parameters hide"><a href="{{ path('shopsettings') }}" class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
@@ -122,6 +123,7 @@
               <div class="collapsible-body">
                 <span><a href="{{ path('websitesettings') }}"><i class="fas fa-cogs fa-lg"></i> Paramètres du site</a></span>
                 <span><a href="{{ path('manageusers') }}"><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</a></span>
+                <span><a href="{{ path('BackofficeNewsletter') }}"><i class="fas fa-cogs fa-lg"></i> Newsletter</a></span>
                 <span><a href="{{ path('shopsettings') }}"><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</a></span>
                 <span><a href="{{ path('managecomments') }}"><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</a></span>
                 </div>
