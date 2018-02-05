@@ -64,7 +64,7 @@ class WebsiteInfo
     /**
      * @param mixed $description
      */
-    public function setDescription($description): void
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -90,7 +90,7 @@ class WebsiteInfo
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -98,7 +98,7 @@ class WebsiteInfo
     }
 
     /**
-     * @param mixed $id
+     * @param integer $id
      *
      * @return self
      */
@@ -110,7 +110,7 @@ class WebsiteInfo
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOptionname()
     {
@@ -118,7 +118,7 @@ class WebsiteInfo
     }
 
     /**
-     * @param mixed $optionname
+     * @param string $optionname
      *
      * @return self
      */
@@ -147,5 +147,13 @@ class WebsiteInfo
         $this->optionvalue = $optionvalue;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+
+        return $this->optionname;
     }
 }

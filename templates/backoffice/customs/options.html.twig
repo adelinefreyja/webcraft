@@ -39,7 +39,27 @@
 						<div class="btn disabled">
 							Module activé
 						</div>
-						{# <a href="{{ path('disablemodule', {'optionname' : contact.optionname}) }}" class="btn red darken-2 white-text">Désactiver</a> #}
+
+						{% set i = 0 %}
+						{% set j = 0 %}
+						{% set reset = false %}
+
+						{% for md in mod %}
+							{% if reset == false %}
+								{% set i = (i + md.id) %}
+								{% set reset = true %}
+							{% endif %}
+
+							{% if md.optionname == 'contact' %}
+								{% set j = i %}
+							{% else %}
+								{% set i = (i + 1) %}
+							{% endif %}
+
+						{% endfor %}
+								
+
+						<a href="{{ path('disablemodule', {'id': j}) }}" class="btn red darken-2 white-text">Désactiver</a>
 					{% endif %}
 
 				</p>

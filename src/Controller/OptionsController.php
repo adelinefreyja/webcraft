@@ -37,18 +37,21 @@ class OptionsController extends Controller
         $fetchContactMod = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $contactMod = $fetchContactMod->findOneBy(
             ["optionname" => "contact",
-            "description" => "module"
-            ]
+             "description"  =>  "module",
+            ]   
         );
 
-        $contactMod = new WebsiteInfo();
-        $activContact = $this->createForm(ContactOptionType::class, $contactMod);
+        $modId = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $mod = $modId->findAll();
+
+        $contact = new WebsiteInfo();
+        $activContact = $this->createForm(ContactOptionType::class, $contact);
 
         $activContact->handleRequest($request);
         if ($activContact->isSubmitted() && $activContact->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($contactMod);
+            $em->persist($contact);
             $em->flush();
             $this->addFlash(
                 'success',
@@ -59,9 +62,21 @@ class OptionsController extends Controller
 
 
         return $this->render('backoffice/customs/options.html.twig',
-            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2]
+            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2, "mod" => $mod]
         );
 	}
 
+    /**
+    * @Route("/craft/options/disable/{id}", name="disablemodule")
+    */
+    public function disableModuleAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $mod = $em->getRepository(WebsiteInfo::class)
+            ->findOneBy(['id' => $id]);
+        $em->remove($mod);
+        $em->flush();
 
+        return $this->redirect($this->generateUrl('options'));
+    }
 }
