@@ -48,10 +48,44 @@ $_SESSION["sitetype"] = "";
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $repo = $this->getDoctrine()->getManager()->getRepository(Design::class);
+            $delete = $repo->findAll();
+
             $em = $this->getDoctrine()->getManager();
+
+            foreach ($delete as $value) {
+
+                $deleteAction = $em->getRepository(Design::class)->find($value->getFwId());
+                $em->remove($deleteAction);
+
+            }
+
+            $file = $form["background_img"]->getData();
+            $file2 = $form["header_img"]->getData();
+
+            try {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
+            } catch (\Exception $e) {
+                $fileName = md5(uniqid()) . '.' . $file->getExtension();
+                $fileName2 = md5(uniqid()) . '.' . $file2->getExtension();
+            }
+
+            $file->move(
+                $this->getParameter('design_directory'),
+                $fileName
+            );
+            $file2->move(
+                $this->getParameter('design_directory'),
+                $fileName2
+            );
+
+            $design->setBackgroundImg("img/design/" . $fileName);
+            $design->setHeaderImg("img/design/" . $fileName2);
+
             $em->persist($design);
             $em->flush();
-            
+
             return $this->redirectToRoute('design');
 
         }

@@ -24,97 +24,121 @@
 	<div class="row">
 		<div class="col s12">
 			<ul class="tabs center-align">
-		        <li class="tab col s3 brown-text"><a href="#template" class="brown-text active">Template</a></li>
-		        <li class="tab col s3 brown-text"><a class="brown-text active" href="#colors">Couleurs</a></li>
-		     	<li class="tab col s3 brown-text"><a class="brown-text active" href="#images">Images</a></li>
+		        <li class="tab col s3 brown-text"><a href="#tab1" class="brown-text active">Template</a></li>
+		        <li class="tab col s3 brown-text"><a class="brown-text active" href="#tab2">Couleurs</a></li>
+		     	<li class="tab col s3 brown-text"><a class="brown-text active" href="#tab3">Images</a></li>
 	      	</ul>
     	</div>
-	    <div id="template" class="col s12">
+	    <div id="tab1" class="col s12">
 	    	{{ form_start(form) }}
 	    	    	
             {{ form_label(form.template_name) }}
             <div class="input-field">
             	{{ form_widget(form.template_name) }}
             </div>
-            
+            <div class="right">
+                <button type="button" class="waves-effect waves-light btn btn-success brown lighten-2 white-text nextBtn">Suivant <i class="fas fa-arrow-right fa-lg"></i></button>
+            </div>
            {#  <a href="#colors" class="tab btn orange lighten-2 brown-text right"><i class="fas fa-chevron-right fa-lg"></i> Suivant</a> #}
                 
 	    </div>
-	    <div id="colors" class="col s12">
+	    <div id="tab2" class="col s12">
 
-			{{ form_label(form.background_color) }}  
-			<div class="input-field">	
-		    	<div id="bgcolor" class="file-field">
-		    		<div class="btn"></div>
-			    	<div class="file-path-wrapper">
-			    		{{ form_widget(form.background_color) }}
-					</div>
-				</div>
-			</div>
-
-			{{ form_label(form.header_color) }}  
-			<div class="input-field">
-		    	<div id="headercolor" class="file-field">
-		    		<div class="btn"></div>
-			    	<div class="file-path-wrapper">
-			    		{{ form_widget(form.header_color) }}
-					</div>
-				</div>
-			</div>
-
-			{{ form_label(form.text_primary_color) }}  
-			<div class="input-field">
-		    	<div id="h1color" class="file-field">
-		    		<div class="btn"></div>
-			    	<div class="file-path-wrapper">
-			    		{{ form_widget(form.text_primary_color) }}
-					</div>
-				</div>
-			</div>
-
-			{{ form_label(form.text_secondary_color) }}  
-			<div class="input-field">
-		    	<div id="textcolor" class="file-field">
-		    		<div class="btn"></div>
-			    	<div class="file-path-wrapper">
-			    		{{ form_widget(form.text_secondary_color) }}
-					</div>
-				</div>
-			</div>
-
-			{{ form_label(form.links_color) }}  
-			<div class="input-field">
-		    	<div id="linkcolor" class="file-field">
-		    		<div class="btn"></div>
-			    	<div class="file-path-wrapper">
-			    		{{ form_widget(form.links_color) }}
-					</div>
-				</div>
-			</div>
-
-	    </div>
-	    <div id="images" class="col s12">
-			
-			{{ form_label(form.background_img) }}
-            <div class="file-field input-field">
-            	<div class="btn">
-                    <span>Parcourir</span>
-                    {{ form_widget(form.background_img) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col s6">
+                        {{ form_label(form.background_color) }}
+                        <div class="input-field">
+                            <div id="bgcolor" class="file-field">
+                                <div class="btn"></div>
+                                <div class="file-path-wrapper">
+                                    {{ form_widget(form.background_color) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        {{ form_label(form.header_color) }}
+                        <div class="input-field">
+                            <div id="headercolor" class="file-field">
+                                <div class="btn"></div>
+                                <div class="file-path-wrapper">
+                                    {{ form_widget(form.header_color) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
+
+                <div class="row">
+                    <div class="col s6">
+                        {{ form_label(form.text_primary_color) }}
+                        <div class="input-field">
+                            <div id="h1color" class="file-field">
+                                <div class="btn"></div>
+                                <div class="file-path-wrapper">
+                                    {{ form_widget(form.text_primary_color) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        {{ form_label(form.text_secondary_color) }}
+                        <div class="input-field">
+                            <div id="textcolor" class="file-field">
+                                <div class="btn"></div>
+                                <div class="file-path-wrapper">
+                                    {{ form_widget(form.text_secondary_color) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            	
+
+                <div class="row">
+                    <div class="col s6">
+                        {{ form_label(form.links_color) }}
+                        <div class="input-field">
+                            <div id="linkcolor" class="file-field">
+                                <div class="btn"></div>
+                                <div class="file-path-wrapper">
+                                    {{ form_widget(form.links_color) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            {{ form_label(form.header_img) }}
-            <div class="file-field input-field">
-            	<div class="btn">
-                    <span>Parcourir</span>
-                    {{ form_widget(form.header_img) }}
+            <div class="right">
+                <button type="button" class="waves-effect waves-light btn btn-success brown lighten-2 white-text nextBtn">Suivant <i class="fas fa-arrow-right fa-lg"></i></button>
+            </div>
+	    </div>
+	    <div id="tab3" class="col s12">
+
+            <div class="row">
+                <div class="col s6">
+                    {{ form_label(form.background_img) }}
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Parcourir</span>
+                            {{ form_widget(form.background_img) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
+                <div class="col s6">
+                    {{ form_label(form.header_img) }}
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Parcourir</span>
+                            {{ form_widget(form.header_img) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -130,21 +154,48 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
 
 	<script>
+
+        $('#design_template_name').prepend("<option value='' disabled selected>Sélectionnez un template</option>");
+
+        var cptTab = 2;
+        $('ul.tabs').tabs('select_tab', 'tab1');
+
+        $('.nextBtn').click(function() {
+            $('ul.tabs').tabs('select_tab', 'tab' + cptTab);
+
+            if (cptTab <= 3) {
+                cptTab++;
+            } else {
+                cptTab = 2;
+                $('ul.tabs').tabs('select_tab', 'tab1');
+            }
+        });
+
 	  $(function(){
 	    $('#bgcolor').colorpicker({
-	    	component: '.btn'
+	    	component: '.btn',
+            inline: true,
+            container: true
 	    });
 	    $('#linkcolor').colorpicker({
-	    	component: '.btn'
+	    	component: '.btn',
+            inline: true,
+            container: true
 	    });
 	    $('#h1color').colorpicker({
-	    	component: '.btn'
+	    	component: '.btn',
+            inline: true,
+            container: true
 	    });
 	    $('#textcolor').colorpicker({
-	    	component: '.btn'
+	    	component: '.btn',
+            inline: true,
+            container: true
 	    });
 	    $('#headercolor').colorpicker({
-	    	component: '.btn'
+	    	component: '.btn',
+            inline: true,
+            container: true
 	    });
 	  });
 	</script>

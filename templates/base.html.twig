@@ -47,9 +47,14 @@
                         if ($(window).width() <= 1440 && $(window).width() > 1220) {
                             $("#logoLarge").hide();
                             $("#logoSmall").show();
-                        } else if ($(window).width() <= 1220) {
+                        } else if ($(window).width() <= 1220 && $(window).width() >= 993) {
                             $("#empty").hide();
                             $("#logoSmall").hide();
+                            $("#mainNav").show();
+                            $("#logoLarge").hide();
+                        } else if ($(window).width() < 993) {
+                            $("#logoLarge").show();
+                            $("#mainNav").hide();
                         } else {
                             $("#logoLarge").show();
                             $("#empty").show();
