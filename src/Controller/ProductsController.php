@@ -18,7 +18,7 @@ use App\Form\AddProductsImagesType;
 use App\Form\ProductsCategoriesType;
 use App\Form\ProductsAddTaxType;
 use App\Form\ProductsEditCategoryType;
-use App\Form\ShipmentType;
+use App\Form\AddProductsImagesFromGalleryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
@@ -241,6 +241,34 @@ class ProductsController extends Controller {
             $em->flush();
 
             return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
+
+        } else if (isset($_POST["add_products_images_from_gallery"]) && !empty($_POST["add_products_images_from_gallery"])) {
+
+            $image = strip_tags((int)$_POST["add_products_images_from_gallery"]["image"]);
+
+            $repository3 = $this->getDoctrine()->getManager()->getRepository(Medias::class);
+            $query3 = $repository3->findOneBy(
+                [
+                    "mediaId" =>  $image
+                ]
+            );
+
+            $repository4 = $this->getDoctrine()->getManager()->getRepository(Products::class);
+            $query4 = $repository4->findOneBy(
+                [
+                    "productId" =>  $_SESSION["produitencours"]
+                ]
+            );
+
+            $pictures = new ProductsImages();
+
+            $em = $this->getDoctrine()->getManager();
+            $pictures->setProduct($query4);
+            $pictures->setImage($query3->getMediaSrc());
+            $em->persist($pictures);
+            $em->flush();
+
+            return $this->redirectToRoute('editproduct', ["idProduit"   =>  $_SESSION["produitencours"]]);
         }
 
         return $this->render(
@@ -388,9 +416,13 @@ class ProductsController extends Controller {
             ]
         );
 
+        $form = $this->createForm(AddProductsImagesFromGalleryType::class);
+        $form->handleRequest($request);
+
         return $this->render('backoffice/products/productspicturesgallery.html.twig',
             [
-                'pictures'   =>  $query2
+                'pictures'   =>  $query2,
+                'form' => $form->createView()
             ]
         );
     }

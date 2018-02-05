@@ -61,13 +61,11 @@
 
 {% block specificjs %}
     <script>
-        $(document).ready(function() {
-            $("#contenuPictures").load("{{ path('editproductspictures') }}");
-            $("#contenuCategorie").load("{{ path('editcategory') }}");
-            $("#contenuStock").load("{{ path('editstocks') }}");
-            $("#contenuReduc").load("{{ path('editreducs') }}");
-            $("#contenuEnvoi").load("{{ path('editenvoi') }}");
-            $("#contenuTaxe").load("{{ path('edittaxes') }}");
-        });
+        $("#contenuPictures").load("{{ path('editproductspictures') }}");
+        $("#contenuCategorie").load("{{ path('editcategory') }}");
+        $("#contenuStock").load("{{ path('editstocks') }}");
+        $("#contenuReduc").load("{{ path('editreducs') }}");
+        $("#contenuEnvoi").load("{{ path('editenvoi') }}");
+        $("#contenuTaxe").load("{{ path('edittaxes') }}");
     </script>
 {% endblock %}

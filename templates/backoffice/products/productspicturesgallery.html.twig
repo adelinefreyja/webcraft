@@ -1,28 +1,40 @@
-<div class="container">
-    <div class="row">
-            {% set ctp = 0 %}
-
-            {% for pic in pictures %}
-                {% if (ctp is divisible by(4)) or ctp == 0 %}
-                    <div class="row">
-                {% endif %}
-
-                    <div class="col s3" id="img{{ pic.mediaId }}">
-                        <img class="img-responsive" style="width: 200px;" src="{{ asset(pic.mediaSrc) }}" alt="{{ pic.mediaDescription }}">
+<style>
+    .prodgal {
+        margin-bottom:20px;
+    }
+    .selected {
+        -webkit-box-shadow: 0px 2px 6px 2px cornflowerblue;
+        -moz-box-shadow: 0px 2px 6px 2px cornflowerblue;
+        box-shadow: 0px 2px 6px 2px cornflowerblue;
+    }
+</style>
+{{ form_start(form) }}
+    <div class="container">
+        <div class="row">
+                {% for pic in pictures %}
+                    <div class="col s6 m4 l3">
+                        <img class="img-responsive prodgal" id="{{ pic.mediaId }}" style="width: 200px; height: 200px" src="{{ asset(pic.mediaSrc) }}" alt="{{ pic.mediaDescription }}">
                     </div>
+                {% endfor %}
+        </div>
+    </div>
+    <div class="container-fluid">
+        <br>
+        <hr>
+        <br>
+        <div class="right">
+            {{ form_widget(form.image) }}
+            <button type="submit" id="validateImg" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+<script>
+    $(".prodgal").click(function() {
+        var selected = $(this).attr('id');
+        $('#add_products_images_from_gallery_image').attr("value", selected);
 
-                {% if (ctp is divisible by(4)) or ctp == 0 %}
-                    </div>
-                {% endif %}
-                {% set ctp = (ctp + 1) %}
-            {% endfor %}
-    </div>
-</div>
-<div class="container-fluid">
-    <br>
-    <hr>
-    <br>
-    <div class="right">
-        <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-    </div>
-</div>
+       $('.prodgal').removeClass("selected");
+       $('#' + selected).addClass("selected");
+
+    });
+</script>

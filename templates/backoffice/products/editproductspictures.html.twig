@@ -18,14 +18,12 @@
             {% if pictures is not empty %}
             <h5>Images du produit :</h5>
             {% set i = 1 %}
-            <div class="carousel carousel-slider center" data-indicators="true">
                 <div class="carousel carousel-slider">
                     {% for pics in pictures %}
-                        <a class="carousel-item" href="#{{ i }}!"><img src="{{ asset(pics.image) }}" alt=""></a>
+                        <a class="carousel-item" href="#{{ i }}!"><img src="{{ asset(pics.image) }}" style="max-width: 800px; max-height: 400px;"></a>
                         {% set i = (i + 1) %}
                     {% endfor %}
                 </div>
-            </div>
             {% endif %}
         </div>
     </div>
@@ -62,10 +60,9 @@
 
 <script>
     $(document).ready(function(){
-        $('.carousel').carousel();
         $('.carousel.carousel-slider').carousel({fullWidth: true});
         $('.modal').modal();
-
-		$("#modalContent").load("{{ path('productspicturesgallery') }}");
     });
+
+    $("#modalContent").load("{{ path('productspicturesgallery') }}");
 </script>
