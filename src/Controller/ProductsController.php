@@ -459,6 +459,9 @@ class ProductsController extends Controller {
             ]
         );
 
+        $repository9 = $this->getDoctrine()->getManager()->getRepository(Shipment::class);
+        $query9 = $repository9->findAll();
+
         return $this->render(
             'backoffice/products/manageproducts.html.twig',
             [
@@ -468,7 +471,8 @@ class ProductsController extends Controller {
                 "pictures"      =>  $query4,
                 "stock"         =>  $query5,
                 "taxes"         =>  $query7,
-                "messages"      =>  $query8
+                "messages"      =>  $query8,
+                "shipment"      =>  $query9
             ]
         );
     }
