@@ -14,14 +14,14 @@
 
 {% block nav %}
     {% block logo %}
-        <a href="{{ path('dashboard') }}"><img src="{{ asset('img/webcraft_logo.png') }}" alt="WebCraft" class="brand-logo tooltipped" data-position="bottom" data-tooltip="Retourner au tableau de bord" /></a>
+        <a href="{{ path('dashboard') }}"><img src="{{ asset('img/webcraft_logo.png') }}" id="logoLarge" alt="WebCraft" class="brand-logo tooltipped" data-position="bottom" data-tooltip="Retourner au tableau de bord" /></a>
     {% endblock %}
 	<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars fa-2x"></i></a>
     <ul class="right hide-on-med-and-down center-align">
     	<li id="pages" class="mainNav pages"><a><i class="far fa-folder-open fa-2x"></i><p> Mes Pages</p></a></li>
         <li id="medias" class="mainNav medias"><a><i class="far fa-images fa-2x"></i> <p>Mes Médias</p></a></li>
         <li id="design" class="mainNav design"><a><i class="fas fa-paint-brush fa-2x"></i> <p>Personnalisation</p></a></li>
-        <li id="empty"></li>
+        <li id="empty"><img src="{{ asset('img/default_logo.png') }}" style="display: none; height: 55px; margin: 1em 0;" id="logoSmall" alt="WebCraft" class="tooltipped" data-position="bottom" data-tooltip="Retourner au tableau de bord"></li>
 
         {% if sitetype == true %}
         <li id="products" class="mainNav products"><a><i class="fab fa-shirtsinbulk fa-2x"></i> <p>Mes produits</p></a></li>

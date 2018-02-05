@@ -6,7 +6,7 @@ body { background: #EFEBE9; overflow-x: hidden; }
 
 header {  }
 
-nav, nav ul a:hover { height: 85px; }
+nav, nav ul a:hover, #user_settings > a { height: 85px; }
 
 nav .brand-logo { max-height: 65px; margin: 0.3em; display: block; float: left; }
 
