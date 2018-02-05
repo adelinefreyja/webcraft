@@ -20,13 +20,6 @@ class Pages
     private $userId;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="page_rank", type="integer")
-     */
-    private $pageRank;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="category_name", type="string", nullable=false)
@@ -324,23 +317,4 @@ class Pages
         return $this->pageTitle;
     }
 
-    /**
-     * @return integer
-     */
-    public function getPageRank()
-    {
-        return $this->pageRank;
-    }
-
-    /**
-     * @param integer $pageRank
-     *
-     * @return self
-     */
-    public function setPageRank($pageRank)
-    {
-        $this->pageRank = $pageRank;
-
-        return $this;
-    }
 }

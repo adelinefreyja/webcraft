@@ -86,8 +86,7 @@ class DatabaseController extends Controller {
 				comment_status VARCHAR(30) NOT NULL,
 				category_name VARCHAR(20),
 				page_type VARCHAR(255),
-				page_modified DATETIME,
-                page_rank INT(20),
+				page_modified DATETIME
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
 
@@ -101,6 +100,14 @@ class DatabaseController extends Controller {
 				message_object VARCHAR(20) NOT NULL,
 				status VARCHAR(10) DEFAULT 'nonlu'
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
+
+        $connexion->query(
+            "CREATE TABLE IF NOT EXISTS menu (
+                rank_id INT(20) AUTO_INCREMENT PRIMARY KEY,
+                menu_rank INT(20) NOT NULL,
+                page_name VARCHAR(255)
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );
 
         $connexion->query(
