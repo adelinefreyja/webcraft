@@ -21,6 +21,10 @@ class ShipmentController extends Controller
             ["sitetype" =>  "2"]
         );
 
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep1->findBy(
             [
@@ -66,6 +70,10 @@ class ShipmentController extends Controller
             ["sitetype" =>  "2"]
         );
 
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $rep1 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep1->findBy(
             [
@@ -110,6 +118,16 @@ class ShipmentController extends Controller
     */
     public function deleteShipmentMethodAction(Request $request, $id)
     {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $shipment = $em->getRepository(Shipment::class)
             ->find($id);
