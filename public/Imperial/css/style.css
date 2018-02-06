@@ -8,7 +8,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  background: #fff;
+  background: #666;
   color: #666666;
   font-family: "Open Sans", sans-serif;
 }
@@ -484,7 +484,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #about .about-container {
-  background: url(../img/about-img.jpg) left top no-repeat;
+  background-position: left top no-repeat;
 }
 
 #about .about-content {

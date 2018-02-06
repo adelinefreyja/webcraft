@@ -13,12 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ImperialController extends Controller
+Class ImperialController extends Controller
 {
-
-	/**
-	* @Route("/", name="index")
-	*/
+    	
 	public function displayIndexAction(Request $request) {
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Menu::class);
@@ -49,6 +46,7 @@ class ImperialController extends Controller
         );
 
         $repository6 = $this->getDoctrine()->getManager()->getRepository(Design::class);
+        $queryCss = $repository6->findAll();
         $query6 = $repository6->findOneBy(
             ["templateName" => "Imperial"]
         );
@@ -56,8 +54,7 @@ class ImperialController extends Controller
         $repository7 = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query7 = $repository7->findOneBy(
             ["optionname" => "logo"]
-        );
-
+        );        
 
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
@@ -84,6 +81,7 @@ class ImperialController extends Controller
                 "portfolio"     =>  $query5,
                 "design"        =>  $query6,
                 "logo"          =>  $query7,
+                "css"           =>  $queryCss,
                 "contactform"   =>  $contactForm->createView()
             ]
         );
@@ -117,4 +115,5 @@ class ImperialController extends Controller
             ]
         );
     }
+
 }

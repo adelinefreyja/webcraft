@@ -19,6 +19,10 @@ class OrdersController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
         
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(

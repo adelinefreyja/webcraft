@@ -20,6 +20,10 @@ class ManageCommentsController extends Controller
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 		
 		$repositoryProductsComments = $this->getDoctrine()->getManager()->getRepository(ProductsComments::class);
         $productsComments = $repositoryProductsComments->findAll();

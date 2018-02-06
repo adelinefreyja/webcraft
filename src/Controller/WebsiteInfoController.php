@@ -39,16 +39,8 @@ class WebsiteInfoController extends Controller
             $em->persist($WebsiteInfo);
             $em->flush();
 
-            $query = $em->createQuery("SELECT s FROM App\Entity\WebsiteInfo s WHERE s.sitetype = 2");
-            $commerce = $query->getResult();
-
-
-            if ($commerce) {
-
-                $create = new Ecommerce();
-                $create->createEcommerce();
-
-            }
+            $create = new Ecommerce();
+            $create->createEcommerce();
 
             return $this->redirectToRoute('setup3');
         }

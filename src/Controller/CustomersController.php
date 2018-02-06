@@ -18,10 +18,15 @@ class CustomersController extends Controller
 	
     public function getCustomInformations(Request $request)
         {
-        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-        $query = $repository->findOneBy(
-            ["sitetype" =>  "2"]
-        );
+            $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+            $query = $repository->findOneBy(
+                ["sitetype" =>  "2"]
+            );
+
+            if ($query == 0) {
+                return $this->redirectToRoute('dashboard');
+            }
+
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(
             [

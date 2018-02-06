@@ -35,7 +35,7 @@ class WebsiteInfo
      * @Assert\NotBlank()
      * @Assert\Length(
      *     min = 3,
-     *     max = 50,
+     *     max = 200,
      *     minMessage = "La desciption du site doit avoir au minimum {{ limit }} caractères",
      *     maxMessage = "La desciption du site doit avoir au maximum {{ limit }} caractères"
      * )

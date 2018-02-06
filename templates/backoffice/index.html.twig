@@ -71,10 +71,9 @@
 
         {% if sitetype == true %}
             <li class="submenu Parameters hide"><a href="{{ path('shopsettings') }}" class="Parameters"><span><i class="fas fa-sliders-h fa-lg"></i> e-Commerce</span></a></li>
-
+            <li class="submenu Parameters hide"><a href="{{ path('managecomments') }}" class="Parameters"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></a></li>
         {% endif %}
 
-        <li class="submenu Parameters hide"><a href="{{ path('managecomments') }}" class="Parameters"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></a></li>
         {% endif %}
     {% endblock %}
     </ul>

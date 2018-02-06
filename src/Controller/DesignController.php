@@ -16,7 +16,7 @@ class DesignController extends Controller
 	*/
 	public function designOptionsAction(Request $request) {
 
-$_SESSION["sitetype"] = "";
+        $_SESSION["sitetype"] = "";
 
         if (!isset($_SESSION["sitetype"]) || empty($_SESSION["sitetype"])) {
             $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
@@ -63,25 +63,36 @@ $_SESSION["sitetype"] = "";
             $file = $form["background_img"]->getData();
             $file2 = $form["header_img"]->getData();
 
-            try {
-                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-                $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
-            } catch (\Exception $e) {
-                $fileName = md5(uniqid()) . '.' . $file->getExtension();
-                $fileName2 = md5(uniqid()) . '.' . $file2->getExtension();
+            if (!empty($file)) {
+                try {
+                    $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                } catch (\Exception $e) {
+                    $fileName = md5(uniqid()) . '.' . $file->getExtension();
+                }
+
+                $file->move(
+                    $this->getParameter('design_directory'),
+                    $fileName
+                );
+
+                $design->setBackgroundImg("img/design/" . $fileName);
             }
 
-            $file->move(
-                $this->getParameter('design_directory'),
-                $fileName
-            );
-            $file2->move(
-                $this->getParameter('design_directory'),
-                $fileName2
-            );
+            if (!empty($file2)) {
+                try {
+                    $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
+                } catch (\Exception $e) {
+                    $fileName2 = md5(uniqid()) . '.' . $file2->getExtension();
+                }
 
-            $design->setBackgroundImg("img/design/" . $fileName);
-            $design->setHeaderImg("img/design/" . $fileName2);
+                $file2->move(
+                    $this->getParameter('design_directory'),
+                    $fileName2
+                );
+
+                $design->setHeaderImg("img/design/" . $fileName2);
+
+            }
 
             $em->persist($design);
             $em->flush();
@@ -94,4 +105,17 @@ $_SESSION["sitetype"] = "";
             ["sitetype" =>  $query, "messages"  =>  $query2, "form" => $form->createView()]
         );
 	}
+
+    /**
+     * @Route("/craft/design/css", name="css")
+     */
+	public function cssGenerate() {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(Design::class);
+        $query = $repository->findAll();
+
+        return $this->render('backoffice/customs/design.css.twig',
+            ["css" =>  $query[0]]
+        );
+    }
 }

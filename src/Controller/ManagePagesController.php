@@ -48,6 +48,19 @@ class ManagePagesController extends Controller
         $catForm->handleRequest($request);
         if ($catForm->isSubmitted() && $catForm->isValid()) {
 
+            $manyMenu = $this->getDoctrine()->getManager()->getRepository(Menu::class);
+            $menus = $manyMenu->findAll();
+
+            if (count($menus) < 5) {
+
+                $addInMenu = new Menu();
+                $em = $this->getDoctrine()->getManager();
+                $addInMenu->setMenuRank(count($menus) + 1);
+                $addInMenu->setPageName($_POST["add_page"]["page_name"]);
+                $em->persist($addInMenu);
+                $em->flush();
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cat);
             $em->flush();
@@ -64,20 +77,14 @@ class ManagePagesController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $manyMenu = $this->getDoctrine()->getManager()->getRepository(Menu::class);
-            $menus = $manyMenu->findAll();
-
-            if (count($menus) < 5) {
-
-                $addInMenu = new Menu();
-                $em = $this->getDoctrine()->getManager();
-                $addInMenu->setMenuRank(count($menus) + 1);
-                $addInMenu->setPageName($_POST["add_page"]["page_name"]);
-                $em->persist($addInMenu);
-                $em->flush();
-            }
+            $text = preg_replace('~[^\pL\d]+~u', '-', $_POST["add_page"]["page_name"]);
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+            $text = preg_replace('~[^-\w]+~', '', $text);
+            $text = trim($text, '-');
+            $text = preg_replace('~-+~', '-', $text);
 
             $page->setUserId($user->getId());
+            $page->setPageName($text);
             $page->setPageDate(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
@@ -144,6 +151,9 @@ class ManagePagesController extends Controller
             ->find($id)
         ;
 
+        $_SESSION["pagename"] = "";
+        $_SESSION["pagename"] = $page->getPageName();
+
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(
             [
@@ -172,8 +182,10 @@ class ManagePagesController extends Controller
 
         $form = $this->createForm(EditPageType::class, $page);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid())
         {
+
             $page->setPageModified(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->flush();
@@ -181,6 +193,21 @@ class ManagePagesController extends Controller
                 'success',
                 "Page mise à jour !"
             );
+
+            $em = $this->getDoctrine()->getManager();
+            $menu = $em->getRepository(Menu::class)
+                ->findOneBy(
+                    [
+                        "pageName"  =>  $_SESSION["pagename"]
+                    ]
+                );
+            $_SESSION["pagename"] = "";
+
+            if (!empty($menu)) {
+                $menu->setPageName($_POST["edit_page"]["page_name"]);
+                $em->flush();
+            }
+
             return $this->redirect($this->generateUrl('managepages'));
         }
 
