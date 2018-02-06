@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Design
@@ -65,6 +66,9 @@ class Design
      * @var string
      *
      * @ORM\Column(name="template_name", type="string", length=20, nullable=false)
+     * @Assert\NotBlank(
+     *     message = "Vous devez choisir un template"
+     * )
      */
     private $templateName;
 
