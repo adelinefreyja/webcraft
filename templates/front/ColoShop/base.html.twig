@@ -46,37 +46,10 @@
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
-
-								<!-- Currency / Language / My Account -->
-
-								<li class="currency">
-									<a href="#">
-										eur
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="currency_selection">
-										<li><a href="#">cad</a></li>
-										<li><a href="#">aud</a></li>
-										<li><a href="#">eur</a></li>
-										<li><a href="#">gbp</a></li>
-									</ul>
-								</li>
-								<li class="language">
-									<a href="#">
-										English
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="language_selection">
-										<li><a href="#">French</a></li>
-										<li><a href="#">Italian</a></li>
-										<li><a href="#">German</a></li>
-										<li><a href="#">Spanish</a></li>
-									</ul>
-								</li>
-
+								<!-- Currency / Language / My Account -->					
 								<li class="account">
 									<a href="#">
-										My Account
+										Mon Compte
 										<i class="fa fa-angle-down"></i>
 									</a>
 									{% if app.user %}
@@ -86,8 +59,8 @@
 									</ul>
 									{% else %}
 									<ul class="account_selection">
-										<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-										<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+										<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
+										<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Inscription</a></li>
 									</ul>
 									{% endif %}
 								</li>
@@ -110,10 +83,10 @@
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="{{ path('sitepublic',{'category_name':'Accueil'})}}">home</a></li>
-								<li><a href="{{ path('sitepublic',{'category_name':'Shop'})}}">shop</a></li>
-								<li><a href="{{ path('sitepublic',{'category_name':'Pages'})}}">pages</a></li>
-								<li><a href="{{ path('sitepublic',{'category_name':'Contact'})}}">contact</a></li>
+								<li><a href="{{ path('sitepublic',{'category_name':'Accueil'})}}">Accueil</a></li>
+								<li><a href="{{ path('sitepublic',{'category_name':'Shop'})}}">Boutique</a></li>
+								<li><a href="{{ path('sitepublic',{'category_name':'Pages'})}}">Pages</a></li>
+								<li><a href="{{ path('sitepublic',{'category_name':'Contact'})}}">Contact</a></li>
 							</ul>
 							<ul class="navbar_user">
 								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -144,31 +117,7 @@
 			<ul class="menu_top_nav">
 				<li class="menu_item has-children">
 					<a href="#">
-						eur
-						<i class="fa fa-angle-down"></i>
-					</a>
-					<ul class="menu_selection">
-						<li><a href="#">cad</a></li>
-						<li><a href="#">aud</a></li>
-						<li><a href="#">eur</a></li>
-						<li><a href="#">gbp</a></li>
-					</ul>
-				</li>
-				<li class="menu_item has-children">
-					<a href="#">
-						English
-						<i class="fa fa-angle-down"></i>
-					</a>
-					<ul class="menu_selection">
-						<li><a href="#">French</a></li>
-						<li><a href="#">Italian</a></li>
-						<li><a href="#">German</a></li>
-						<li><a href="#">Spanish</a></li>
-					</ul>
-				</li>
-				<li class="menu_item has-children">
-					<a href="#">
-						My Account
+						Mon Compte
 						<i class="fa fa-angle-down"></i>
 					</a>
 
@@ -179,13 +128,13 @@
 					</ul>
 					{% else %}
 					<ul class="menu_selection">
-						<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-						<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+						<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
+						<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Inscription</a></li>
 					</ul>
 					{% endif %}
 				</li>
-				<li class="menu_item">li><a href="{{ path('sitepublic',{'category_name':'Accueil'})}}">Home</a></li>								
-				<li class="menu_item"><a href="{{ path('sitepublic',{'category_name':'Shop'})}}">Shop</a></li>
+				<li class="menu_item">li><a href="{{ path('sitepublic',{'category_name':'Accueil'})}}">Accueil</a></li>								
+				<li class="menu_item"><a href="{{ path('sitepublic',{'category_name':'Shop'})}}">Boutique</a></li>
 				<li class="menu_item"><a href="{{ path('sitepublic',{'category_name':'Pages'})}}">Pages</a></li>
 				<li class="menu_item"><a href="{{ path('sitepublic',{'category_name':'Contact'})}}">Contact</a></li>
 			</ul>
@@ -250,7 +199,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer_nav_container">
-						<div class="cr">©2018 All Rights Reserverd. Template by <a href="#">Colorlib</a></div>
+						<div class="cr"><a href="#">WebCraft</a></div>
 					</div>
 				</div>
 			</div>
