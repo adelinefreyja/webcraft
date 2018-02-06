@@ -16,10 +16,14 @@ class OrdersManageController extends Controller
 	*/
 	public function new(Request $request) {
 
-		$repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-		$query = $repository->findOneBy(
-						["sitetype" =>  "2"]
-				);
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 
 		$queryOrders = $this->getDoctrine()->getManager()->getRepository(Orders::class);
 		$orders = $queryOrders->findAll();

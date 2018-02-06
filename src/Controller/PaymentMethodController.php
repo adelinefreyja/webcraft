@@ -21,6 +21,10 @@ class PaymentMethodController extends Controller
             ["sitetype" =>  "2"]
         );
 
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $rep2 = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep2->findBy(
             [

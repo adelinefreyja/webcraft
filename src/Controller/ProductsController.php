@@ -31,6 +31,15 @@ class ProductsController extends Controller {
      */
     public function addProducts(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $produit = new ProductsImages();
         $form = $this->createForm(ProductsImagesType::class, $produit);
         $form->handleRequest($request);
@@ -63,11 +72,6 @@ class ProductsController extends Controller {
             return $this->redirectToRoute('addproducts2', ["idProduit"  =>  $idProduit]);
         }
 
-        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
-        $query = $repository->findOneBy(
-            ["sitetype" =>  "2"]
-        );
-
         return $this->render(
             'backoffice/products/addproducts.html.twig',
             [
@@ -83,14 +87,18 @@ class ProductsController extends Controller {
      */
     public function addCategory(Request $request, $idProduit) {
 
-        $category = new ProductsCategory();
-        $form = $this->createForm(ProductsCategoriesType::class, $category);
-        $form->handleRequest($request);
-
         $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
+        $category = new ProductsCategory();
+        $form = $this->createForm(ProductsCategoriesType::class, $category);
+        $form->handleRequest($request);
 
         $repository2 = $this->getDoctrine()->getManager()->getRepository(ProductsCategory::class);
         $query2 = $repository2->findAll();
@@ -132,6 +140,10 @@ class ProductsController extends Controller {
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(
@@ -285,6 +297,15 @@ class ProductsController extends Controller {
      */
     public function editStocks(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $stock = new ProductsStock();
         $form = $this->createForm(ProductsStockType::class, $stock);
         $form->handleRequest($request);
@@ -306,6 +327,15 @@ class ProductsController extends Controller {
      */
     public function editTaxes(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $prod = new Products();
         $form = $this->createForm(ProductsAddTaxType::class, $prod);
         $form->handleRequest($request);
@@ -326,6 +356,15 @@ class ProductsController extends Controller {
     */
     public function editCategorie(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $category = new ProductsCategory();
         $form = $this->createForm(ProductsEditCategoryType::class, $category);
         $form->handleRequest($request);
@@ -345,6 +384,15 @@ class ProductsController extends Controller {
      * @Route("/craft/products/manageproducts/editproductspictures", name="editproductspictures")
      */
     public function editPictures(Request $request) {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 
         $pictures = new ProductsImages();
         $form = $this->createForm(AddProductsImagesType::class, $pictures);
@@ -370,6 +418,15 @@ class ProductsController extends Controller {
      */
     public function editReducs(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $prod = new Products();
         $form = $this->createForm(ProductsEditReducsType::class, $prod);
         $form->handleRequest($request);
@@ -394,6 +451,15 @@ class ProductsController extends Controller {
      */
     public function editEnvoi(Request $request) {
 
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
+
         $repository2 = $this->getDoctrine()->getManager()->getRepository(Shipment::class);
         $query2 = $repository2->findAll();
 
@@ -408,6 +474,15 @@ class ProductsController extends Controller {
      * @Route("/craft/products/manageproducts/productspicturesgallery", name="productspicturesgallery")
      */
     public function editPictureFromGallery(Request $request) {
+
+        $repository = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query = $repository->findOneBy(
+            ["sitetype" =>  "2"]
+        );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 
         $repository2 = $this->getDoctrine()->getManager()->getRepository(Medias::class);
         $query2 = $repository2->findBy(
@@ -436,6 +511,10 @@ class ProductsController extends Controller {
         $query = $repository->findOneBy(
             ["sitetype" =>  "2"]
         );
+
+        if ($query == 0) {
+            return $this->redirectToRoute('dashboard');
+        }
 
         $repository2 = $this->getDoctrine()->getManager()->getRepository(Products::class);
         $query2 = $repository2->findAll();
