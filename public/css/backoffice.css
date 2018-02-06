@@ -149,7 +149,7 @@ hr.btn_account { border-bottom: 2px solid #795548; width: 20%; margin-top: 50px;
 }
 .collection-item:hover {
     transform: scale(1.02, 1.02);
-    background-color: cadetblue !important;
+    background-color: #ffb74d !important;
     transition-duration: .3s;
 }
 .collection-item:not(:hover) {
