@@ -1,5 +1,7 @@
 <?php
 namespace App\Controller;
+use App\Entity\Products;
+use App\Entity\ProductsImages;
 use App\Entity\User;
 use App\Entity\Pages;
 use App\Entity\Contact;
@@ -22,7 +24,7 @@ class SitePublicController extends Controller
 
 
 	/**
-	* @Route("/ColoShop/{category_name}", name="sitepublic")
+	* @Route("/{category_name}", name="sitepublic")
 	*/
     public function publicPage(Request $request, $category_name, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authUtils){
       
@@ -210,7 +212,19 @@ class SitePublicController extends Controller
             'newsletterform' => $newsletterForm->createView(),
             
         ));
-    }
+    } elseif ($category_name == "Boutique") {
+            $selectAll = $this->getDoctrine()->getManager()->getRepository(Products::class);
+            $products = $selectAll->findAll();
+
+            $selectAll2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
+            $images = $selectAll2->findAll();
+
+            return $this->render('front\ColoShop\categories.html.twig', array(
+                'produits' => $products,
+                'images'    =>  $images,
+                'newsletterform' => $newsletterForm->createView()
+            ));
+        }
 
      /* Si l'URL est incorrect */
         else {
@@ -222,7 +236,6 @@ class SitePublicController extends Controller
             );
         }
       }
-
 
     /**
      * ça, c'est une méthode de Symfony, elle permet la connexion, on touche pas
