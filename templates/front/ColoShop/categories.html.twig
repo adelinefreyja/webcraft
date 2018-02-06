@@ -2,11 +2,9 @@
 {% block title %}Boutique{% endblock %}
 {% block content %}
 
-
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_responsive.css') }}">
-
 {% block specificcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_responsive.css') }}">
 {% endblock %}
 <div class="container product_section_container">
     <div class="row">
@@ -18,29 +16,31 @@
                             <div class="product-grid">
                                 {% for prod in produits %}
                                     <div class="product-item">
-                                        <div class="product">
-                                            <div class="product_image">
-                                                {% set oneimg = true %}
-                                                {% for img in images %}
-                                                    {% if prod.productId == img.product.productId and oneimg == true %}
-                                                        <img src="{{ asset(img.image) }}" alt="">
-                                                        {% set oneimg = false %}
-                                                    {% endif %}
-                                                {% endfor %}
+                                        <a href="{{ path('pageproduit', {'id' : prod.productId }) }}">
+                                            <div class="product">
+                                                <div class="product_image">
+                                                    {% set oneimg = true %}
+                                                    {% for img in images %}
+                                                        {% if prod.productId == img.product.productId and oneimg == true %}
+                                                            <img src="{{ asset(img.image) }}" alt="{{ prod.productDescription }}">
+                                                            {% set oneimg = false %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% if prod.productSale is not null %}
+                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-{{ prod.productSale }}%</span></div>
+                                                <div class="product_info">
+                                                        <h6 class="product_name">{{ prod.productName }}</h6>
+                                                        <div class="product_price">{{ prod.productPrice * (1 - (prod.productSale /100)) }}€<span>{{ prod.productPrice }}€</span></div>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="product_info">
+                                                        <h6 class="product_name">{{ prod.productName }}</h6>
+                                                        <div class="product_price">{{ prod.productPrice }}€</div>
+                                                    </div>
+                                                {% endif %}
                                             </div>
-                                            {% if prod.productSale is not null %}
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-{{ prod.productSale }}%</span></div>
-                                                <div class="product_info">
-                                                    <h6 class="product_name"><a href="">{{ prod.productName }}</a></h6>
-                                                    <div class="product_price">{{ prod.productPrice * (1 - (prod.productSale /100)) }}€<span>{{ prod.productPrice }}€</span></div>
-                                                </div>
-                                            {% else %}
-                                                <div class="product_info">
-                                                    <h6 class="product_name"><a href="">{{ prod.productName }}</a></h6>
-                                                    <div class="product_price">{{ prod.productPrice }}€</div>
-                                                </div>
-                                            {% endif %}
-                                        </div>
+                                        </a>
                                         <div class="red_button add_to_cart_button"><a href="#">Ajouter au panier</a></div>
                                     </div>
                                 {% endfor %}

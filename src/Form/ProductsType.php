@@ -21,7 +21,7 @@ class ProductsType extends AbstractType {
             ->add("productDescription", TextType::class,
                 ["label"    =>  "Description du produit"]
             )
-            ->add("productPrice", MoneyType::class,
+            ->add("productPrice", NumberType::class,
                 ["label"    =>  "Prix du produit"]
             )
             ->add("productSale", NumberType::class,
