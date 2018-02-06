@@ -117,6 +117,28 @@
     <script>
         $(document).ready(function() {
             $('#sortable').sortable({
+                create: function( event, ui ) {
+                    var itemOrder = $('#sortable').sortable("toArray");
+
+                    var j = 0;
+                    var tab = [];
+
+                    console.log(itemOrder);
+
+                    for (var i = 0; i < itemOrder.length; i++) {
+                        $("#" + itemOrder[i]).removeClass("brown white-text");
+
+                        if (j < 5) {
+                            $("#" + itemOrder[i]).addClass("brown white-text");
+                            tab.push($("#" + itemOrder[i]).attr("data-info"));
+                            j++;
+                        }
+                    }
+                    $("#menu_pageName").val(tab);
+                }
+            });
+
+            $('#sortable').sortable({
                 stop: function( event, ui ) {
                     var itemOrder = $('#sortable').sortable("toArray");
 
