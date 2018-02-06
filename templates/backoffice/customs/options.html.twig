@@ -32,34 +32,37 @@
 					<hr />
 				</h5>
 				<p class="light-caption">
-					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre, vos informations ainsi qu'un module Google Maps renvoyant votre localisation.
-					{% if contact is empty %}
+					Ajoutez une page de contact à votre site avec un formulaire permettant à vos visiteurs de vous joindre.
+
+					{% if contact.sitetype == 0 %}
 						<a href="#contact_modal" class="btn orange lighten-2 brown-text modal-trigger" data-target="contact_modal">Activer ce module</a>
-					{% elseif contact is not empty %}
+					{% elseif contact.sitetype == 3 %}
+						<div class="btn disabled">
+							Module activé
+						</div>
+						<a href="{{ path('disablemodule', {'optionname': 'contact'}) }}" class="btn red darken-2 white-text">Désactiver</a>
+					{% endif %}
+
+				</p>
+			</div>
+		</div>
+		<div class="col s12 m4">
+			<div class="card-panel center brown-text">
+				<i class="far fa-images fa-3x orange-text"></i>
+				<h5 class="promo-caption">
+					Portfolio
+					<hr />
+				</h5>
+				<p class="light-caption">
+					Ajoutez une page une galerie de vos médias dans votre site.
+					{% if portfolio.sitetype == 0 %}
+						<a href="#portfolio_modal" class="btn orange lighten-2 brown-text modal-trigger" data-target="portfolio_modal">Activer ce module</a>
+					{% elseif portfolio.sitetype == 4 %}
 						<div class="btn disabled">
 							Module activé
 						</div>
 
-						{% set i = 0 %}
-						{% set j = 0 %}
-						{% set reset = false %}
-
-						{% for md in mod %}
-							{% if reset == false %}
-								{% set i = (i + md.id) %}
-								{% set reset = true %}
-							{% endif %}
-
-							{% if md.optionname == 'contact' %}
-								{% set j = i %}
-							{% else %}
-								{% set i = (i + 1) %}
-							{% endif %}
-
-						{% endfor %}
-								
-
-						<a href="{{ path('disablemodule', {'id': j}) }}" class="btn red darken-2 white-text">Désactiver</a>
+						<a href="{{ path('disablemodule', {'optionname': 'portfolio'}) }}" class="btn red darken-2 white-text">Désactiver</a>
 					{% endif %}
 
 				</p>
@@ -99,6 +102,27 @@
             <button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
         </div>
     {{ form_end(activContact) }}
+	</div>
+
+	<div id="portfolio_modal" class="modal">
+    <div class="modal-content">
+      <h4>Module de Portfolio</h4>
+      {{ form_start(activPortfolio) }}
+    		{% if not activPortfolio.vars.valid %}
+                <div class="error">
+                	{{ form_errors(activPortfolio.optionname) }}
+                    {{ form_errors(activPortfolio.optionvalue) }}
+                </div>      
+            {% endif %}
+            <label>{{ form_label(activPortfolio.optionvalue, 'Sélectionnez la page où appliquer le module de contact') }}</label>
+            <div class="input-field">                
+                {{ form_widget(activPortfolio.optionvalue) }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
+        </div>
+    {{ form_end(activPortfolio) }}
 	</div>
 </div>
 {% endblock %}

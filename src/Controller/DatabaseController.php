@@ -59,8 +59,7 @@ class DatabaseController extends Controller {
         $connexion->query(
             "ALTER TABLE `options`
                 ADD PRIMARY KEY (`id`),
-                ADD UNIQUE KEY `UNIQ_D035FA87A536B7BB` (`optionname`),
-                ADD UNIQUE KEY `UNIQ_D035FA87A85C82CC` (`optionvalue`);"
+                ADD UNIQUE KEY `UNIQ_D035FA87A536B7BB` (`optionname`);"
         );
 
         $connexion->query(
@@ -72,6 +71,21 @@ class DatabaseController extends Controller {
         $connexion->query(
             "INSERT INTO `options`
              VALUES (NULL, 'logo du site' , 'logo', 'img/default_logo.png', NULL)"
+        );
+
+        $connexion->query(
+            "INSERT INTO `options`
+             VALUES (NULL, 'module' , 'contact', NULL, NULL)"
+        );
+
+        $connexion->query(
+            "INSERT INTO `options`
+             VALUES (NULL, 'module' , 'portfolio', NULL, NULL)"
+        );
+
+        $connexion->query(
+            "INSERT INTO `options`
+             VALUES (NULL, 'module' , 'newsletter', NULL, NULL)"
         );
 
         $connexion->query(
@@ -117,9 +131,9 @@ class DatabaseController extends Controller {
 				links_color VARCHAR(20) NULL,
 				text_primary_color VARCHAR(20) NULL,
 				text_secondary_color VARCHAR(20) NULL,
-				header_img VARCHAR(20) NULL,
+				header_img VARCHAR(255) NULL,
 				header_color VARCHAR(20) NULL,
-				background_img VARCHAR(20) NULL,
+				background_img VARCHAR(255) NULL,
 				template_name VARCHAR(50) NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
         );

@@ -86,7 +86,6 @@ h1, h2, h3, h4, h5, h6 {
   display: table;
   width: 100%;
   height: 100vh;
-  background: url(../img/hero-bg.jpg) top center fixed;
   background-size: cover;
 }
 
@@ -555,6 +554,65 @@ body.mobile-nav-active #mobile-nav-toggle {
   line-height: 24px;
 }
 
+/* Parallax Section */
+#parallax {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/subscribe-bg.jpg) fixed center center;
+  background-size: cover;
+  padding: 80px 0;
+}
+
+#parallax .section-title, #parallax .section-description {
+  color: white;
+}
+
+#parallax .parallax-title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#parallax .parallax-text {
+  color: #fff;
+}
+
+p.parallax-text p {
+  color:white;
+}
+
+#parallax .parallax-btn-container {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#parallax .parallax-btn {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 2px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+#parallax .parallax-btn:hover {
+  background: #03C4EB;
+  border: 2px solid #03C4EB;
+}
+
+/* Regular */
+
+#regular {
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/services-bg.jpg") fixed center center;
+  background-size: cover;
+  padding: 80px 0 60px 0;
+}
+
+
 /* Subscribe Section
 --------------------------------*/
 #subscribe {
@@ -861,4 +919,25 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-align: center;
   font-size: 13px;
   color: #ccc;
+}
+
+
+/* Lightbox */
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;   
+}
+
+#lightbox .close {
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    background-color: rgb(25, 25, 25);
+    padding: 5px 8px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    position: absolute;
+    top: -15px;
+    right: -55px;
+    
+    z-index:1032;
 }

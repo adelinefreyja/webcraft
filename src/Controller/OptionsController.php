@@ -5,6 +5,7 @@ use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
 use App\Entity\Contact;
 use App\Form\ContactOptionType;
+use App\Form\PortfolioOptionType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,44 +38,60 @@ class OptionsController extends Controller
         $fetchContactMod = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $contactMod = $fetchContactMod->findOneBy(
             ["optionname" => "contact",
-             "description"  =>  "module",
+             "description"  =>  "module"
+            ]   
+        );
+
+        $fetchPortfolioMod = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $portfolioMod = $fetchPortfolioMod->findOneBy(
+            ["optionname" => "portfolio",
+             "description"  =>  "module"
             ]   
         );
 
         $modId = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $mod = $modId->findAll();
 
-        $contact = new WebsiteInfo();
-        $activContact = $this->createForm(ContactOptionType::class, $contact);
+        $modContact = new WebsiteInfo();
+        $activContact = $this->createForm(ContactOptionType::class, $modContact);
 
         $activContact->handleRequest($request);
         if ($activContact->isSubmitted() && $activContact->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
+            $modContact = $contactMod->setSiteType(3);
+            $em->persist($modContact);
             $em->flush();
-            $this->addFlash(
-                'success',
-                "Module activé !"
-            );
             return $this->redirectToRoute('options');
         }
 
+        $modPortfolio = new WebsiteInfo();
+        $activPortfolio = $this->createForm(PortfolioOptionType::class, $modPortfolio);
+
+        $activPortfolio->handleRequest($request);
+        if ($activPortfolio->isSubmitted() && $activPortfolio->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $modPortfolio = $portfolioMod->setSiteType(4);
+            $em->persist($modPortfolio);
+            $em->flush();
+            return $this->redirectToRoute('options');
+        }
 
         return $this->render('backoffice/customs/options.html.twig',
-            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2, "mod" => $mod]
+            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2, "mod" => $mod, "portfolio" => $portfolioMod, "activPortfolio" => $activPortfolio->createView()]
         );
 	}
 
     /**
-    * @Route("/craft/options/disable/{id}", name="disablemodule")
+    * @Route("/craft/options/disable/{optionname}", name="disablemodule")
     */
-    public function disableModuleAction(Request $request, $id)
+    public function disableModuleAction(Request $request, $optionname)
     {
         $em = $this->getDoctrine()->getManager();
         $mod = $em->getRepository(WebsiteInfo::class)
-            ->findOneBy(['id' => $id]);
-        $em->remove($mod);
+            ->findOneBy(['optionname' => $optionname])
+            ->setSiteType(0);
         $em->flush();
 
         return $this->redirect($this->generateUrl('options'));

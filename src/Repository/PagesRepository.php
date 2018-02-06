@@ -13,4 +13,19 @@ class PagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Pages::class);
     }
 
+    
+    // public function orderPages($pagename):array
+    // {
+    // 	$rawSql = 
+    //         "SELECT * FROM menu m, pages p
+    //         WHERE m.page_name = p.page_name
+    //         ORDER BY m.menu_rank ASC
+    // 	";
+
+    // 	$stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+    // 	$stmt->execute();
+
+    //     return $stmt->fetchAll();
+    // }
+
 }
