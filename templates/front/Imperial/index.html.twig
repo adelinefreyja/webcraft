@@ -75,9 +75,13 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           {% set compt = [] %}
-          {% for page in menu %}
-            <li><a href="#{{ page.pagename }}">{{ page.pagename }}</a></li>
-          {% endfor %}
+              {% for page in menu %}
+                 {% for i in pages|sort %}
+                     {% if page.pageName == i.pageName and i.pageStatus == "afficher" %}
+                        <li><a href="#{{ page.pagename }}">{{ page.pagename }}</a></li>
+                    {% endif %}
+                {% endfor %}
+              {% endfor %}
           {% if contact.sitetype == 3 %}
             <li><a href="#contact">Contact</a></li>
           {% endif %}
@@ -90,55 +94,63 @@
   {% set compt = compt|merge([page.pageid]) %}
 {% endfor %} #}
 
+  {% set array = [] %}
+
 {% for page in pages|sort %}
-  
-  {% for currentpage in menu %}
-        
-  {# {% set current = "[" ~ page.pageid ~ "]" %}   #}  
-        {% if currentpage.pagename == page.pagename %}
-        <section id="about">
-          <div id="{{ page.pagename }}" class="container wow fadeInUp">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="section-title">{{ page.pagename }}</h3>
-                <div class="section-title-divider"></div>
-                <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
+  {% for currentpage in menu if currentpage.pagename not in array %}
+
+        {% if currentpage.pagename == page.pagename and currentpage.menuRank == 1 %}
+            {% set array = array|merge([currentpage.pagename]) %}
+            {% if page.pageStatus == "afficher" %}
+            <section id="about">
+              <div id="{{ page.pagename }}" class="container wow fadeInUp">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3 class="section-title">{{ page.pagename }}</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="container about-container wow fadeInUp">
-            <div class="row">
-              <div class="col-md-6 col-md-push-6 about-content">
-                <h2 class="about-title">{{ page.pagename }}</h2>
-                <p class="about-text">
-                  {{ page.pagecontent|raw }}
-                </p>
+              <div class="container about-container wow fadeInUp">
+                <div class="row">
+                  <div class="col-md-6 col-md-push-6 about-content">
+                    <h2 class="about-title">{{ page.pagename }}</h2>
+                    <p class="about-text">
+                      {{ page.pagecontent|raw }}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+            {% endif %}
 
       {% endif %}
-      
-      {% if currentpage.pagename == page.pagename %}
-         <section id="services">
-          <div id="{{ currentpage.pagename }}" class="container wow fadeInUp">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="section-title">{{ currentpage.pagename }}</h3>
-                <div class="section-title-divider"></div>
-                <div class="section-description"></div>
-              </div>
-            </div>
 
-            <div class="row">
-             {{ page.pagecontent|raw }}
-            </div>
-          </div>
-        </section>
+      {% if currentpage.pagename == page.pagename and currentpage.menuRank == 2 %}
+          {% set array = array|merge([currentpage.pagename]) %}
+            {% if page.pageStatus == "afficher" %}
+             <section id="services">
+              <div id="{{ currentpage.pagename }}" class="container wow fadeInUp">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3 class="section-title">{{ currentpage.pagename }}</h3>
+                    <div class="section-title-divider"></div>
+                    <div class="section-description"></div>
+                  </div>
+                </div>
+
+                <div class="row">
+                 {{ page.pagecontent|raw }}
+                </div>
+              </div>
+            </section>
+            {% endif %}
       {% endif %}
- 
-      {% if currentpage.pagename == page.pagename %}
+
+      {% if currentpage.pagename == page.pagename and currentpage.menuRank == 3 %}
+          {% set array = array|merge([currentpage.pagename]) %}
+            {% if page.pageStatus == "afficher" %}
         <section id="parallax">
           <div id="{{ page.pagetitle }}" class="container wow fadeInUp">
             <div class="row">
@@ -153,10 +165,14 @@
                 </div>
               </div>              
             </div>
+          </div>
         </section>
       {% endif %}
+      {% endif %}
 
-     {% if currentpage.pagename == page.pagename %}
+      {% if currentpage.pagename == page.pagename and currentpage.menuRank == 4 %}
+          {% set array = array|merge([currentpage.pagename]) %}
+            {% if page.pageStatus == "afficher" %}
         <section id="regular">
           <div id="{{ page.pagetitle }}" class="container wow fadeInUp">
             <div class="row">
@@ -169,7 +185,8 @@
           </div>
         </section>
       {% endif %}
-      
+      {% endif %}
+
 {% endfor %}
 {% endfor %}
 {#   <section id="subscribe">
