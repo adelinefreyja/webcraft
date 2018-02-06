@@ -63,27 +63,27 @@
                         {% set i = 0 %}
                         {% for page in pages %}
                             {% if i < 5 %}
-                                <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                                <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ page.pageName|replace({' ':''}) }}" data-info="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
                                 {% set i = (i + 1) %}
                             {% else %}
-                                <li class="ui-state-default collection-item" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                                <li class="ui-state-default collection-item" id="{{ page.pageName|replace({' ':''}) }}" data-info="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
                             {% endif %}
                         {% endfor %}
                     {% else %}
                         {% set i = 0 %}
                         {% set verif = [] %}
                         {% for menu in currentmenu %}
-                            <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ menu.pageName }}"><span class="fa fa-arrows-alt"></span> {{ menu.pageName }}</li>
+                            <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ menu.pageName|replace({' ':''}) }}" data-info="{{ menu.pageName }}"><span class="fa fa-arrows-alt"></span> {{ menu.pageName }}</li>
                             {% set i = (i + 1) %}
                             {% set verif = verif|merge([menu.pageName]) %}
                         {% endfor %}
                         {% for page in pages %}
                             {% if page.pageName not in verif %}
                                 {% if i < 5 %}
-                                    <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                                    <li class="ui-state-default collection-item green lighten-1 white-text" id="{{ page.pageName|replace({' ':''}) }}" data-info="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
                                     {% set i = (i + 1) %}
                                 {% else %}
-                                    <li class="ui-state-default collection-item" id="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
+                                    <li class="ui-state-default collection-item" id="{{ page.pageName|replace({' ':''}) }}" data-info="{{ page.pageName }}"><span class="fa fa-arrows-alt"></span> {{ page.pageName }}</li>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
@@ -112,12 +112,14 @@
                     var j = 0;
                     var tab = [];
 
+                    console.log(itemOrder);
+
                     for (var i = 0; i < itemOrder.length; i++) {
                         $("#" + itemOrder[i]).removeClass("green lighten-1 white-text");
 
                         if (j < 5) {
                             $("#" + itemOrder[i]).addClass("green lighten-1 white-text");
-                            tab.push(itemOrder[i]);
+                            tab.push($("#" + itemOrder[i]).attr("data-info"));
                             j++;
                         }
                     }

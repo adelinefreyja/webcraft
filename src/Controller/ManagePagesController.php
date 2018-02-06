@@ -5,6 +5,7 @@ use App\Entity\WebsiteInfo;
 use App\Entity\Pages;
 use App\Entity\PageCategories;
 use App\Entity\Contact;
+use App\Entity\Menu;
 use App\Form\AddPageType;
 use App\Form\EditPageType;
 use App\Form\AddPageCategoryType;
@@ -182,8 +183,23 @@ class ManagePagesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $page = $em->getRepository(Pages::class)
             ->find($id);
+
+        $nameSave = $page->getPageName();
+
         $em->remove($page);
         $em->flush();
+
+        $em = $this->getDoctrine()->getManager();
+        $menu = $em->getRepository(Menu::class)
+            ->findOneBy(
+                [
+                    "pageName"  =>  $nameSave
+                ]
+            );
+
+        $em->remove($menu);
+        $em->flush();
+
         $this->addFlash(
             'success',
             'Page supprimée'
