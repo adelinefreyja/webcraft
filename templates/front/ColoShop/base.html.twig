@@ -149,19 +149,19 @@
 			<div class="newsletter">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-7">
 					<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
 						<h4>Newsletter</h4>
-						<p>Subscribe to our newsletter and get 20% off your first purchase</p>
+						<p>Abonnez-vous à notre Newsletter et recever 20% de réduction sur votre futur achat</p>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-5">
 						{% block newsletter %}
 						<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
 							{{ form_start(newsletterform) }}						  
 						            {{ form_label(newsletterform.emailValue) }}
 						            {{ form_widget(newsletterform.emailValue) }}					            
-							<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+							<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Abonnez-vous!</button>
 							{{ form_end(newsletterform) }}
 							{% endblock %}
 						</div>
@@ -183,18 +183,7 @@
 							<li><a href="{{ path('sitepublic',{'category_name':'Contact'})}}">Contact</a></li>
 						</ul>
 					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-				</div>
+				</div>		
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
@@ -220,8 +209,5 @@
 		<script src="{{ asset('ColoShop/js/custom.js') }}"></script>
 		<script src="{{ asset('ColoShop/js/categories_custom.js') }}"></script>
 		{% endblock %}
-
-        {% block specificjs %}
-        {% endblock %}
 	</body>
 </html>

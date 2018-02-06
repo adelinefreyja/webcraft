@@ -39,7 +39,71 @@
 {% block content %}
 
 <div class="container">
-      <div class="row">
+  <div class="row col-md-12 d-flex justify-content-around">
+                  <a href="{{ path('sitepublic',{'category_name':'Deconnexion'})}}" class="btn btn-primary">Déconnexion</a>
+
+                  <!-- Button trigger modalAddress -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adresseModal">
+  Modifier une adresse
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="adresseModal" tabindex="-1" role="dialog" aria-labelledby="adresseModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="adresseModalLabel">Adresse</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formadresse) }}
+        <div class="right">
+      <button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fa fa-paper-plane fa-lg"></i>Valider</button>
+    </div>
+        {{ form_end(formadresse) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal Phone -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phoneModal">
+  Ajouter un téléphone
+</button>
+  
+<!-- Modal -->
+<div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="phoneModalLabel">Téléphone</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      {{ form_start(formPhone) }}
+        <div class="right">
+            <button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fa fa-paper-plane fa-lg"></i>Valider</button>
+        </div>
+      {{ form_end(formPhone) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+      <div class="row d-flex justify-content-around">
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">{{ app.user.username }}</h3>
@@ -110,8 +174,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <a href="#" class="btn btn-primary" style="display:none;"></a>
-                  <a href="{{ path('sitepublic',{'category_name':'Deconnexion'})}}" class="btn btn-primary">Déconnexion</a>
+                  
                 </div>
             </div>
           </div>

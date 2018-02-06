@@ -9,8 +9,10 @@ use App\Entity\Newsletter;
 use App\Entity\UserAddress;
 use App\Entity\Customers;
 use App\Form\UserType;
+use App\Form\AddAddressType;
 use App\Form\ContactType;
 use App\Form\NewsletterType;
+use App\Form\CustomersType;
 use App\Form\UserModifyInfoType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -24,7 +26,7 @@ class SitePublicController extends Controller
 
 
 	/**
-	* @Route("/{category_name}", name="sitepublic")
+	* @Route("/site/{category_name}", name="sitepublic")
 	*/
     public function publicPage(Request $request, $category_name, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authUtils){
       
@@ -198,6 +200,61 @@ class SitePublicController extends Controller
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
+        /* EDIT ADRESSE */
+
+        $em = $this->getDoctrine()->getManager()->getRepository(UserAddress::class);
+        $adresse = $em->findAll();
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $adresse = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(UserAddress::class)
+            ->findOneBy(["id" => $userId])
+        ;
+
+        $form = $this->createForm(AddAddressType::class, $adresse);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash(
+                'success',
+                "Page mise à jour !"
+            );
+            return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Profil"]);
+        }
+
+        /* EDIT TELEPHONE */
+
+        $emphone = $this->getDoctrine()->getManager()->getRepository(Customers::class);
+        $phone = $emphone->findAll();
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $phone = $this->getDoctrine()
+            ->getManager()
+            ->getRepository(Customers::class)
+            ->findOneBy(["id" => $userId])
+        ;
+
+        $formPhone = $this->createForm(CustomersType::class, $phone);
+        $formPhone->handleRequest($request);
+        if ($formPhone->isSubmitted() && $formPhone->isValid())
+        {
+            $emphone = $this->getDoctrine()->getManager();
+            $emphone->flush();
+            $this->addFlash(
+                'success',
+                "Page mise à jour !"
+            );
+            return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Profil"]);
+        }
+
+
         $em = $this->getDoctrine()->getManager();
         $rawSql = "SELECT * FROM user, user_address, customers WHERE user.id = user_address.id AND customers.id = user.id";
 
@@ -209,6 +266,10 @@ class SitePublicController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
             "profil" => $result,
+            'formadresse' => $form->createView(),
+            'formPhone' => $formPhone->createView(),
+            "adresse" => $adresse,
+            "telephone" => $phone,
             'newsletterform' => $newsletterForm->createView(),
             
         ));
@@ -236,7 +297,47 @@ class SitePublicController extends Controller
             );
         }
       }
+/**
+     * @Route("/site/Boutique/produit/{id}", name="pageproduit")
+     */
+    public function showProduit(Request $request, $id) {
 
+        $selectAll = $this->getDoctrine()->getManager()->getRepository(Products::class);
+        $products = $selectAll->findOneBy(
+            ["productId"    =>  $id]
+        );
+
+        $selectAll2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
+        $images = $selectAll2->findBy(
+            ["productId"    =>  $id]
+        );
+
+        $selectAll3 = $this->getDoctrine()->getManager()->getRepository(ProductsStock::class);
+        $stock = $selectAll3->findBy(
+            ["product"    =>  $id]
+        );
+
+        $newsletter = new Newsletter();
+        $newsletterForm = $this->createForm(NewsletterType::class, $newsletter);
+        $newsletterForm->handleRequest($request);
+
+        if ($newsletterForm->isSubmitted() && $newsletterForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newsletter);
+            $em->flush();
+            $this->addFlash(
+                'success',
+                "Email enregistré !"
+            );
+        }
+
+        return $this->render('front\ColoShop\single.html.twig', array(
+            'produits' => $products,
+            'images'    =>  $images[0],
+            'stock'     =>  $stock,
+            'newsletterform' => $newsletterForm->createView()
+        ));
+    }
     /**
      * ça, c'est une méthode de Symfony, elle permet la connexion, on touche pas
      * @Route("/login_check", name="login_check")
