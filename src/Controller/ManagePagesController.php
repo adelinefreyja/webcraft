@@ -197,7 +197,7 @@ class ManagePagesController extends Controller
                 ]
             );
 
-        if ($menu > 1) {
+        if (!empty($menu)) {
             $em->remove($menu);
             $em->flush();
 

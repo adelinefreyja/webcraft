@@ -55,7 +55,18 @@
 							<td>{{ page.categoryname|e }}</td>
 							<td>
 							<a href="{{ path('editpage', {'id': page.pageId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la page"><i class="far fa-edit brown-text"></i></a>
-							<a href="{{ path('deletepage', {'id': page.pageId}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Cliquez pour supprimer la page"><i class="fa fa-trash white-text"></i></a>
+							<a href="#del{{ page.pageID }}" class="btn red darken-2 tooltipped modal-trigger" data-position="right" data-tooltip="Cliquez pour supprimer la page"><i class="fa fa-trash white-text"></i></a>
+                                <div id="del{{ page.pageID }}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Suppression</h4>
+                                        <p>Voulez-vous vraiment supprimer cette page ?</p>
+                                        <p class="red-text" style="font-weight: bold">Attention, cette action sera irréversible.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-action modal-close waves-effect waves-green btn-flat">Retour</a>
+                                        <a href="{{ path('deletepage', {'id': page.pageId}) }}" class="btn-flat red darken-2 white-text modal-action modal-close waves-effect waves-green btn-flat">Supprimer</a>
+                                    </div>
+                                </div>
 							</td>
 						</tr>
 					{% endfor %}
@@ -68,5 +79,10 @@
 {% endblock %}
 
 {% block specificjs %}
-
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
 {% endblock %}
