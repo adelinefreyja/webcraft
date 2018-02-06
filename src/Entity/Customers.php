@@ -43,35 +43,33 @@ class Customers
     private $cutomersId;
 
     /**
-     * @var \App\Entity\User
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * })
      */
     private $id;
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getUserAddressId(): int
+    public function getUserAddressId()
     {
         return $this->userAddressId;
     }
 
     /**
-     * @param int $userAddressId
+     * @param integer $userAddressId
      */
-    public function setUserAddressId(int $userAddressId): void
+    public function setUserAddressId($userAddressId)
     {
         $this->userAddressId = $userAddressId;
     }
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getUserLandphone(): int
+    public function getUserLandphone()
     {
         return $this->userLandphone;
     }
@@ -79,43 +77,58 @@ class Customers
     /**
      * @param int $userLandphone
      */
-    public function setUserLandphone(int $userLandphone): void
+    public function setUserLandphone($userLandphone)
     {
         $this->userLandphone = $userLandphone;
     }
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getUserMobilephone(): int
+    public function getUserMobilephone()
     {
         return $this->userMobilephone;
     }
 
     /**
-     * @param int $userMobilephone
+     * @param integer $userMobilephone
      */
-    public function setUserMobilephone(int $userMobilephone): void
+    public function setUserMobilephone($userMobilephone)
     {
         $this->userMobilephone = $userMobilephone;
     }
 
     /**
-     * @return int
+     * @return integer
      */
-    public function getCutomersId(): int
+    public function getCutomersId()
     {
         return $this->cutomersId;
     }
 
     /**
-     * @param int $cutomersId
+     * @param integer $cutomersId
      */
-    public function setCutomersId(int $cutomersId): void
+    public function setCutomersId($cutomersId)
     {
         $this->cutomersId = $cutomersId;
     }
 
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
 }
 

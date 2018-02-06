@@ -68,7 +68,12 @@
                       </tr>
                                             <tr>
                         <td>Ville</td>
-                        <td>blablablabla</td>
+                        <td>{% for b in profil %}
+                        	{% if b.id == app.user.id %}
+	                        		{{ b.user_city }}              		
+	                     		{% endif %}
+	                     		{% endfor %}
+	                     	</td>
                       </tr>
                         <tr>
                         <td>Adresse</td>

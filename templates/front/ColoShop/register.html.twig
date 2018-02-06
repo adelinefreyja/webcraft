@@ -9,18 +9,11 @@
 			<hr>
 		</div>
 
-<form>
+
 	{{ form_start(form) }}
 		{% if not form.vars.valid %}
 			<div class="error">
-				{{ form_errors(form.username) }}
-				{{ form_errors(form.user_email.first) }}
-				{{ form_errors(form.user_email.second) }}
-				{{ form_errors(form.password.first) }}
-				{{ form_errors(form.password.second) }}
-				{{ form_errors(form.user_first_name) }}
-				{{ form_errors(form.user_last_name) }}
-				{{ form_errors(form.user_gender) }}
+				{{ form_errors(form) }}
 			</div>		
         {% endif %}
 
@@ -61,7 +54,7 @@
 			<button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i>Valider</button>
 		</div>
 	{{ form_end(form) }}
-</form>
+
 </div>
 </div>
 {% endblock %}

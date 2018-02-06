@@ -4,6 +4,8 @@ use App\Entity\User;
 use App\Entity\Pages;
 use App\Entity\Contact;
 use App\Entity\Newsletter;
+use App\Entity\UserAddress;
+use App\Entity\Customers;
 use App\Form\UserType;
 use App\Form\ContactType;
 use App\Form\NewsletterType;
@@ -54,8 +56,9 @@ class SitePublicController extends Controller
                 } 
                 /* View Accueil */
         if($category_name == "Accueil"){
+
             return $this->render('front\ColoShop\index.html.twig',
-            ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView(),]
+            ["Pages" =>  $query,  'newsletterform' => $newsletterForm->createView()]
             );
             /* View Contact */
         }elseif ($category_name == "Contact") {
@@ -111,23 +114,45 @@ class SitePublicController extends Controller
 
             // 2) handle the submit (will only happen on POST)
             $form->handleRequest($request);
+               
+
             if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+               
 
-            // 4) save the User!
-            $user->setRoles(['ROLE_CUSTOMER']);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+                // 3) Encode the password (you could also do this via Doctrine listener)
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
 
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
+                // 4) save the User!
+                $user->setRoles(['ROLE_CUSTOMER']);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-            return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Signin"]);
-        }
+                $userid = $user->getId();
+
+                $userAddress = new UserAddress();
+                $userAddress->setId($userid);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($userAddress);
+                $em->flush();
+
+                $useradd = $userAddress->getUserAddressId();
+
+                $userCustom = new Customers();
+                $userCustom->setUserAddressId($useradd);
+                $userCustom->setId($userid);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($userCustom);
+                $em->flush();
+
+                // ... do any other work - like sending them an email, etc
+                // maybe set a "flash" success message for the user
+
+              return $this->redirectToRoute('sitepublic' ,["category_name" =>  "Signin"]);
+            }
+
         return $this->render('front\ColoShop\register.html.twig',
             array(
                 "sitetype"  =>  $query, 
@@ -138,7 +163,7 @@ class SitePublicController extends Controller
             )
         );
     }
-       
+       /* CONNEXION */
 
        elseif ($category_name == "Signin") {
     
@@ -154,7 +179,39 @@ class SitePublicController extends Controller
              'newsletterform' => $newsletterForm->createView(), 
         ));
     }
+    /* DECONNEXION */
+     elseif ($category_name == "Deconnexion") {
+       if(isset($_SESSION)){
+        session_destroy();
+       }
+        return $this->redirectToRoute('sitepublic',
+                ["category_name" => 'Accueil']);
+    }
+    /* PROFIL */
+     elseif ($category_name == "Profil") {
     
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+
+        $em = $this->getDoctrine()->getManager();
+        $rawSql = "SELECT * FROM user, user_address, customers WHERE user.id = user_address.id AND customers.id = user.id";
+
+        $statement = $em->getConnection()->prepare($rawSql);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        return $this->render('front\ColoShop\profil.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+            "profil" => $result,
+            'newsletterform' => $newsletterForm->createView(),
+            
+        ));
+    }
+
      /* Si l'URL est incorrect */
         else {
             $query = $repository->findOneBy(

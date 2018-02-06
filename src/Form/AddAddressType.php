@@ -34,17 +34,9 @@ class AddAddressType extends AbstractType {
             ->add("userCity", TextType::class, 
                 [   "label" => "Ville"  ]
             )
-            ->add("userCity", TextareaType::class, 
+            ->add("userComment", TextareaType::class, 
                 [   "label" => "Commentaire(facultatif)"  ]
             )
-
-            ->add('userLandphone', IntegerType::class, 
-                [ 'label' =>  'Téléphone Fixe']
-            )
-            ->add('userMobilephone', IntegerType::class, 
-                [ 'label' =>  'Téléphone Portable']
-            )
-            
         ;   
     }
 
@@ -52,7 +44,6 @@ class AddAddressType extends AbstractType {
 
         $resolver->setDefaults(
            ['data_class' => UserAddress::class,
-            'data_class' => Customers::class
         ]
         );
     }
