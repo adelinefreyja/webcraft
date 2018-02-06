@@ -3,28 +3,31 @@
 {% block title %}Gérer mes commentaires :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 
 {% endblock %}
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Avis et commentaires</h4>
+		<div class="col s12">
+			<h4 class="dashboard"><i class="fas fa-wrench fa-lg"></i> Avis et commentaires</h4>
+			<hr class="left account" /> 
 		</div>
 	</div>
+
 	<div class="row">
 
-		<div class="col s6">
+		<div class="col s12">
 
 			<table class="responsive-table striped bordered">
 				  <tr>
 						  <th>Commentaire sur le produit</th>
 						  <th>Id du produit commenter</th>
+						  <th>Commentaire sur l'adresse ajouter</th>
+					      <th>Id de l'adresse utilisateur</th>
 				  </tr>
 
 			    {% for comment in productsComments %}
@@ -33,28 +36,16 @@
 					        <td>{{ comment.product }}</td>
 			        </tr>
 
-	 		     {% endfor %}
-		    </table>
+	 		    {% endfor %}
 
-</div>
+			    {% for comment in userAddress %}
 
-<div class="col s6">
-
-				<table class="responsive-table striped bordered">
-			      <tr>
-					      <th>Commentaire sur l'adresse ajouter</th>
-					      <th>Id de l'adresse utilisateur</th>
-			      </tr>
-
-			      {% for comment in userAddress %}
-
-					      <tr>
 							      <td>{{ comment.userComment }}</td>
 							      <td>{{ comment.userAddressId }}</td>
-						    </tr>
-			      {% endfor %}
+
+			    {% endfor %}
           </table>
-  </div>
+		</div>
 	</div>
 </div>
 {% endblock %}

@@ -1,16 +1,22 @@
 {% extends 'backoffice/index.html.twig' %}
 
 {% block title %}Mes clients :: Webcraft :: Craft magic websites within minutes !{% endblock %}
+
+{% block specificcss %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Mes clients</h4>
+		<div class="col s12">
+			<h4 class="dashboard"><i class="fas fa-users fa-lg"></i> Mes clients</h4>
+			<hr class="left account" />
 		</div>
 	</div>
+</div>
+<div class="container brown-text">
 	<div class="row">
 		<div class="col s12">
 			  <table class="responsive-table striped bordered">

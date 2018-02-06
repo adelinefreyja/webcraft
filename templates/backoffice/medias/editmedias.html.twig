@@ -3,6 +3,8 @@
 {% block title %}Bibliothèque de médias :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
     <style>
         .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
@@ -13,11 +15,17 @@
 
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col s12 brown-text">
-                <h5 class="dashboard">:: Modifier un media</h5>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col s12">
+            <h4 class="dashboard brown-text"><i class="far fa-images fa-lg"></i> Modifier un média</h4>
+            <hr class="left account" />
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
             <div>
                 {% if media.mediaType == "image" %}
                     <img class="imggallery" src="{{ asset(media.mediaSrc) }}" alt="{{ media.mediaDescription }}">

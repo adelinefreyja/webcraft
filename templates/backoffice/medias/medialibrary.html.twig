@@ -15,12 +15,16 @@
 
 
 {% block content %}
-<div class="container">
-	<div class="row">
+<div class="container-fluid">
+    <div class="row">
         <div class="col s12">
             <h4 class="dashboard brown-text"><i class="far fa-images fa-lg"></i> Bibliothèque de médias</h4>
             <hr class="left account" />
         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
         <div class="col s12 center">
             {% if pictures is not empty %}
             <button class="waves-effect waves-light btn filter-button orange lighten-2" data-filter="all">Afficher tout</button>

@@ -3,7 +3,8 @@
 {% block title %}Gérer mes produits :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
@@ -11,17 +12,17 @@
 <div class="container-fluid">
 	<div class="row brown-text">
 		<div class="col s6">
-			<h4 class="dashboard"><i class=""></i> Mes Produits</h4>
+			<h4 class="dashboard"><i class="fas fa-barcode fa-lg"></i> Mes Produits</h4>
 			<hr class="left account" />
 		</div>
 		<div class="col s6">
 			<div class="dashboard right">
-				<a href="{{ path('addproducts') }}" class="modal-trigger btn orange lighten-2 brown-text"><i class=""></i> <span>Ajouter un produit</span></a>
+				<a href="{{ path('addproducts') }}" class="modal-trigger btn orange lighten-2 brown-text"><i class="far fa-plus-square fa-lg"></i> <span>Ajouter un produit</span></a>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="container-fluid">
+<div class="container">
 	<div class="row brown-text">
 		<div class="col s12">
             <table class="bordered striped highlight responsive-table brown-text centered">
