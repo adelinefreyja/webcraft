@@ -48,20 +48,16 @@ class UserAddress
     private $userComment;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_address_id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $userAddressId;
 
     /**
-     * @var \App\Entity\User
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * })
      */
     private $id;
@@ -187,7 +183,7 @@ class UserAddress
     }
 
     /**
-     * @return \App\Entity\User
+     * @return integer
      */
     public function getId()
     {
@@ -195,11 +191,11 @@ class UserAddress
     }
 
     /**
-     * @param \App\Entity\User $id
+     * @param integer $id
      *
      * @return self
      */
-    public function setId(\App\Entity\User $id)
+    public function setId($id)
     {
         $this->id = $id;
 
