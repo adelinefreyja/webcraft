@@ -339,6 +339,23 @@ class SitePublicController extends Controller
             'newsletterform' => $newsletterForm->createView()
         ));
     }
+
+
+    /**
+     * @Route("/site/Boutique/panier", name="viewpanier")
+     */
+    public function viewpanier(Request $request) {
+
+        $selectAll2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
+        $images = $selectAll2->findAll();
+
+        return $this->render('front\ColoShop\basket.html.twig', array(
+            'produits' => $_SESSION["panier"]["produit"],
+            'images'    =>  $images,
+            'quantite'  =>  $_SESSION["panier"]["quantite"]
+        ));
+    }
+
     /**
      * ça, c'est une méthode de Symfony, elle permet la connexion, on touche pas
      * @Route("/login_check", name="login_check")
