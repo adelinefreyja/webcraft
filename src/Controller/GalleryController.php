@@ -51,6 +51,13 @@ class GalleryController extends Controller
             ["sitetype" =>  "2"]
         );
 
+        $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
+        $query2 = $rep->findBy(
+            [
+                "status"    =>  "nonlu"
+            ]
+        );
+
         $media = $this->getDoctrine()
             ->getManager()
             ->getRepository(Medias::class)
@@ -75,7 +82,8 @@ class GalleryController extends Controller
             [
                 "sitetype" =>  $query,
                 'form' => $form->createView(),
-                "media" => $media
+                "media" => $media,
+                "messages"  =>  $query2
             ]
         );
     }

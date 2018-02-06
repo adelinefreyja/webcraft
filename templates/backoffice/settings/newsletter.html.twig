@@ -3,17 +3,23 @@
 {% block title %}Mes abonnées Newsletter :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
 {% endblock %}
 
 
 {% block content %}
-<div class="container">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<h4>Mes abonnées Newsletter</h4>
+		<div class="col s12">
+			<h4 class="dashboard"><i class="far fa-paper-plane fa-lg"></i> Newsletter : abonnés</h4>
+			<hr class="left account" />
+		</div>
 	</div>
+</div>
+<div class="container brown-text">
 	<div class="row">
-		<div class="col s8 offset-s2">
+		<div class="col s12">
 			<table class="responsive-table striped bordered">
 				    <tr>
 						<th>Email abonné</th>
