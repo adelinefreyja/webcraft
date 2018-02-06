@@ -64,23 +64,6 @@ class ManagePagesController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $manyMenu = $this->getDoctrine()->getManager()->getRepository(Menu::class);
-            $menus = $manyMenu->findAll();
-
-            echo '<pre>';
-            var_dump($_POST);
-            echo '</pre>';
-
-            if (count($menus) < 5) {
-
-                $addInMenu = new Menu();
-                $em = $this->getDoctrine()->getManager();
-                $addInMenu->setMenuRank(count($menus) + 1);
-                $addInMenu->setPageName($_POST["add_page"]["page_name"]);
-                $em->persist($addInMenu);
-                $em->flush();
-            }
-
             $page->setUserId($user->getId());
             $page->setPageDate(new \DateTime('now'));
 
