@@ -197,13 +197,16 @@ class ManagePagesController extends Controller
                 ]
             );
 
-        $em->remove($menu);
-        $em->flush();
+        if ($menu > 1) {
+            $em->remove($menu);
+            $em->flush();
 
-        $this->addFlash(
-            'success',
-            'Page supprimée'
-        );
+            $this->addFlash(
+                'success',
+                'Page supprimée'
+            );
+        }
+
         return $this->redirect($this->generateUrl('managepages'));
     }
 
