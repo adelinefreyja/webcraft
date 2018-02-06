@@ -28,9 +28,6 @@ class ManageCommentsController extends Controller
 		$repositoryProductsComments = $this->getDoctrine()->getManager()->getRepository(ProductsComments::class);
         $productsComments = $repositoryProductsComments->findAll();
 
-		$repositoryUserAddressComment = $this->getDoctrine()->getManager()->getRepository(UserAddress::class);
-        $userAddress = $repositoryUserAddressComment->findAll();
-
 		$rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
         $query2 = $rep->findBy(
             [
@@ -40,7 +37,6 @@ class ManageCommentsController extends Controller
 
         return $this->render('backoffice/settings/managecomments.html.twig',
             ["sitetype" =>  $query,
-					"userAddress" => $userAddress,
 				"productsComments" => $productsComments,
 				"messages"  =>  $query2]
         );

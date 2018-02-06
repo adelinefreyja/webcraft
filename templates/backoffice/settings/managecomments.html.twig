@@ -26,24 +26,13 @@
 				  <tr>
 						  <th>Commentaire sur le produit</th>
 						  <th>Id du produit commenter</th>
-						  <th>Commentaire sur l'adresse ajouter</th>
-					      <th>Id de l'adresse utilisateur</th>
-				  </tr>
-
+				  	</tr>
+					<tr>
 			    {% for comment in productsComments %}
-			        <tr>
-					        <td>{{ comment.commentText  }}</td>
-					        <td>{{ comment.product }}</td>
+					    <td>{{ comment.commentText  }}</td>
+					    <td>{{ comment.product }}</td>
 			        </tr>
-
 	 		    {% endfor %}
-
-			    {% for comment in userAddress %}
-
-							      <td>{{ comment.userComment }}</td>
-							      <td>{{ comment.userAddressId }}</td>
-
-			    {% endfor %}
           </table>
 		</div>
 	</div>
