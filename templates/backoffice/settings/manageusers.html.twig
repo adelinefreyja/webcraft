@@ -44,7 +44,11 @@
 							<td>{{ user.userlastname|e }}</td>
 							<td>{{ user.userfirstname|e }}</td>
 							<td>{{ user.usergender|e }}</td>
-							<td>{{ user.roles[0]|e }}</td>
+							{% if user.roles == ["ROLE_SUPER_ADMIN"] %}
+							<td>{{ "Administrateur" }}</td>
+							{% elseif user.roles == ["ROLE_ADMIN"] %}
+							<td>{{ "Editeur" }}</td>
+							{% endif %}
 							<td>
 								<a href="{{ path('edituser', {'id': user.id}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
 								<a href="{{ path('deleteuser', {'id': user.id}) }}" class="btn red darken-2"><i class="fa fa-trash white-text"></i></a>
