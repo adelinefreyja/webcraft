@@ -637,7 +637,7 @@ p.parallax-text p {
   padding-top: 20px;
 }
 
-#subscribe .subscribe-btn {
+#subscribe button.subscribe-btn {
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -650,9 +650,10 @@ p.parallax-text p {
   margin: 10px;
   border: 2px solid #fff;
   color: #fff;
+  background: transparent!important;
 }
 
-#subscribe .subscribe-btn:hover {
+#subscribe button.subscribe-btn:hover {
   background: #03C4EB;
   border: 2px solid #03C4EB;
 }

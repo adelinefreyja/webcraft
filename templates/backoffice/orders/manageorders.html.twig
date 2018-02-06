@@ -3,50 +3,51 @@
 {% block title %}Gérer mes commandes :: Webcraft :: Craft magic websites within minutes !{% endblock %}
 
 {% block specificcss %}
-
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}" />
 {% endblock %}
 
-
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid brown-text">
 	<div class="row">
-		<div class="col s3">
-			<h4></h4>
-		</div>
-		<div class="col s9">
-			<h4>Gérer les commandes</h4>
+		<div class="col s12">
+			<h4 class="dashboard">
+				<i class="fas fa-cubes fa-lg"></i>
+				 Gérer mes commandes
+			</h4>
+			<hr class="left account" />
 		</div>
 	</div>
+</div>
+<div class="container brown-text">
 	<div class="row">
-		<div class="col s3">
-			<fieldset>
-				On a des options ici
-			</fieldset>
-			<fieldset>
-				Et là aussi
-			</fieldset>
-		</div>
-
-		<div class="col s9">
-		<table class="responsive-table striped bordered">
-				<tr>
-						<th>OrderId</th>
-						<th>UserId</th>
-						<th>OrderDate</th>
-						<th>OrderStatus</th>
+		<div class="col s12">
+			{% if orders is empty %}	
+			<div class="card-panel brown lighten-4">
+				<i class="fas fa-info-circle fa-lg"></i> 
+				Vous n'avez pas encore reçu de commande.
+			</div>
+			{% else %}
+			  <table class="responsive-table striped bordered">
+					<tr>
+                		<th>Commande n°</th>
+                		<th>Client</th>
+						<th>Date de la commande</th>
+						<th>Statut de la commande</th>
 						<th>Action</th>
-				</tr>
-				{% for orderId in orders %}
-				 <tr>
-						 <td>{{ orderId.orderId }}</td>
-						 <td>{{ orderId.id }}</td>
-						 <td>{{ orderId.orderDate|date("m/d/Y") }}</td>
-						 <td>{{ orderId.orderStatus }}</td>
-						 <td><a href="{{ path('editorder', {'id': orderId.orderId}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
+  				  	</tr>
+  				  	<tr>
+					  {% for orderId in orders %}
+					   	<td>{{ orderId.orderId }}</td>
+					   	<td>{{ orderId.id }}</td>
+					 	<td>{{ orderId.orderDate|date("m/d/Y") }}</td>
+					 	<td>{{ orderId.orderStatus }}</td>
+					 	<td><a href="{{ path('editorder', {'id': orderId.orderId}) }}" class="btn orange lighten-2"><i class="far fa-edit brown-text"></i></a>
 						 <a href="{{ path('deleteorder', {'id': orderId.orderId}) }}" class="btn red darken-2"><i class="fa fa-trash white-text"></i></a></td>
-				 </tr>
-				{% endfor %}
-	</table>
+	 	 			  {% endfor %}
+	 	 			</tr>
+				</table>
+			{% endif %}
 		</div>
 	</div>
 </div>

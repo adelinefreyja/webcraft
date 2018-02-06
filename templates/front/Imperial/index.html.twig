@@ -220,16 +220,17 @@
             <h3 class="subscribe-title">Newsletter</h3>
             <p class="subscribe-text">Inscrivez-vous à notre newsletter et soyez informés les premiers de nos futures mises à jour !</p>
             <div class="suscribe-text">
-              {{ form_start(newsletterForm) }}
+              
+            </div>
+          </div>
+          <div class="col-md-4 subscribe-btn-container">
+            {{ form_start(newsletterForm) }}
 
               <label>{{ form_label(newsletterForm.emailValue) }}</label>
               <div class="form-group">
                 {{ form_widget(newsletterForm.emailValue, { 'attr' : { 'class' : 'form-control' }}) }}
               </div>
-            </div>
-          </div>
-          <div class="col-md-4 subscribe-btn-container">
-            <button type="submit" class="btn btn-lg">Inscrivez-vous !</button>
+            <button type="submit" class="subscribe-btn">Inscrivez-vous !</button>
           </div>
             {{ form_end(newsletterForm) }}
         </div>
