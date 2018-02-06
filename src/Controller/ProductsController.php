@@ -36,7 +36,7 @@ class ProductsController extends Controller {
             ["sitetype" =>  "2"]
         );
 
-        if ($query == 0) {
+        if ($query == "0") {
             return $this->redirectToRoute('dashboard');
         }
 
