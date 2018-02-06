@@ -1,13 +1,13 @@
 # webcraft
 
 
-ToDo BACKOFFICE (Deadline - 1er au SOIR) :
+ToDo :
 
 - Gérer options newsletter --- Félix
  
 - Module de commentaires et gestion --- Félix / Adeline
 
-- Personnalisation du design (génération de fichier) + Finalisation menus --- Charles
+- Personnalisation du design (génération de fichier) --- Charles
 
 
 || BRIDGE : FONCTIONNALITE DE SWITCH DE L'INDEX EN FONCTION DU TEMPLATE ||

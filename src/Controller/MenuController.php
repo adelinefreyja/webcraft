@@ -32,6 +32,9 @@ class MenuController extends Controller
         $rep = $this->getDoctrine()->getManager()->getRepository(Pages::class);
         $pages = $rep->findAll();
 
+        $repMenu = $this->getDoctrine()->getManager()->getRepository(Menu::class);
+        $currentMenu = $repMenu->findAll();
+
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu);
         $form->handleRequest($request);
@@ -50,13 +53,20 @@ class MenuController extends Controller
             }
 
             $newMenu = explode(",", $_POST["menu"]["pageName"]);
+            $count = count($newMenu);
 
-            for ($i = 0; $i < 5; $i++) {
-                $menu = new Menu();
-                $menu->setPageName($newMenu[$i]);
-                $menu->setMenuRank($i + 1);
-                $em->persist($menu);
-                $em->flush();
+            if ($count > 5) {
+                $count = 5;
+            }
+
+            for ($i = 0; $i < $count; $i++) {
+                if ($newMenu[$i] !== "undefined") {
+                    $menu = new Menu();
+                    $menu->setPageName($newMenu[$i]);
+                    $menu->setMenuRank($i + 1);
+                    $em->persist($menu);
+                    $em->flush();
+                }
             }
 
              return $this->redirect($this->generateUrl('menus'));
@@ -68,6 +78,7 @@ class MenuController extends Controller
                 "sitetype" =>  $query,
                 "pages" => $pages,
                 "messages"  =>  $query2,
+                "currentmenu"   =>  $currentMenu,
                 "form" => $form->createView()
             ]
             // , "form3" => $form3->createView(), "form4" => $form4->createView(), "form5" => $form5->createView()
