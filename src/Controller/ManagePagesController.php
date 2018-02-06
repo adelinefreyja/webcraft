@@ -48,6 +48,19 @@ class ManagePagesController extends Controller
         $catForm->handleRequest($request);
         if ($catForm->isSubmitted() && $catForm->isValid()) {
 
+            $manyMenu = $this->getDoctrine()->getManager()->getRepository(Menu::class);
+            $menus = $manyMenu->findAll();
+
+            if (count($menus) < 5) {
+
+                $addInMenu = new Menu();
+                $em = $this->getDoctrine()->getManager();
+                $addInMenu->setMenuRank(count($menus) + 1);
+                $addInMenu->setPageName($_POST["add_page"]["page_name"]);
+                $em->persist($addInMenu);
+                $em->flush();
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cat);
             $em->flush();
