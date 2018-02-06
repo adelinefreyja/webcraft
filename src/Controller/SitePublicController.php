@@ -349,10 +349,15 @@ class SitePublicController extends Controller
         $selectAll2 = $this->getDoctrine()->getManager()->getRepository(ProductsImages::class);
         $images = $selectAll2->findAll();
 
+        $selectAll = $this->getDoctrine()->getManager()->getRepository(Products::class);
+        $produc = $selectAll->findAll();
+
         return $this->render('front\ColoShop\basket.html.twig', array(
             'produits' => $_SESSION["panier"]["produit"],
             'images'    =>  $images,
-            'quantite'  =>  $_SESSION["panier"]["quantite"]
+            'prod'  =>  $produc,
+            'quantite'  =>  $_SESSION["panier"]["quantite"],
+            'prix'      =>  $_SESSION["panier"]["prix"]
         ));
     }
 

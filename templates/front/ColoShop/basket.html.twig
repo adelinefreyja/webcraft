@@ -4,6 +4,7 @@
             <th></th>
             <th scope="col">Produit</th>
             <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -12,6 +13,8 @@
             <th></th>
             <td>{{ produits }}</td>
             <td>{{ quantite }}</td>
+            <td>{{ prix * quantite }}€</td>
+            <td><button class="btn btn-danger"><span class="fa fa-trash-o"></span></button></td>
         </tr>
     </tbody>
 </table>

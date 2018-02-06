@@ -78,6 +78,7 @@
 						</div>
                             <form>
                                 <input type="hidden" id="produit" value="{{ produits.productName }}">
+                                <input type="hidden" id="price" value="{{ produits.productPrice }}">
                                 <input type="hidden" id="quantite" value="1">
                                 <div class="btn btn-danger" id="submit" style="margin-left: 20px; cursor: pointer;">Ajouter au panier</div>
                             </form>
@@ -120,12 +121,14 @@
                 '{{ asset('ColoShop/check.php') }}',
                 {
                     produit: $("#produit").val(),
-                    quantite: $("#quantite").val()
+                    quantite: $("#quantite").val(),
+                    prix: $("#price").val()
                 },
 
                 function (data) {
                     if (data === "success") {
                         $("#checkout_items").text($("#checkout_items").val() + 1);
+                        console.log('zsfsddf');
                     }
 
                 },
