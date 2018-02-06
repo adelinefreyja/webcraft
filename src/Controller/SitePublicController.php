@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller;
+
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Entity\ProductsStock;
 use App\Entity\User;
 use App\Entity\Pages;
 use App\Entity\Contact;
@@ -13,7 +15,6 @@ use App\Form\AddAddressType;
 use App\Form\ContactType;
 use App\Form\NewsletterType;
 use App\Form\CustomersType;
-use App\Form\UserModifyInfoType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Routing\Annotation\Route;
