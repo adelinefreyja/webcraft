@@ -75,17 +75,17 @@ class DatabaseController extends Controller {
 
         $connexion->query(
             "INSERT INTO `options`
-             VALUES (NULL, 'module' , 'contact', NULL, NULL)"
+             VALUES (NULL, 'module' , 'contact', 'Activation module', NULL)"
         );
 
         $connexion->query(
             "INSERT INTO `options`
-             VALUES (NULL, 'module' , 'portfolio', NULL, NULL)"
+             VALUES (NULL, 'module' , 'portfolio', 'Activation module', NULL)"
         );
 
         $connexion->query(
             "INSERT INTO `options`
-             VALUES (NULL, 'module' , 'newsletter', NULL, NULL)"
+             VALUES (NULL, 'module' , 'newsletter', 'Activation module', NULL)"
         );
 
         $connexion->query(

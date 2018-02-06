@@ -29,15 +29,11 @@ class GeneralFrontController extends Controller
         if($query4){
 	    $response = $this->forward('App\Controller\ImperialController::displayIndexAction');
 
-	    // ... further modify the response or return it directly
-
 	    return $response;
 		}
 
 		else if($query){
 	    $response = $this->forward('App\Controller\SitePublicController::publicPage', ["category_name" => "Accueil"]);
-
-	    // ... further modify the response or return it directly
 
 	    return $response;
 		}

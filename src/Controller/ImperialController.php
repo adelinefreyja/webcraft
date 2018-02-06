@@ -54,6 +54,11 @@ Class ImperialController extends Controller
         $repository7 = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query7 = $repository7->findOneBy(
             ["optionname" => "logo"]
+        );
+
+        $repository8 = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $query8 = $repository8->findOneBy(
+            ["optionname" =>  "newsletter"]
         );        
 
         $contact = new Contact();
@@ -73,7 +78,7 @@ Class ImperialController extends Controller
         return $this->render(
             'front/Imperial/index.html.twig',
             [
-                "menu"         =>  $qy,
+                "menu"          =>  $qy,
                 "pages"    		=>  $query,
                 "medias"        =>  $query2,
                 "contact"		=>	$query3,
@@ -81,6 +86,7 @@ Class ImperialController extends Controller
                 "portfolio"     =>  $query5,
                 "design"        =>  $query6,
                 "logo"          =>  $query7,
+                "newsletter"    =>  $query8;
                 "css"           =>  $queryCss,
                 "contactform"   =>  $contactForm->createView()
             ]
