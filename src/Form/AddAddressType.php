@@ -23,7 +23,7 @@ class AddAddressType extends AbstractType {
 
         $builder
            ->add("userAddressname", TextType::class, 
-                [   "label" => "Pseudo de votre adresse" ]
+                [   "label" => "Titre de votre adresse" ]
             )
             ->add("userAddress", TextType::class, 
                 [   "label" => "Adresse" ]

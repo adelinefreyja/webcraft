@@ -59,14 +59,30 @@
       </div>
       <div class="modal-body">
         {{ form_start(formadresse) }}
-        <div class="right">
-      <button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fa fa-paper-plane fa-lg"></i>Valider</button>
-    </div>
-        {{ form_end(formadresse) }}
+      <div class="form-group">
+        {{ form_label(formadresse.userAddressname) }}
+        {{ form_widget(formadresse.userAddressname, {"attr" : { "class" : "form-control"}}) }}
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Sauvegarder</button>
+      <div class="form-group">
+        {{ form_label(formadresse.userAddress) }}
+        {{ form_widget(formadresse.userAddress, {"attr" : { "class" : "form-control"}}) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(formadresse.userZipcode) }}
+        {{ form_widget(formadresse.userZipcode, {"attr" : { "class" : "form-control"}}) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(formadresse.userCity) }}
+        {{ form_widget(formadresse.userCity, {"attr" : { "class" : "form-control"}}) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(formadresse.userComment) }}
+        {{ form_widget(formadresse.userComment, {"attr" : { "class" : "form-control"}}) }}
+      </div>
+      <div class="right">
+        <button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fa fa-paper-plane fa-lg"></i>Valider</button>
+      </div>
+        {{ form_end(formadresse) }}
       </div>
     </div>
   </div>
@@ -90,14 +106,19 @@
       </div>
       <div class="modal-body">
       {{ form_start(formPhone) }}
+
+      <div class="form-group">
+        {{ form_label(formPhone.userLandphone) }}
+        {{ form_widget(formPhone.userLandphone, {"attr" : { "class" : "form-control"}}) }}
+      </div>
+      <div class="form-group">
+        {{ form_label(formPhone.userMobilephone) }}
+        {{ form_widget(formPhone.userMobilephone, {"attr" : { "class" : "form-control"}}) }}
+      </div>
         <div class="right">
             <button type="submit" class="waves-effect waves-light btn btn-success btn-block orange lighten-2"><i class="fa fa-paper-plane fa-lg"></i>Valider</button>
         </div>
       {{ form_end(formPhone) }}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Sauvegarder</button>
       </div>
     </div>
   </div>
