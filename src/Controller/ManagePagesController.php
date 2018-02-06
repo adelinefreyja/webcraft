@@ -77,7 +77,14 @@ class ManagePagesController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $text = preg_replace('~[^\pL\d]+~u', '-', $_POST["add_page"]["page_name"]);
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+            $text = preg_replace('~[^-\w]+~', '', $text);
+            $text = trim($text, '-');
+            $text = preg_replace('~-+~', '-', $text);
+
             $page->setUserId($user->getId());
+            $page->setPageName($text);
             $page->setPageDate(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
@@ -175,10 +182,9 @@ class ManagePagesController extends Controller
 
         $form = $this->createForm(EditPageType::class, $page);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid())
         {
-
-
 
             $page->setPageModified(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
