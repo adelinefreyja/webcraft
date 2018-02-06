@@ -35,9 +35,14 @@
 				<div class="top_nav">
 			<div class="container">
 				<div class="row">
+					{% if app.user %}
 					<div class="col-md-6">
-						<div class="top_nav_left">Message Info</div>
+						<div class="top_nav_left">Bonjour : {{ app.user.username }}</div>
 					</div>
+				{% else %}
+					<div class="col-md-6">
+					</div>
+					{% endif %}
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
@@ -68,15 +73,23 @@
 										<li><a href="#">Spanish</a></li>
 									</ul>
 								</li>
+
 								<li class="account">
 									<a href="#">
 										My Account
 										<i class="fa fa-angle-down"></i>
 									</a>
+									{% if app.user %}
+										<ul class="account_selection">
+										<li><a href="{{ path('sitepublic',{'category_name':'Profil'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Mon Profil</a></li>
+										<li><a href="{{ path('sitepublic',{'category_name':'Deconnexion'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Déconnexion</a></li>
+									</ul>
+									{% else %}
 									<ul class="account_selection">
 										<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
 										<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
 									</ul>
+									{% endif %}
 								</li>
 							</ul>
 						</div>
@@ -158,10 +171,18 @@
 						My Account
 						<i class="fa fa-angle-down"></i>
 					</a>
+
+					{% if app.user %}
 					<ul class="menu_selection">
-						<li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-						<li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+						<li><a href="{{ path('sitepublic',{'category_name':'Profil'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Mon Profil</a></li>
+						<li><a href="{{ path('sitepublic',{'category_name':'Deconnexion'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Déconnexion</a></li>
 					</ul>
+					{% else %}
+					<ul class="menu_selection">
+						<li><a href="{{ path('sitepublic',{'category_name':'Signin'})}}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+						<li><a href="{{ path('sitepublic',{'category_name':'Register'})}}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+					</ul>
+					{% endif %}
 				</li>
 				<li class="menu_item">li><a href="{{ path('sitepublic',{'category_name':'Accueil'})}}">Home</a></li>								
 				<li class="menu_item"><a href="{{ path('sitepublic',{'category_name':'Shop'})}}">Shop</a></li>
@@ -240,8 +261,8 @@
 
 		{% block javascripts %}
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-        <script src="{{ asset('ColoShop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js') }}"></script>
 		<script src="{{ asset('ColoShop/js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('ColoShop/plugins/jquery-ui-1.12.1.custom/jquery-ui.js') }}"></script>
 		<script src="{{ asset('ColoShop/styles/bootstrap4/popper.js') }}"></script>
 		<script src="{{ asset('ColoShop/styles/bootstrap4/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('ColoShop/plugins/Isotope/isotope.pkgd.min.js') }}"></script>

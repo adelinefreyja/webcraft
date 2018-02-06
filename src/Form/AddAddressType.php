@@ -3,9 +3,16 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use App\Entity\UserAddress;
+use App\Entity\Customers;
 use Doctrine\ORM\EntityRepository;
+use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,19 +34,26 @@ class AddAddressType extends AbstractType {
             ->add("userCity", TextType::class, 
                 [   "label" => "Ville"  ]
             )
-            ->add("userCity", TextType::class, 
-                [   "label" => "Ville"  ]
-            )
             ->add("userCity", TextareaType::class, 
                 [   "label" => "Commentaire(facultatif)"  ]
             )
+
+            ->add('userLandphone', IntegerType::class, 
+                [ 'label' =>  'Téléphone Fixe']
+            )
+            ->add('userMobilephone', IntegerType::class, 
+                [ 'label' =>  'Téléphone Portable']
+            )
+            
         ;   
     }
 
     public function configureOptions(OptionsResolver $resolver) {
 
         $resolver->setDefaults(
-            ['data_class' => UserAddress::class]
+           ['data_class' => UserAddress::class,
+            'data_class' => Customers::class
+        ]
         );
     }
 }
