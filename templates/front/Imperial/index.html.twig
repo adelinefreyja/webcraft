@@ -42,12 +42,14 @@
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('Imperial/css/style.css') }}" rel="stylesheet">
+
+  {{ include('backoffice/customs/design.css.twig') }}
 </head>
 
 <body>
   <div id="preloader"></div>
 
-  <section id="hero" style="background: url('{{ design.getHeaderImg }}') top center fixed">
+  <section id="hero">
     <div class="hero-container">
       <div class="wow fadeIn">
         <div class="hero-logo">
