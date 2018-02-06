@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pages
@@ -30,6 +31,7 @@ class Pages
      * @var string
      *
      * @ORM\Column(name="page_title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $pageTitle;
 
@@ -37,6 +39,7 @@ class Pages
      * @var string
      *
      * @ORM\Column(name="page_name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $pageName;
 
@@ -51,6 +54,10 @@ class Pages
      * @var string
      *
      * @ORM\Column(name="page_content", type="text", nullable=false)
+     * @Assert\NotBlank(
+     *      message = "Le contenu de la page ne peut pas être vide."
+     * )
+     * 
      */
     private $pageContent;
 
@@ -58,6 +65,7 @@ class Pages
      * @var string
      *
      * @ORM\Column(name="page_status", type="string", length=30, nullable=false)
+     * @Assert\NotBlank()
      */
     private $pageStatus;
 
@@ -65,6 +73,7 @@ class Pages
      * @var string
      *
      * @ORM\Column(name="comment_status", type="string", length=30, nullable=false)
+     * @Assert\NotBlank()
      */
     private $commentStatus;
 

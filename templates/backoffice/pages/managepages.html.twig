@@ -50,8 +50,16 @@
 							<td>{{ page.pagename|e }}</td>
 							<td>{{ page.pagetitle|e }}</td>
 							<td>{{ page.pagedate|date('d-M-y') }}</td>
-							<td>{{ page.pagestatus|e }}</td>
-							<td>{{ page.commentstatus|e }}</td>
+							{% if page.pagestatus == "masquer" %}
+								<td>{{ "Brouillon" }}</td>
+							{% elseif page.pagestatus == "afficher" %}
+								<td>{{ "Publiée" }}</td>
+							{% endif %}
+							{% if page.commentstatus == "masquer" %}
+								<td>{{ "Désactivés" }}</td>
+							{% elseif page.commentstatus == "afficher" %}
+								<td>{{ "Activés" }}</td>
+							{% endif %}
 							<td>{{ page.categoryname|e }}</td>
 							<td>
 							<a href="{{ path('editpage', {'id': page.pageId}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Cliquez pour modifier la page"><i class="far fa-edit brown-text"></i></a>

@@ -13,38 +13,38 @@
 
     <div class="container-fluid">
 	<div class="row">
-		<div class="col s6">
+		<div class="col s12">
 			<h4 class="dashboard brown-text"><i class="far fa-plus-square fa-lg"></i> Créer une page</h4>
-            <hr class="settings" />
+            <hr class="left settings" />
 		</div>
-        <div class="col s6">
-            <h5 class="dashboard brown-text">Votre nouvelle page</h5>
-        </div>
 	</div>
 	<div class="row">
         <div class="col s3 brown-text">
             {% if pages is not empty %}
             <fieldset>
-                <legend>Liste des Pages</legend>
+                <legend>Mes Pages</legend>
                     <ul>
                     {% for page in pages %}
                         <li><a href="{{ path('editpage', {'id': page.pageId}) }}" class="brown-text tooltipped" data-position="right" data-tooltip="Cliquez pour modifier la page"><i class="far fa-edit fa-2x"></i> {{ page.pagename }}</a></li>
                     {% endfor %}
                     </ul>
             </fieldset>
+            {% elseif pages is empty %}
+                <fieldset>
+                    <legend>Mes Pages</legend>
+                        <div class="card-panel brown lighten-4 brown-text">
+                            <p>Vous n'avez pas encore créé de page.</p>
+                        </div>
+                </fieldset>
             {% endif %}
-            <fieldset>
-                <legend>Options</legend>
-                <p>Page d'accueil du site</p>
-                <p>Page de Contact</p>
-            </fieldset>
-            <fieldset>
-                <legend>e-Commerce</legend>
-                <p>Activer les filtres ?</p>
-            </fieldset>
         </div>
-        <div class="col s9">
+        <div class="col s9 grey lighten-4">
             {{ form_start(form) }}
+                {% if not form.vars.valid %}
+                    <div class="error">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
             <div class="input-field">
             {{ form_label(form.page_name) }}
             {{ form_widget(form.page_name) }}
@@ -60,9 +60,6 @@
             <label>{{ form_label(form.page_content) }}</label>
             <div class="input-field">
                 {{ form_widget(form.page_content) }}
-            // <script>
-            //     CKEDITOR.replace('editor1');
-            // </script>
             </div>
             {% if categories is not empty %}
                 <label>{{ form_label(form.category_name, 'Catégorie') }}</label>
@@ -83,8 +80,9 @@
             <div class="input-field">
                 {{ form_widget(form.page_status) }}
             </div>
+            <div class="right">
                 <button type="submit" class="waves-effect waves-light btn btn-success orange lighten-2"><i class="fas fa-paper-plane fa-lg"></i> Valider</button>
-                
+            </div>
             {{ form_end(form)}}
         </div>
 	</div>
