@@ -7,6 +7,7 @@ use App\Entity\Pages;
 use App\Entity\Orders;
 use App\Entity\Medias;
 use App\Entity\Contact;
+use App\Entity\ProductsComments;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,9 @@ class AdminDashboardController extends Controller
                 "status"    =>  "nonlu"
             ]
         );
-        
+
+        $repositoryProductsComments = $this->getDoctrine()->getManager()->getRepository(ProductsComments::class);
+        $productsComments = $repositoryProductsComments->findAll();        
 
         return $this->render(
             'backoffice/dashboard.html.twig',
@@ -52,7 +55,8 @@ class AdminDashboardController extends Controller
                 "pages"    		=>  $query3,
                 "orders"      	=>  $query4,
                 "medias"        =>  $query5,
-                "messages"      =>  $query6
+                "messages"      =>  $query6,
+                "avis"          =>  $productsComments
             ]
         );
 	}

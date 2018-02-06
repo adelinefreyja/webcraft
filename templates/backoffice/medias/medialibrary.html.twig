@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/setup.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/gallery.css') }}" />
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.12/release/featherlight.min.css" type="text/css" rel="stylesheet" />
     <style>
         .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
         .embed-container iframe, .embed-container object,
@@ -56,6 +57,7 @@
                     <div class="gallery_options">
                         {{ picture.mediaName }}
                         <div class="gallery_options">
+                            <a href="#" data-featherlight="{{ asset(picture.mediaSrc) }}" class="btn green"><span class="fa fa-search"></span></a>
                             <a href="{{ path('editmedias', {'id': picture.mediaId}) }}" class="btn orange"><span class="fa fa-edit"></span></a>
                             <a href="{{ path('deletemedias', {'id': picture.mediaId}) }}" class="btn red"><span class="fa fa-trash"></span></a>
                         </div>
@@ -144,4 +146,5 @@
 
 {% block specificjs %}
     <script src="{{ asset('js/gallery.js') }}"></script>
+    <script src="{{ asset('js/featherlight.min.js') }}"></script>
 {% endblock %}

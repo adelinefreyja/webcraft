@@ -31,6 +31,27 @@
                 </div>
                 <div class="col s12">
                     <div class="row">
+                        {% if sitetype == false %}
+                        <div class="col m6 s6">
+                            <div class="card-panel center">
+                                <h3 class="orange-text">{{ pages|length }}</h3>
+                                <hr class="account" />
+                                <p>Pages</p>
+                            </div>
+                        </div>
+                        <div class="col m6 s6">
+                            <div class="card-panel center">
+                                <h3 class="orange-text">{{ medias|length }}</h3>
+                                <hr class="account" />
+                                {% if medias|length <= 1 %}
+                                    <p>Média</p>
+                                {% elseif medias|length > 1 %}
+                                    <p>Médias</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if sitetype == true %}
                         <div class="col m3 s6">
                             <div class="card-panel center">
                                 <h3 class="orange-text">{{ pages|length }}</h3>
@@ -67,6 +88,7 @@
                                 <p>Commandes</p>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -139,6 +161,11 @@
             <div class="col l6 m12">
                 <h5>Derniers commentaires</h5>
                 <hr class="left account" />
+                {% if avis is empty %}
+                    <div class="card-panel orange lighten-5 brown-text">
+                        <i class="fas fa-info-circle fa-lg"></i> Vous n'avez pas encore reçu d'avis ou de commentaire.
+                    </div>
+                {% endif %}
             </div>
             {% endif %}
         </div>

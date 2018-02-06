@@ -21,7 +21,7 @@
 	<div class="row">
 
 		<div class="col s12">
-
+		{% if productsComments is not empty %}
 			<table class="responsive-table striped bordered">
 				  <tr>
 						  <th>Commentaire sur le produit</th>
@@ -34,6 +34,12 @@
 			        </tr>
 	 		    {% endfor %}
           </table>
+      	{% else %}
+      		<div class="card-panel brown lighten-4 brown-text">
+      			<i class="fa fa-info-circle fa-lg"></i>
+      			Vous n'avez pas encore reçu d'avis ou de commentaire.
+      		</div>
+      	{% endif %}
 		</div>
 	</div>
 </div>
