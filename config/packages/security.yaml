@@ -44,4 +44,5 @@ security:
                 target: /login
 
     access_control:
-        - { path: ^/craft, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/craft/settings, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/craft, roles: ROLE_ADMIN }

@@ -29,7 +29,9 @@
         <li id="customers" class="mainNav customers"><a href="{{ path('customers') }}"><i class="fas fa-users fa-2x"></i> <p>Mes clients</p></a></li>
         {% endif %}
 
+        {% if app.user.roles == ["ROLE_SUPER_ADMIN"] %}
         <li id="parameters" class="mainNav parameters"><a><i class="fas fa-cogs fa-2x"></i> <p>Mon site</p></a></li>
+        {% endif %}
         <li id="user_settings" class="user_settings"><a><i class="fas fa-user fa-2x"></i>
           {% if messages is not empty %}
             <span class="badge orange lighten-2 brown-text">{{ messages|length }}</span>
@@ -62,6 +64,7 @@
         <li class="submenu Orders hide"><a href="{{ path('manageorders') }}" class="Orders"><span><i class="fas fa-cubes fa-lg"></i> Gérer les commandes</span></a></li>
 
         {# Parameters Submenu #}
+        {% if app.user.roles == ["ROLE_SUPER_ADMIN"] %}
         <li class="submenu Parameters hide"><a href="{{ path('websitesettings') }}" class="Parameters"><span><i class="fas fa-cogs fa-lg"></i> Paramètres du site</span></a></li>      
         <li class="submenu Parameters hide"><a href="{{ path('manageusers') }}" class="Parameters"><span><i class="fas fa-user-plus fa-lg"></i> Gestion des utilisateurs</span></a></li>
         <li class="submenu Parameters hide"><a href="{{ path('BackofficeNewsletter') }}" class="Parameters"><span><i class="fas fa-paper-plane fa-lg"></i> Newsletter</span></a></li>
@@ -72,7 +75,7 @@
         {% endif %}
 
         <li class="submenu Parameters hide"><a href="{{ path('managecomments') }}" class="Parameters"><span><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</span></a></li>
-
+        {% endif %}
     {% endblock %}
     </ul>
     {% block sidenav %}
@@ -118,6 +121,7 @@
               <div class="collapsible-header"><span><i class="fas fa-users fa-lg"></i> Mes clients</span></div>
               <div class="collapsible-body"><span><a href="{{ path('customers') }}"><i class="fas fa-users fa-lg"></i> Voir mes clients</a></span></div>
             </li>
+            {% if app.user.roles == ["ROLE_SUPER_ADMIN"] %}
             <li>
               <div class="collapsible-header"><span><i class="fas fa-cogs fa-lg"></i> Mon site</span></div>
               <div class="collapsible-body">
@@ -128,6 +132,7 @@
                 <span><a href="{{ path('managecomments') }}"><i class="fas fa-wrench fa-lg"></i> Avis & Commentaires</a></span>
                 </div>
             </li>
+            {% endif %}
             <li>
               <div class="collapsible-header"><span><a href="{{ path('user_account') }}"><i class="fas fa-user fa-lg"></i> Espace personnel</a></span></div>
               <div class="collapsible-body">
