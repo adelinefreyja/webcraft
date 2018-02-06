@@ -43,11 +43,11 @@ class Ecommerce {
             "CREATE TABLE IF NOT EXISTS user_address (
 				user_address_id INT(20) AUTO_INCREMENT PRIMARY KEY,
 				id INT(20) NOT NULL,
-				user_addressName VARCHAR(255) NOT NULL,
-				user_address VARCHAR(255) NOT NULL,
-				user_zipCode INT(6) NOT NULL,
-				user_city VARCHAR(255) NOT NULL,
-				user_comment VARCHAR(255) NOT NULL,
+				user_addressName VARCHAR(255),
+				user_address VARCHAR(255),
+				user_zipCode INT(6),
+				user_city VARCHAR(255),
+				user_comment VARCHAR(255),
 				FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 			);"
         );
@@ -57,8 +57,8 @@ class Ecommerce {
             cutomers_id INT(20) AUTO_INCREMENT PRIMARY KEY,
             id INT(20) NOT NULL,
             user_address_id INT(20) NOT NULL,
-            user_landPhone INT(10) NOT NULL,
-            user_mobilePhone INT(10) NOT NULL,
+            user_landPhone INT(10),
+            user_mobilePhone INT(10),
             FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
             );"
         );
