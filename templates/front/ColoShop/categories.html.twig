@@ -1,11 +1,13 @@
 {% extends ('front/ColoShop/base.html.twig') %}
 {% block title %}Boutique{% endblock %}
-{% block content %}
 
 {% block specificcss %}
     <link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('ColoShop/styles/categories_responsive.css') }}">
 {% endblock %}
+
+{% block content %}
+<div style="height:50px!important;"></div>
 <div class="container product_section_container">
     <div class="row">
         <div class="col product_section clearfix">
