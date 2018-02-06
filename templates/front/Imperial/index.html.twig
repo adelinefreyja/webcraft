@@ -212,21 +212,32 @@
   </section>
   {% endif %}
 
-{#   {% if newsletter.sitetype != 0 %}
+  {% if newsletter.sitetype != 0 %}
     <section id="subscribe">
       <div class="container wow fadeInUp">
         <div class="row">
           <div class="col-md-8">
             <h3 class="subscribe-title">Newsletter</h3>
             <p class="subscribe-text">Inscrivez-vous à notre newsletter et soyez informés les premiers de nos futures mises à jour !</p>
+            <div class="suscribe-text">
+              {{ form_start(newsletterForm) }}
+
+              <label>{{ form_label(newsletterForm.emailValue) }}</label>
+              <div class="form-group">
+                {{ form_widget(newsletterForm.emailValue, { 'attr' : { 'class' : 'form-control' }}) }}
+              </div>
+            </div>
           </div>
           <div class="col-md-4 subscribe-btn-container">
-            <a class="subscribe-btn" href="#">Subscribe Now</a>
+            <button type="submit" class="subscribe-btn" href="#">Inscrivez-vous !</a>
           </div>
+            {{ form_end(newsletterForm) }}
         </div>
       </div>
     </section>
-  {% endif %} #}
+
+
+  {% endif %}
 
   {% if contact.sitetype == 3 %}
   <section id="contact">

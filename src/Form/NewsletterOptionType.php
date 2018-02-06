@@ -8,17 +8,19 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PortfolioOptionType extends AbstractType {
+class NewsletterOptionType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
             ->add("optionname", HiddenType::class, 
-                [   "data"  =>  "portfolio"
+                [   "data"  =>  "newsletter"
                  ]
             )
             ->add('optionvalue', HiddenType::class,
-                [   "data"  =>  "Activation module" ]
+                [
+                    "data"  =>  "Activation module"
+                ]
             )
             ->add("description", HiddenType::class, 
                 [   "data" => "module" ]

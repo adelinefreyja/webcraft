@@ -6,8 +6,10 @@ use App\Entity\Pages;
 use App\Entity\Medias;
 use App\Entity\WebsiteInfo;
 use App\Entity\Contact;
+use App\Entity\Newsletter;
 use App\Entity\Design;
 use App\Form\ContactType;
+use App\Form\NewsletterType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,7 +61,20 @@ Class ImperialController extends Controller
         $repository8 = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $query8 = $repository8->findOneBy(
             ["optionname" =>  "newsletter"]
-        );        
+        );
+
+        $newsletter = new Newsletter();
+        $newsletterForm = $this->createForm(NewsletterType::class, $newsletter);
+
+        $newsletterForm->handleRequest($request);
+        if ($newsletterForm->isSubmitted() && $newsletterForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newsletter);
+            $em->flush();
+            
+            return $this->redirectToRoute('index');
+
+        }        
 
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
@@ -86,9 +101,10 @@ Class ImperialController extends Controller
                 "portfolio"     =>  $query5,
                 "design"        =>  $query6,
                 "logo"          =>  $query7,
-                "newsletter"    =>  $query8;
+                "newsletter"    =>  $query8,
                 "css"           =>  $queryCss,
-                "contactform"   =>  $contactForm->createView()
+                "contactform"   =>  $contactForm->createView(),
+                "newsletterForm"=>  $newsletterForm->createView()
             ]
         );
 	}

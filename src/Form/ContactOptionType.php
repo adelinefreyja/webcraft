@@ -3,11 +3,8 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use App\Entity\WebsiteInfo;
-use App\Entity\Pages;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,11 +17,8 @@ class ContactOptionType extends AbstractType {
                 [   "data"  =>  "contact"
                  ]
             )
-            ->add('optionvalue', EntityType::class,
-                [
-                    "class" =>  Pages::class,
-                    'choice_label' => 'page_name'
-                ]
+            ->add('optionvalue', HiddenType::class,
+                [   "data"  =>  "Activation module" ]
             )
             ->add("description", HiddenType::class, 
                 [   "data" => "module" ]

@@ -6,6 +6,7 @@ use App\Entity\Pages;
 use App\Entity\Contact;
 use App\Form\ContactOptionType;
 use App\Form\PortfolioOptionType;
+use App\Form\NewsletterOptionType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +50,14 @@ class OptionsController extends Controller
             ]   
         );
 
+        $fetchNewsletterMod = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
+        $newsletterMod = $fetchNewsletterMod->findOneBy(
+            ["optionname" => "newsletter",
+             "description"  =>  "module"
+            ]   
+        );
+
+
         $modId = $this->getDoctrine()->getManager()->getRepository(WebsiteInfo::class);
         $mod = $modId->findAll();
 
@@ -78,8 +87,21 @@ class OptionsController extends Controller
             return $this->redirectToRoute('options');
         }
 
+        $modNewsletter = new WebsiteInfo();
+        $activNewsletter = $this->createForm(NewsletterOptionType::class, $modNewsletter);
+
+        $activNewsletter->handleRequest($request);
+        if ($activNewsletter->isSubmitted() && $activNewsletter->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $modNewsletter = $newsletterMod->setSiteType(5);
+            $em->persist($modNewsletter);
+            $em->flush();
+            return $this->redirectToRoute('options');
+        }
+
         return $this->render('backoffice/customs/options.html.twig',
-            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2, "mod" => $mod, "portfolio" => $portfolioMod, "activPortfolio" => $activPortfolio->createView()]
+            ["sitetype" =>  $query, "activContact" => $activContact->createView(), "contact" => $contactMod, "messages"  =>  $query2, "mod" => $mod, "portfolio" => $portfolioMod, "activPortfolio" => $activPortfolio->createView(), "activNewsletter" => $activNewsletter->createView(), "newsletter" => $newsletterMod]
         );
 	}
 
