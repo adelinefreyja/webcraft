@@ -1,0 +1,29 @@
+<style>
+    body {
+        {% if css.backgroundImg is null %}
+            background-color: {{ css.backgroundColor|raw }} !important;
+        {% else %}
+            background-image: url({{ asset(css.backgroundImg) }}) !important;
+        {% endif %}
+    }
+
+    h1, h2, h3, h4 {
+        color: {{ css.textPrimaryColor|raw }} !important;
+    }
+
+    h5, h6, p {
+        color: {{ css.textSecondaryColor|raw }} !important;
+    }
+
+    a {
+        color: {{ css.linksColor|raw }} !important;
+    }
+
+    header {
+        {% if css.backgroundImg is null %}
+            background-color: {{ css.headerColor|raw }} !important;
+        {% else %}
+            background-image: url({{ asset(css.headerImg) }}) !important;
+        {% endif %}
+    }
+</style>

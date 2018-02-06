@@ -58,6 +58,8 @@ class ImperialController extends Controller
             ["optionname" => "logo"]
         );
 
+        $css = $this->getDoctrine()->getManager()->getRepository(Design::class);
+        $queryCss = $css->findAll();
 
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
@@ -84,6 +86,7 @@ class ImperialController extends Controller
                 "portfolio"     =>  $query5,
                 "design"        =>  $query6,
                 "logo"          =>  $query7,
+                "css"           =>  $queryCss[0],
                 "contactform"   =>  $contactForm->createView()
             ]
         );
