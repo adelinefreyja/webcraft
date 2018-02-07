@@ -85,9 +85,6 @@ Class ImperialController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-            
-            return $this->redirectToRoute('contact');
-
         }
         
         return $this->render(
@@ -102,7 +99,7 @@ Class ImperialController extends Controller
                 "design"        =>  $query6,
                 "logo"          =>  $query7,
                 "newsletter"    =>  $query8,
-                "css"           =>  $queryCss,
+                "csss"           =>  $queryCss,
                 "contactform"   =>  $contactForm->createView(),
                 "newsletterForm"=>  $newsletterForm->createView()
             ]

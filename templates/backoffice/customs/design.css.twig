@@ -1,73 +1,75 @@
 <style>
-{% if css.templateName == "Imperial" %}
-    body {
-        {% if css.backgroundImg is not null %}
-            background-image: url({{ asset(css.backgroundImg) }}) !important;
-        {% elseif css.backgroundColor is not null %}
-            background-color: {{ css.backgroundColor|raw }} !important;
-        {% endif %}
-    }
+{% for css in csss %}
+    {% if css.templateName == "Imperial" %}
+        body {
+            {% if css.backgroundImg is not null %}
+                background-image: url({{ asset(css.backgroundImg) }}) !important;
+            {% elseif css.backgroundColor is not null %}
+                background-color: {{ css.backgroundColor|raw }} !important;
+            {% endif %}
+        }
 
-    h1, h2, h3, h4 {
-        {% if css.textPrimaryColor is not null %}
-            color: {{ css.textPrimaryColor|raw }} !important;
-        {% endif %}
-    }
+        h1, h2, h3, h4 {
+            {% if css.textPrimaryColor is not null %}
+                color: {{ css.textPrimaryColor|raw }} !important;
+            {% endif %}
+        }
 
-    h5, h6, p {
-        {% if css.textSecondaryColor is not null %}
-            color: {{ css.textSecondaryColor|raw }} !important;
-        {% endif %}
-    }
+        h5, h6, p {
+            {% if css.textSecondaryColor is not null %}
+                color: {{ css.textSecondaryColor|raw }} !important;
+            {% endif %}
+        }
 
-    a {
-        {% if css.linksColor is not null %}
-            color: {{ css.linksColor|raw }} !important;
-        {% endif %}
-    }
+        a {
+            {% if css.linksColor is not null %}
+                color: {{ css.linksColor|raw }} !important;
+            {% endif %}
+        }
 
-    header {
-        {% if css.headerImg is not null %}
-            background-image: url({{ asset(css.headerImg) }}) !important;
-        {% elseif css.headerColor is not null %}
-            background-color: {{ css.headerColor|raw }} !important;
-        {% endif %}
-    }
+        header {
+            {% if css.headerImg is not null %}
+                background-image: url({{ asset(css.headerImg) }}) !important;
+            {% elseif css.headerColor is not null %}
+                background-color: {{ css.headerColor|raw }} !important;
+            {% endif %}
+        }
 
-{% elseif css.templateName == "ColoShop" %}
+    {% elseif css.templateName == "ColoShop" %}
 
-    body {
-        {% if css.backgroundImg is not null %}
-            background-image: url({{ asset(css.backgroundImg) }}) !important;
-        {% elseif css.backgroundColor is not null %}
-            background-color: {{ css.backgroundColor|raw }} !important;
-        {% endif %}
-    }
+        body {
+            {% if css.backgroundImg is not null %}
+                background-image: url({{ asset(css.backgroundImg) }}) !important;
+            {% elseif css.backgroundColor is not null %}
+                background-color: {{ css.backgroundColor|raw }} !important;
+            {% endif %}
+        }
 
-    h1, h2, h3, h4 {
-        {% if css.textPrimaryColor is not null %}
-            color: {{ css.textPrimaryColor|raw }} !important;
-        {% endif %}
-    }
+        h1, h2, h3, h4 {
+            {% if css.textPrimaryColor is not null %}
+                color: {{ css.textPrimaryColor|raw }} !important;
+            {% endif %}
+        }
 
-    h5, h6, p {
-        {% if css.textSecondaryColor is not null %}
-            color: {{ css.textSecondaryColor|raw }} !important;
-        {% endif %}
-    }
+        h5, h6, p {
+            {% if css.textSecondaryColor is not null %}
+                color: {{ css.textSecondaryColor|raw }} !important;
+            {% endif %}
+        }
 
-    a {
-        {% if css.linksColor is not null %}
-            color: {{ css.linksColor|raw }} !important;
-        {% endif %}
-    }
+        a {
+            {% if css.linksColor is not null %}
+                color: {{ css.linksColor|raw }} !important;
+            {% endif %}
+        }
 
-    header {
-        {% if css.headerImg is not null %}
-            background-image: url({{ asset(css.headerImg) }}) !important;
-        {% elseif css.headerColor is not null %}
-            background-color: {{ css.headerColor|raw }} !important;
-        {% endif %}
-    }
-{% endif %}
+        header {
+            {% if css.headerImg is not null %}
+                background-image: url({{ asset(css.headerImg) }}) !important;
+            {% elseif css.headerColor is not null %}
+                background-color: {{ css.headerColor|raw }} !important;
+            {% endif %}
+        }
+    {% endif %}
+{% endfor %}
 </style>

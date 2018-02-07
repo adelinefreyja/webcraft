@@ -57,7 +57,7 @@ class SitePublicController extends Controller
                     $query = $repository->findOneBy(
                         ['category_name' => "Accueil"]
                     );
-                    return $this->redirectToRoute('sitepublic',["category_name" =>  $query]);
+                    return $this->redirectToRoute('sitepublic',["category_name" =>  "Accueil"]);
                 } 
                 /* View Accueil */
         if($category_name == "Accueil"){

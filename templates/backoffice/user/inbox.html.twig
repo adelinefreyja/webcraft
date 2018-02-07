@@ -35,10 +35,17 @@
 					<tbody>
 						{% for box in inbox %}
 							<tr>
-								<td>{{ box.username|e }}</td>
-								<td>{{ box.useremail|e }}</td>
-								<td>{{ box.messagedate|date("d/m/Y à H:i", "Europe/Paris") }}</td>
-								<td>{{ box.messageobject|e }}</td>
+								{% if box.status == 'nonlu' %}
+									<td style="font-weight: bold">{{ box.username|e }}</td>
+									<td style="font-weight: bold">{{ box.useremail|e }}</td>
+									<td style="font-weight: bold">{{ box.messagedate|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+									<td style="font-weight: bold">{{ box.messageobject|e }}</td>
+								{% else %}
+									<td style="font-style: italic">{{ box.username|e }}</td>
+									<td style="font-style: italic">{{ box.useremail|e }}</td>
+									<td style="font-style: italic">{{ box.messagedate|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+									<td style="font-style: italic">{{ box.messageobject|e }}</td>
+								{% endif %}
 								<td>
 									<a href="{{ path('openmessage', {'id': box.messageid}) }}" class="btn orange lighten-2 tooltipped" data-position="top" data-tooltip="Voir"><i class="fas fa-search brown-text"></i></a>
 									<a href="{{ path('deletemessage', {'id': box.messageid}) }}" class="btn red darken-2 tooltipped" data-position="right" data-tooltip="Supprimer"><i class="fa fa-trash white-text"></i></a>

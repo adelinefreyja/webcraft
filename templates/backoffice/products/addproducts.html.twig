@@ -1,5 +1,7 @@
 {% extends 'backoffice/index.html.twig' %}
 
+{% block title %}Ajouter un produit :: WebCraft :: Make magic websites within minutes !{% endblock %}
+
 {% block specificcss %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/setup.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/backoffice.css') }}">
@@ -40,7 +42,7 @@
                 {{ form_widget(form.product.productSale) }}
             </div>
             <div class="file-field input-field">
-                 <div class="btn">
+                 <div class="btn brown white-text">
                      <span>Transmettre un fichier</span>
                      {{ form_widget(form.image) }}
                  </div>

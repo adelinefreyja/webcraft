@@ -10,7 +10,7 @@
                         <option value="" disabled selected>Choisissez une Taxe existante</option>
                         {% for taxe in taxes %}
                             {% if taxe.taxName not in newArray %}
-                                <option>{{ taxe.taxName }} : {{ taxe.taxValue }}</option>
+                                <option>{{ taxe.taxName }} : {{ taxe.taxValue }}€</option>
                                 <input type="hidden" id="selectTax" value="{{ taxe.taxId }}">
                                 {% set newArray = newArray|merge([taxe.taxName]) %}
                             {% endif %}

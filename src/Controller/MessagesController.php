@@ -21,7 +21,7 @@ class MessagesController extends Controller
         );
 
         $rep = $this->getDoctrine()->getManager()->getRepository(Contact::class);
-        $inbox = $rep->findAll();
+        $inbox = $rep->findby([], ["messageDate" =>  "DESC"]);
         $messages = $rep->findBy(
             [
                 "status"    =>  "nonlu"

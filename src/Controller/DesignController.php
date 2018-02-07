@@ -115,7 +115,7 @@ class DesignController extends Controller
         $query = $repository->findAll();
 
         return $this->render('backoffice/customs/design.css.twig',
-            ["css" =>  $query[0]]
+            ["csss" =>  $query]
         );
     }
 }
